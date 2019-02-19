@@ -1,0 +1,27 @@
+$primary: orangered;
+
+// Bulma
+@import "bulma/sass/utilities/_all.sass";
+@import "bulma/sass/base/_all.sass";
+@import "bulma/sass/components/navbar.sass";
+@import "bulma/sass/elements/button.sass";
+@import "bulma/sass/elements/title.sass";
+@import "bulma/sass/layout/hero.sass";
+
+// Fonts
+@import "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
+@import "https://fonts.googleapis.com/css?family=Roboto:400,500";
+
+// App
+@import "navbar.scss";
+@import "drawer.scss";
+@import "home.scss";
+
+body {
+    font-family: 'Roboto',sans-serif;
+    color: #222;
+}
+
+.test {
+    color: $primary;
+}
