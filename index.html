@@ -4,23 +4,25 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bolero: F# in WebAssembly</title>
+    <link rel="icon" type="image/png" href="img/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="img/favicon-32x32.png" sizes="32x32" />
     <link rel="stylesheet" href="/css/all.min.css" />
-    <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[["WebSharper","UI","Templating","Runtime","Server","TemplateInitializer"]],"$DATA":{"$V":{"1f342754-2b71-41ba-be0a-a827dcf49825":{"$T":0,"$V":{"vars":[["drawershown",0]]}},"fbfa8583-d96f-486b-adf3-8d0970c1f717":{"$T":0,"$V":{"vars":[]}},"1c150448-0eb2-45c7-bf8d-4e76cb07d7a6":{"$T":0,"$V":{"vars":[]}},"c8e9b90c-31b9-4d9b-bca8-16b2cdb168a7":{"$T":0,"$V":{"vars":[]}},"69edee2a-bc16-46ed-9888-f73f9f94f03f":{"$T":0,"$V":{"vars":[]}},"2cb2ebfc-2b43-4488-bea7-e4c7a29cb10a":{"$T":0,"$V":{"vars":[]}},"af38e9b2-b01b-41c7-8429-e6ff9713716c":{"$T":0,"$V":{"vars":[]}},"e5f73594-8fa3-47c0-901a-5f83f7e21400":{"$T":0,"$V":{"vars":[]}},"8b47945f-1ebb-41b7-9416-76331ca94181":{"$T":0,"$V":{"vars":[]}},"750c3df2-40e0-4069-994d-a98b68a1c7ec":{"$T":0,"$V":{"vars":[]}}}}}' />
+    <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[["WebSharper","UI","Templating","Runtime","Server","TemplateInitializer"]],"$DATA":{"$V":{"2706d212-c5ee-4f2e-a230-db28ba47c146":{"$T":0,"$V":{"vars":[["drawershown",0]]}},"ab3246d2-fd8a-4680-85c1-53871dbbae62":{"$T":0,"$V":{"vars":[]}},"ab6dcf6e-1705-4565-9bb2-c9eea2b16f32":{"$T":0,"$V":{"vars":[]}},"4a2d6d92-ccf3-4042-a74c-1d2a299ca6ce":{"$T":0,"$V":{"vars":[]}},"0fca0914-eb2b-421b-8ae2-266ee50e0b62":{"$T":0,"$V":{"vars":[]}},"fc12453d-4858-4c89-9d1b-43148f783ead":{"$T":0,"$V":{"vars":[]}},"5318d69a-72a1-47eb-8f57-325c4059d499":{"$T":0,"$V":{"vars":[]}},"1cbb796d-2b28-45bc-9393-015aa858ba35":{"$T":0,"$V":{"vars":[]}},"1376b2a8-2875-4c14-9aba-a276b802b69a":{"$T":0,"$V":{"vars":[]}},"4cae8926-b47a-4fb5-9a84-d6fc0b1af8e3":{"$T":0,"$V":{"vars":[]}}}}}' />
 
 </head>
 <body>
     <header class="navbar overlay-bar">
         <div class="navbar-brand">
-            <a class="navbar-item is-hoverable" onclick="WebSharper.UI.Templating.Runtime.Server.Handler.EventQ2$184$36(&quot;1f342754-2b71-41ba-be0a-a827dcf49825&quot;,Website.Main.Site.Page$27$24())(this)(event)"><i class="fa fa-bars"></i></a>
+            <a class="navbar-item is-hoverable" onclick="WebSharper.UI.Templating.Runtime.Server.Handler.EventQ2$184$36(&quot;2706d212-c5ee-4f2e-a230-db28ba47c146&quot;,Website.Main.Site.Page$27$24())(this)(event)"><i class="fa fa-bars"></i></a>
             <span class="navbar-item"><a href="/">Bolero</a></span>
         </div>
         <div class="navbar-menu">
             <nav class="navbar-end"><a href="/" class="navbar-item is-hoverable has-text-weight-bold">Home</a><a href="/docs" class="navbar-item is-hoverable has-text-weight-bold">Documentation</a><a href="/blog" class="navbar-item is-hoverable has-text-weight-bold">Blog</a><a href="https://try.fsbolero.io" class="navbar-item is-hoverable has-text-weight-bold">Try F#</a></nav>
         </div>
     </header>
-    <div class="drawer-backdrop ${1f342754-2b71-41ba-be0a-a827dcf49825::drawershown}" onclick="WebSharper.UI.Templating.Runtime.Server.Handler.EventQ2$184$36(&quot;1f342754-2b71-41ba-be0a-a827dcf49825&quot;,Website.Main.Site.Page$28$24())(this)(event)">
-        <input class="is-hidden" ws-var="1f342754-2b71-41ba-be0a-a827dcf49825::drawershown" />
-        <div id="left-drawer" class="lhs-drawer ${1f342754-2b71-41ba-be0a-a827dcf49825::drawershown}">
+    <div class="drawer-backdrop ${2706d212-c5ee-4f2e-a230-db28ba47c146::drawershown}" onclick="WebSharper.UI.Templating.Runtime.Server.Handler.EventQ2$184$36(&quot;2706d212-c5ee-4f2e-a230-db28ba47c146&quot;,Website.Main.Site.Page$28$24())(this)(event)">
+        <input class="is-hidden" ws-var="2706d212-c5ee-4f2e-a230-db28ba47c146::drawershown" />
+        <div id="left-drawer" class="lhs-drawer ${2706d212-c5ee-4f2e-a230-db28ba47c146::drawershown}">
             <span class="navbar-item"><a href="/">Bolero</a></span>
             <nav><a href="/" class="navbar-item nav-menu-link">Home</a><a href="/docs" class="navbar-item nav-menu-link">Documentation</a><a href="/blog" class="navbar-item nav-menu-link">Blog</a><a href="https://try.fsbolero.io" class="navbar-item nav-menu-link">Try F#</a></nav>
         </div>
