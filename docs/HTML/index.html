@@ -1,0 +1,320 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bolero: F# in WebAssembly</title>
+  <link rel="icon" type="image/png" href="img/favicon-16x16.png" sizes="16x16" />
+  <link rel="icon" type="image/png" href="img/favicon-32x32.png" sizes="32x32" />
+  <link rel="stylesheet" href="/css/all.min.css" />
+  <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[["WebSharper","UI","Templating","Runtime","Server","TemplateInitializer"]],"$DATA":{"$V":{"4e960f10-9540-43a3-bfae-0c325dcfb6ab":{"$T":0,"$V":{"vars":[["drawershown",0]]}},"1e780cc7-e12e-4d63-a237-4c25063d989e":{"$T":0,"$V":{"vars":[]}},"a09a9b9f-2848-46f0-a774-c90c768c83d0":{"$T":0,"$V":{"vars":[]}},"fa312e42-d848-4ef3-af3a-deaad11b0808":{"$T":0,"$V":{"vars":[]}},"8af73b10-8c8c-42a9-801d-54e5cdd23a37":{"$T":0,"$V":{"vars":[]}},"0c1afba1-c97c-4f02-af28-80ac274c4e49":{"$T":0,"$V":{"vars":[]}},"657967a8-28b0-4cf9-9ef1-a770e532ac59":{"$T":0,"$V":{"vars":[]}},"6db8f3ae-e0a7-4f2e-a58f-c19809d50609":{"$T":0,"$V":{"vars":[]}},"c1df0e44-dd7e-471b-b144-5a6a170b115a":{"$T":0,"$V":{"vars":[]}},"28c5b841-c011-4ef1-a6bf-5fbff41f7264":{"$T":0,"$V":{"vars":[]}}}}}' />
+
+</head>
+<body>
+  <header class="navbar overlay-bar">
+    <div class="navbar-brand">
+      <a class="navbar-item is-hoverable" onclick="WebSharper.UI.Templating.Runtime.Server.Handler.EventQ2$184$36(&quot;4e960f10-9540-43a3-bfae-0c325dcfb6ab&quot;,Website.Main.Site.Page$29$24())(this)(event)"><i class="fa fa-bars"></i></a>
+      <span class="navbar-item"><a href="/">Bolero</a></span>
+    </div>
+    <div class="navbar-menu">
+      <nav class="navbar-end"><a href="/" class="navbar-item is-hoverable has-text-weight-bold">Home</a><a href="/docs" class="navbar-item is-hoverable has-text-weight-bold">Documentation</a><a href="/blog" class="navbar-item is-hoverable has-text-weight-bold">Blog</a><a href="https://try.fsbolero.io" class="navbar-item is-hoverable has-text-weight-bold">Try F#</a></nav>
+    </div>
+  </header>
+  <div class="drawer-backdrop ${4e960f10-9540-43a3-bfae-0c325dcfb6ab::drawershown}" onclick="WebSharper.UI.Templating.Runtime.Server.Handler.EventQ2$184$36(&quot;4e960f10-9540-43a3-bfae-0c325dcfb6ab&quot;,Website.Main.Site.Page$30$24())(this)(event)">
+    <input type="hidden" ws-var="4e960f10-9540-43a3-bfae-0c325dcfb6ab::drawershown" />
+    <div id="left-drawer" class="lhs-drawer ${4e960f10-9540-43a3-bfae-0c325dcfb6ab::drawershown}">
+      <span class="navbar-item"><a href="/">Bolero</a></span>
+      <nav><a href="/" class="navbar-item nav-menu-link">Home</a><a href="/docs" class="navbar-item nav-menu-link">Documentation</a><a href="/blog" class="navbar-item nav-menu-link">Blog</a><a href="https://try.fsbolero.io" class="navbar-item nav-menu-link">Try F#</a></nav>
+    </div>
+  </div>
+  
+      <section class="hero is-dark page-banner">
+        <div class="hero-body has-text-centered">
+          <h1 class="title is-spaced">Bolero</h1>
+        </div>
+      </section>
+      <section class="section">
+        <div class="container content"><p>Bolero provides F# functions to create HTML elements, attributes and event handlers, and also instantiate Blazor components. All of these are defined in the module <code>Bolero.Html</code>.</p>
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<ul>
+<li><a href="#elements">Elements</a>
+<ul>
+<li><a href="#conditional-elements">Conditional elements</a></li>
+<li><a href="#collection-elements">Collection elements</a></li>
+</ul>
+</li>
+<li><a href="#attributes">Attributes</a>
+<ul>
+<li><a href="#conditional-attributes">Conditional attributes</a></li>
+</ul>
+</li>
+<li><a href="#event-handlers">Event handlers</a></li>
+<li><a href="#data-bindings">Data bindings</a></li>
+<li><a href="#components">Components</a></li>
+<li><a href="#navlink">NavLink</a></li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<p>See also how to create HTML elements using <a href="Templating">HTML templates</a>.</p>
+<h1 id="elements">Elements</h1>
+<p>To create an HTML element, just call the function with its name. It takes two arguments: a list of attributes and a list of child elements, and returns a value of type <code>Node</code>.</p>
+<p>Additionally, the function <code>text</code> creates a text node, and <code>textf</code> creates a text node using <code>printf</code>-style formatting.</p>
+<pre><code class="language-fsharp">let myElement name =
+    div [] [
+        h1 [] [text &quot;My app&quot;]
+        p [] [textf &quot;Hello %s and welcome to my app!&quot; name]
+    ]
+</code></pre>
+<p>Elements that can't have children, such as <code>input</code> or <code>br</code>, only take attributes as argument.</p>
+<pre><code class="language-fsharp">let myElement =
+    p [] [
+        text &quot;First line of the paragraph.&quot;
+        br []
+        text &quot;Second line of the paragraph.&quot;
+    ]
+</code></pre>
+<p>To create a custom element for which there isn't a function, use <code>elt</code>.</p>
+<pre><code class="language-fsharp">let myElement =
+    elt &quot;data-paragraph&quot; [] [
+        text &quot;This is in a &lt;data-paragraph&gt; element.&quot;
+    ]
+</code></pre>
+<p>In addition to representing an HTML node, the type <code>Node</code> can also represent a (possibly empty) sequence of nodes. This is done using the <code>concat</code> function.</p>
+<pre><code class="language-fsharp">let myElements =
+    concat [
+        p [text &quot;First paragraph&quot;]
+        p [text &quot;Second paragraph&quot;]
+    ]
+</code></pre>
+<p><code>empty</code> represents an empty sequence of nodes: it is equivalent to <code>concat []</code>. This doesn't seem very useful at first, but it is actually important for conditional elements.</p>
+<h2 id="conditional-elements">Conditional elements</h2>
+<p>Due to the way that Blazor compares the rendered DOM when a change is applied, the returned HTML must always have the same structure: conditional elements can't be simply added. For example, the following may cause runtime errors:</p>
+<pre><code class="language-fsharp">// May fail at runtime.
+let myButton (label: option&lt;string&gt;) =
+    button [] [
+        if label.IsSome then
+            yield text label.Value
+    ]
+</code></pre>
+<p>Rendering such conditional content must be done with the <code>cond</code> function instead.</p>
+<ul>
+<li><p><code>cond</code> can take a boolean value, and a function to call on this value returning a Node. For example, the following is correct:</p>
+<pre><code class="language-fsharp">let myButton (label: option&lt;string&gt;) =
+    button [] [
+        cond label.IsSome &lt;| function
+            | true -&gt; text label.Value
+            | false -&gt; empty
+    ]
+</code></pre>
+<p>You can also see here why <code>empty</code> is a useful value.</p>
+</li>
+<li><p><code>cond</code> can also take a value whose type is an F# union, and a function that matches over the cases of this union. For example, <code>option&lt;'T&gt;</code> is an F# union, so the following is correct:</p>
+<pre><code class="language-fsharp">let myButton (label: option&lt;string&gt;) =
+    button [] [
+        cond label &lt;| function
+            | Some l -&gt; text l
+            | None -&gt; empty
+    ]
+</code></pre>
+<p>Here's an example with a union defined in your code:</p>
+<pre><code class="language-fsharp">/// A list of usernames, truncated to two + number of others
+type UserList =
+    | One of string
+    | Two of string * string
+    | Many of string * string * int
+
+/// Shows one of the following, depending on the number of users:
+/// * &quot;*Alice* likes this&quot;
+/// * &quot;*Alice* and *Bob* like this&quot;
+/// * &quot;*Alice*, *Bob* and 12 others like this&quot;
+let showLikes (users: UserList) =
+    concat [
+        cond users &lt;| function
+            | One uname -&gt; b [] [text uname]
+            | Two (uname1, uname2) -&gt;
+                concat [
+                    b [] [text uname1]
+                    text &quot; and &quot;
+                    b [] [text uname2]
+                ]
+            | Many (uname1, uname2, others) -&gt;
+                concat [
+                    b [] [text uname1]
+                    text &quot;, &quot;
+                    b [] [text uname2]
+                    textf &quot; and %i others&quot; others
+                ]
+        cond users &lt;| function
+            | One _ -&gt; text &quot; likes this.&quot;
+            | _     -&gt; text &quot; like this.&quot;
+    ]
+</code></pre>
+</li>
+</ul>
+<h2 id="collection-elements">Collection elements</h2>
+<p>Similarly, rendering collections using a function such as <code>List.map</code> to create a list of nodes can cause runtime errors. Instead, collections of items should be rendered using the function <code>forEach</code>.</p>
+<pre><code class="language-fsharp">let listUsers (names: string list) =
+    p [] [
+        text &quot;Here are the users:&quot;
+        ul [] [
+            forEach names &lt;| fun name -&gt;
+                li [] [text name]
+        ]
+    ]
+</code></pre>
+<h1 id="attributes">Attributes</h1>
+<p>Attributes are available in the <code>attr</code> submodule.</p>
+<pre><code class="language-fsharp">let myElement =
+    p [
+        attr.style &quot;color: blue;&quot;
+        attr.``class`` &quot;paragraph&quot;
+    ] [
+        text &quot;Hello and welcome to my app!&quot;
+    ]
+</code></pre>
+<p>To create a custom attribute for which there isn't a function, use the <code>=&gt;</code> operator.</p>
+<pre><code class="language-fsharp">let myElement =
+    p [&quot;data-kind&quot; =&gt; &quot;paragraph&quot;] [
+        text &quot;Hello and welcome to my app!&quot;
+    ]
+</code></pre>
+<h2 id="conditional-attributes">Conditional attributes</h2>
+<p>Like with elements (see <a href="#conditional-elements">Conditional elements</a>), naively adding conditional attributes can lead to runtime errors.</p>
+<pre><code class="language-fsharp">// May fail at runtime.
+let myElement (isBlue: bool) =
+    p [
+        if isBlue then
+            yield attr.style &quot;color: blue;&quot;
+    ] [
+        text &quot;Hello and welcome to my app!&quot;
+    ]
+</code></pre>
+<p>Instead if an attribute may or may not need to be added depending on a condition, always add the attribute and give it a value of <code>false</code> or <code>null</code> when it should be omitted.</p>
+<pre><code class="language-fsharp">let myElement (isBlue: bool) =
+    p [attr.style (if isBlue then &quot;color: blue;&quot; else null)] [
+        text &quot;Hello and welcome to my app!&quot;
+    ]
+</code></pre>
+<h1 id="event-handlers">Event handlers</h1>
+<p>Event handlers are available in the <code>on</code> submodule.</p>
+<pre><code class="language-fsharp">let myElement =
+    button [on.click (fun _ -&gt; printfn &quot;Clicked!&quot;)] [
+        text &quot;Click me!&quot;
+    ]
+</code></pre>
+<p>The argument passed to the callback has type <code>UIEventArgs</code> from Blazor. Specific events have corresponding subtypes of <code>UIEventArgs</code>: for example, <code>on.click</code> uses <code>UIMouseEventArgs</code>.</p>
+<pre><code class="language-fsharp">let myElement =
+    button [
+       on.click (fun e -&gt;
+            printfn &quot;Clicked at (%i, %i)&quot; e.ClientX e.ClientY)
+    ] [
+        text &quot;Click me!&quot;
+    ]
+</code></pre>
+<p>To create a custom event handler for which there isn't a function, use <code>on.event</code>.</p>
+<pre><code class="language-fsharp">let myElement =
+    button [
+        on.event &quot;customevent&quot; (fun _ -&gt; printfn &quot;Custom event!&quot;)
+    ] [
+        text &quot;Click me!&quot;
+    ]
+</code></pre>
+<h1 id="data-bindings">Data bindings</h1>
+<p>Attributes defined in the <code>bind</code> module define two-way binding with the element's value. These functions take two arguments:</p>
+<ol>
+<li>The current value, which generally comes from the <a href="Elmish">Elmish</a> model.</li>
+<li>A setter function, which generally calls the Elmish dispatch function.</li>
+</ol>
+<p>Here is an example using <code>bind.input</code>:</p>
+<pre><code class="language-fsharp">type Model = { username: string }
+
+type Message =
+    | SetUsername of string
+
+let hello model dispatch =
+    input [
+        bind.input model.username (fun n -&gt; dispatch (SetUsername n))
+    ]
+</code></pre>
+<p>The functions in the <code>bind</code> module are:</p>
+<ul>
+<li><p><code>bind.input</code> binds to the <code>value</code> property of an element, as a string, by listening to the <code>oninput</code> event. This means that the callback is called on every user interaction on the element that changes its value. For example, on a text input, it is triggered on every keystroke.</p>
+<p>It is suitable for <code>input</code> and <code>textarea</code> elements.</p>
+</li>
+<li><p><code>bind.change</code> is identical to <code>bind.input</code> except that it listens to the <code>onchange</code> event. This means that the callback is called when a change is &quot;committed&quot; by the user. For example, on a text input, it is triggered when the user presses Enter or unfocuses the element after changing the value.</p>
+<p>It is suitable for <code>input</code>, <code>textarea</code> and <code>select</code> elements.</p>
+</li>
+<li><p><code>bind.inputInt</code> and <code>bind.changeInt</code> bind to the <code>value</code> property of an element as an <code>int</code>, by listening to the corresponding event. They are particularly suitable with an input that has <code>attr.``type`` &quot;number&quot;</code>. If the value cannot be parsed as an <code>int</code> during an event, the setter is not called.</p>
+</li>
+<li><p><code>bind.inputFloat</code> and <code>bind.changeFloat</code> bind to the <code>value</code> property of an element as a <code>float</code>, by listening to the corresponding event. They are particularly suitable with an input that has <code>attr.``type`` &quot;number&quot;</code>. If the value cannot be parsed as a <code>float</code> during an event, the setter is not called.</p>
+</li>
+<li><p><code>bind.checked</code> binds to the <code>checked</code> property of a checkbox input. Note that you also need to add <code>attr.``type`` &quot;checkbox&quot;</code> to the input.</p>
+</li>
+</ul>
+<blockquote>
+<p>Note: Radio buttons (<code>attr.``type`` &quot;radio&quot;</code>) are not yet supported by Blazor, and therefore by Bolero; see <a href="https://github.com/aspnet/Blazor/issues/1322">the issue on Blazor's tracker</a>.</p>
+</blockquote>
+<pre><code class="language-fsharp">type Model = { isChecked: bool }
+
+type Message =
+    | SetChecked of bool
+
+let hello model dispatch =
+    input [
+        attr.``type`` &quot;checkbox&quot;
+        bind.checked model.isChecked (fun c -&gt; dispatch (SetChecked c))
+    ]
+</code></pre>
+<h1 id="components">Components</h1>
+<blockquote>
+<p>Note: this section describes how to create and use plain Blazor components. It is recommended to use Elmish components whenever possible; see <a href="Elmish">Using Elmish</a>.</p>
+</blockquote>
+<p>You can create plain Blazor components by inheriting from the <code>Component</code> type.</p>
+<pre><code class="language-fsharp">type MyComponent() =
+    inherit Component()
+
+    override this.Render() =
+        div [] [text &quot;Hello, world!&quot;]
+</code></pre>
+<p>To add parameters to the component, use a property with the <code>Parameter</code> attribute from namespace <code>Microsoft.AspNetCore.Blazor</code>.</p>
+<pre><code class="language-fsharp">type MyComponent() =
+    inherit Component()
+
+    [&lt;Parameter&gt;]
+    member val Who = &quot;&quot; with get, set
+
+    override this.Render() =
+        div [] [text (sprintf &quot;Hello, %s!&quot; this.Who)]
+</code></pre>
+<p>To instantiate a Blazor component, use the <code>comp</code> function. It is parameterized by the component type, and takes attributes and child nodes as arguments.</p>
+<pre><code class="language-fsharp">let myElement =
+    comp&lt;MyComponent&gt; [&quot;Who&quot; =&gt; &quot;world&quot;] []
+</code></pre>
+<h1 id="navlink">NavLink</h1>
+<p>The function <code>navLink</code> is a helper to create a Blazor <code>NavLink</code> component. This component creates an <code>&lt;a&gt;</code> tag which dynamically receives the <code>&quot;active&quot;</code> CSS class whenever the current page URL matches its own <code>href</code>. The match is customized by passing <code>NavLinkMatch.All</code> (to only match the full URL path) or <code>NavLinkMatch.Prefix</code> (to match any URL that starts with the <code>navLink</code>'s <code>href</code>).</p>
+<pre><code class="language-fsharp">let myMenu =
+    ul [] [
+        li [] [navLink NavLinkMatch.All [attr.href &quot;/&quot;] [text &quot;Home&quot;]]
+        li [] [navLink NavLinkMatch.Prefix [attr.href &quot;/blog&quot;] [text &quot;Blog&quot;]]
+    ]
+</code></pre>
+</div>
+      </section>
+    
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/8.6.0/lazyload.min.js"></script>
+  <script type="text/javascript">new LazyLoad();</script>
+  <script src="../../Scripts/WebSharper.Core.JavaScript/Runtime.min.js" type="text/javascript" charset="UTF-8"></script><!--[if lte IE 7.0]>
+<script src="../../Scripts/WebSharper.Main/Json.min.js" type="text/javascript" charset="UTF-8"></script><![endif]-->
+<!--[if lte IE 9.0]>
+<script src="../../Scripts/WebSharper.Main/AnimFrame.min.js" type="text/javascript" charset="UTF-8"></script><![endif]-->
+<script src="../../Scripts/WebSharper.Main/WebSharper.Main.min.js" type="text/javascript" charset="UTF-8"></script><script src="../../Scripts/WebSharper.Collections/WebSharper.Collections.min.js" type="text/javascript" charset="UTF-8"></script><script src="../../Scripts/WebSharper.UI/WebSharper.UI.min.js" type="text/javascript" charset="UTF-8"></script><script src="../../Scripts/WebSharper.UI.Templating.Runtime/WebSharper.UI.Templating.Runtime.min.js" type="text/javascript" charset="UTF-8"></script><script src="../../Scripts/Website/Website.min.js" type="text/javascript" charset="UTF-8"></script><script type="text/javascript">
+if (typeof IntelliFactory !=='undefined') {
+  IntelliFactory.Runtime.ScriptBasePath = '../../Scripts/';
+  IntelliFactory.Runtime.Start();
+}
+</script>
+
+  
+  
+</body>
+</html>

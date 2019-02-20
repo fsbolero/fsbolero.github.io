@@ -1,0 +1,360 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bolero: F# in WebAssembly</title>
+  <link rel="icon" type="image/png" href="img/favicon-16x16.png" sizes="16x16" />
+  <link rel="icon" type="image/png" href="img/favicon-32x32.png" sizes="32x32" />
+  <link rel="stylesheet" href="/css/all.min.css" />
+  <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[["WebSharper","UI","Templating","Runtime","Server","TemplateInitializer"]],"$DATA":{"$V":{"2b5c9005-bb4f-4fd4-8326-2b7a134aa391":{"$T":0,"$V":{"vars":[["drawershown",0]]}},"4bb65c43-04f7-4905-96f6-0817c9043bde":{"$T":0,"$V":{"vars":[]}},"81f5d78f-b07d-490d-a25a-4065f6abb5e3":{"$T":0,"$V":{"vars":[]}},"37f4112c-d365-4c5f-83aa-432422e1fcac":{"$T":0,"$V":{"vars":[]}},"6bdf4afa-a5ad-49dd-b1af-c87f4052df71":{"$T":0,"$V":{"vars":[]}},"602fd583-e760-468e-860e-bad818304a59":{"$T":0,"$V":{"vars":[]}},"19f7dd10-dca3-4e83-82a2-4d561a59fea6":{"$T":0,"$V":{"vars":[]}},"58bf6960-8592-42aa-8e10-ddf81904d8ff":{"$T":0,"$V":{"vars":[]}},"ea5a5c65-c666-44a0-9256-341301a9d4a4":{"$T":0,"$V":{"vars":[]}},"6534e658-20f6-4f70-98d9-3f1f452b8572":{"$T":0,"$V":{"vars":[]}}}}}' />
+
+</head>
+<body>
+  <header class="navbar overlay-bar">
+    <div class="navbar-brand">
+      <a class="navbar-item is-hoverable" onclick="WebSharper.UI.Templating.Runtime.Server.Handler.EventQ2$184$36(&quot;2b5c9005-bb4f-4fd4-8326-2b7a134aa391&quot;,Website.Main.Site.Page$29$24())(this)(event)"><i class="fa fa-bars"></i></a>
+      <span class="navbar-item"><a href="/">Bolero</a></span>
+    </div>
+    <div class="navbar-menu">
+      <nav class="navbar-end"><a href="/" class="navbar-item is-hoverable has-text-weight-bold">Home</a><a href="/docs" class="navbar-item is-hoverable has-text-weight-bold">Documentation</a><a href="/blog" class="navbar-item is-hoverable has-text-weight-bold">Blog</a><a href="https://try.fsbolero.io" class="navbar-item is-hoverable has-text-weight-bold">Try F#</a></nav>
+    </div>
+  </header>
+  <div class="drawer-backdrop ${2b5c9005-bb4f-4fd4-8326-2b7a134aa391::drawershown}" onclick="WebSharper.UI.Templating.Runtime.Server.Handler.EventQ2$184$36(&quot;2b5c9005-bb4f-4fd4-8326-2b7a134aa391&quot;,Website.Main.Site.Page$30$24())(this)(event)">
+    <input type="hidden" ws-var="2b5c9005-bb4f-4fd4-8326-2b7a134aa391::drawershown" />
+    <div id="left-drawer" class="lhs-drawer ${2b5c9005-bb4f-4fd4-8326-2b7a134aa391::drawershown}">
+      <span class="navbar-item"><a href="/">Bolero</a></span>
+      <nav><a href="/" class="navbar-item nav-menu-link">Home</a><a href="/docs" class="navbar-item nav-menu-link">Documentation</a><a href="/blog" class="navbar-item nav-menu-link">Blog</a><a href="https://try.fsbolero.io" class="navbar-item nav-menu-link">Try F#</a></nav>
+    </div>
+  </div>
+  
+      <section class="hero is-dark page-banner">
+        <div class="hero-body has-text-centered">
+          <h1 class="title is-spaced">Bolero</h1>
+        </div>
+      </section>
+      <section class="section">
+        <div class="container content"><p>In addition to creating HTML content <a href="HTML">with F# functions</a>, Bolero enables inserting plain HTML templates in the form of a type provider.</p>
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<ul>
+<li><a href="#invoking-the-type-provider">Invoking the type provider</a></li>
+<li><a href="#holes">Holes</a>
+<ul>
+<li><a href="#node-holes">Node holes</a></li>
+<li><a href="#attribute-holes">Attribute holes</a></li>
+<li><a href="#event-holes">Event holes</a></li>
+<li><a href="#data-binding-holes">Data binding holes</a>
+<ul>
+<li><a href="#event-handlers-for-data-binding">Event handlers for data binding</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#nested-templates">Nested templates</a></li>
+<li><a href="#hot-reloading">Hot reloading</a></li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<h1 id="invoking-the-type-provider">Invoking the type provider</h1>
+<p>The type provider <code>Bolero.Template</code> takes one static parameter, which is a string and can be either:</p>
+<ul>
+<li><p>A plain HTML string. It is recommended to use triple-quotes to avoid escaping issues:</p>
+<pre><code class="language-fsharp">type Hello = Template&lt;&quot;&quot;&quot;&lt;div id=&quot;hello&quot;&gt;Hello, world!&lt;/div&gt;&quot;&quot;&quot;&gt;
+</code></pre>
+</li>
+<li><p>A path to an HTML file, relative to the project root.</p>
+<pre><code class="language-fsharp">type Hello = Template&lt;&quot;hello.html&quot;&gt;
+</code></pre>
+</li>
+</ul>
+<blockquote>
+<p>The difference between the two is based on a simple heursitic: if the string contains the character <code>'&lt;'</code>, it is read as plain HTML, otherwise it is read as a file path.</p>
+</blockquote>
+<p>To instantiate a template, call its constructor and then the <code>.Elt()</code> method.</p>
+<pre><code class="language-fsharp">let hello = Hello().Elt()
+</code></pre>
+<h1 id="holes">Holes</h1>
+<p>Templates can also define &quot;holes&quot; to be filled by content defined in F#.</p>
+<p>Holes are defined in the HTML template with the following syntax: <code>${HoleName}</code>. Such a hole defines a method with the same name, which you can call before <code>.Elt()</code> to fill its value.</p>
+<pre><code class="language-html">&lt;div id=&quot;${Id}&quot;&gt;Hello, ${Who}!&lt;/div&gt;
+</code></pre>
+<pre><code class="language-fsharp">type Hello = Template&lt;&quot;hello.html&quot;&gt;
+
+let hello =
+    Hello()
+        .Id(&quot;hello&quot;)
+        .Who(&quot;world&quot;)
+        .Elt()
+</code></pre>
+<p>Here are the types of holes available.</p>
+<h2 id="node-holes">Node holes</h2>
+<p>A hole defined inside normal HTML content is a Node hole. It can be filled by either a string or a Node.</p>
+<pre><code class="language-html">&lt;div&gt;Hello, ${Who}!&lt;/div&gt;
+</code></pre>
+<pre><code class="language-fsharp">type Hello = Template&lt;&quot;hello.html&quot;&gt;
+
+// Fill with a string
+let hello = Hello().Who(&quot;world&quot;).Elt()
+
+// Fill with a Node
+let hello = Hello().Who(b [] [text &quot;world&quot;]).Elt()
+</code></pre>
+<p>Such a hole can be defined multiple times, and the content will be duplicated accordingly.</p>
+<pre><code class="language-html">&lt;p&gt;
+    &lt;i&gt;Computer, to ${Who}:&lt;/i&gt;
+    Hello, ${Who}!
+&lt;/p&gt;
+</code></pre>
+<pre><code class="language-fsharp">type Hello = Template&lt;&quot;hello.html&quot;&gt;
+
+let hello = Hello().Who(&quot;world&quot;).Elt()
+</code></pre>
+<h2 id="attribute-holes">Attribute holes</h2>
+<p>A hole defined inside an HTML attribute can only be filled by a string.</p>
+<pre><code class="language-html">&lt;div class=&quot;greeting ${Class}&quot;&gt;Hello, world!&lt;/div&gt;
+</code></pre>
+<pre><code class="language-fsharp">type Hello = Template&lt;&quot;hello.html&quot;&gt;
+
+let hello = Hello().Class(&quot;heading&quot;).Elt()
+</code></pre>
+<p>A hole can be defined both inside an HTML attribute and in normal HTML content; in this case it can still only be filled by a string.</p>
+<pre><code class="language-html">&lt;label&gt;
+    ${Label}:
+    &lt;input placeholder=&quot;${Label}&quot; /&gt;
+&lt;/label&gt;
+</code></pre>
+<pre><code class="language-fsharp">type Hello = Template&lt;&quot;hello.html&quot;&gt;
+
+let hello = Hello().Label(&quot;First name&quot;).Elt()
+</code></pre>
+<h2 id="event-holes">Event holes</h2>
+<p>Holes defined as the value of an event attribute, eg. an attribute whose name starts with <code>on</code>, are treated as event handlers. They are filled by passing an anonymous function of type <code>UIEventArgs -&gt; unit</code>.</p>
+<pre><code class="language-html">&lt;button onclick=&quot;${Greet}&quot;&gt;Hello!&lt;/button&gt;
+</code></pre>
+<pre><code class="language-fsharp">type Hello = Template&lt;&quot;hello.html&quot;&gt;
+
+let hello = Hello().Greet(fun _ -&gt; printfn &quot;Hello, world!&quot;).Elt()
+</code></pre>
+<p>Specific events have corresponding subtypes of <code>UIEventArgs</code>: for example, <code>onclick</code> uses <code>UIMouseEventArgs</code>.</p>
+<pre><code class="language-html">&lt;button onclick=&quot;${Greet}&quot;&gt;Hello!&lt;/button&gt;
+</code></pre>
+<pre><code class="language-fsharp">type Hello = Template&lt;&quot;hello.html&quot;&gt;
+
+let hello =
+    Hello()
+        .Greet(fun e -&gt; printfn &quot;Clicked at (%i, %i)&quot; e.ClientX e.ClientY)
+        .Elt()
+</code></pre>
+<h2 id="data-binding-holes">Data binding holes</h2>
+<p>Holes defined as the value of a <code>bind</code> attribute define two-way binding with the element's value. The filling method for such a hole takes two arguments:</p>
+<ol>
+<li>The current value, which generally comes from the <a href="Elmish">Elmish</a> model.</li>
+<li>A setter function, which generally calls the Elmish dispatch function.</li>
+</ol>
+<pre><code class="language-html">&lt;input bind=&quot;${Username}&quot;&gt;
+</code></pre>
+<pre><code class="language-fsharp">type Model = { username: string }
+
+type Message =
+    | SetUsername of string
+
+type Hello = Template&lt;&quot;hello.html&quot;&gt;
+
+let hello model dispatch =
+    Hello()
+        .Username(model.username, fun n -&gt; dispatch (SetUsername n))
+        .Elt()
+</code></pre>
+<p>The type of the binding value depends on the element on which the <code>bind</code> attribute is set:</p>
+<ul>
+<li><code>&lt;input type=&quot;number&quot;&gt;</code> has a number value, and can be filled either by an <code>int</code> or a <code>float</code>.</li>
+<li><code>&lt;input type=&quot;checkbox&quot;&gt;</code> has a boolean value, and can be filled by a <code>bool</code>.</li>
+<li><code>&lt;input&gt;</code> with other types or no type, <code>&lt;textarea&gt;</code> and <code>&lt;select&gt;</code> have an arbitrary value, and can be filled by a <code>string</code>.</li>
+</ul>
+<blockquote>
+<p>Note: Radio buttons (<code>&lt;input type=&quot;radio&quot;&gt;</code>) are not yet supported by Blazor, and therefore by Bolero; see <a href="https://github.com/aspnet/Blazor/issues/1322">the issue on Blazor's tracker</a>.</p>
+</blockquote>
+<pre><code class="language-html">&lt;input type=&quot;checkbox&quot; bind=&quot;${IsChecked}&quot;&gt;
+</code></pre>
+<pre><code class="language-fsharp">type Model = { isChecked: bool }
+
+type Message =
+    | SetChecked of bool
+
+type Hello = Template&lt;&quot;hello.html&quot;&gt;
+
+let hello model dispatch =
+    Hello()
+        .IsChecked(model.isChecked, fun c -&gt; dispatch (SetChecked c))
+        .Elt()
+</code></pre>
+<p>The same hole name can be reused anywhere a string hole can be used, and it will be updated accordingly.</p>
+<pre><code class="language-html">&lt;div&gt;
+    &lt;input bind=&quot;${Name}&quot;&gt;
+    &lt;p&gt;Hello, ${Name}!&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-fsharp">type Model = { name: string }
+
+type Message =
+    | SetName of string
+
+type Hello = Template&lt;&quot;hello.html&quot;&gt;
+
+let hello model dispatch =
+    Hello()
+        .Name(model.name, fun n -&gt; dispatch (SetName n))
+        .Elt()
+</code></pre>
+<h3 id="event-handlers-for-data-binding">Event handlers for data binding</h3>
+<p>The binding can listen to changes on the input element using one of two different event handlers: <code>onchange</code> or <code>oninput</code>.</p>
+<ul>
+<li><code>onchange</code> is triggered when a change is &quot;committed&quot; by the user. For example, on a text input, it is triggered when the user presses Enter or unfocuses the element after changing the value.</li>
+<li><code>oninput</code> is triggered on every user interaction on the element that changes its value. For example, on a text input, it is triggered on every keystroke.</li>
+</ul>
+<p>By default, <code>bind</code> uses the following event handler:</p>
+<ul>
+<li>On <code>&lt;select&gt;</code> and <code>&lt;input type=&quot;checkbox&quot;&gt;</code>, <code>onchange</code> is used.</li>
+<li>On <code>&lt;textarea&gt;</code> and other types of <code>&lt;input&gt;</code>, <code>oninput</code> is used.</li>
+</ul>
+<p>You can override this behavior by using the attribute <code>bind-onchange</code> or <code>bind-oninput</code> instead of <code>bind</code>.</p>
+<pre><code class="language-html">&lt;div&gt;
+    &lt;input bind-onchange=&quot;${Name}&quot;&gt;
+    &lt;!-- Changes when the user commits the above input,
+         rather than on every keystroke: --&gt;
+    &lt;p&gt;Hello, ${Name}!&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-fsharp">type Model = { name: string }
+
+type Message =
+    | SetName of string
+
+type Hello = Template&lt;&quot;hello.html&quot;&gt;
+
+let hello model dispatch =
+    Hello()
+        .Name(model.name, fun n -&gt; dispatch (SetName n))
+        .Elt()
+</code></pre>
+<p>The same hole can be bound to two inputs using two different handlers. For example:</p>
+<pre><code class="language-html">&lt;p&gt;
+    When you type here, the second input's content is updated immediately:
+    &lt;input bind=&quot;${Name}&quot;&gt;
+&lt;/p&gt;
+&lt;p&gt;
+    When you type here, the first input's content is only updated
+    when you exit the input box or press Enter:
+    &lt;input bind-onchange=&quot;${Name}&quot;&gt;
+&lt;/p&gt;
+</code></pre>
+<h1 id="nested-templates">Nested templates</h1>
+<p>It is sometimes convenient to define a set of templates together in the same file. For example, a set of related widgets. Or the template for a list together with the template for an item in this list.</p>
+<p>This can be done using the <code>&lt;template&gt;</code> HTML tag. Such a template is identified by the <code>id</code> attribute on the tag, and its contents is the HTML contents of the <code>&lt;template&gt;</code> tag.</p>
+<p>On the F# side, nested templates are available as a nested class under the file's own template class. For example:</p>
+<pre><code class="language-html">&lt;p&gt;Here are my best friends:&lt;/p&gt;
+&lt;ul&gt;
+    ${Friends}
+    &lt;template id=&quot;Friend&quot;&gt;
+        &lt;li&gt;${Name}&lt;/li&gt;
+    &lt;/template&gt;
+&lt;/ul&gt;
+</code></pre>
+<pre><code class="language-fsharp">type FriendList = Template&lt;&quot;friendList.html&quot;&gt;
+
+// Use the nested template `Friend`.
+let showFriend (name: string) =
+    FriendList.Friend()
+        .Name(name)
+        .Elt()
+
+// Use the main template (full HTML file minus the &lt;template&gt; tag).
+let listFriends (names: list&lt;string&gt;) =
+    FriendList()
+        .Friends(forEach names showFriend)
+        .Elt()
+
+listFriends [&quot;Alice&quot;; &quot;Bob&quot;; &quot;Chloe&quot;]
+</code></pre>
+<p>The above code renders the following HTML:</p>
+<pre><code class="language-html">&lt;p&gt;Here are my best friends:&lt;/p&gt;
+&lt;ul&gt;
+    &lt;li&gt;Alice&lt;/li&gt;
+    &lt;li&gt;Bob&lt;/li&gt;
+    &lt;li&gt;Chloe&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+<h1 id="hot-reloading">Hot reloading</h1>
+<p>Starting with version 0.3, Bolero can reload the contents of HTML template files and update running applications automatically. This enables a smooth experience when designing the page: run the application, edit the HTML file, save, and the changes are reflected immediately in the browser.</p>
+<p><img src="hotreload.gif" alt="Hot reload in action" /></p>
+<p>Hot reloading requires a server side ASP.NET Core project: it watches for file changes, and sends the updated template to the client via SignalR.</p>
+<p>Hot reloading is enabled by default in the <a href="https://github.com/intellifactory/Bolero.Template">project template</a>.</p>
+<p>Here is how to enable it in an existing project with a server side:</p>
+<ul>
+<li><p>On the server side:</p>
+<ul>
+<li><p>Reference the NuGet package <code>Bolero.HotReload.Server</code>.</p>
+<pre><code>paket add Bolero.HotReload.Server -p src/MyServer/MyServer.fsproj
+</code></pre>
+</li>
+<li><p>Configure hot reload in the startup class's <code>ConfigureServices</code> with the directory that contains your HTML files:</p>
+<pre><code class="language-fsharp">member this.ConfigureServices(services: IServiceCollection) =
+    services
+        #if DEBUG
+        .AddHotReload(templateDir = &quot;../MyClient/wwwroot&quot;)
+        #endif
+    |&gt; ignore
+</code></pre>
+</li>
+<li><p>Enable hot reload in the startup class's <code>Configure</code>:</p>
+<pre><code class="language-fsharp">member this.Configure(app: IApplicationBuilder, env: IHostingEnvironment) =
+    app
+        #if DEBUG
+        .UseHotReload()
+        #endif
+        .UseBlazor&lt;Client.Startup&gt;()
+    |&gt; ignore
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>On the client side:</p>
+<ul>
+<li><p>Reference the NuGet package <code>Bolero.HotReload</code>.</p>
+<pre><code>paket add Bolero.HotReload -p src/MyClient/MyClient.fsproj
+</code></pre>
+</li>
+<li><p>Configure hot reload in the Elmish program:</p>
+<pre><code class="language-fsharp">type MyApp() =
+    inherit ProgramComponent&lt;Model, Message&gt;()
+
+    override this.Program =
+        Program.mkSimple (fun _ -&gt; initModel) update view
+        #if DEBUG
+        |&gt; Program.withHotReloading
+        #endif
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+      </section>
+    
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/8.6.0/lazyload.min.js"></script>
+  <script type="text/javascript">new LazyLoad();</script>
+  <script src="../../Scripts/WebSharper.Core.JavaScript/Runtime.min.js" type="text/javascript" charset="UTF-8"></script><!--[if lte IE 7.0]>
+<script src="../../Scripts/WebSharper.Main/Json.min.js" type="text/javascript" charset="UTF-8"></script><![endif]-->
+<!--[if lte IE 9.0]>
+<script src="../../Scripts/WebSharper.Main/AnimFrame.min.js" type="text/javascript" charset="UTF-8"></script><![endif]-->
+<script src="../../Scripts/WebSharper.Main/WebSharper.Main.min.js" type="text/javascript" charset="UTF-8"></script><script src="../../Scripts/WebSharper.Collections/WebSharper.Collections.min.js" type="text/javascript" charset="UTF-8"></script><script src="../../Scripts/WebSharper.UI/WebSharper.UI.min.js" type="text/javascript" charset="UTF-8"></script><script src="../../Scripts/WebSharper.UI.Templating.Runtime/WebSharper.UI.Templating.Runtime.min.js" type="text/javascript" charset="UTF-8"></script><script src="../../Scripts/Website/Website.min.js" type="text/javascript" charset="UTF-8"></script><script type="text/javascript">
+if (typeof IntelliFactory !=='undefined') {
+  IntelliFactory.Runtime.ScriptBasePath = '../../Scripts/';
+  IntelliFactory.Runtime.Start();
+}
+</script>
+
+  
+  
+</body>
+</html>

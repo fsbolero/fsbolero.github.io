@@ -1,0 +1,251 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bolero: F# in WebAssembly</title>
+  <link rel="icon" type="image/png" href="img/favicon-16x16.png" sizes="16x16" />
+  <link rel="icon" type="image/png" href="img/favicon-32x32.png" sizes="32x32" />
+  <link rel="stylesheet" href="/css/all.min.css" />
+  <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[["WebSharper","UI","Templating","Runtime","Server","TemplateInitializer"]],"$DATA":{"$V":{"5a10ef11-74db-4cd1-8254-fe4456024de0":{"$T":0,"$V":{"vars":[["drawershown",0]]}},"297ff6a3-5c27-4bd1-a7c7-267be074ce6e":{"$T":0,"$V":{"vars":[]}},"5dfe9d9a-d7c0-4e6a-8ed9-79b2071f1015":{"$T":0,"$V":{"vars":[]}},"95761dbc-bf8e-4c66-ad5b-76ed858f829a":{"$T":0,"$V":{"vars":[]}},"b57ccbd3-9d70-4879-804a-059d6ca150a3":{"$T":0,"$V":{"vars":[]}},"537a98e8-457f-42d4-8e9f-a0a48fef5d1f":{"$T":0,"$V":{"vars":[]}},"f30f3e7c-4d90-448e-9f0f-1ae96234973b":{"$T":0,"$V":{"vars":[]}},"017ae587-9ffa-442e-b481-55512e120f69":{"$T":0,"$V":{"vars":[]}},"ee40deb3-bbf2-44bc-94d0-e8f33570a975":{"$T":0,"$V":{"vars":[]}},"faf39b00-3fda-4f31-a9ac-2e6fb66d321f":{"$T":0,"$V":{"vars":[]}}}}}' />
+
+</head>
+<body>
+  <header class="navbar overlay-bar">
+    <div class="navbar-brand">
+      <a class="navbar-item is-hoverable" onclick="WebSharper.UI.Templating.Runtime.Server.Handler.EventQ2$184$36(&quot;5a10ef11-74db-4cd1-8254-fe4456024de0&quot;,Website.Main.Site.Page$29$24())(this)(event)"><i class="fa fa-bars"></i></a>
+      <span class="navbar-item"><a href="/">Bolero</a></span>
+    </div>
+    <div class="navbar-menu">
+      <nav class="navbar-end"><a href="/" class="navbar-item is-hoverable has-text-weight-bold">Home</a><a href="/docs" class="navbar-item is-hoverable has-text-weight-bold">Documentation</a><a href="/blog" class="navbar-item is-hoverable has-text-weight-bold">Blog</a><a href="https://try.fsbolero.io" class="navbar-item is-hoverable has-text-weight-bold">Try F#</a></nav>
+    </div>
+  </header>
+  <div class="drawer-backdrop ${5a10ef11-74db-4cd1-8254-fe4456024de0::drawershown}" onclick="WebSharper.UI.Templating.Runtime.Server.Handler.EventQ2$184$36(&quot;5a10ef11-74db-4cd1-8254-fe4456024de0&quot;,Website.Main.Site.Page$30$24())(this)(event)">
+    <input type="hidden" ws-var="5a10ef11-74db-4cd1-8254-fe4456024de0::drawershown" />
+    <div id="left-drawer" class="lhs-drawer ${5a10ef11-74db-4cd1-8254-fe4456024de0::drawershown}">
+      <span class="navbar-item"><a href="/">Bolero</a></span>
+      <nav><a href="/" class="navbar-item nav-menu-link">Home</a><a href="/docs" class="navbar-item nav-menu-link">Documentation</a><a href="/blog" class="navbar-item nav-menu-link">Blog</a><a href="https://try.fsbolero.io" class="navbar-item nav-menu-link">Try F#</a></nav>
+    </div>
+  </div>
+  
+      <section class="hero is-dark page-banner">
+        <div class="hero-body has-text-centered">
+          <h1 class="title is-spaced">Bolero</h1>
+        </div>
+      </section>
+      <section class="section">
+        <div class="container content"><p>Bolero provides facilities to bind the page's URL to the Elmish model.</p>
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<ul>
+<li><a href="#prerequisites">Prerequisites</a></li>
+<li><a href="#inferred-router">Inferred router</a>
+<ul>
+<li><a href="#format">Format</a></li>
+</ul>
+</li>
+<li><a href="#custom-router">Custom router</a></li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<h1 id="prerequisites">Prerequisites</h1>
+<p>In order to use routing, you need to make sure that the page's base URL is set correctly. In most cases, you simply need to add the following inside the <code>&lt;head&gt;</code> of your page:</p>
+<pre><code class="language-html">&lt;base href=&quot;/&quot;&gt;
+</code></pre>
+<p>If the root of your application is a subpath, then you need to set that subpath as the base, <strong>including the trailing slash</strong>. For example, if you have an application served at <code>https://someone.github.io/myrepo/</code>, then you need the following:</p>
+<pre><code class="language-html">&lt;base href=&quot;/myrepo/&quot;&gt;
+</code></pre>
+<h1 id="inferred-router">Inferred router</h1>
+<p>The easiest way to create a router is by using an inferred router. In this mode of operation, you create an endpoint type which has a 1-to-1 correspondance with your supported URLs, and store it in the Elmish model.</p>
+<p>Here are the steps to set up an inferred router:</p>
+<ol>
+<li><p>Create the endpoint type. Typically, it will be an F# union type where each case corresponds to a path prefixed by the case's name and the case's arguments are the consecutive fragments of the path. For example:</p>
+<pre><code class="language-fsharp">type Page =
+    | Home                                  // -&gt; /Home
+    | BlogArticle of id: int                // -&gt; /BlogEntry/42
+    | BlogList of user: string * page: int  // -&gt; /BlogList/tarmil/1
+</code></pre>
+<p>See <a href="#format">Format</a> for all the supported types and how to customize the corresponding path.</p>
+</li>
+<li><p>Add a field in the Elmish model that stores the endpoint:</p>
+<pre><code class="language-fsharp">type Model =
+    {
+        page: Page
+        // other fields...
+    }
+</code></pre>
+</li>
+<li><p>Add an Elmish message that sets the endpoint:</p>
+<pre><code class="language-fsharp">type Message =
+    | SetPage of Page
+    // other messages...
+
+let update message model =
+    match message with
+    | SetPage page -&gt; { model with page = page }
+    // other messages...
+</code></pre>
+</li>
+<li><p>Create the router with <code>Router.infer</code>:</p>
+<pre><code class="language-fsharp">let router = Router.infer SetPage (fun m -&gt; m.page)
+</code></pre>
+</li>
+<li><p>Attach the router to the Elmish program:</p>
+<pre><code class="language-fsharp">Program.mkSimple initModel update view
+|&gt; Program.withRouter router
+</code></pre>
+</li>
+</ol>
+<p>The router has a few helpful utilities:</p>
+<ul>
+<li><p><code>router.Link</code> takes an endpoint value and returns the corresponding URL.</p>
+<pre><code class="language-fsharp">a [attr.href (router.Link Home)] [text &quot;Go to Home&quot;]
+</code></pre>
+</li>
+<li><p><code>router.HRef</code> takes an endpoint and returns an <code>href</code> attribute pointing to the corresponding URL.</p>
+<pre><code class="language-fsharp">a [router.HRef Home] [text &quot;Go to Home&quot;]
+</code></pre>
+</li>
+</ul>
+<h2 id="format">Format</h2>
+<p><code>Router.infer</code> supports the following types:</p>
+<ul>
+<li><p>Standard library types:</p>
+<ul>
+<li><code>string</code></li>
+<li><code>bool</code></li>
+<li>integer: <code>int8</code> (aka <code>sbyte</code>), <code>uint8</code> (aka <code>byte</code>), <code>int16</code>, <code>uint16</code>, <code>int32</code> (aka <code>int</code>), <code>uint32</code>, <code>int64</code>, <code>uint64</code></li>
+<li><code>decimal</code></li>
+<li>float: <code>single</code>, <code>double</code> (aka <code>float</code>)</li>
+</ul>
+</li>
+<li><p>F# union types. Each case corresponds to a path prefixed by the case's name. The case's arguments are the consecutive fragments of the path:</p>
+<pre><code class="language-fsharp">type Page =
+    | Home                                  // -&gt; /Home
+    | BlogArticle of id: int                // -&gt; /BlogEntry/42
+    | BlogList of user: string * page: int  // -&gt; /BlogList/tarmil/1
+</code></pre>
+<p>To customize the path, you can use the <code>EndPoint</code> attribute, with parameters indicated by <code>{curly_braces}</code>.</p>
+<pre><code class="language-fsharp">type Page =
+    | [&lt;EndPoint &quot;/&quot;&gt;]
+      Home                                  // -&gt; /
+    | [&lt;EndPoint &quot;/article/{id}&quot;&gt;]
+      BlogArticle of id: int                // -&gt; /article/42
+    | [&lt;EndPoint &quot;/list/{user}/{page}&quot;&gt;]
+      BlogList of user: string * page: int  // -&gt; /list/tarmil/1
+</code></pre>
+<p>An <code>{*asterisk}</code> indicates that this parameter catches the rest of the path. It must be the last parameter in the path, and correspond to a value of type <code>string</code>, <code>list</code> or <code>array</code>.</p>
+<pre><code class="language-fsharp">type Page =
+    | [&lt;EndPoint &quot;/list/{user}/tagged/{*tags}&quot;&gt;]
+      ListTagged of user: string * tags: list&lt;string&gt;
+
+Tagged(&quot;tarmil&quot;, [&quot;bolero&quot;; &quot;webassembly&quot;])
+// -&gt; /list/tarmil/tagged/bolero/webassembly
+</code></pre>
+<p>Several cases can share a common prefix in their paths, as long as any parameters in this common prefix have the same type.</p>
+<pre><code class="language-fsharp">type Page =
+    | [&lt;EndPoint &quot;/user/{user}/favorites&quot;&gt;]
+      Favorites of user: string
+    | [&lt;EndPoint &quot;/user/{user}/comments&quot;&gt;]
+      Comments of user: string
+</code></pre>
+<p>The path must contain a <code>{parameter}</code> for each of its case's values. Alternatively, the path can consist of a single non-parameter fragment; in this case, the values are appended in order as separate fragments.</p>
+<pre><code class="language-fsharp">type Page =
+    | [&lt;EndPoint &quot;/list&quot;&gt;]                  // Equivalent to /list/{user}/{page}
+      BlogList of user: string * page: int  // -&gt; /list/tarmil/1
+</code></pre>
+</li>
+<li><p>Tuples. The values of the tuple are the consecutive fragments of the path.</p>
+<pre><code class="language-fsharp">type Page = int * string    // -&gt; /42/abc
+</code></pre>
+</li>
+<li><p>F# record types. The fields of the record are the consecutive fragments of the path.</p>
+<pre><code class="language-fsharp">type Page =
+    {
+        x: int
+        y: string
+    }
+// -&gt; /42/abc
+</code></pre>
+</li>
+<li><p>Lists and arrays. The first fragment of the path is the number of items, and the items themselves are the consecutive fragments.</p>
+<pre><code class="language-fsharp">type Page = list&lt;string&gt;   // -&gt; /3/abc/def/ghi
+</code></pre>
+</li>
+<li><p>Any combination of the above, including recursive types.</p>
+<pre><code class="language-fsharp">type Page =
+    | [&lt;EndPoint &quot;/article&quot;&gt;]
+      Article of ArticleId              // -&gt; /article/123/announcing-bolero
+    | [&lt;EndPoint &quot;/list/{*tags}&quot;&gt;]
+      List of tags: list&lt;string&gt;        // -&gt; /list/bolero/blazor
+    | [&lt;EndPoint &quot;/login/{page}&quot;&gt;]
+      LoginAndRedirectTo of page: Page  // -&gt; /login/list/bolero/blazor
+
+and ArticleId =
+    {
+        uid: int
+        slug: string
+    }
+</code></pre>
+</li>
+</ul>
+<h1 id="custom-router">Custom router</h1>
+<p>To have more control over the exact shape of your URLs, you can create a custom router like follows.</p>
+<pre><code class="language-fsharp">let customRouter : Router&lt;Page, Model, Message&gt; =
+    {
+        // getEndPoint : Model -&gt; Page
+        getEndPoint = fun m -&gt; m.page
+        // setRoute : string -&gt; option&lt;Message&gt;
+        setRoute = fun path -&gt;
+            match path.Trim('/').Split('/') with
+            | [||] -&gt; Some Home
+            | [|&quot;article&quot;; id|] -&gt; Some (BlogArticle (int id))
+            | [|&quot;list&quot;; user; page|] -&gt; Some (BlogList (user, int page))
+            | _ -&gt; None
+            |&gt; Option.map SetPage
+        // getRoute : Page -&gt; string
+        getRoute = function
+            | Home -&gt; &quot;/&quot;
+            | BlogArticle(id) -&gt; sprintf &quot;/article/%i&quot; id
+            | BlogList(user, page) -&gt; sprintf &quot;/list/%s/%i&quot; user page
+    }
+</code></pre>
+<p>Note: if the URL is changed in such a way that <code>setRoute</code> returns <code>None</code>, then the model is not updated.</p>
+<p>You can also create a router that maps directly to the model without an intermediary endpoint type. However this router type doesn't have some utilities such as <code>Link</code> and <code>HRef</code>.</p>
+<pre><code class="language-fsharp">let customRouter2 : Router&lt;Model, Message&gt; =
+    {
+        // setRoute : string -&gt; option&lt;Message&gt;
+        setRoute = fun path -&gt;
+            match path.Trim('/').Split('/') with
+            | [||] -&gt; Some Home
+            | [|&quot;article&quot;; id|] -&gt; Some (BlogArticle (int id))
+            | [|&quot;list&quot;; user; page|] -&gt; Some (BlogList (user, int page))
+            | _ -&gt; None
+            |&gt; Option.map SetPage
+        // getRoute : Model -&gt; string
+        getRoute = fun model -&gt;
+            match model.page with
+            | Home -&gt; &quot;/&quot;
+            | BlogArticle(id) -&gt; sprintf &quot;/article/%i&quot; id
+            | BlogList(user, page) -&gt; sprintf &quot;/list/%s/%i&quot; user page
+    }
+</code></pre>
+</div>
+      </section>
+    
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/8.6.0/lazyload.min.js"></script>
+  <script type="text/javascript">new LazyLoad();</script>
+  <script src="../../Scripts/WebSharper.Core.JavaScript/Runtime.min.js" type="text/javascript" charset="UTF-8"></script><!--[if lte IE 7.0]>
+<script src="../../Scripts/WebSharper.Main/Json.min.js" type="text/javascript" charset="UTF-8"></script><![endif]-->
+<!--[if lte IE 9.0]>
+<script src="../../Scripts/WebSharper.Main/AnimFrame.min.js" type="text/javascript" charset="UTF-8"></script><![endif]-->
+<script src="../../Scripts/WebSharper.Main/WebSharper.Main.min.js" type="text/javascript" charset="UTF-8"></script><script src="../../Scripts/WebSharper.Collections/WebSharper.Collections.min.js" type="text/javascript" charset="UTF-8"></script><script src="../../Scripts/WebSharper.UI/WebSharper.UI.min.js" type="text/javascript" charset="UTF-8"></script><script src="../../Scripts/WebSharper.UI.Templating.Runtime/WebSharper.UI.Templating.Runtime.min.js" type="text/javascript" charset="UTF-8"></script><script src="../../Scripts/Website/Website.min.js" type="text/javascript" charset="UTF-8"></script><script type="text/javascript">
+if (typeof IntelliFactory !=='undefined') {
+  IntelliFactory.Runtime.ScriptBasePath = '../../Scripts/';
+  IntelliFactory.Runtime.Start();
+}
+</script>
+
+  
+  
+</body>
+</html>

@@ -1,0 +1,218 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bolero: F# in WebAssembly</title>
+  <link rel="icon" type="image/png" href="img/favicon-16x16.png" sizes="16x16" />
+  <link rel="icon" type="image/png" href="img/favicon-32x32.png" sizes="32x32" />
+  <link rel="stylesheet" href="/css/all.min.css" />
+  <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[["WebSharper","UI","Templating","Runtime","Server","TemplateInitializer"]],"$DATA":{"$V":{"f46db3b2-1478-4a1f-940e-366881b017a9":{"$T":0,"$V":{"vars":[["drawershown",0]]}},"fc432c2d-4f36-49c1-9706-5e2fdcce18ad":{"$T":0,"$V":{"vars":[]}},"f5b8b06c-a179-4dfe-8096-f6a7a99b14c4":{"$T":0,"$V":{"vars":[]}},"580c260a-3b43-4839-81ba-42459af66944":{"$T":0,"$V":{"vars":[]}},"8e946e1f-89aa-4b03-b6e4-337397363460":{"$T":0,"$V":{"vars":[]}},"2a2b6af4-6279-41c4-8790-0501a2a7eb00":{"$T":0,"$V":{"vars":[]}},"29f3079c-4f8e-49db-ab22-342cdc6207a4":{"$T":0,"$V":{"vars":[]}},"f9cb38d8-c198-4f3f-8caa-a7bab0c11e7b":{"$T":0,"$V":{"vars":[]}},"13dd74ca-c838-452f-bff6-3039fe41ce5d":{"$T":0,"$V":{"vars":[]}},"7a377874-0dcb-4c08-807e-a9503772b562":{"$T":0,"$V":{"vars":[]}}}}}' />
+
+</head>
+<body>
+  <header class="navbar overlay-bar">
+    <div class="navbar-brand">
+      <a class="navbar-item is-hoverable" onclick="WebSharper.UI.Templating.Runtime.Server.Handler.EventQ2$184$36(&quot;f46db3b2-1478-4a1f-940e-366881b017a9&quot;,Website.Main.Site.Page$29$24())(this)(event)"><i class="fa fa-bars"></i></a>
+      <span class="navbar-item"><a href="/">Bolero</a></span>
+    </div>
+    <div class="navbar-menu">
+      <nav class="navbar-end"><a href="/" class="navbar-item is-hoverable has-text-weight-bold">Home</a><a href="/docs" class="navbar-item is-hoverable has-text-weight-bold">Documentation</a><a href="/blog" class="navbar-item is-hoverable has-text-weight-bold">Blog</a><a href="https://try.fsbolero.io" class="navbar-item is-hoverable has-text-weight-bold">Try F#</a></nav>
+    </div>
+  </header>
+  <div class="drawer-backdrop ${f46db3b2-1478-4a1f-940e-366881b017a9::drawershown}" onclick="WebSharper.UI.Templating.Runtime.Server.Handler.EventQ2$184$36(&quot;f46db3b2-1478-4a1f-940e-366881b017a9&quot;,Website.Main.Site.Page$30$24())(this)(event)">
+    <input type="hidden" ws-var="f46db3b2-1478-4a1f-940e-366881b017a9::drawershown" />
+    <div id="left-drawer" class="lhs-drawer ${f46db3b2-1478-4a1f-940e-366881b017a9::drawershown}">
+      <span class="navbar-item"><a href="/">Bolero</a></span>
+      <nav><a href="/" class="navbar-item nav-menu-link">Home</a><a href="/docs" class="navbar-item nav-menu-link">Documentation</a><a href="/blog" class="navbar-item nav-menu-link">Blog</a><a href="https://try.fsbolero.io" class="navbar-item nav-menu-link">Try F#</a></nav>
+    </div>
+  </div>
+  
+      <section class="hero is-dark page-banner">
+        <div class="hero-body has-text-centered">
+          <h1 class="title is-spaced">Bolero</h1>
+        </div>
+      </section>
+      <section class="section">
+        <div class="container content"><p>Bolero.Remoting provides the ability to easily call server-side functions from the client side.</p>
+<p>Remote calls are <code>POST</code> requests to a specific URL. Arguments and return values are automatically serialized to JSON.</p>
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<ul>
+<li><a href="#defining-the-service">Defining the service</a></li>
+<li><a href="#calling-on-the-client-side">Calling on the client side</a></li>
+<li><a href="#defining-on-the-server-side">Defining on the server side</a>
+<ul>
+<li><a href="#a-simple-service">A simple service</a></li>
+<li><a href="#using-dependency-injection">Using dependency injection</a></li>
+<li><a href="#using-several-services">Using several services</a></li>
+</ul>
+</li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<h1 id="defining-the-service">Defining the service</h1>
+<p>A set of server-side functions is defined as a record called a <em>remote service</em>. Each function is a field in this record, and must take one argument and return <code>Async&lt;_&gt;</code>. If you need to pass several arguments to a server-side function, use a tuple.</p>
+<p>The record should implement <code>IRemoteService</code> to define the URL for its functions. Each function is served at the path <code>&lt;service.BasePath&gt;/&lt;fieldName&gt;</code>.</p>
+<p>For example, here is the definition of a service for a simple key-value pair storage:</p>
+<pre><code class="language-fsharp">open Bolero.Remoting
+
+type MyService =
+    {
+        getEntry : string -&gt; Async&lt;option&lt;string&gt;&gt;  // Served at /myService/getEntry
+        setEntry : string * string -&gt; Async&lt;unit&gt;   // Served at /myService/setEntry
+        deleteEntry : string -&gt; Async&lt;unit&gt;         // Served at /myService/deleteEntry
+    }
+
+    interface IRemoteService with
+        member this.BasePath = &quot;/myService&quot;
+</code></pre>
+<h1 id="calling-on-the-client-side">Calling on the client side</h1>
+<p>On the client side, you will typically want to call these functions in the <code>update</code> of the Elmish app. See <a href="https://elmish.github.io/elmish/basics.html">the Elmish documentation</a> to learn how to run commands in <code>update</code>.</p>
+<ol>
+<li><p>In your Blazor startup, add support for remoting:</p>
+<pre><code class="language-fsharp">open Bolero.Remoting
+
+type Startup() =
+
+    member __.ConfigureServices(services: IServiceCollection) =
+        services.AddRemoting()
+        |&gt; ignore
+</code></pre>
+</li>
+<li><p>Retrieve the client-side service in the <code>ProgramComponent</code> by using <code>this.Remote</code>:</p>
+<pre><code class="language-fsharp">type App() =
+    inherit ProgramComponent&lt;Model, Message&gt;()
+
+    override this.Program =
+        // Retrieve the service
+        let myService = this.Remote&lt;MyService&gt;()
+        // Pass it to `update`
+        Program.mkProgram (fun _ -&gt; initModel, []) (update myService) view
+</code></pre>
+</li>
+<li><p>In <code>update</code>, use the service in <code>Cmd</code>s:</p>
+<pre><code class="language-fsharp">type Model = { latestRetrievedEntry : string * string }
+
+type Message =
+    // Trigger a `getEntry` request
+    | GetEntry of key: string
+    // Received response of a `getEntry` request
+    | GotEntry of key: string * value: string
+    // A request threw an error
+    | Error of exn
+
+let update myService message model =
+    match message with
+    | GetEntry key -&gt;
+        model,
+        Cmd.ofAsync
+            myService.getEntry key              // async call and argument
+            (fun value -&gt; GotEntry(key, value)) // message to dispatch on response
+            Error                               // message to dispatch on error
+    | GotEntry(key, value) -&gt;
+        { model with latestRetrievedEntry = (key, value) }, []
+    | Error exn -&gt;
+        model, []
+</code></pre>
+</li>
+</ol>
+<h1 id="defining-on-the-server-side">Defining on the server side</h1>
+<p>On the server side, Bolero.Remoting is registered as a service and added as ASP.NET Core middleware. There are several ways to do so.</p>
+<h2 id="a-simple-service">A simple service</h2>
+<p>Here is how to implement a remote service without any dependencies.</p>
+<ol>
+<li><p>Implement the service as a value:</p>
+<pre><code class="language-fsharp">// A simple global map as storage.
+// A real-world app would probably use a database instead.
+let mutable storage = Map.empty
+
+let myService =
+    {
+        getEntry = fun key -&gt; async {
+            return Map.tryFind key
+        }
+        setEntry = fun (key, value) -&gt; async {
+            storage &lt;- Map.add key value storage
+        }
+        deleteEntry = fun key -&gt; async {
+            storage &lt;- Map.remove key storage
+        }
+    }
+</code></pre>
+</li>
+<li><p>In your ASP.NET Core startup, register the service:</p>
+<pre><code class="language-fsharp">type Startup() =
+
+    member this.ConfigureServices(services: IServiceCollection) =
+        services.AddRemoting(myService)
+        |&gt; ignore
+</code></pre>
+</li>
+<li><p>In your ASP.NET Core startup, start the remoting middleware:</p>
+<pre><code class="language-fsharp">type Startup() =
+
+    member this.Configure(app: IApplicationBuilder) =
+        app.UseRemoting()
+            .UseBlazor&lt;Client.Startup&gt;()
+        |&gt; ignore
+</code></pre>
+<p>Note that <code>UseRemoting</code> (and any other middleware) must be called <em>before</em> <code>UseBlazor</code>, because <code>UseBlazor</code> unconditionally catches all requests.</p>
+</li>
+</ol>
+<h2 id="using-dependency-injection">Using dependency injection</h2>
+<p>You might need to use injected dependencies in a remote service: a logger, a database connection, etc. For this, you need a different approach.</p>
+<ol>
+<li><p>Implement the service as a class inheriting from <code>RemoteHandler</code>. Dependencies can be injected from the constructor.</p>
+<pre><code class="language-fsharp">type MyServiceHandler(log: ILogger&lt;MyServiceHandler&gt;) =
+    inherit RemoteHandler&lt;MyService&gt;()
+
+    let mutable storage = Map.empty
+
+    override this.Handler =
+        {
+            getEntry = fun key -&gt; async {
+                log.LogInformation(&quot;Retrieving {0}&quot;, key)
+                return Map.tryFind key
+            }
+            setEntry = fun (key, value) -&gt; async {
+                log.LogInformation(&quot;Setting {0} to {1}&quot;, key, value)
+                storage &lt;- Map.add key value storage
+            }
+            deleteEntry = fun key -&gt; async {
+                log.LogInformation(&quot;Deleting {0}&quot;, key)
+                storage &lt;- Map.remove key storage
+            }
+        }
+</code></pre>
+</li>
+<li><p>In your ASP.NET Core startup, register the service by type rather than by instance:</p>
+<pre><code class="language-fsharp">type Startup() =
+
+    member this.ConfigureServices(services: IServiceCollection) =
+        services.AddRemoting&lt;MyServiceHandler&gt;()
+        |&gt; ignore
+</code></pre>
+</li>
+</ol>
+<h2 id="using-several-services">Using several services</h2>
+<p>You can of course define several remote services in the same application. Each of them needs to be registered by a separate call to <code>AddRemoting</code> in <code>ConfigureServices</code>. A single call to <code>UseRemoting</code> is enough in <code>Configure</code>.</p>
+</div>
+      </section>
+    
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/8.6.0/lazyload.min.js"></script>
+  <script type="text/javascript">new LazyLoad();</script>
+  <script src="../../Scripts/WebSharper.Core.JavaScript/Runtime.min.js" type="text/javascript" charset="UTF-8"></script><!--[if lte IE 7.0]>
+<script src="../../Scripts/WebSharper.Main/Json.min.js" type="text/javascript" charset="UTF-8"></script><![endif]-->
+<!--[if lte IE 9.0]>
+<script src="../../Scripts/WebSharper.Main/AnimFrame.min.js" type="text/javascript" charset="UTF-8"></script><![endif]-->
+<script src="../../Scripts/WebSharper.Main/WebSharper.Main.min.js" type="text/javascript" charset="UTF-8"></script><script src="../../Scripts/WebSharper.Collections/WebSharper.Collections.min.js" type="text/javascript" charset="UTF-8"></script><script src="../../Scripts/WebSharper.UI/WebSharper.UI.min.js" type="text/javascript" charset="UTF-8"></script><script src="../../Scripts/WebSharper.UI.Templating.Runtime/WebSharper.UI.Templating.Runtime.min.js" type="text/javascript" charset="UTF-8"></script><script src="../../Scripts/Website/Website.min.js" type="text/javascript" charset="UTF-8"></script><script type="text/javascript">
+if (typeof IntelliFactory !=='undefined') {
+  IntelliFactory.Runtime.ScriptBasePath = '../../Scripts/';
+  IntelliFactory.Runtime.Start();
+}
+</script>
+
+  
+  
+</body>
+</html>
