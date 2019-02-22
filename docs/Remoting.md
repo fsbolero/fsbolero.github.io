@@ -1,3 +1,7 @@
+---
+title: Remoting
+---
+
 Bolero.Remoting provides the ability to easily call server-side functions from the client side.
 
 Remote calls are `POST` requests to a specific URL. Arguments and return values are automatically serialized to JSON.

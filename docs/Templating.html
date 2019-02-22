@@ -1,28 +1,29 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="en" ws-runafterrender="Website.Main.Site.Page$53$27()">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bolero: F# in WebAssembly</title>
+  <title>HTML templates | Bolero: F# in WebAssembly</title>
   <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16" />
   <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
-  <link rel="stylesheet" href="/css/all.min.css" />
-  <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[["WebSharper","UI","Templating","Runtime","Server","TemplateInitializer"]],"$DATA":{"$V":{"09ee17bc-978c-4f5b-b289-a30d6d635b6a":{"$T":0,"$V":{"vars":[["drawershown",0]]}},"b09bd421-0e6f-46b2-94fc-c36f2d5fb1cd":{"$T":0,"$V":{"vars":[]}},"e7bde7f1-4fe2-4486-ba95-e806a62ecee3":{"$T":0,"$V":{"vars":[]}},"ae2d677b-ffef-4106-acc8-5111546e9e03":{"$T":0,"$V":{"vars":[]}},"70b47e5c-f9aa-4be6-860b-16b46753b347":{"$T":0,"$V":{"vars":[]}},"19837f9c-678a-44cd-b5c7-8a5b702a25c4":{"$T":0,"$V":{"vars":[]}},"0ecc6fdd-0eb1-459e-8752-9e9f451a50d8":{"$T":0,"$V":{"vars":[]}},"586cfed0-8f68-4d8d-afdf-73988451b73b":{"$T":0,"$V":{"vars":[]}},"65520e96-3fd8-4d07-9b05-19a604f7af20":{"$T":0,"$V":{"vars":[]}},"5e7bcfc4-9149-439a-a59d-f4791d424c4f":{"$T":0,"$V":{"vars":[]}}}}}' />
+  <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[["WebSharper","UI","Templating","Runtime","Server","TemplateInitializer"],["WebSharper","UI","OnAfterRenderControl"]],"$DATA":{"$V":{"a6c3b6f6-0766-4685-bfac-325804a57468":{"$T":0,"$V":{"vars":[["drawershown",0]]}},"92d398ae-c58a-4834-a823-76d845207b5e":{"$T":0,"$V":{"vars":[]}},"3bc2de40-1247-4199-9991-b71e6fe9ee0e":{"$T":0,"$V":{"vars":[]}},"0b978959-2b20-4d97-a652-52be90d661c6":{"$T":0,"$V":{"vars":[]}},"f8a89ffd-ebcb-49a9-9c95-903d6d54fbdb":{"$T":0,"$V":{"vars":[]}},"ef8f7602-50ce-4d6e-8380-d0e98a48656a":{"$T":0,"$V":{"vars":[]}},"b14b4580-8739-4f73-a753-d9fa73b4a5de":{"$T":0,"$V":{"vars":[]}},"232a7ddd-b3ad-4fb7-8823-38f292495790":{"$T":0,"$V":{"vars":[]}},"1bb52b26-7cb9-414c-b8a2-29f8010207e3":{"$T":0,"$V":{"vars":[]}},"8b1aa72e-51c9-434d-bbb4-c3abccc4ebd0":{"$T":0,"$V":{"vars":[]}},"ws.ui.oar":{"$T":1,"$V":{}}}}}' />
+<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/vs.min.css"></link>
 
+  <link rel="stylesheet" href="/css/all.min.css" />
 </head>
 <body>
   <header class="navbar overlay-bar">
     <div class="navbar-brand">
-      <a class="navbar-item is-hoverable" onclick="WebSharper.UI.Templating.Runtime.Server.Handler.EventQ2$184$36(&quot;09ee17bc-978c-4f5b-b289-a30d6d635b6a&quot;,Website.Main.Site.Page$29$24())(this)(event)"><i class="fa fa-bars"></i></a>
+      <a class="navbar-item is-hoverable" onclick="WebSharper.UI.Templating.Runtime.Server.Handler.EventQ2$184$36(&quot;a6c3b6f6-0766-4685-bfac-325804a57468&quot;,Website.Main.Site.Page$47$24())(this)(event)"><i class="fa fa-bars"></i></a>
       <span class="navbar-item"><a href="/">Bolero</a></span>
     </div>
     <div class="navbar-menu">
       <nav class="navbar-end"><a href="/" class="navbar-item is-hoverable has-text-weight-bold">Home</a><a href="/docs" class="navbar-item is-hoverable has-text-weight-bold">Documentation</a><a href="/blog" class="navbar-item is-hoverable has-text-weight-bold">Blog</a><a href="https://try.fsbolero.io" class="navbar-item is-hoverable has-text-weight-bold">Try F#</a></nav>
     </div>
   </header>
-  <div class="drawer-backdrop ${09ee17bc-978c-4f5b-b289-a30d6d635b6a::drawershown}" onclick="WebSharper.UI.Templating.Runtime.Server.Handler.EventQ2$184$36(&quot;09ee17bc-978c-4f5b-b289-a30d6d635b6a&quot;,Website.Main.Site.Page$30$24())(this)(event)">
-    <input type="hidden" ws-var="09ee17bc-978c-4f5b-b289-a30d6d635b6a::drawershown" />
-    <div id="left-drawer" class="lhs-drawer ${09ee17bc-978c-4f5b-b289-a30d6d635b6a::drawershown}">
+  <div class="drawer-backdrop ${a6c3b6f6-0766-4685-bfac-325804a57468::drawershown}" onclick="WebSharper.UI.Templating.Runtime.Server.Handler.EventQ2$184$36(&quot;a6c3b6f6-0766-4685-bfac-325804a57468&quot;,Website.Main.Site.Page$48$24())(this)(event)">
+    <input type="hidden" ws-var="a6c3b6f6-0766-4685-bfac-325804a57468::drawershown" />
+    <div id="left-drawer" class="lhs-drawer ${a6c3b6f6-0766-4685-bfac-325804a57468::drawershown}">
       <span class="navbar-item"><a href="/">Bolero</a></span>
       <nav><a href="/" class="navbar-item nav-menu-link">Home</a><a href="/docs" class="navbar-item nav-menu-link">Documentation</a><a href="/blog" class="navbar-item nav-menu-link">Blog</a><a href="https://try.fsbolero.io" class="navbar-item nav-menu-link">Try F#</a></nav>
     </div>
@@ -49,7 +50,7 @@ Documentation</p>
 </ul>
 </div>
 </div>
-            <div class="column content"><p>In addition to creating HTML content <a href="HTML.html">with F# functions</a>, Bolero enables inserting plain HTML templates in the form of a type provider.</p>
+            <div class="column content markdown-column"><p>In addition to creating HTML content <a href="HTML.html">with F# functions</a>, Bolero enables inserting plain HTML templates in the form of a type provider.</p>
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 <ul>
@@ -362,9 +363,9 @@ listFriends [&quot;Alice&quot;; &quot;Bob&quot;; &quot;Chloe&quot;]
   <script type="text/javascript">new LazyLoad();</script>
   <script src="../Scripts/WebSharper.Core.JavaScript/Runtime.min.js" type="text/javascript" charset="UTF-8"></script><!--[if lte IE 7.0]>
 <script src="../Scripts/WebSharper.Main/Json.min.js" type="text/javascript" charset="UTF-8"></script><![endif]-->
-<!--[if lte IE 9.0]>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js" type="text/javascript" charset="UTF-8"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/languages/fsharp.min.js" type="text/javascript" charset="UTF-8"></script><!--[if lte IE 9.0]>
 <script src="../Scripts/WebSharper.Main/AnimFrame.min.js" type="text/javascript" charset="UTF-8"></script><![endif]-->
-<script src="../Scripts/WebSharper.Main/WebSharper.Main.min.js" type="text/javascript" charset="UTF-8"></script><script src="../Scripts/WebSharper.Collections/WebSharper.Collections.min.js" type="text/javascript" charset="UTF-8"></script><script src="../Scripts/WebSharper.UI/WebSharper.UI.min.js" type="text/javascript" charset="UTF-8"></script><script src="../Scripts/WebSharper.UI.Templating.Runtime/WebSharper.UI.Templating.Runtime.min.js" type="text/javascript" charset="UTF-8"></script><script src="../Scripts/Website/Website.min.js" type="text/javascript" charset="UTF-8"></script><script type="text/javascript">
+<script src="../Scripts/WebSharper.Main/WebSharper.Main.min.js" type="text/javascript" charset="UTF-8"></script><script src="../Scripts/WebSharper.Collections/WebSharper.Collections.min.js" type="text/javascript" charset="UTF-8"></script><script src="../Scripts/WebSharper.Web/WebSharper.Web.min.js" type="text/javascript" charset="UTF-8"></script><script src="../Scripts/WebSharper.UI/WebSharper.UI.min.js" type="text/javascript" charset="UTF-8"></script><script src="../Scripts/WebSharper.UI.Templating.Runtime/WebSharper.UI.Templating.Runtime.min.js" type="text/javascript" charset="UTF-8"></script><script src="../Scripts/Website/Website.min.js" type="text/javascript" charset="UTF-8"></script><script type="text/javascript">
 if (typeof IntelliFactory !=='undefined') {
   IntelliFactory.Runtime.ScriptBasePath = '../Scripts/';
   IntelliFactory.Runtime.Start();

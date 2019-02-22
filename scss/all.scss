@@ -1,4 +1,4 @@
-$primary: orangered;
+$family-monospace: 'Roboto Mono',monospace;
 
 // Bulma
 @import "bulma/sass/utilities/_all.sass";
@@ -17,17 +17,19 @@ $primary: orangered;
 // Fonts
 @import "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
 @import "https://fonts.googleapis.com/css?family=Roboto:400,500";
+@import "https://fonts.googleapis.com/css?family=Roboto+Mono";
 
 // App
 @import "navbar.scss";
 @import "drawer.scss";
 @import "home.scss";
+@import "markdown.scss";
 
 body {
     font-family: 'Roboto',sans-serif;
     color: #222;
 }
 
-.test {
-    color: $primary;
+pre, code {
+  font-family: $family-monospace;
 }

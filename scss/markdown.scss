@@ -1,0 +1,12 @@
+.hljs {
+  // Code blocks are generated as <pre><code class="language-fsharp">...
+  // Bulma adds padding to <pre>, and hljs adds padding to <code>.
+  // This cancels out bulma's padding while keeping hljs's background.
+  margin: -1.25em -1.5em;
+}
+
+.markdown-column {
+  // Without the following, wide code blocks on narrow screens
+  // cause the whole text to overflow.
+  overflow-x: hidden;
+}

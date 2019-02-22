@@ -1,3 +1,7 @@
+---
+title: Routing
+---
+
 Bolero provides facilities to bind the page's URL to the Elmish model.
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->

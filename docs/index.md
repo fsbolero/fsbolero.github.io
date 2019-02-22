@@ -1,3 +1,7 @@
+---
+title: Documentation
+---
+
 Welcome to the Bolero documentation!
 
 Bolero is a set of tools and libraries to run F# applications in WebAssembly using [Blazor](https://blazor.net/).

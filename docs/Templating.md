@@ -1,3 +1,7 @@
+---
+title: HTML templates
+---
+
 In addition to creating HTML content [with F# functions](HTML.html), Bolero enables inserting plain HTML templates in the form of a type provider.
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->

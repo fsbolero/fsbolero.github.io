@@ -1,26 +1,26 @@
 .page-banner {
-	background-size: cover;
-	background-position: center center;
-	background-image: url('/img/banner-7-2.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-image: url('/img/banner-7-2.jpg');
 
-	.title {
-		font-size: 48px;
-		margin-top: 70px; /* height of the navbar */
-	}
+  .title {
+    font-size: 48px;
+    margin-top: 70px; /* height of the navbar */
+  }
 
-	.subtitle {
-		font-size: 32px;
-	}
+  .subtitle {
+    font-size: 32px;
+  }
 
-	.title, .subtitle {
-		text-shadow: 0 0 20px rgba(255,255,255,0.5);
-	}
+  .title, .subtitle {
+    text-shadow: 0 0 20px rgba(255,255,255,0.5);
+  }
 
-	&.is-dark {
-		.title, .subtitle {
-			text-shadow: 0 0 20px rgba(0,0,0,0.5);
-		}
-	}
+  &.is-dark {
+    .title, .subtitle {
+      text-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
+  }
 }
 
 /* BEGIN main page blocks */
@@ -46,7 +46,7 @@ pre.is-large {
 }
 
 pre input {
-  font-family: monospace;
+  font-family: $family-monospace;
   display: block;
   min-width: 100%;
   border: 0;
