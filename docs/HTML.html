@@ -6,7 +6,7 @@
   <title>Writing HTML | Bolero: F# in WebAssembly</title>
   <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16" />
   <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
-  <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[["WebSharper","UI","Templating","Runtime","Server","TemplateInitializer"],["WebSharper","UI","OnAfterRenderControl"]],"$DATA":{"$V":{"9a0b3f60-a8a1-413d-bdad-36fab9bc8e22":{"$T":0,"$V":{"vars":[["drawershown",0]]}},"6b8bf171-3103-4e01-b3ad-dde5f157eed4":{"$T":0,"$V":{"vars":[]}},"d18137c7-754a-4b2e-8f14-423d8a4a4a21":{"$T":0,"$V":{"vars":[]}},"be33e898-ebdb-406d-9c26-0282ee3beeb7":{"$T":0,"$V":{"vars":[]}},"31c3b8f7-3ae4-41ca-8d29-a877246c6ea6":{"$T":0,"$V":{"vars":[]}},"34ba7f70-37b8-48ff-bdc8-e4e1dce4735d":{"$T":0,"$V":{"vars":[]}},"0d2fb19e-af00-4e3c-bb6a-d258b24079a7":{"$T":0,"$V":{"vars":[]}},"978fc4ad-f742-435a-9653-e6ec94f28074":{"$T":0,"$V":{"vars":[]}},"e308c95b-ce25-4bdc-924b-394aa6e77022":{"$T":0,"$V":{"vars":[]}},"0fb1db34-03fa-4f4e-821f-e11f87fbdea9":{"$T":0,"$V":{"vars":[]}},"ws.ui.oar":{"$T":1,"$V":{}}}}}' />
+  <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[["WebSharper","UI","Templating","Runtime","Server","TemplateInitializer"],["WebSharper","UI","OnAfterRenderControl"]],"$DATA":{"$V":{"b8744c7c-d8da-4da7-a096-a18fe09139e8":{"$T":0,"$V":{"vars":[["drawershown",0]]}},"86b87850-3c23-49f0-8420-ceae897a4987":{"$T":0,"$V":{"vars":[]}},"2bc275b8-41eb-42aa-9f3c-815fd5f0e1f1":{"$T":0,"$V":{"vars":[]}},"910b1193-5114-42b3-898c-c0e7f0c974e7":{"$T":0,"$V":{"vars":[]}},"b1641116-52dc-4edf-ab09-b9df571bc62b":{"$T":0,"$V":{"vars":[]}},"3cea6d42-3134-4dd1-bf17-50539dfe4fa6":{"$T":0,"$V":{"vars":[]}},"d8fb9c35-998d-462a-a6a2-8fed9b2ddb0a":{"$T":0,"$V":{"vars":[]}},"0de6fcb4-ad24-48a4-978f-f5fb95765bdd":{"$T":0,"$V":{"vars":[]}},"d382b383-2690-4f57-8ec0-aa2f3f70790f":{"$T":0,"$V":{"vars":[]}},"5f9736c1-3acd-4118-89e0-3a923d3a55b8":{"$T":0,"$V":{"vars":[]}},"ws.ui.oar":{"$T":1,"$V":{}}}}}' />
 <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/vs.min.css"></link>
 
   <link rel="stylesheet" href="/css/all.min.css" />
@@ -14,16 +14,16 @@
 <body>
   <header class="navbar overlay-bar">
     <div class="navbar-brand">
-      <a class="navbar-item is-hoverable" onclick="WebSharper.UI.Templating.Runtime.Server.Handler.EventQ2$184$36(&quot;9a0b3f60-a8a1-413d-bdad-36fab9bc8e22&quot;,Website.Main.Site.Page$52$24())(this)(event)"><i class="fa fa-bars"></i></a>
+      <a class="navbar-item is-hoverable" onclick="WebSharper.UI.Templating.Runtime.Server.Handler.EventQ2$184$36(&quot;b8744c7c-d8da-4da7-a096-a18fe09139e8&quot;,Website.Main.Site.Page$52$24())(this)(event)"><i class="fa fa-bars"></i></a>
       <span class="navbar-item"><a href="/">Bolero</a></span>
     </div>
     <div class="navbar-menu">
       <nav class="navbar-end"><a href="/" class="navbar-item is-hoverable has-text-weight-bold">Home</a><a href="/docs" class="navbar-item is-hoverable has-text-weight-bold">Documentation</a><a href="/blog" class="navbar-item is-hoverable has-text-weight-bold">Blog</a><a href="https://tryfsharp.fsbolero.io" class="navbar-item is-hoverable has-text-weight-bold">Try F#</a></nav>
     </div>
   </header>
-  <div class="drawer-backdrop ${9a0b3f60-a8a1-413d-bdad-36fab9bc8e22::drawershown}" onclick="WebSharper.UI.Templating.Runtime.Server.Handler.EventQ2$184$36(&quot;9a0b3f60-a8a1-413d-bdad-36fab9bc8e22&quot;,Website.Main.Site.Page$53$24())(this)(event)">
-    <input type="hidden" ws-var="9a0b3f60-a8a1-413d-bdad-36fab9bc8e22::drawershown" />
-    <div id="left-drawer" class="lhs-drawer ${9a0b3f60-a8a1-413d-bdad-36fab9bc8e22::drawershown}">
+  <div class="drawer-backdrop ${b8744c7c-d8da-4da7-a096-a18fe09139e8::drawershown}" onclick="WebSharper.UI.Templating.Runtime.Server.Handler.EventQ2$184$36(&quot;b8744c7c-d8da-4da7-a096-a18fe09139e8&quot;,Website.Main.Site.Page$53$24())(this)(event)">
+    <input type="hidden" ws-var="b8744c7c-d8da-4da7-a096-a18fe09139e8::drawershown" />
+    <div id="left-drawer" class="lhs-drawer ${b8744c7c-d8da-4da7-a096-a18fe09139e8::drawershown}">
       <span class="navbar-item"><a href="/">Bolero</a></span>
       <nav><a href="/" class="navbar-item nav-menu-link">Home</a><a href="/docs" class="navbar-item nav-menu-link">Documentation</a><a href="/blog" class="navbar-item nav-menu-link">Blog</a><a href="https://tryfsharp.fsbolero.io" class="navbar-item nav-menu-link">Try F#</a></nav>
     </div>
