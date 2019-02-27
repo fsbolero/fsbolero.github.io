@@ -1,29 +1,29 @@
 ﻿<!DOCTYPE html>
-<html lang="en" ws-runafterrender="Website.Main.Site.Page$59$27()">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Documentation | Bolero: F# in WebAssembly</title>
   <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16" />
   <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
-  <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[["WebSharper","UI","Templating","Runtime","Server","TemplateInitializer"],["WebSharper","UI","OnAfterRenderControl"]],"$DATA":{"$V":{"a3f5da7f-397b-40f0-b4a2-1ea99abbee4d":{"$T":0,"$V":{"vars":[["drawershown",0]]}},"51bf86cb-bba9-40c2-8441-8deadbf6f025":{"$T":0,"$V":{"vars":[]}},"70526642-768f-4c2f-86df-316179cffc58":{"$T":0,"$V":{"vars":[]}},"ad47fd96-8b34-4bdd-ae9f-08e2acfbbf8f":{"$T":0,"$V":{"vars":[]}},"5594326b-95fa-443f-ad53-556753fb0a9c":{"$T":0,"$V":{"vars":[]}},"a36b8ca8-90c5-4e60-bac5-8e34230fb6a7":{"$T":0,"$V":{"vars":[]}},"3c851f93-95c9-4f62-9465-e4b597bfb72c":{"$T":0,"$V":{"vars":[]}},"7e8ee514-7843-4764-93dc-4774df36804c":{"$T":0,"$V":{"vars":[]}},"cd841605-eaa9-4806-9736-313f06c837e5":{"$T":0,"$V":{"vars":[]}},"7488b912-6aba-4520-8673-a6db6af1f0c6":{"$T":0,"$V":{"vars":[]}},"ws.ui.oar":{"$T":1,"$V":{}}}}}' />
-<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/vs.min.css"></link>
+  <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[["WebSharper","UI","Templating","Runtime","Server","TemplateInitializer"]],"$DATA":{"$V":{"030001b0-ae5f-44fd-9b39-958018fe6fc9":{"$T":0,"$V":{"vars":[]}},"affff9e6-dca1-4bb4-a303-602ca19e013e":{"$T":0,"$V":{"vars":[]}},"b8a9e57d-e43e-494c-b320-cf1db347c7d5":{"$T":0,"$V":{"vars":[]}},"e6f9e70a-d021-40f7-92c1-6203b543c0e3":{"$T":0,"$V":{"vars":[]}},"dbac92e6-83bf-49b5-9e2b-79c11dcf00d6":{"$T":0,"$V":{"vars":[]}},"9aa95c91-1771-486e-be3d-495becb5f8de":{"$T":0,"$V":{"vars":[]}},"1b36db7c-4b3b-49a7-b844-0421a98aa742":{"$T":0,"$V":{"vars":[]}},"a8b6f44a-d99f-42c3-9d29-d8b7ebb81edf":{"$T":0,"$V":{"vars":[]}},"5703a212-4ac2-4e03-8a5f-06c1cf56ecf7":{"$T":0,"$V":{"vars":[]}},"3af1d518-0d04-4a00-9fae-13f7d0d0a8f1":{"$T":0,"$V":{"vars":[]}}}}}' />
 
   <link rel="stylesheet" href="/css/all.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js" type="text/javascript" charset="UTF-8"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/languages/fsharp.min.js" type="text/javascript" charset="UTF-8"></script><link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/vs.min.css"></link>
+
 </head>
 <body>
   <header class="navbar overlay-bar">
     <div class="navbar-brand">
-      <a class="navbar-item is-hoverable" onclick="WebSharper.UI.Templating.Runtime.Server.Handler.EventQ2$184$36(&quot;a3f5da7f-397b-40f0-b4a2-1ea99abbee4d&quot;,Website.Main.Site.Page$53$24())(this)(event)"><i class="fa fa-bars"></i></a>
+      <a class="navbar-item is-hoverable" onclick="Website.Client.ToggleDrawer()"><i class="fa fa-bars"></i></a>
       <span class="navbar-item"><a href="/">Bolero</a></span>
     </div>
     <div class="navbar-menu">
       <nav class="navbar-end"><a href="/" class="navbar-item is-hoverable has-text-weight-bold">Home</a><a href="/docs" class="navbar-item is-hoverable has-text-weight-bold">Documentation</a><a href="/blog" class="navbar-item is-hoverable has-text-weight-bold">Blog</a><a href="https://tryfsharp.fsbolero.io" class="navbar-item is-hoverable has-text-weight-bold">Try F#</a></nav>
     </div>
   </header>
-  <div class="drawer-backdrop ${a3f5da7f-397b-40f0-b4a2-1ea99abbee4d::drawershown}" onclick="WebSharper.UI.Templating.Runtime.Server.Handler.EventQ2$184$36(&quot;a3f5da7f-397b-40f0-b4a2-1ea99abbee4d&quot;,Website.Main.Site.Page$54$24())(this)(event)">
-    <input type="hidden" ws-var="a3f5da7f-397b-40f0-b4a2-1ea99abbee4d::drawershown" />
-    <div id="left-drawer" class="lhs-drawer ${a3f5da7f-397b-40f0-b4a2-1ea99abbee4d::drawershown}">
+  <div class="drawer-backdrop" onclick="Website.Client.ToggleDrawer()">
+    <div id="left-drawer" class="lhs-drawer">
       <span class="navbar-item"><a href="/">Bolero</a></span>
       <nav><a href="/" class="navbar-item nav-menu-link">Home</a><a href="/docs" class="navbar-item nav-menu-link">Documentation</a><a href="/blog" class="navbar-item nav-menu-link">Blog</a><a href="https://tryfsharp.fsbolero.io" class="navbar-item nav-menu-link">Try F#</a></nav>
     </div>
@@ -67,17 +67,7 @@ Documentation</p>
     
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/8.6.0/lazyload.min.js"></script>
   <script type="text/javascript">new LazyLoad();</script>
-  <script src="../Scripts/WebSharper.Core.JavaScript/Runtime.min.js" type="text/javascript" charset="UTF-8"></script><!--[if lte IE 7.0]>
-<script src="../Scripts/WebSharper.Main/Json.min.js" type="text/javascript" charset="UTF-8"></script><![endif]-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js" type="text/javascript" charset="UTF-8"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/languages/fsharp.min.js" type="text/javascript" charset="UTF-8"></script><!--[if lte IE 9.0]>
-<script src="../Scripts/WebSharper.Main/AnimFrame.min.js" type="text/javascript" charset="UTF-8"></script><![endif]-->
-<script src="../Scripts/WebSharper.Main/WebSharper.Main.min.js" type="text/javascript" charset="UTF-8"></script><script src="../Scripts/WebSharper.Collections/WebSharper.Collections.min.js" type="text/javascript" charset="UTF-8"></script><script src="../Scripts/WebSharper.Web/WebSharper.Web.min.js" type="text/javascript" charset="UTF-8"></script><script src="../Scripts/WebSharper.UI/WebSharper.UI.min.js" type="text/javascript" charset="UTF-8"></script><script src="../Scripts/WebSharper.UI.Templating.Runtime/WebSharper.UI.Templating.Runtime.min.js" type="text/javascript" charset="UTF-8"></script><script src="../Scripts/Website/Website.min.js" type="text/javascript" charset="UTF-8"></script><script type="text/javascript">
-if (typeof IntelliFactory !=='undefined') {
-  IntelliFactory.Runtime.ScriptBasePath = '../Scripts/';
-  IntelliFactory.Runtime.Start();
-}
-</script>
-
+  <script src="/js/Client.min.js"></script>
   
   
 </body>
