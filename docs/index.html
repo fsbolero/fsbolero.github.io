@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Documentation | Bolero: F# in WebAssembly</title>
+  <title>Getting started | Bolero: F# in WebAssembly</title>
   <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16" />
   <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
-  <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[["WebSharper","UI","Templating","Runtime","Server","TemplateInitializer"]],"$DATA":{"$V":{"030001b0-ae5f-44fd-9b39-958018fe6fc9":{"$T":0,"$V":{"vars":[]}},"affff9e6-dca1-4bb4-a303-602ca19e013e":{"$T":0,"$V":{"vars":[]}},"b8a9e57d-e43e-494c-b320-cf1db347c7d5":{"$T":0,"$V":{"vars":[]}},"e6f9e70a-d021-40f7-92c1-6203b543c0e3":{"$T":0,"$V":{"vars":[]}},"dbac92e6-83bf-49b5-9e2b-79c11dcf00d6":{"$T":0,"$V":{"vars":[]}},"9aa95c91-1771-486e-be3d-495becb5f8de":{"$T":0,"$V":{"vars":[]}},"1b36db7c-4b3b-49a7-b844-0421a98aa742":{"$T":0,"$V":{"vars":[]}},"a8b6f44a-d99f-42c3-9d29-d8b7ebb81edf":{"$T":0,"$V":{"vars":[]}},"5703a212-4ac2-4e03-8a5f-06c1cf56ecf7":{"$T":0,"$V":{"vars":[]}},"3af1d518-0d04-4a00-9fae-13f7d0d0a8f1":{"$T":0,"$V":{"vars":[]}}}}}' />
+  <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[],"$DATA":{"$V":{}}}' />
 
   <link rel="stylesheet" href="/css/all.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js" type="text/javascript" charset="UTF-8"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/languages/fsharp.min.js" type="text/javascript" charset="UTF-8"></script><link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/vs.min.css"></link>
@@ -40,25 +40,68 @@
             <div class="column is-one-quarter"><div ws-preserve=""><div class="menu"><p class="menu-label">
 Documentation</p>
 <ul class="menu-list">
-<li><a href="/docs">Home</a></li>
-<li><a href="https://github.com/intellifactory/Bolero.Template">Getting Started</a></li>
-<li><a href="/docs/HTML.html">Writing HTML</a></li>
-<li><a href="/docs/Templating.html">HTML templates</a></li>
-<li><a href="/docs/Elmish.html">Using Elmish</a></li>
-<li><a href="/docs/Routing.html">Routing</a></li>
-<li><a href="/docs/Remoting.html">Remoting</a></li>
+<li><a href="/docs">Getting Started</a></li>
+<li><a href="/docs/HTML">Writing HTML</a></li>
+<li><a href="/docs/Templating">HTML templates</a></li>
+<li><a href="/docs/Elmish">Using Elmish</a></li>
+<li><a href="/docs/Routing">Routing</a></li>
+<li><a href="/docs/Remoting">Remoting</a></li>
 </ul>
 </div>
 </div></div>
-            <div class="column content markdown-column"><div ws-preserve=""><p>Welcome to the Bolero documentation!</p>
-<p>Bolero is a set of tools and libraries to run F# applications in WebAssembly using <a href="https://blazor.net/">Blazor</a>.</p>
+            <div class="column content markdown-column"><div ws-preserve=""><p>Welcome to Bolero: F# on WebAssembly!</p>
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 <ul>
-<li><a href="https://github.com/intellifactory/Bolero.Template">Getting Started</a></li>
-<li><a href="HTML.html">Writing HTML</a></li>
-<li><a href="Templating.html">HTML templates</a></li>
-<li><a href="Elmish.html">Using Elmish</a></li>
-<li><a href="Routing.html">Routing</a></li>
-<li><a href="Remoting.html">Remoting</a></li>
+<li><a href="#what-is-bolero">What is Bolero?</a></li>
+<li><a href="#getting-started">Getting started</a></li>
+<li><a href="#discovering-the-startup-project">Discovering the startup project</a></li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<h1 id="what-is-bolero">What is Bolero?</h1>
+<p>Bolero is a set of free and open-source libraries and tools to write <a href="https://webassembly.org/"><strong>WebAssembly</strong></a> applications in <a href="https://fsharp.org/"><strong>F#</strong></a>. With it, you can write fully dynamic client-side web applications from the comfort of a strongly-typed functional language, all with great performance.</p>
+<p>Bolero is built on top of <a href="https://blazor.net/">Blazor</a> and adds a lot of features designed specifically to work in F#:</p>
+<ul>
+<li><a href="Elmish">Elmish</a> Model-View-Update architecture for a functional approach to reactive content.</li>
+<li><a href="HTML">HTML-in-F#</a> syntax inspired by WebSharper.UI and Fable.</li>
+<li>Alternatively, <a href="Templating">HTML templates</a> with hot reloading provide a comfortable design experience.</li>
+<li><a href="Routing">URL Routing</a> the F# way, automatically matching URLs with F# union types.</li>
+<li>Easy <a href="Remoting">Remoting</a> with an ASP.NET Core server side.</li>
+<li>F#-specific optimizations: Bolero strips F# metadata from compiled assemblies, reducing the download size of the application.</li>
+</ul>
+<h1 id="getting-started">Getting started</h1>
+<p>You can develop Bolero applications on Windows, OSX or Linux. It only has one prerequisite: the <a href="https://dotnet.microsoft.com/download">.NET Core SDK</a>, version 2.1 or newer.</p>
+<p>The easiest way to get started is to use Bolero's dotnet template. To install it, run the following command:</p>
+<pre><code class="language-shell">dotnet new -i Bolero.Templates
+</code></pre>
+<p>Then, you can create a new Bolero application:</p>
+<pre><code class="language-shell">dotnet new bolero-app -o HelloWorld
+</code></pre>
+<p>This will create a new folder <code>HelloWorld</code> and create an application inside it. The template has additional options, described <a href="https://github.com/fsbolero/Template">at its home page</a>. You can run it with:</p>
+<pre><code class="language-shell">cd HelloWorld
+dotnet run -p src/HelloWorld.Server
+</code></pre>
+<p>This will start the server and run the following minimal application at <code>localhost:5000</code>:</p>
+<p><img src="helloworld-browser.png" alt="Hello World application screenshot" /></p>
+<h1 id="discovering-the-startup-project">Discovering the startup project</h1>
+<p>The solution you just created comprises two projects.</p>
+<ul>
+<li><p><code>src/HelloWorld.Client</code> is the project that gets compiled to WebAssembly, and contains your client-side code.</p>
+<ul>
+<li><p><code>Main.fs</code> contains the main body of the page. This is where the meat of the application is: as you develop, you will mostly be coding here and in new files referenced from here.</p>
+</li>
+<li><p><code>wwwroot/</code> contains static content. In particular, <code>index.html</code> is the actual page that is served. It contains a script reference to <code>blazor.webassembly.js</code>, which in turn loads your application.</p>
+<p>If you want to add styles and images to your application, this is the folder to put them.</p>
+</li>
+<li><p><code>Startup.fs</code> sets up Blazor to get the application started. You will rarely need to touch it: essentially only to set up <a href="Remoting">remoting</a>, if you want to use it.</p>
+</li>
+</ul>
+</li>
+<li><p><code>src/HelloWorld.Server</code> is an ASP.NET Core application that serves as the host. This project is optional: if you pas <code>--server=false</code> when creating the solution with <code>dotnet new</code>, then it will not be created. Note however that it is necessary for <a href="Templating#hot-reloading">templating hot reloading</a> and <a href="Remoting">remoting</a>.</p>
+<ul>
+<li><code>Startup.fs</code>, similarly to its client counterpart, sets up ASP.NET Core to get the server started.</li>
+</ul>
+</li>
 </ul>
 </div></div>
           </div>

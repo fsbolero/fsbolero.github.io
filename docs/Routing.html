@@ -6,7 +6,7 @@
   <title>Routing | Bolero: F# in WebAssembly</title>
   <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16" />
   <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
-  <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[["WebSharper","UI","Templating","Runtime","Server","TemplateInitializer"]],"$DATA":{"$V":{"77a83d3e-96f1-4e7d-944d-f944cc87bca3":{"$T":0,"$V":{"vars":[]}},"6cab7c94-5988-440a-beb7-48ddc39f5a24":{"$T":0,"$V":{"vars":[]}},"80c1bffb-22a3-4a40-bef9-6c645c334293":{"$T":0,"$V":{"vars":[]}},"7f4395f4-9018-4833-baab-9a9584652e70":{"$T":0,"$V":{"vars":[]}},"0a28ac2b-2978-43bf-8c50-b3db3a60b114":{"$T":0,"$V":{"vars":[]}},"ac531213-4bdf-4d63-b626-1afa6679e2b9":{"$T":0,"$V":{"vars":[]}},"f7d981dc-8e21-47ff-afa7-e6c12a3e38d9":{"$T":0,"$V":{"vars":[]}},"c4f7dd15-ccf8-4855-b313-c9cfdbb80355":{"$T":0,"$V":{"vars":[]}},"7782f620-297e-4b21-95f6-734eecb8a325":{"$T":0,"$V":{"vars":[]}},"b00e2f00-45d6-424f-be95-f9c864e753bc":{"$T":0,"$V":{"vars":[]}}}}}' />
+  <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[],"$DATA":{"$V":{}}}' />
 
   <link rel="stylesheet" href="/css/all.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js" type="text/javascript" charset="UTF-8"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/languages/fsharp.min.js" type="text/javascript" charset="UTF-8"></script><link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/vs.min.css"></link>
@@ -40,13 +40,12 @@
             <div class="column is-one-quarter"><div ws-preserve=""><div class="menu"><p class="menu-label">
 Documentation</p>
 <ul class="menu-list">
-<li><a href="/docs">Home</a></li>
-<li><a href="https://github.com/intellifactory/Bolero.Template">Getting Started</a></li>
-<li><a href="/docs/HTML.html">Writing HTML</a></li>
-<li><a href="/docs/Templating.html">HTML templates</a></li>
-<li><a href="/docs/Elmish.html">Using Elmish</a></li>
-<li><a href="/docs/Routing.html">Routing</a></li>
-<li><a href="/docs/Remoting.html">Remoting</a></li>
+<li><a href="/docs">Getting Started</a></li>
+<li><a href="/docs/HTML">Writing HTML</a></li>
+<li><a href="/docs/Templating">HTML templates</a></li>
+<li><a href="/docs/Elmish">Using Elmish</a></li>
+<li><a href="/docs/Routing">Routing</a></li>
+<li><a href="/docs/Remoting">Remoting</a></li>
 </ul>
 </div>
 </div></div>
@@ -64,7 +63,7 @@ Documentation</p>
 </ul>
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 <h1 id="prerequisites">Prerequisites</h1>
-<p>In order to use routing, you need to make sure that the page's base URL is set correctly. In most cases, you simply need to add the following inside the <code>&lt;head&gt;</code> of your page:</p>
+<p>In order to use routing, you need to make sure that the page's base URL is set correctly. In most cases, you simply need to add the following inside the <code>&lt;head&gt;</code> of your page (<code>wwwroot/index.html</code>):</p>
 <pre><code class="language-html">&lt;base href=&quot;/&quot;&gt;
 </code></pre>
 <p>If the root of your application is a subpath, then you need to set that subpath as the base, <strong>including the trailing slash</strong>. For example, if you have an application served at <code>https://someone.github.io/myrepo/</code>, then you need the following:</p>

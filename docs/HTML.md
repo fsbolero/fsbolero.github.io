@@ -20,7 +20,7 @@ Bolero provides F# functions to create HTML elements, attributes and event handl
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-See also how to create HTML elements using [HTML templates](Templating.html).
+See also how to create HTML elements using [HTML templates](Templating).
 
 # Elements
 
@@ -243,7 +243,7 @@ let myElement =
 
 Attributes defined in the `bind` module define two-way binding with the element's value. These functions take two arguments:
 
-1. The current value, which generally comes from the [Elmish](Elmish.html) model.
+1. The current value, which generally comes from the [Elmish](Elmish) model.
 2. A setter function, which generally calls the Elmish dispatch function.
 
 Here is an example using `bind.input`:
@@ -293,7 +293,7 @@ let hello model dispatch =
 
 # Components
 
-> Note: this section describes how to create and use plain Blazor components. It is recommended to use Elmish components whenever possible; see [Using Elmish](Elmish.html).
+> Note: this section describes how to create and use plain Blazor components. It is recommended to use Elmish components whenever possible; see [Using Elmish](Elmish).
 
 You can create plain Blazor components by inheriting from the `Component` type.
 

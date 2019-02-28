@@ -2,7 +2,7 @@
 title: HTML templates
 ---
 
-In addition to creating HTML content [with F# functions](HTML.html), Bolero enables inserting plain HTML templates in the form of a type provider.
+In addition to creating HTML content [with F# functions](HTML), Bolero enables inserting plain HTML templates in the form of a type provider.
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -161,7 +161,7 @@ let hello =
 
 Holes defined as the value of a `bind` attribute define two-way binding with the element's value. The filling method for such a hole takes two arguments:
 
-1. The current value, which generally comes from the [Elmish](Elmish.html) model.
+1. The current value, which generally comes from the [Elmish](Elmish) model.
 2. A setter function, which generally calls the Elmish dispatch function.
 
 ```html

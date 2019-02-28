@@ -17,7 +17,7 @@ Bolero provides facilities to bind the page's URL to the Elmish model.
 
 # Prerequisites
 
-In order to use routing, you need to make sure that the page's base URL is set correctly. In most cases, you simply need to add the following inside the `<head>` of your page:
+In order to use routing, you need to make sure that the page's base URL is set correctly. In most cases, you simply need to add the following inside the `<head>` of your page (`wwwroot/index.html`):
 
 ```html
 <base href="/">

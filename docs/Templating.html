@@ -6,7 +6,7 @@
   <title>HTML templates | Bolero: F# in WebAssembly</title>
   <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16" />
   <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
-  <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[["WebSharper","UI","Templating","Runtime","Server","TemplateInitializer"]],"$DATA":{"$V":{"593ca623-b82a-4c08-808c-956b1834c56b":{"$T":0,"$V":{"vars":[]}},"75c0087f-6d8c-4894-8a0e-93d5c920b0e4":{"$T":0,"$V":{"vars":[]}},"6d234d20-35e7-4098-9dc3-7c7effe2410a":{"$T":0,"$V":{"vars":[]}},"5a52f75e-bdd0-4305-88db-fb8dda4b0878":{"$T":0,"$V":{"vars":[]}},"b507c86b-9e92-4d18-8870-a016fce32d50":{"$T":0,"$V":{"vars":[]}},"d9764133-68ce-46ca-959b-9a3b46a42d9f":{"$T":0,"$V":{"vars":[]}},"2e09e531-92b9-440e-90a0-1be1c12b6e8b":{"$T":0,"$V":{"vars":[]}},"0b94014c-8cfe-4560-bb81-5cf64022ac69":{"$T":0,"$V":{"vars":[]}},"da06335c-66d8-48d6-9ba6-cfa2d0bc9504":{"$T":0,"$V":{"vars":[]}},"9e93cece-3536-4525-86f5-7f3985d808af":{"$T":0,"$V":{"vars":[]}}}}}' />
+  <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[],"$DATA":{"$V":{}}}' />
 
   <link rel="stylesheet" href="/css/all.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js" type="text/javascript" charset="UTF-8"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/languages/fsharp.min.js" type="text/javascript" charset="UTF-8"></script><link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/vs.min.css"></link>
@@ -40,17 +40,16 @@
             <div class="column is-one-quarter"><div ws-preserve=""><div class="menu"><p class="menu-label">
 Documentation</p>
 <ul class="menu-list">
-<li><a href="/docs">Home</a></li>
-<li><a href="https://github.com/intellifactory/Bolero.Template">Getting Started</a></li>
-<li><a href="/docs/HTML.html">Writing HTML</a></li>
-<li><a href="/docs/Templating.html">HTML templates</a></li>
-<li><a href="/docs/Elmish.html">Using Elmish</a></li>
-<li><a href="/docs/Routing.html">Routing</a></li>
-<li><a href="/docs/Remoting.html">Remoting</a></li>
+<li><a href="/docs">Getting Started</a></li>
+<li><a href="/docs/HTML">Writing HTML</a></li>
+<li><a href="/docs/Templating">HTML templates</a></li>
+<li><a href="/docs/Elmish">Using Elmish</a></li>
+<li><a href="/docs/Routing">Routing</a></li>
+<li><a href="/docs/Remoting">Remoting</a></li>
 </ul>
 </div>
 </div></div>
-            <div class="column content markdown-column"><div ws-preserve=""><p>In addition to creating HTML content <a href="HTML.html">with F# functions</a>, Bolero enables inserting plain HTML templates in the form of a type provider.</p>
+            <div class="column content markdown-column"><div ws-preserve=""><p>In addition to creating HTML content <a href="HTML">with F# functions</a>, Bolero enables inserting plain HTML templates in the form of a type provider.</p>
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 <ul>
@@ -164,7 +163,7 @@ let hello =
 <h2 id="data-binding-holes">Data binding holes</h2>
 <p>Holes defined as the value of a <code>bind</code> attribute define two-way binding with the element's value. The filling method for such a hole takes two arguments:</p>
 <ol>
-<li>The current value, which generally comes from the <a href="Elmish.html">Elmish</a> model.</li>
+<li>The current value, which generally comes from the <a href="Elmish">Elmish</a> model.</li>
 <li>A setter function, which generally calls the Elmish dispatch function.</li>
 </ol>
 <pre><code class="language-html">&lt;input bind=&quot;${Username}&quot;&gt;

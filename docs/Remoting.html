@@ -6,7 +6,7 @@
   <title>Remoting | Bolero: F# in WebAssembly</title>
   <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16" />
   <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
-  <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[["WebSharper","UI","Templating","Runtime","Server","TemplateInitializer"]],"$DATA":{"$V":{"0057e7d5-59c8-422a-bc3c-b551eade0dc5":{"$T":0,"$V":{"vars":[]}},"bde32a14-1516-4d61-8972-1e1cd3ae9c27":{"$T":0,"$V":{"vars":[]}},"c8c5e40a-1210-4d9b-a6b4-fa98ec5cd7c2":{"$T":0,"$V":{"vars":[]}},"6d760b46-ebf4-4192-a1cf-d530c5d4f4bb":{"$T":0,"$V":{"vars":[]}},"e36d1747-a9c8-4a89-8cfb-861624da2880":{"$T":0,"$V":{"vars":[]}},"0af3e427-ebe2-4f91-8628-83bf2c79eb3a":{"$T":0,"$V":{"vars":[]}},"4ecc5065-73fb-46af-b688-750476dccc70":{"$T":0,"$V":{"vars":[]}},"f359d59e-7442-43d4-9778-4e9e03098cfd":{"$T":0,"$V":{"vars":[]}},"67a54be1-934d-4c81-9356-cdcd5fefde9c":{"$T":0,"$V":{"vars":[]}},"a4c0bceb-fab4-494b-894c-f10eabfebde0":{"$T":0,"$V":{"vars":[]}}}}}' />
+  <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[],"$DATA":{"$V":{}}}' />
 
   <link rel="stylesheet" href="/css/all.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js" type="text/javascript" charset="UTF-8"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/languages/fsharp.min.js" type="text/javascript" charset="UTF-8"></script><link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/vs.min.css"></link>
@@ -40,13 +40,12 @@
             <div class="column is-one-quarter"><div ws-preserve=""><div class="menu"><p class="menu-label">
 Documentation</p>
 <ul class="menu-list">
-<li><a href="/docs">Home</a></li>
-<li><a href="https://github.com/intellifactory/Bolero.Template">Getting Started</a></li>
-<li><a href="/docs/HTML.html">Writing HTML</a></li>
-<li><a href="/docs/Templating.html">HTML templates</a></li>
-<li><a href="/docs/Elmish.html">Using Elmish</a></li>
-<li><a href="/docs/Routing.html">Routing</a></li>
-<li><a href="/docs/Remoting.html">Remoting</a></li>
+<li><a href="/docs">Getting Started</a></li>
+<li><a href="/docs/HTML">Writing HTML</a></li>
+<li><a href="/docs/Templating">HTML templates</a></li>
+<li><a href="/docs/Elmish">Using Elmish</a></li>
+<li><a href="/docs/Routing">Routing</a></li>
+<li><a href="/docs/Remoting">Remoting</a></li>
 </ul>
 </div>
 </div></div>
@@ -85,7 +84,7 @@ type MyService =
 <h1 id="calling-on-the-client-side">Calling on the client side</h1>
 <p>On the client side, you will typically want to call these functions in the <code>update</code> of the Elmish app. See <a href="https://elmish.github.io/elmish/basics.html">the Elmish documentation</a> to learn how to run commands in <code>update</code>.</p>
 <ol>
-<li><p>In your Blazor startup, add support for remoting:</p>
+<li><p>In your Blazor startup (<code>Client/Startup.fs</code>), add support for remoting:</p>
 <pre><code class="language-fsharp">open Bolero.Remoting
 
 type Startup() =
@@ -156,7 +155,7 @@ let myService =
     }
 </code></pre>
 </li>
-<li><p>In your ASP.NET Core startup, register the service:</p>
+<li><p>In your ASP.NET Core startup (<code>Server/Startup.fs</code>), register the service:</p>
 <pre><code class="language-fsharp">type Startup() =
 
     member this.ConfigureServices(services: IServiceCollection) =

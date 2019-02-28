@@ -45,7 +45,7 @@ type MyService =
 
 On the client side, you will typically want to call these functions in the `update` of the Elmish app. See [the Elmish documentation](https://elmish.github.io/elmish/basics.html) to learn how to run commands in `update`.
 
-1. In your Blazor startup, add support for remoting:
+1. In your Blazor startup (`Client/Startup.fs`), add support for remoting:
 
     ```fsharp
     open Bolero.Remoting
@@ -126,7 +126,7 @@ Here is how to implement a remote service without any dependencies.
         }
     ```
 
-2. In your ASP.NET Core startup, register the service:
+2. In your ASP.NET Core startup (`Server/Startup.fs`), register the service:
 
     ```fsharp
     type Startup() =

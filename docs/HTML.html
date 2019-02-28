@@ -6,7 +6,7 @@
   <title>Writing HTML | Bolero: F# in WebAssembly</title>
   <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16" />
   <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
-  <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[["WebSharper","UI","Templating","Runtime","Server","TemplateInitializer"]],"$DATA":{"$V":{"d41943a3-4144-4188-8e30-fa1acc4c1959":{"$T":0,"$V":{"vars":[]}},"87a12b5c-747f-450d-abc2-f357d199f4f6":{"$T":0,"$V":{"vars":[]}},"71b2bb2a-aac9-4132-85bd-582ddda4f3d2":{"$T":0,"$V":{"vars":[]}},"21a1c749-87a3-485b-a212-45c256caec4e":{"$T":0,"$V":{"vars":[]}},"39fd743e-d4da-4c0c-9f08-de17d2717adc":{"$T":0,"$V":{"vars":[]}},"ff36454f-1800-4237-8e8d-76b0d5d630f3":{"$T":0,"$V":{"vars":[]}},"ce4514b1-b7b7-4e28-b0f6-39f5d0c13288":{"$T":0,"$V":{"vars":[]}},"e27e404b-ec11-4b2d-9d97-8774f5e86b30":{"$T":0,"$V":{"vars":[]}},"d48c00ad-5031-4e02-8e1e-d087210c6ee6":{"$T":0,"$V":{"vars":[]}},"77ed9b55-bb4f-49df-b59b-f4f72b45ceaf":{"$T":0,"$V":{"vars":[]}}}}}' />
+  <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[],"$DATA":{"$V":{}}}' />
 
   <link rel="stylesheet" href="/css/all.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js" type="text/javascript" charset="UTF-8"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/languages/fsharp.min.js" type="text/javascript" charset="UTF-8"></script><link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/vs.min.css"></link>
@@ -40,13 +40,12 @@
             <div class="column is-one-quarter"><div ws-preserve=""><div class="menu"><p class="menu-label">
 Documentation</p>
 <ul class="menu-list">
-<li><a href="/docs">Home</a></li>
-<li><a href="https://github.com/intellifactory/Bolero.Template">Getting Started</a></li>
-<li><a href="/docs/HTML.html">Writing HTML</a></li>
-<li><a href="/docs/Templating.html">HTML templates</a></li>
-<li><a href="/docs/Elmish.html">Using Elmish</a></li>
-<li><a href="/docs/Routing.html">Routing</a></li>
-<li><a href="/docs/Remoting.html">Remoting</a></li>
+<li><a href="/docs">Getting Started</a></li>
+<li><a href="/docs/HTML">Writing HTML</a></li>
+<li><a href="/docs/Templating">HTML templates</a></li>
+<li><a href="/docs/Elmish">Using Elmish</a></li>
+<li><a href="/docs/Routing">Routing</a></li>
+<li><a href="/docs/Remoting">Remoting</a></li>
 </ul>
 </div>
 </div></div>
@@ -71,7 +70,7 @@ Documentation</p>
 <li><a href="#navlink">NavLink</a></li>
 </ul>
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
-<p>See also how to create HTML elements using <a href="Templating.html">HTML templates</a>.</p>
+<p>See also how to create HTML elements using <a href="Templating">HTML templates</a>.</p>
 <h1 id="elements">Elements</h1>
 <p>To create an HTML element, just call the function with its name. It takes two arguments: a list of attributes and a list of child elements, and returns a value of type <code>Node</code>.</p>
 <p>Additionally, the function <code>text</code> creates a text node, and <code>textf</code> creates a text node using <code>printf</code>-style formatting.</p>
@@ -238,7 +237,7 @@ let myElement (isBlue: bool) =
 <h1 id="data-bindings">Data bindings</h1>
 <p>Attributes defined in the <code>bind</code> module define two-way binding with the element's value. These functions take two arguments:</p>
 <ol>
-<li>The current value, which generally comes from the <a href="Elmish.html">Elmish</a> model.</li>
+<li>The current value, which generally comes from the <a href="Elmish">Elmish</a> model.</li>
 <li>A setter function, which generally calls the Elmish dispatch function.</li>
 </ol>
 <p>Here is an example using <code>bind.input</code>:</p>
@@ -283,7 +282,7 @@ let hello model dispatch =
 </code></pre>
 <h1 id="components">Components</h1>
 <blockquote>
-<p>Note: this section describes how to create and use plain Blazor components. It is recommended to use Elmish components whenever possible; see <a href="Elmish.html">Using Elmish</a>.</p>
+<p>Note: this section describes how to create and use plain Blazor components. It is recommended to use Elmish components whenever possible; see <a href="Elmish">Using Elmish</a>.</p>
 </blockquote>
 <p>You can create plain Blazor components by inheriting from the <code>Component</code> type.</p>
 <pre><code class="language-fsharp">type MyComponent() =
