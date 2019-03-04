@@ -1,10 +1,10 @@
 ---
 title: Getting started
+subtitle: "Welcome to Bolero: F# on WebAssembly!"
 ---
 
-Welcome to Bolero: F# on WebAssembly!
 
-## What is Bolero?
+### What is Bolero?
 
 Bolero is a set of free and open-source libraries and tools to write [**WebAssembly**](https://webassembly.org/) applications in [**F#**](https://fsharp.org/). With it, you can write fully dynamic client-side web applications from the comfort of a strongly-typed functional language, all with great performance.
 
@@ -17,7 +17,7 @@ Bolero is built on top of [Blazor](https://blazor.net/) and adds a lot of featur
 * Easy [Remoting](Remoting) with an ASP.NET Core server side.
 * F#-specific optimizations: Bolero strips F# metadata from compiled assemblies, reducing the download size of the application.
 
-## Getting started
+### Creating a project
 
 You can develop Bolero applications on Windows, OSX or Linux. It only has one prerequisite: the [.NET Core SDK](https://dotnet.microsoft.com/download), version 2.1 or newer.
 
@@ -44,7 +44,7 @@ This will start the server and run the following minimal application at `localho
 
 ![Hello World application screenshot](helloworld-browser.png)
 
-## Discovering the startup project
+### Discovering the startup project
 
 The solution you just created comprises two projects.
 

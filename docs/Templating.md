@@ -1,12 +1,9 @@
 ---
 title: HTML templates
+subtitle: Use plain HTML files as templates with a type provider
 ---
 
-# HTML templates
-
-In addition to creating HTML content [with F# functions](HTML), Bolero enables inserting plain HTML templates in the form of a type provider.
-
-## Invoking the type provider
+### Invoking the type provider
 
 The type provider `Bolero.Template` takes one static parameter, which is a string and can be either:
 
@@ -30,7 +27,7 @@ To instantiate a template, call its constructor and then the `.Elt()` method.
 let hello = Hello().Elt()
 ```
 
-## Holes
+### Holes
 
 Templates can also define "holes" to be filled by content defined in F#.
 
@@ -52,7 +49,7 @@ let hello =
 
 Here are the types of holes available.
 
-### Node holes
+#### Node holes
 
 A hole defined inside normal HTML content is a Node hole. It can be filled by either a string or a Node.
 
@@ -85,7 +82,7 @@ type Hello = Template<"hello.html">
 let hello = Hello().Who("world").Elt()
 ```
 
-### Attribute holes
+#### Attribute holes
 
 A hole defined inside an HTML attribute can only be filled by a string.
 
@@ -114,7 +111,7 @@ type Hello = Template<"hello.html">
 let hello = Hello().Label("First name").Elt()
 ```
 
-### Event holes
+#### Event holes
 
 Holes defined as the value of an event attribute, eg. an attribute whose name starts with `on`, are treated as event handlers. They are filled by passing an anonymous function of type `UIEventArgs -> unit`.
 
@@ -143,7 +140,7 @@ let hello =
         .Elt()
 ```
 
-### Data binding holes
+#### Data binding holes
 
 Holes defined as the value of a `bind` attribute define two-way binding with the element's value. The filling method for such a hole takes two arguments:
 
@@ -217,7 +214,7 @@ let hello model dispatch =
         .Elt()
 ```
 
-#### Event handlers for data binding
+##### Event handlers for data binding
 
 The binding can listen to changes on the input element using one of two different event handlers: `onchange` or `oninput`.
 
@@ -268,7 +265,7 @@ The same hole can be bound to two inputs using two different handlers. For examp
 </p>
 ```
 
-## Nested templates
+### Nested templates
 
 It is sometimes convenient to define a set of templates together in the same file. For example, a set of related widgets. Or the template for a list together with the template for an item in this list.
 
@@ -315,7 +312,7 @@ The above code renders the following HTML:
 </ul>
 ```
 
-## Hot reloading
+### Hot reloading
 
 Starting with version 0.3, Bolero can reload the contents of HTML template files and update running applications automatically. This enables a smooth experience when designing the page: run the application, edit the HTML file, save, and the changes are reflected immediately in the browser.
 

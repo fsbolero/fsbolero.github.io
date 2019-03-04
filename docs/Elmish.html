@@ -13,7 +13,7 @@
 
 </head>
 <body>
-  <header class="navbar overlay-bar">
+  <header class="navbar ">
     <div class="navbar-brand">
       <a class="navbar-item is-hoverable" onclick="Website.Client.ToggleDrawer()"><i class="fa fa-bars"></i></a>
       <span class="navbar-item"><a href="/">Bolero</a></span>
@@ -29,51 +29,22 @@
     </div>
   </div>
   
-      <section class="hero is-dark page-banner">
-        <div class="hero-body has-text-centered">
-          <h1 class="title is-spaced">Bolero</h1>
-        </div>
-      </section>
       <section class="with-sidebar-background">
         <div class="container">
           <div class="columns is-gapless">
-            <div class="column is-one-quarter sidebar-column">
-              <section class="section">
-                <div class="menu">
-                  <div class="menu-label">Documentation</div>
-                  <ul class="menu-list"><li>
-                      <a href="/docs">Getting Started</a>
-                      <ul class="is-hidden"></ul>
-                    </li><li>
-                      <a href="/docs/HTML">Writing HTML</a>
-                      <ul class="is-hidden"></ul>
-                    </li><li>
-                      <a href="/docs/Templating">HTML templates</a>
-                      <ul class="is-hidden"></ul>
-                    </li><li>
-                      <a class="is-active" href="/docs/Elmish">Using Elmish</a>
-                      <ul><li>
-                          <a href="#program-component">Program component</a>
-                        </li><li>
-                          <a href="#view-components">View components</a>
-                        </li></ul>
-                    </li><li>
-                      <a href="/docs/Routing">Routing</a>
-                      <ul class="is-hidden"></ul>
-                    </li><li>
-                      <a href="/docs/Remoting">Remoting</a>
-                      <ul class="is-hidden"></ul>
-                    </li></ul>
+            <div class="column content markdown-column">
+              <section class="hero">
+                <div class="hero-body">
+                  <h1 class="title">Using Elmish</h1>
+                  <p class="subtitle">
+Leverage the Model-View-Update architecture using the <a href="https://elmish.github.io/elmish/">Elmish</a> library</p>
+
                 </div>
               </section>
-            </div>
-            <div class="column content markdown-column">
-              <section class="section"><div ws-preserve=""><h1 id="using-elmish">Using Elmish</h1>
-<p>Bolero applications use the Model-View-Update architecture using the <a href="https://elmish.github.io/elmish/">Elmish</a> library.</p>
-<blockquote>
+              <section class="section"><div ws-preserve=""><blockquote>
 <p>Note: this page documents how to integrate Elmish in a Bolero application. It does not aim at explaining the Elmish architecture; you can learn about it <a href="https://elmish.github.io/elmish/">on Elmish's website</a>.</p>
 </blockquote>
-<h2 id="program-component">Program component</h2>
+<h3 id="program-component">Program component</h3>
 <p>The main component for a Bolero application is <code>ProgramComponent&lt;'model, 'msg&gt;</code>. This is a Blazor component whose content is defined by an Elmish program.</p>
 <p>For example, given the following simple Elmish counter program:</p>
 <pre><code class="language-fsharp">type Model = { value: int }
@@ -104,7 +75,7 @@ type MyApp() =
 
     override this.Program = program
 </code></pre>
-<h2 id="view-components">View components</h2>
+<h3 id="view-components">View components</h3>
 <p>Bolero works by calling the <code>view</code> on every <code>update</code>, and then diffing the returned node against the previously rendered page. This means that a part of the page that doesn't change after a given update still takes some computation to realize that it hasn't changed.</p>
 <p>Take the following example:</p>
 <pre><code class="language-fsharp">type Model = { firstName: string; lastName: string }
@@ -150,7 +121,7 @@ let view model dispatch =
         text (sprintf &quot;Hello, %s %s!&quot; model.firstName model.lastName)
     ]
 </code></pre>
-<h3 id="customizing-the-model-update-check">Customizing the model update check</h3>
+<h4 id="customizing-the-model-update-check">Customizing the model update check</h4>
 <p>Let's improve our <code>Input</code> component by adding a label. We can change the model to a record that contains both the label and the value.</p>
 <pre><code class="language-fsharp">type InputModel = { label: string; value: string }
 
@@ -190,6 +161,36 @@ let view model dispatch =
     ]
 </code></pre>
 </div></section>
+            </div>
+            <div class="column is-one-quarter-tablet is-one-fifth-desktop sidebar-column">
+              <section class="section">
+                <div class="menu">
+                  <div class="menu-label">Documentation</div>
+                  <ul class="menu-list"><li>
+                      <a href="/docs">Getting Started</a>
+                      <ul class="is-hidden"></ul>
+                    </li><li>
+                      <a href="/docs/HTML">Writing HTML</a>
+                      <ul class="is-hidden"></ul>
+                    </li><li>
+                      <a href="/docs/Templating">HTML templates</a>
+                      <ul class="is-hidden"></ul>
+                    </li><li>
+                      <a class="is-active" href="/docs/Elmish">Using Elmish</a>
+                      <ul><li>
+                          <a href="#program-component">Program component</a>
+                        </li><li>
+                          <a href="#view-components">View components</a>
+                        </li></ul>
+                    </li><li>
+                      <a href="/docs/Routing">Routing</a>
+                      <ul class="is-hidden"></ul>
+                    </li><li>
+                      <a href="/docs/Remoting">Remoting</a>
+                      <ul class="is-hidden"></ul>
+                    </li></ul>
+                </div>
+              </section>
             </div>
           </div>
         </div>

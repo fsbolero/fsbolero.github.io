@@ -1,12 +1,9 @@
 ---
 title: Routing
+subtitle: Bind the page's URL to the Elmish model.
 ---
 
-# Routing
-
-Bolero provides facilities to bind the page's URL to the Elmish model.
-
-## Prerequisites
+### Prerequisites
 
 In order to use routing, you need to make sure that the page's base URL is set correctly. In most cases, you simply need to add the following inside the `<head>` of your page (`wwwroot/index.html`):
 
@@ -20,7 +17,7 @@ If the root of your application is a subpath, then you need to set that subpath 
 <base href="/myrepo/">
 ```
 
-## Inferred router
+### Inferred router
 
 The easiest way to create a router is by using an inferred router. In this mode of operation, you create an endpoint type which has a 1-to-1 correspondance with your supported URLs, and store it in the Elmish model.
 
@@ -87,7 +84,7 @@ The router has a few helpful utilities:
     a [router.HRef Home] [text "Go to Home"]
     ```
 
-### Format
+#### Format
 
 `Router.infer` supports the following types:
 
@@ -190,7 +187,7 @@ The router has a few helpful utilities:
         }
     ```
 
-## Custom router
+### Custom router
 
 To have more control over the exact shape of your URLs, you can create a custom router like follows.
 

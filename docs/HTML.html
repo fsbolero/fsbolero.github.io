@@ -13,7 +13,7 @@
 
 </head>
 <body>
-  <header class="navbar overlay-bar">
+  <header class="navbar ">
     <div class="navbar-brand">
       <a class="navbar-item is-hoverable" onclick="Website.Client.ToggleDrawer()"><i class="fa fa-bars"></i></a>
       <span class="navbar-item"><a href="/">Bolero</a></span>
@@ -29,57 +29,21 @@
     </div>
   </div>
   
-      <section class="hero is-dark page-banner">
-        <div class="hero-body has-text-centered">
-          <h1 class="title is-spaced">Bolero</h1>
-        </div>
-      </section>
       <section class="with-sidebar-background">
         <div class="container">
           <div class="columns is-gapless">
-            <div class="column is-one-quarter sidebar-column">
-              <section class="section">
-                <div class="menu">
-                  <div class="menu-label">Documentation</div>
-                  <ul class="menu-list"><li>
-                      <a href="/docs">Getting Started</a>
-                      <ul class="is-hidden"></ul>
-                    </li><li>
-                      <a class="is-active" href="/docs/HTML">Writing HTML</a>
-                      <ul><li>
-                          <a href="#elements">Elements</a>
-                        </li><li>
-                          <a href="#attributes">Attributes</a>
-                        </li><li>
-                          <a href="#event-handlers">Event handlers</a>
-                        </li><li>
-                          <a href="#data-bindings">Data bindings</a>
-                        </li><li>
-                          <a href="#components">Components</a>
-                        </li><li>
-                          <a href="#navlink">NavLink</a>
-                        </li></ul>
-                    </li><li>
-                      <a href="/docs/Templating">HTML templates</a>
-                      <ul class="is-hidden"></ul>
-                    </li><li>
-                      <a href="/docs/Elmish">Using Elmish</a>
-                      <ul class="is-hidden"></ul>
-                    </li><li>
-                      <a href="/docs/Routing">Routing</a>
-                      <ul class="is-hidden"></ul>
-                    </li><li>
-                      <a href="/docs/Remoting">Remoting</a>
-                      <ul class="is-hidden"></ul>
-                    </li></ul>
+            <div class="column content markdown-column">
+              <section class="hero">
+                <div class="hero-body">
+                  <h1 class="title">Writing HTML</h1>
+                  <p class="subtitle">
+Create elements, attributes, event handlers and Blazor components in plain F#</p>
+
                 </div>
               </section>
-            </div>
-            <div class="column content markdown-column">
-              <section class="section"><div ws-preserve=""><h1 id="writing-html">Writing HTML</h1>
-<p>Bolero provides F# functions to create HTML elements, attributes and event handlers, and also instantiate Blazor components. All of these are defined in the module <code>Bolero.Html</code>.</p>
+              <section class="section"><div ws-preserve=""><p>All of the functions described here are defined in the module <code>Bolero.Html</code>.</p>
 <p>See also how to create HTML elements using <a href="Templating">HTML templates</a>.</p>
-<h2 id="elements">Elements</h2>
+<h3 id="elements">Elements</h3>
 <p>To create an HTML element, just call the function with its name. It takes two arguments: a list of attributes and a list of child elements, and returns a value of type <code>Node</code>.</p>
 <p>Additionally, the function <code>text</code> creates a text node, and <code>textf</code> creates a text node using <code>printf</code>-style formatting.</p>
 <pre><code class="language-fsharp">let myElement name =
@@ -110,7 +74,7 @@
     ]
 </code></pre>
 <p><code>empty</code> represents an empty sequence of nodes: it is equivalent to <code>concat []</code>. This doesn't seem very useful at first, but it is actually important for conditional elements.</p>
-<h3 id="conditional-elements">Conditional elements</h3>
+<h4 id="conditional-elements">Conditional elements</h4>
 <p>Due to the way that Blazor compares the rendered DOM when a change is applied, the returned HTML must always have the same structure: conditional elements can't be simply added. For example, the following may cause runtime errors:</p>
 <pre><code class="language-fsharp">// May fail at runtime.
 let myButton (label: option&lt;string&gt;) =
@@ -174,7 +138,7 @@ let showLikes (users: UserList) =
 </code></pre>
 </li>
 </ul>
-<h3 id="collection-elements">Collection elements</h3>
+<h4 id="collection-elements">Collection elements</h4>
 <p>Similarly, rendering collections using a function such as <code>List.map</code> to create a list of nodes can cause runtime errors. Instead, collections of items should be rendered using the function <code>forEach</code>.</p>
 <pre><code class="language-fsharp">let listUsers (names: string list) =
     p [] [
@@ -185,7 +149,7 @@ let showLikes (users: UserList) =
         ]
     ]
 </code></pre>
-<h2 id="attributes">Attributes</h2>
+<h3 id="attributes">Attributes</h3>
 <p>Attributes are available in the <code>attr</code> submodule.</p>
 <pre><code class="language-fsharp">let myElement =
     p [
@@ -201,7 +165,7 @@ let showLikes (users: UserList) =
         text &quot;Hello and welcome to my app!&quot;
     ]
 </code></pre>
-<h3 id="conditional-attributes">Conditional attributes</h3>
+<h4 id="conditional-attributes">Conditional attributes</h4>
 <p>Like with elements (see <a href="#conditional-elements">Conditional elements</a>), naively adding conditional attributes can lead to runtime errors.</p>
 <pre><code class="language-fsharp">// May fail at runtime.
 let myElement (isBlue: bool) =
@@ -218,7 +182,7 @@ let myElement (isBlue: bool) =
         text &quot;Hello and welcome to my app!&quot;
     ]
 </code></pre>
-<h2 id="event-handlers">Event handlers</h2>
+<h3 id="event-handlers">Event handlers</h3>
 <p>Event handlers are available in the <code>on</code> submodule.</p>
 <pre><code class="language-fsharp">let myElement =
     button [on.click (fun _ -&gt; printfn &quot;Clicked!&quot;)] [
@@ -242,7 +206,7 @@ let myElement (isBlue: bool) =
         text &quot;Click me!&quot;
     ]
 </code></pre>
-<h2 id="data-bindings">Data bindings</h2>
+<h3 id="data-bindings">Data bindings</h3>
 <p>Attributes defined in the <code>bind</code> module define two-way binding with the element's value. These functions take two arguments:</p>
 <ol>
 <li>The current value, which generally comes from the <a href="Elmish">Elmish</a> model.</li>
@@ -288,7 +252,7 @@ let hello model dispatch =
         bind.checked model.isChecked (fun c -&gt; dispatch (SetChecked c))
     ]
 </code></pre>
-<h2 id="components">Components</h2>
+<h3 id="components">Components</h3>
 <blockquote>
 <p>Note: this section describes how to create and use plain Blazor components. It is recommended to use Elmish components whenever possible; see <a href="Elmish">Using Elmish</a>.</p>
 </blockquote>
@@ -313,7 +277,7 @@ let hello model dispatch =
 <pre><code class="language-fsharp">let myElement =
     comp&lt;MyComponent&gt; [&quot;Who&quot; =&gt; &quot;world&quot;] []
 </code></pre>
-<h2 id="navlink">NavLink</h2>
+<h3 id="navlink">NavLink</h3>
 <p>The function <code>navLink</code> is a helper to create a Blazor <code>NavLink</code> component. This component creates an <code>&lt;a&gt;</code> tag which dynamically receives the <code>&quot;active&quot;</code> CSS class whenever the current page URL matches its own <code>href</code>. The match is customized by passing <code>NavLinkMatch.All</code> (to only match the full URL path) or <code>NavLinkMatch.Prefix</code> (to match any URL that starts with the <code>navLink</code>'s <code>href</code>).</p>
 <pre><code class="language-fsharp">let myMenu =
     ul [] [
@@ -322,6 +286,44 @@ let hello model dispatch =
     ]
 </code></pre>
 </div></section>
+            </div>
+            <div class="column is-one-quarter-tablet is-one-fifth-desktop sidebar-column">
+              <section class="section">
+                <div class="menu">
+                  <div class="menu-label">Documentation</div>
+                  <ul class="menu-list"><li>
+                      <a href="/docs">Getting Started</a>
+                      <ul class="is-hidden"></ul>
+                    </li><li>
+                      <a class="is-active" href="/docs/HTML">Writing HTML</a>
+                      <ul><li>
+                          <a href="#elements">Elements</a>
+                        </li><li>
+                          <a href="#attributes">Attributes</a>
+                        </li><li>
+                          <a href="#event-handlers">Event handlers</a>
+                        </li><li>
+                          <a href="#data-bindings">Data bindings</a>
+                        </li><li>
+                          <a href="#components">Components</a>
+                        </li><li>
+                          <a href="#navlink">NavLink</a>
+                        </li></ul>
+                    </li><li>
+                      <a href="/docs/Templating">HTML templates</a>
+                      <ul class="is-hidden"></ul>
+                    </li><li>
+                      <a href="/docs/Elmish">Using Elmish</a>
+                      <ul class="is-hidden"></ul>
+                    </li><li>
+                      <a href="/docs/Routing">Routing</a>
+                      <ul class="is-hidden"></ul>
+                    </li><li>
+                      <a href="/docs/Remoting">Remoting</a>
+                      <ul class="is-hidden"></ul>
+                    </li></ul>
+                </div>
+              </section>
             </div>
           </div>
         </div>

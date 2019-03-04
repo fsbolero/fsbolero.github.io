@@ -1,14 +1,13 @@
 ---
 title: Writing HTML
+subtitle: Create elements, attributes, event handlers and Blazor components in plain F#
 ---
 
-# Writing HTML
-
-Bolero provides F# functions to create HTML elements, attributes and event handlers, and also instantiate Blazor components. All of these are defined in the module `Bolero.Html`.
+All of the functions described here are defined in the module `Bolero.Html`.
 
 See also how to create HTML elements using [HTML templates](Templating).
 
-## Elements
+### Elements
 
 To create an HTML element, just call the function with its name. It takes two arguments: a list of attributes and a list of child elements, and returns a value of type `Node`.
 
@@ -54,7 +53,7 @@ let myElements =
 
 `empty` represents an empty sequence of nodes: it is equivalent to `concat []`. This doesn't seem very useful at first, but it is actually important for conditional elements.
 
-### Conditional elements
+#### Conditional elements
 
 Due to the way that Blazor compares the rendered DOM when a change is applied, the returned HTML must always have the same structure: conditional elements can't be simply added. For example, the following may cause runtime errors:
 
@@ -129,7 +128,7 @@ Rendering such conditional content must be done with the `cond` function instead
         ]
     ```
 
-### Collection elements
+#### Collection elements
 
 Similarly, rendering collections using a function such as `List.map` to create a list of nodes can cause runtime errors. Instead, collections of items should be rendered using the function `forEach`.
 
@@ -144,7 +143,7 @@ let listUsers (names: string list) =
     ]
 ```
 
-## Attributes
+### Attributes
 
 Attributes are available in the `attr` submodule.
 
@@ -167,7 +166,7 @@ let myElement =
     ]
 ```
 
-### Conditional attributes
+#### Conditional attributes
 
 Like with elements (see [Conditional elements](#conditional-elements)), naively adding conditional attributes can lead to runtime errors.
 
@@ -191,7 +190,7 @@ let myElement (isBlue: bool) =
     ]
 ```
 
-## Event handlers
+### Event handlers
 
 Event handlers are available in the `on` submodule.
 
@@ -225,7 +224,7 @@ let myElement =
     ]
 ```
 
-## Data bindings
+### Data bindings
 
 Attributes defined in the `bind` module define two-way binding with the element's value. These functions take two arguments:
 
@@ -277,7 +276,7 @@ let hello model dispatch =
     ]
 ```
 
-## Components
+### Components
 
 > Note: this section describes how to create and use plain Blazor components. It is recommended to use Elmish components whenever possible; see [Using Elmish](Elmish).
 
@@ -311,7 +310,7 @@ let myElement =
     comp<MyComponent> ["Who" => "world"] []
 ```
 
-## NavLink
+### NavLink
 
 The function `navLink` is a helper to create a Blazor `NavLink` component. This component creates an `<a>` tag which dynamically receives the `"active"` CSS class whenever the current page URL matches its own `href`. The match is customized by passing `NavLinkMatch.All` (to only match the full URL path) or `NavLinkMatch.Prefix` (to match any URL that starts with the `navLink`'s `href`).
 

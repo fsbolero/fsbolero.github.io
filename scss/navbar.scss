@@ -1,22 +1,26 @@
-﻿
+
 .navbar {
-    padding: .5rem 1rem;
-    display: flex;
-    align-items: center;
+  padding: .5rem 1rem;
+  display: flex;
+  align-items: center;
+  background: $dark;
+
+  .normal-bar {
+    position: static;
+  }
+
+  &.overlay-bar {
     position: absolute;
     left: 0;
     right: 0;
     top: 0;
     z-index: 999;
     background: rgba(0,0,0,0.17);
+  }
 
-    .normal-bar {
-        position: static;
-    }
-
-    * {
-        color: white !important;
-    }
+  * {
+    color: white !important;
+  }
 }
 
 
