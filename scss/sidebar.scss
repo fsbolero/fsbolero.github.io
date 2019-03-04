@@ -1,6 +1,8 @@
 .with-sidebar-background {
   position: relative;
 
+  // Sidebar background added as a pseudo-element in the container rather than
+  // just put on the sidebar column, so that it extends all the way to the left.
   &:before {
     content: "";
     position: absolute;

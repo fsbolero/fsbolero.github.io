@@ -70,15 +70,16 @@
               </section>
             </div>
             <div class="column content markdown-column">
-              <section class="section"><div ws-preserve=""><p>Bolero provides facilities to bind the page's URL to the Elmish model.</p>
-<h1 id="prerequisites">Prerequisites</h1>
+              <section class="section"><div ws-preserve=""><h1 id="routing">Routing</h1>
+<p>Bolero provides facilities to bind the page's URL to the Elmish model.</p>
+<h2 id="prerequisites">Prerequisites</h2>
 <p>In order to use routing, you need to make sure that the page's base URL is set correctly. In most cases, you simply need to add the following inside the <code>&lt;head&gt;</code> of your page (<code>wwwroot/index.html</code>):</p>
 <pre><code class="language-html">&lt;base href=&quot;/&quot;&gt;
 </code></pre>
 <p>If the root of your application is a subpath, then you need to set that subpath as the base, <strong>including the trailing slash</strong>. For example, if you have an application served at <code>https://someone.github.io/myrepo/</code>, then you need the following:</p>
 <pre><code class="language-html">&lt;base href=&quot;/myrepo/&quot;&gt;
 </code></pre>
-<h1 id="inferred-router">Inferred router</h1>
+<h2 id="inferred-router">Inferred router</h2>
 <p>The easiest way to create a router is by using an inferred router. In this mode of operation, you create an endpoint type which has a 1-to-1 correspondance with your supported URLs, and store it in the Elmish model.</p>
 <p>Here are the steps to set up an inferred router:</p>
 <ol>
@@ -130,7 +131,7 @@ let update message model =
 </code></pre>
 </li>
 </ul>
-<h2 id="format">Format</h2>
+<h3 id="format">Format</h3>
 <p><code>Router.infer</code> supports the following types:</p>
 <ul>
 <li><p>Standard library types:</p>
@@ -212,7 +213,7 @@ and ArticleId =
 </code></pre>
 </li>
 </ul>
-<h1 id="custom-router">Custom router</h1>
+<h2 id="custom-router">Custom router</h2>
 <p>To have more control over the exact shape of your URLs, you can create a custom router like follows.</p>
 <pre><code class="language-fsharp">let customRouter : Router&lt;Page, Model, Message&gt; =
     {

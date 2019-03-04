@@ -71,7 +71,7 @@
             </div>
             <div class="column content markdown-column">
               <section class="section"><div ws-preserve=""><p>Welcome to Bolero: F# on WebAssembly!</p>
-<h1 id="what-is-bolero">What is Bolero?</h1>
+<h2 id="what-is-bolero">What is Bolero?</h2>
 <p>Bolero is a set of free and open-source libraries and tools to write <a href="https://webassembly.org/"><strong>WebAssembly</strong></a> applications in <a href="https://fsharp.org/"><strong>F#</strong></a>. With it, you can write fully dynamic client-side web applications from the comfort of a strongly-typed functional language, all with great performance.</p>
 <p>Bolero is built on top of <a href="https://blazor.net/">Blazor</a> and adds a lot of features designed specifically to work in F#:</p>
 <ul>
@@ -82,7 +82,7 @@
 <li>Easy <a href="Remoting">Remoting</a> with an ASP.NET Core server side.</li>
 <li>F#-specific optimizations: Bolero strips F# metadata from compiled assemblies, reducing the download size of the application.</li>
 </ul>
-<h1 id="getting-started">Getting started</h1>
+<h2 id="getting-started">Getting started</h2>
 <p>You can develop Bolero applications on Windows, OSX or Linux. It only has one prerequisite: the <a href="https://dotnet.microsoft.com/download">.NET Core SDK</a>, version 2.1 or newer.</p>
 <p>The easiest way to get started is to use Bolero's dotnet template. To install it, run the following command:</p>
 <pre><code class="language-shell">dotnet new -i Bolero.Templates
@@ -96,7 +96,7 @@ dotnet run -p src/HelloWorld.Server
 </code></pre>
 <p>This will start the server and run the following minimal application at <code>localhost:5000</code>:</p>
 <p><img src="helloworld-browser.png" alt="Hello World application screenshot" /></p>
-<h1 id="discovering-the-startup-project">Discovering the startup project</h1>
+<h2 id="discovering-the-startup-project">Discovering the startup project</h2>
 <p>The solution you just created comprises two projects.</p>
 <ul>
 <li><p><code>src/HelloWorld.Client</code> is the project that gets compiled to WebAssembly, and contains your client-side code.</p>
@@ -110,7 +110,7 @@ dotnet run -p src/HelloWorld.Server
 </li>
 </ul>
 </li>
-<li><p><code>src/HelloWorld.Server</code> is an ASP.NET Core application that serves as the host. This project is optional: if you pas <code>--server=false</code> when creating the solution with <code>dotnet new</code>, then it will not be created. Note however that it is necessary for <a href="Templating#hot-reloading">templating hot reloading</a> and <a href="Remoting">remoting</a>.</p>
+<li><p><code>src/HelloWorld.Server</code> is an ASP.NET Core application that serves as the host. This project is optional: if you pass <code>--server=false</code> when creating the solution with <code>dotnet new</code>, then it will not be created. Note however that it is necessary for <a href="Templating#hot-reloading">templating hot reloading</a> and <a href="Remoting">remoting</a>.</p>
 <ul>
 <li><code>Startup.fs</code>, similarly to its client counterpart, sets up ASP.NET Core to get the server started.</li>
 </ul>

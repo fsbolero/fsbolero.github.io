@@ -76,9 +76,10 @@
               </section>
             </div>
             <div class="column content markdown-column">
-              <section class="section"><div ws-preserve=""><p>Bolero provides F# functions to create HTML elements, attributes and event handlers, and also instantiate Blazor components. All of these are defined in the module <code>Bolero.Html</code>.</p>
+              <section class="section"><div ws-preserve=""><h1 id="writing-html">Writing HTML</h1>
+<p>Bolero provides F# functions to create HTML elements, attributes and event handlers, and also instantiate Blazor components. All of these are defined in the module <code>Bolero.Html</code>.</p>
 <p>See also how to create HTML elements using <a href="Templating">HTML templates</a>.</p>
-<h1 id="elements">Elements</h1>
+<h2 id="elements">Elements</h2>
 <p>To create an HTML element, just call the function with its name. It takes two arguments: a list of attributes and a list of child elements, and returns a value of type <code>Node</code>.</p>
 <p>Additionally, the function <code>text</code> creates a text node, and <code>textf</code> creates a text node using <code>printf</code>-style formatting.</p>
 <pre><code class="language-fsharp">let myElement name =
@@ -109,7 +110,7 @@
     ]
 </code></pre>
 <p><code>empty</code> represents an empty sequence of nodes: it is equivalent to <code>concat []</code>. This doesn't seem very useful at first, but it is actually important for conditional elements.</p>
-<h2 id="conditional-elements">Conditional elements</h2>
+<h3 id="conditional-elements">Conditional elements</h3>
 <p>Due to the way that Blazor compares the rendered DOM when a change is applied, the returned HTML must always have the same structure: conditional elements can't be simply added. For example, the following may cause runtime errors:</p>
 <pre><code class="language-fsharp">// May fail at runtime.
 let myButton (label: option&lt;string&gt;) =
@@ -173,7 +174,7 @@ let showLikes (users: UserList) =
 </code></pre>
 </li>
 </ul>
-<h2 id="collection-elements">Collection elements</h2>
+<h3 id="collection-elements">Collection elements</h3>
 <p>Similarly, rendering collections using a function such as <code>List.map</code> to create a list of nodes can cause runtime errors. Instead, collections of items should be rendered using the function <code>forEach</code>.</p>
 <pre><code class="language-fsharp">let listUsers (names: string list) =
     p [] [
@@ -184,7 +185,7 @@ let showLikes (users: UserList) =
         ]
     ]
 </code></pre>
-<h1 id="attributes">Attributes</h1>
+<h2 id="attributes">Attributes</h2>
 <p>Attributes are available in the <code>attr</code> submodule.</p>
 <pre><code class="language-fsharp">let myElement =
     p [
@@ -200,7 +201,7 @@ let showLikes (users: UserList) =
         text &quot;Hello and welcome to my app!&quot;
     ]
 </code></pre>
-<h2 id="conditional-attributes">Conditional attributes</h2>
+<h3 id="conditional-attributes">Conditional attributes</h3>
 <p>Like with elements (see <a href="#conditional-elements">Conditional elements</a>), naively adding conditional attributes can lead to runtime errors.</p>
 <pre><code class="language-fsharp">// May fail at runtime.
 let myElement (isBlue: bool) =
@@ -217,7 +218,7 @@ let myElement (isBlue: bool) =
         text &quot;Hello and welcome to my app!&quot;
     ]
 </code></pre>
-<h1 id="event-handlers">Event handlers</h1>
+<h2 id="event-handlers">Event handlers</h2>
 <p>Event handlers are available in the <code>on</code> submodule.</p>
 <pre><code class="language-fsharp">let myElement =
     button [on.click (fun _ -&gt; printfn &quot;Clicked!&quot;)] [
@@ -241,7 +242,7 @@ let myElement (isBlue: bool) =
         text &quot;Click me!&quot;
     ]
 </code></pre>
-<h1 id="data-bindings">Data bindings</h1>
+<h2 id="data-bindings">Data bindings</h2>
 <p>Attributes defined in the <code>bind</code> module define two-way binding with the element's value. These functions take two arguments:</p>
 <ol>
 <li>The current value, which generally comes from the <a href="Elmish">Elmish</a> model.</li>
@@ -287,7 +288,7 @@ let hello model dispatch =
         bind.checked model.isChecked (fun c -&gt; dispatch (SetChecked c))
     ]
 </code></pre>
-<h1 id="components">Components</h1>
+<h2 id="components">Components</h2>
 <blockquote>
 <p>Note: this section describes how to create and use plain Blazor components. It is recommended to use Elmish components whenever possible; see <a href="Elmish">Using Elmish</a>.</p>
 </blockquote>
@@ -312,7 +313,7 @@ let hello model dispatch =
 <pre><code class="language-fsharp">let myElement =
     comp&lt;MyComponent&gt; [&quot;Who&quot; =&gt; &quot;world&quot;] []
 </code></pre>
-<h1 id="navlink">NavLink</h1>
+<h2 id="navlink">NavLink</h2>
 <p>The function <code>navLink</code> is a helper to create a Blazor <code>NavLink</code> component. This component creates an <code>&lt;a&gt;</code> tag which dynamically receives the <code>&quot;active&quot;</code> CSS class whenever the current page URL matches its own <code>href</code>. The match is customized by passing <code>NavLinkMatch.All</code> (to only match the full URL path) or <code>NavLinkMatch.Prefix</code> (to match any URL that starts with the <code>navLink</code>'s <code>href</code>).</p>
 <pre><code class="language-fsharp">let myMenu =
     ul [] [

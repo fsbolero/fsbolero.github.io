@@ -2,9 +2,13 @@
 title: Using Elmish
 ---
 
+# Using Elmish
+
 Bolero applications use the Model-View-Update architecture using the [Elmish](https://elmish.github.io/elmish/) library.
 
-# Program component
+> Note: this page documents how to integrate Elmish in a Bolero application. It does not aim at explaining the Elmish architecture; you can learn about it [on Elmish's website](https://elmish.github.io/elmish/).
+
+## Program component
 
 The main component for a Bolero application is `ProgramComponent<'model, 'msg>`. This is a Blazor component whose content is defined by an Elmish program.
 
@@ -43,7 +47,7 @@ type MyApp() =
     override this.Program = program
 ```
 
-# View components
+## View components
 
 Bolero works by calling the `view` on every `update`, and then diffing the returned node against the previously rendered page. This means that a part of the page that doesn't change after a given update still takes some computation to realize that it hasn't changed.
 
@@ -101,7 +105,7 @@ let view model dispatch =
     ]
 ```
 
-## Customizing the model update check
+### Customizing the model update check
 
 Let's improve our `Input` component by adding a label. We can change the model to a record that contains both the label and the value.
 

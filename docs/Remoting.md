@@ -2,15 +2,17 @@
 title: Remoting
 ---
 
+# Remoting
+
 Bolero.Remoting provides the ability to easily call server-side functions from the client side.
 
 Remote calls are `POST` requests to a specific URL. Arguments and return values are automatically serialized to JSON.
 
-# Defining the service
+## Defining the service
 
 A set of server-side functions is defined as a record called a *remote service*. Each function is a field in this record, and must take one argument and return `Async<_>`. If you need to pass several arguments to a server-side function, use a tuple.
 
-The record should implement `IRemoteService` to define the URL for its functions. Each function is served at the path `<service.BasePath>/<fieldName>`.
+The record should implement `IRemoteService` to define the URL for its functions. Each function is served at the path `{service.BasePath}/{fieldName}`.
 
 For example, here is the definition of a service for a simple key-value pair storage:
 
@@ -28,7 +30,7 @@ type MyService =
         member this.BasePath = "/myService"
 ```
 
-# Calling on the client side
+## Calling on the client side
 
 On the client side, you will typically want to call these functions in the `update` of the Elmish app. See [the Elmish documentation](https://elmish.github.io/elmish/basics.html) to learn how to run commands in `update`.
 
@@ -84,11 +86,11 @@ On the client side, you will typically want to call these functions in the `upda
             model, []
     ```
 
-# Defining on the server side
+## Defining on the server side
 
 On the server side, Bolero.Remoting is registered as a service and added as ASP.NET Core middleware. There are several ways to do so.
 
-## A simple service
+### A simple service
 
 Here is how to implement a remote service without any dependencies.
 
@@ -136,7 +138,7 @@ Here is how to implement a remote service without any dependencies.
 
     Note that `UseRemoting` (and any other middleware) must be called *before* `UseBlazor`, because `UseBlazor` unconditionally catches all requests.
 
-## Using dependency injection
+### Using dependency injection
 
 You might need to use injected dependencies in a remote service: a logger, a database connection, etc. For this, you need a different approach.
 
@@ -175,6 +177,6 @@ You might need to use injected dependencies in a remote service: a logger, a dat
             |> ignore
     ```
 
-## Using several services
+### Using several services
 
 You can of course define several remote services in the same application. Each of them needs to be registered by a separate call to `AddRemoting` in `ConfigureServices`. A single call to `UseRemoting` is enough in `Configure`.

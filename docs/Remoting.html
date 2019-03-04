@@ -70,11 +70,12 @@
               </section>
             </div>
             <div class="column content markdown-column">
-              <section class="section"><div ws-preserve=""><p>Bolero.Remoting provides the ability to easily call server-side functions from the client side.</p>
+              <section class="section"><div ws-preserve=""><h1 id="remoting">Remoting</h1>
+<p>Bolero.Remoting provides the ability to easily call server-side functions from the client side.</p>
 <p>Remote calls are <code>POST</code> requests to a specific URL. Arguments and return values are automatically serialized to JSON.</p>
-<h1 id="defining-the-service">Defining the service</h1>
+<h2 id="defining-the-service">Defining the service</h2>
 <p>A set of server-side functions is defined as a record called a <em>remote service</em>. Each function is a field in this record, and must take one argument and return <code>Async&lt;_&gt;</code>. If you need to pass several arguments to a server-side function, use a tuple.</p>
-<p>The record should implement <code>IRemoteService</code> to define the URL for its functions. Each function is served at the path <code>&lt;service.BasePath&gt;/&lt;fieldName&gt;</code>.</p>
+<p>The record should implement <code>IRemoteService</code> to define the URL for its functions. Each function is served at the path <code>{service.BasePath}/{fieldName}</code>.</p>
 <p>For example, here is the definition of a service for a simple key-value pair storage:</p>
 <pre><code class="language-fsharp">open Bolero.Remoting
 
@@ -88,7 +89,7 @@ type MyService =
     interface IRemoteService with
         member this.BasePath = &quot;/myService&quot;
 </code></pre>
-<h1 id="calling-on-the-client-side">Calling on the client side</h1>
+<h2 id="calling-on-the-client-side">Calling on the client side</h2>
 <p>On the client side, you will typically want to call these functions in the <code>update</code> of the Elmish app. See <a href="https://elmish.github.io/elmish/basics.html">the Elmish documentation</a> to learn how to run commands in <code>update</code>.</p>
 <ol>
 <li><p>In your Blazor startup (<code>Client/Startup.fs</code>), add support for remoting:</p>
@@ -138,9 +139,9 @@ let update myService message model =
 </code></pre>
 </li>
 </ol>
-<h1 id="defining-on-the-server-side">Defining on the server side</h1>
+<h2 id="defining-on-the-server-side">Defining on the server side</h2>
 <p>On the server side, Bolero.Remoting is registered as a service and added as ASP.NET Core middleware. There are several ways to do so.</p>
-<h2 id="a-simple-service">A simple service</h2>
+<h3 id="a-simple-service">A simple service</h3>
 <p>Here is how to implement a remote service without any dependencies.</p>
 <ol>
 <li><p>Implement the service as a value:</p>
@@ -181,7 +182,7 @@ let myService =
 <p>Note that <code>UseRemoting</code> (and any other middleware) must be called <em>before</em> <code>UseBlazor</code>, because <code>UseBlazor</code> unconditionally catches all requests.</p>
 </li>
 </ol>
-<h2 id="using-dependency-injection">Using dependency injection</h2>
+<h3 id="using-dependency-injection">Using dependency injection</h3>
 <p>You might need to use injected dependencies in a remote service: a logger, a database connection, etc. For this, you need a different approach.</p>
 <ol>
 <li><p>Implement the service as a class inheriting from <code>RemoteHandler</code>. Dependencies can be injected from the constructor.</p>
@@ -216,7 +217,7 @@ let myService =
 </code></pre>
 </li>
 </ol>
-<h2 id="using-several-services">Using several services</h2>
+<h3 id="using-several-services">Using several services</h3>
 <p>You can of course define several remote services in the same application. Each of them needs to be registered by a separate call to <code>AddRemoting</code> in <code>ConfigureServices</code>. A single call to <code>UseRemoting</code> is enough in <code>Configure</code>.</p>
 </div></section>
             </div>

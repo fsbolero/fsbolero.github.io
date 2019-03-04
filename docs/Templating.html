@@ -72,8 +72,9 @@
               </section>
             </div>
             <div class="column content markdown-column">
-              <section class="section"><div ws-preserve=""><p>In addition to creating HTML content <a href="HTML">with F# functions</a>, Bolero enables inserting plain HTML templates in the form of a type provider.</p>
-<h1 id="invoking-the-type-provider">Invoking the type provider</h1>
+              <section class="section"><div ws-preserve=""><h1 id="html-templates">HTML templates</h1>
+<p>In addition to creating HTML content <a href="HTML">with F# functions</a>, Bolero enables inserting plain HTML templates in the form of a type provider.</p>
+<h2 id="invoking-the-type-provider">Invoking the type provider</h2>
 <p>The type provider <code>Bolero.Template</code> takes one static parameter, which is a string and can be either:</p>
 <ul>
 <li><p>A plain HTML string. It is recommended to use triple-quotes to avoid escaping issues:</p>
@@ -91,7 +92,7 @@
 <p>To instantiate a template, call its constructor and then the <code>.Elt()</code> method.</p>
 <pre><code class="language-fsharp">let hello = Hello().Elt()
 </code></pre>
-<h1 id="holes">Holes</h1>
+<h2 id="holes">Holes</h2>
 <p>Templates can also define &quot;holes&quot; to be filled by content defined in F#.</p>
 <p>Holes are defined in the HTML template with the following syntax: <code>${HoleName}</code>. Such a hole defines a method with the same name, which you can call before <code>.Elt()</code> to fill its value.</p>
 <pre><code class="language-html">&lt;div id=&quot;${Id}&quot;&gt;Hello, ${Who}!&lt;/div&gt;
@@ -105,7 +106,7 @@ let hello =
         .Elt()
 </code></pre>
 <p>Here are the types of holes available.</p>
-<h2 id="node-holes">Node holes</h2>
+<h3 id="node-holes">Node holes</h3>
 <p>A hole defined inside normal HTML content is a Node hole. It can be filled by either a string or a Node.</p>
 <pre><code class="language-html">&lt;div&gt;Hello, ${Who}!&lt;/div&gt;
 </code></pre>
@@ -127,7 +128,7 @@ let hello = Hello().Who(b [] [text &quot;world&quot;]).Elt()
 
 let hello = Hello().Who(&quot;world&quot;).Elt()
 </code></pre>
-<h2 id="attribute-holes">Attribute holes</h2>
+<h3 id="attribute-holes">Attribute holes</h3>
 <p>A hole defined inside an HTML attribute can only be filled by a string.</p>
 <pre><code class="language-html">&lt;div class=&quot;greeting ${Class}&quot;&gt;Hello, world!&lt;/div&gt;
 </code></pre>
@@ -145,7 +146,7 @@ let hello = Hello().Class(&quot;heading&quot;).Elt()
 
 let hello = Hello().Label(&quot;First name&quot;).Elt()
 </code></pre>
-<h2 id="event-holes">Event holes</h2>
+<h3 id="event-holes">Event holes</h3>
 <p>Holes defined as the value of an event attribute, eg. an attribute whose name starts with <code>on</code>, are treated as event handlers. They are filled by passing an anonymous function of type <code>UIEventArgs -&gt; unit</code>.</p>
 <pre><code class="language-html">&lt;button onclick=&quot;${Greet}&quot;&gt;Hello!&lt;/button&gt;
 </code></pre>
@@ -163,7 +164,7 @@ let hello =
         .Greet(fun e -&gt; printfn &quot;Clicked at (%i, %i)&quot; e.ClientX e.ClientY)
         .Elt()
 </code></pre>
-<h2 id="data-binding-holes">Data binding holes</h2>
+<h3 id="data-binding-holes">Data binding holes</h3>
 <p>Holes defined as the value of a <code>bind</code> attribute define two-way binding with the element's value. The filling method for such a hole takes two arguments:</p>
 <ol>
 <li>The current value, which generally comes from the <a href="Elmish">Elmish</a> model.</li>
@@ -224,7 +225,7 @@ let hello model dispatch =
         .Name(model.name, fun n -&gt; dispatch (SetName n))
         .Elt()
 </code></pre>
-<h3 id="event-handlers-for-data-binding">Event handlers for data binding</h3>
+<h4 id="event-handlers-for-data-binding">Event handlers for data binding</h4>
 <p>The binding can listen to changes on the input element using one of two different event handlers: <code>onchange</code> or <code>oninput</code>.</p>
 <ul>
 <li><code>onchange</code> is triggered when a change is &quot;committed&quot; by the user. For example, on a text input, it is triggered when the user presses Enter or unfocuses the element after changing the value.</li>
@@ -266,7 +267,7 @@ let hello model dispatch =
     &lt;input bind-onchange=&quot;${Name}&quot;&gt;
 &lt;/p&gt;
 </code></pre>
-<h1 id="nested-templates">Nested templates</h1>
+<h2 id="nested-templates">Nested templates</h2>
 <p>It is sometimes convenient to define a set of templates together in the same file. For example, a set of related widgets. Or the template for a list together with the template for an item in this list.</p>
 <p>This can be done using the <code>&lt;template&gt;</code> HTML tag. Such a template is identified by the <code>id</code> attribute on the tag, and its contents is the HTML contents of the <code>&lt;template&gt;</code> tag.</p>
 <p>On the F# side, nested templates are available as a nested class under the file's own template class. For example:</p>
@@ -302,7 +303,7 @@ listFriends [&quot;Alice&quot;; &quot;Bob&quot;; &quot;Chloe&quot;]
     &lt;li&gt;Chloe&lt;/li&gt;
 &lt;/ul&gt;
 </code></pre>
-<h1 id="hot-reloading">Hot reloading</h1>
+<h2 id="hot-reloading">Hot reloading</h2>
 <p>Starting with version 0.3, Bolero can reload the contents of HTML template files and update running applications automatically. This enables a smooth experience when designing the page: run the application, edit the HTML file, save, and the changes are reflected immediately in the browser.</p>
 <p><img src="hotreload.gif" alt="Hot reload in action" /></p>
 <p>Hot reloading requires a server side ASP.NET Core project: it watches for file changes, and sends the updated template to the client via SignalR.</p>
