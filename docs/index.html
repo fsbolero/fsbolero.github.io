@@ -34,40 +34,43 @@
           <h1 class="title is-spaced">Bolero</h1>
         </div>
       </section>
-      <div class="container">
-        <div class="sidebar-background"></div>
-        <div class="columns">
-          <div class="column is-one-quarter">
-            <div class="menu sidebar">
-              <div class="menu-label">Documentation</div>
-              <ul class="menu-list"><li>
-                  <a class="is-active" href="/docs">Getting Started</a>
-                  <ul><li>
-                      <a href="#what-is-bolero">What is Bolero?</a>
+      <section class="with-sidebar-background">
+        <div class="container">
+          <div class="columns is-gapless">
+            <div class="column is-one-quarter sidebar-column">
+              <section class="section">
+                <div class="menu">
+                  <div class="menu-label">Documentation</div>
+                  <ul class="menu-list"><li>
+                      <a class="is-active" href="/docs">Getting Started</a>
+                      <ul><li>
+                          <a href="#what-is-bolero">What is Bolero?</a>
+                        </li><li>
+                          <a href="#getting-started">Getting started</a>
+                        </li><li>
+                          <a href="#discovering-the-startup-project">Discovering the startup project</a>
+                        </li></ul>
                     </li><li>
-                      <a href="#getting-started">Getting started</a>
+                      <a href="/docs/HTML">Writing HTML</a>
+                      <ul class="is-hidden"></ul>
                     </li><li>
-                      <a href="#discovering-the-startup-project">Discovering the startup project</a>
+                      <a href="/docs/Templating">HTML templates</a>
+                      <ul class="is-hidden"></ul>
+                    </li><li>
+                      <a href="/docs/Elmish">Using Elmish</a>
+                      <ul class="is-hidden"></ul>
+                    </li><li>
+                      <a href="/docs/Routing">Routing</a>
+                      <ul class="is-hidden"></ul>
+                    </li><li>
+                      <a href="/docs/Remoting">Remoting</a>
+                      <ul class="is-hidden"></ul>
                     </li></ul>
-                </li><li>
-                  <a href="/docs/HTML">Writing HTML</a>
-                  <ul class="is-hidden"></ul>
-                </li><li>
-                  <a href="/docs/Templating">HTML templates</a>
-                  <ul class="is-hidden"></ul>
-                </li><li>
-                  <a href="/docs/Elmish">Using Elmish</a>
-                  <ul class="is-hidden"></ul>
-                </li><li>
-                  <a href="/docs/Routing">Routing</a>
-                  <ul class="is-hidden"></ul>
-                </li><li>
-                  <a href="/docs/Remoting">Remoting</a>
-                  <ul class="is-hidden"></ul>
-                </li></ul>
+                </div>
+              </section>
             </div>
-          </div>
-          <div class="column content markdown-column"><div ws-preserve=""><p>Welcome to Bolero: F# on WebAssembly!</p>
+            <div class="column content markdown-column">
+              <section class="section"><div ws-preserve=""><p>Welcome to Bolero: F# on WebAssembly!</p>
 <h1 id="what-is-bolero">What is Bolero?</h1>
 <p>Bolero is a set of free and open-source libraries and tools to write <a href="https://webassembly.org/"><strong>WebAssembly</strong></a> applications in <a href="https://fsharp.org/"><strong>F#</strong></a>. With it, you can write fully dynamic client-side web applications from the comfort of a strongly-typed functional language, all with great performance.</p>
 <p>Bolero is built on top of <a href="https://blazor.net/">Blazor</a> and adds a lot of features designed specifically to work in F#:</p>
@@ -113,9 +116,11 @@ dotnet run -p src/HelloWorld.Server
 </ul>
 </li>
 </ul>
-</div></div>
+</div></section>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
     
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/8.6.0/lazyload.min.js"></script>
   <script type="text/javascript">new LazyLoad();</script>

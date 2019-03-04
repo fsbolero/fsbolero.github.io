@@ -34,40 +34,43 @@
           <h1 class="title is-spaced">Bolero</h1>
         </div>
       </section>
-      <div class="container">
-        <div class="sidebar-background"></div>
-        <div class="columns">
-          <div class="column is-one-quarter">
-            <div class="menu sidebar">
-              <div class="menu-label">Documentation</div>
-              <ul class="menu-list"><li>
-                  <a href="/docs">Getting Started</a>
-                  <ul class="is-hidden"></ul>
-                </li><li>
-                  <a href="/docs/HTML">Writing HTML</a>
-                  <ul class="is-hidden"></ul>
-                </li><li>
-                  <a href="/docs/Templating">HTML templates</a>
-                  <ul class="is-hidden"></ul>
-                </li><li>
-                  <a href="/docs/Elmish">Using Elmish</a>
-                  <ul class="is-hidden"></ul>
-                </li><li>
-                  <a href="/docs/Routing">Routing</a>
-                  <ul class="is-hidden"></ul>
-                </li><li>
-                  <a class="is-active" href="/docs/Remoting">Remoting</a>
-                  <ul><li>
-                      <a href="#defining-the-service">Defining the service</a>
+      <section class="with-sidebar-background">
+        <div class="container">
+          <div class="columns is-gapless">
+            <div class="column is-one-quarter sidebar-column">
+              <section class="section">
+                <div class="menu">
+                  <div class="menu-label">Documentation</div>
+                  <ul class="menu-list"><li>
+                      <a href="/docs">Getting Started</a>
+                      <ul class="is-hidden"></ul>
                     </li><li>
-                      <a href="#calling-on-the-client-side">Calling on the client side</a>
+                      <a href="/docs/HTML">Writing HTML</a>
+                      <ul class="is-hidden"></ul>
                     </li><li>
-                      <a href="#defining-on-the-server-side">Defining on the server side</a>
+                      <a href="/docs/Templating">HTML templates</a>
+                      <ul class="is-hidden"></ul>
+                    </li><li>
+                      <a href="/docs/Elmish">Using Elmish</a>
+                      <ul class="is-hidden"></ul>
+                    </li><li>
+                      <a href="/docs/Routing">Routing</a>
+                      <ul class="is-hidden"></ul>
+                    </li><li>
+                      <a class="is-active" href="/docs/Remoting">Remoting</a>
+                      <ul><li>
+                          <a href="#defining-the-service">Defining the service</a>
+                        </li><li>
+                          <a href="#calling-on-the-client-side">Calling on the client side</a>
+                        </li><li>
+                          <a href="#defining-on-the-server-side">Defining on the server side</a>
+                        </li></ul>
                     </li></ul>
-                </li></ul>
+                </div>
+              </section>
             </div>
-          </div>
-          <div class="column content markdown-column"><div ws-preserve=""><p>Bolero.Remoting provides the ability to easily call server-side functions from the client side.</p>
+            <div class="column content markdown-column">
+              <section class="section"><div ws-preserve=""><p>Bolero.Remoting provides the ability to easily call server-side functions from the client side.</p>
 <p>Remote calls are <code>POST</code> requests to a specific URL. Arguments and return values are automatically serialized to JSON.</p>
 <h1 id="defining-the-service">Defining the service</h1>
 <p>A set of server-side functions is defined as a record called a <em>remote service</em>. Each function is a field in this record, and must take one argument and return <code>Async&lt;_&gt;</code>. If you need to pass several arguments to a server-side function, use a tuple.</p>
@@ -215,9 +218,11 @@ let myService =
 </ol>
 <h2 id="using-several-services">Using several services</h2>
 <p>You can of course define several remote services in the same application. Each of them needs to be registered by a separate call to <code>AddRemoting</code> in <code>ConfigureServices</code>. A single call to <code>UseRemoting</code> is enough in <code>Configure</code>.</p>
-</div></div>
+</div></section>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
     
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/8.6.0/lazyload.min.js"></script>
   <script type="text/javascript">new LazyLoad();</script>
