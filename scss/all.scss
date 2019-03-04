@@ -1,4 +1,5 @@
 $family-monospace: 'Roboto Mono',monospace;
+$menu-item-hover-background-color: transparent;
 
 // Bulma
 @import "bulma/sass/utilities/_all.sass";
@@ -23,6 +24,7 @@ $family-monospace: 'Roboto Mono',monospace;
 @import "navbar.scss";
 @import "drawer.scss";
 @import "home.scss";
+@import "footer.scss";
 @import "content-page.scss";
 
 body {
