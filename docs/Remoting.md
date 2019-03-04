@@ -6,19 +6,6 @@ Bolero.Remoting provides the ability to easily call server-side functions from t
 
 Remote calls are `POST` requests to a specific URL. Arguments and return values are automatically serialized to JSON.
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
-
-- [Defining the service](#defining-the-service)
-- [Calling on the client side](#calling-on-the-client-side)
-- [Defining on the server side](#defining-on-the-server-side)
-  - [A simple service](#a-simple-service)
-  - [Using dependency injection](#using-dependency-injection)
-  - [Using several services](#using-several-services)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
 # Defining the service
 
 A set of server-side functions is defined as a record called a *remote service*. Each function is a field in this record, and must take one argument and return `Async<_>`. If you need to pass several arguments to a server-side function, use a tuple.

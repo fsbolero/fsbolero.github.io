@@ -4,22 +4,6 @@ title: Writing HTML
 
 Bolero provides F# functions to create HTML elements, attributes and event handlers, and also instantiate Blazor components. All of these are defined in the module `Bolero.Html`.
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
-
-- [Elements](#elements)
-  - [Conditional elements](#conditional-elements)
-  - [Collection elements](#collection-elements)
-- [Attributes](#attributes)
-  - [Conditional attributes](#conditional-attributes)
-- [Event handlers](#event-handlers)
-- [Data bindings](#data-bindings)
-- [Components](#components)
-- [NavLink](#navlink)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
 See also how to create HTML elements using [HTML templates](Templating).
 
 # Elements

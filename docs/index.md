@@ -4,16 +4,6 @@ title: Getting started
 
 Welcome to Bolero: F# on WebAssembly!
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
-
-- [What is Bolero?](#what-is-bolero)
-- [Getting started](#getting-started)
-- [Discovering the startup project](#discovering-the-startup-project)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
 # What is Bolero?
 
 Bolero is a set of free and open-source libraries and tools to write [**WebAssembly**](https://webassembly.org/) applications in [**F#**](https://fsharp.org/). With it, you can write fully dynamic client-side web applications from the comfort of a strongly-typed functional language, all with great performance.

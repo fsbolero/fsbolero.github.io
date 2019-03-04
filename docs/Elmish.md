@@ -1,18 +1,8 @@
 ---
-title: Elmish
+title: Using Elmish
 ---
 
 Bolero applications use the Model-View-Update architecture using the [Elmish](https://elmish.github.io/elmish/) library.
-
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
-
-- [Program component](#program-component)
-- [View components](#view-components)
-  - [Customizing the model update check](#customizing-the-model-update-check)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 # Program component
 

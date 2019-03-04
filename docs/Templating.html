@@ -34,43 +34,42 @@
           <h1 class="title is-spaced">Bolero</h1>
         </div>
       </section>
-      <section class="section">
-        <div class="container">
-          <div class="columns">
-            <div class="column is-one-quarter"><div ws-preserve=""><div class="menu"><p class="menu-label">
-Documentation</p>
-<ul class="menu-list">
-<li><a href="/docs">Getting Started</a></li>
-<li><a href="/docs/HTML">Writing HTML</a></li>
-<li><a href="/docs/Templating">HTML templates</a></li>
-<li><a href="/docs/Elmish">Using Elmish</a></li>
-<li><a href="/docs/Routing">Routing</a></li>
-<li><a href="/docs/Remoting">Remoting</a></li>
-</ul>
-</div>
-<!-- DOCTOC SKIP -->
-</div></div>
-            <div class="column content markdown-column"><div ws-preserve=""><p>In addition to creating HTML content <a href="HTML">with F# functions</a>, Bolero enables inserting plain HTML templates in the form of a type provider.</p>
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-<ul>
-<li><a href="#invoking-the-type-provider">Invoking the type provider</a></li>
-<li><a href="#holes">Holes</a>
-<ul>
-<li><a href="#node-holes">Node holes</a></li>
-<li><a href="#attribute-holes">Attribute holes</a></li>
-<li><a href="#event-holes">Event holes</a></li>
-<li><a href="#data-binding-holes">Data binding holes</a>
-<ul>
-<li><a href="#event-handlers-for-data-binding">Event handlers for data binding</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#nested-templates">Nested templates</a></li>
-<li><a href="#hot-reloading">Hot reloading</a></li>
-</ul>
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+      <div class="container">
+        <div class="sidebar-background"></div>
+        <div class="columns">
+          <div class="column is-one-quarter">
+            <div class="menu sidebar">
+              <div class="menu-label">Documentation</div>
+              <ul class="menu-list"><li>
+                  <a href="/docs">Getting Started</a>
+                  <ul class="is-hidden"></ul>
+                </li><li>
+                  <a href="/docs/HTML">Writing HTML</a>
+                  <ul class="is-hidden"></ul>
+                </li><li>
+                  <a class="is-active" href="/docs/Templating">HTML templates</a>
+                  <ul><li>
+                      <a href="#invoking-the-type-provider">Invoking the type provider</a>
+                    </li><li>
+                      <a href="#holes">Holes</a>
+                    </li><li>
+                      <a href="#nested-templates">Nested templates</a>
+                    </li><li>
+                      <a href="#hot-reloading">Hot reloading</a>
+                    </li></ul>
+                </li><li>
+                  <a href="/docs/Elmish">Using Elmish</a>
+                  <ul class="is-hidden"></ul>
+                </li><li>
+                  <a href="/docs/Routing">Routing</a>
+                  <ul class="is-hidden"></ul>
+                </li><li>
+                  <a href="/docs/Remoting">Remoting</a>
+                  <ul class="is-hidden"></ul>
+                </li></ul>
+            </div>
+          </div>
+          <div class="column content markdown-column"><div ws-preserve=""><p>In addition to creating HTML content <a href="HTML">with F# functions</a>, Bolero enables inserting plain HTML templates in the form of a type provider.</p>
 <h1 id="invoking-the-type-provider">Invoking the type provider</h1>
 <p>The type provider <code>Bolero.Template</code> takes one static parameter, which is a string and can be either:</p>
 <ul>
@@ -355,9 +354,8 @@ listFriends [&quot;Alice&quot;; &quot;Bob&quot;; &quot;Chloe&quot;]
 </li>
 </ul>
 </div></div>
-          </div>
         </div>
-      </section>
+      </div>
     
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/8.6.0/lazyload.min.js"></script>
   <script type="text/javascript">new LazyLoad();</script>

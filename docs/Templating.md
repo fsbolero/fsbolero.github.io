@@ -4,22 +4,6 @@ title: HTML templates
 
 In addition to creating HTML content [with F# functions](HTML), Bolero enables inserting plain HTML templates in the form of a type provider.
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
-
-- [Invoking the type provider](#invoking-the-type-provider)
-- [Holes](#holes)
-  - [Node holes](#node-holes)
-  - [Attribute holes](#attribute-holes)
-  - [Event holes](#event-holes)
-  - [Data binding holes](#data-binding-holes)
-    - [Event handlers for data binding](#event-handlers-for-data-binding)
-- [Nested templates](#nested-templates)
-- [Hot reloading](#hot-reloading)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
 # Invoking the type provider
 
 The type provider `Bolero.Template` takes one static parameter, which is a string and can be either:

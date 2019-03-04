@@ -1,0 +1,37 @@
+$columns-top-padding: 1rem;
+$main-column-top-padding: $columns-top-padding + $column-gap;
+
+.sidebar {
+  @include from($tablet) {
+    position: -webkit-sticky;
+    position: sticky;
+    top: $columns-top-padding;
+  }
+}
+
+.sidebar-background {
+  position: absolute;
+  top: -100%;
+  bottom: 0;
+  left: -100%;
+  right: 0;
+
+  @include from($tablet) {
+    right: 50%;
+  }
+
+  background: whitesmoke;
+  z-index: -1;
+
+  & + .columns {
+    margin-top: 0;
+
+    .column {
+      padding-top: $main-column-top-padding;
+    }
+
+    .markdown-column {
+      background: white;
+    }
+  }
+}
