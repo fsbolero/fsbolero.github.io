@@ -46,6 +46,23 @@
   }
 }
 
+// Remove extra padding from .section in main/menu columns
+.columns.is-gapless {
+  & > .column:first-child > .section,
+  & > .column:first-child > .hero .hero-body {
+    @include from($desktop) {
+      padding-left: 0;
+    }
+  }
+
+  & > .column:last-child > .section,
+  & > .column:last-child > .hero .hero-body {
+    @include from($desktop) {
+      padding-right: 0;
+    }
+  }
+}
+
 .hljs {
   // Code blocks are generated as <pre><code class="language-fsharp">...
   // Bulma adds padding to <pre>, and hljs adds padding to <code>.
@@ -57,4 +74,8 @@
   // Without the following, wide code blocks on narrow screens
   // cause the whole text to overflow.
   overflow-x: hidden;
+}
+
+.content pre {
+  margin: 1em 0;
 }

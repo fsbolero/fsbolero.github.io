@@ -14,12 +14,17 @@
 </head>
 <body>
   <header class="navbar ">
-    <div class="navbar-brand">
-      <a class="navbar-item is-hoverable" onclick="Website.Client.ToggleDrawer()"><i class="fa fa-bars"></i></a>
-      <span class="navbar-item"><a href="/">Bolero</a></span>
-    </div>
-    <div class="navbar-menu">
-      <nav class="navbar-end"><a href="/" class="navbar-item is-hoverable has-text-weight-bold">Home</a><a href="/docs" class="navbar-item is-hoverable has-text-weight-bold">Documentation</a><a href="/blog" class="navbar-item is-hoverable has-text-weight-bold">Blog</a><a href="https://tryfsharp.fsbolero.io" class="navbar-item is-hoverable has-text-weight-bold">Try F#</a></nav>
+    <div class="container">
+      <div class="navbar-brand">
+        <a class="navbar-item is-hoverable" onclick="Website.Client.ToggleDrawer()"><i class="fa fa-bars"></i></a>
+        <span class="navbar-item"><a href="/">Bolero</a></span>
+      </div>
+      <div class="navbar-menu">
+        <nav class="navbar-start"><a href="/" class="navbar-item is-hoverable has-text-weight-bold">Home</a><div class="navbar-item is-hoverable has-text-weight-bold has-dropdown">
+            <a href="/docs" class="navbar-link is-arrowless">Documentation</a>
+            <div class="navbar-dropdown has-text-weight-normal"><a class="navbar-item" href="/docs">Getting Started</a><a class="navbar-item" href="/docs/HTML">Writing HTML</a><a class="navbar-item" href="/docs/Templating">HTML templates</a><a class="navbar-item" href="/docs/Elmish">Using Elmish</a><a class="navbar-item" href="/docs/Routing">Routing</a><a class="navbar-item" href="/docs/Remoting">Remoting</a></div>
+          </div><a href="/blog" class="navbar-item is-hoverable has-text-weight-bold">Blog</a><a href="https://tryfsharp.fsbolero.io" class="navbar-item is-hoverable has-text-weight-bold">Try F#</a></nav>
+      </div>
     </div>
   </header>
   <div class="drawer-backdrop" onclick="Website.Client.ToggleDrawer()">

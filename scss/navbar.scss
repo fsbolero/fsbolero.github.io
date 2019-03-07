@@ -1,8 +1,5 @@
 
 .navbar {
-  padding: .5rem 1rem;
-  display: flex;
-  align-items: center;
   background: $dark;
 
   .normal-bar {
@@ -25,14 +22,8 @@
 
 
 .navbar-brand {
-    float: left;
-    padding-top: .25rem;
-    padding-bottom: .25rem;
-    margin-right: 1rem;
     font-size: 1.25rem;
     line-height: inherit;
-    flex: 1;
-    padding-left: 0;
 }
 
 .navbar-item.is-hoverable:hover, .navbar-item.is-hoverable:hover *, .navbar-link.is-hoverable:hover {
@@ -49,7 +40,14 @@
 
 .navbar-menu, .navbar-menu *, .navbar-title {
     font-family: 'Roboto', sans-serif !important;
-    font-size: 16px !important;
+    font-size: 1rem !important;
+}
+
+.navbar-link.is-arrowless {
+  padding-right: 1rem;
+  &::after {
+    content: unset;
+  }
 }
 
 @media screen and (max-width: 1024px) {

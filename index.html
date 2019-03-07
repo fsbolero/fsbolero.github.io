@@ -14,12 +14,17 @@
 </head>
 <body>
   <header class="navbar overlay-bar">
-    <div class="navbar-brand">
-      <a class="navbar-item is-hoverable" onclick="Website.Client.ToggleDrawer()"><i class="fa fa-bars"></i></a>
-      <span class="navbar-item"><a href="/">Bolero</a></span>
-    </div>
-    <div class="navbar-menu">
-      <nav class="navbar-end"><a href="/" class="navbar-item is-hoverable has-text-weight-bold">Home</a><a href="/docs" class="navbar-item is-hoverable has-text-weight-bold">Documentation</a><a href="/blog" class="navbar-item is-hoverable has-text-weight-bold">Blog</a><a href="https://tryfsharp.fsbolero.io" class="navbar-item is-hoverable has-text-weight-bold">Try F#</a></nav>
+    <div class="container">
+      <div class="navbar-brand">
+        <a class="navbar-item is-hoverable" onclick="Website.Client.ToggleDrawer()"><i class="fa fa-bars"></i></a>
+        <span class="navbar-item"><a href="/">Bolero</a></span>
+      </div>
+      <div class="navbar-menu">
+        <nav class="navbar-start"><a href="/" class="navbar-item is-hoverable has-text-weight-bold">Home</a><div class="navbar-item is-hoverable has-text-weight-bold has-dropdown">
+            <a href="/docs" class="navbar-link is-arrowless">Documentation</a>
+            <div class="navbar-dropdown has-text-weight-normal"><a class="navbar-item" href="/docs">Getting Started</a><a class="navbar-item" href="/docs/HTML">Writing HTML</a><a class="navbar-item" href="/docs/Templating">HTML templates</a><a class="navbar-item" href="/docs/Elmish">Using Elmish</a><a class="navbar-item" href="/docs/Routing">Routing</a><a class="navbar-item" href="/docs/Remoting">Remoting</a></div>
+          </div><a href="/blog" class="navbar-item is-hoverable has-text-weight-bold">Blog</a><a href="https://tryfsharp.fsbolero.io" class="navbar-item is-hoverable has-text-weight-bold">Try F#</a></nav>
+      </div>
     </div>
   </header>
   <div class="drawer-backdrop" onclick="Website.Client.ToggleDrawer()">
@@ -34,7 +39,7 @@
           <h1 class="title is-spaced">Bolero: F# in WebAssembly</h1>
           <h2 class="subtitle">Develop SPAs with the full power of F# and .NET.</h2>
           <div>
-            <a class="button is-large is-warning has-text-weight-bold" href="https://tryfsharp.fsbolero.io" target="_blank">
+            <a class="button is-warning has-text-weight-bold" href="https://tryfsharp.fsbolero.io" target="_blank">
               <span>Try F# in WebAssembly</span>
               <span class="icon is-small">
                 <i class="fa fa-external-link" aria-hidden="true"></i>
@@ -47,13 +52,15 @@
         <div class="hero-body has-text-centered">
           <div class="container">
             <h1 class="title is-spaced">Get started easily</h1>
-            <div class="column is-half-desktop is-offset-one-quarter-desktop">
-              <p class="subtitle">Install the project template:</p>
-              <pre class="is-large"><input readonly="" onclick="select()" value="dotnet new -i Bolero.Templates" /></pre>
-              <p class="subtitle">Create a project:</p>
-              <pre class="is-large"><input readonly="" onclick="select()" value="dotnet new bolero-app -o MyApp" /></pre>
-              <p class="subtitle">Build and run:</p>
-              <pre class="is-large"><input readonly="" onclick="select()" value="dotnet run" /></pre>
+            <div class="columns">
+              <div class="column is-half-desktop is-offset-one-quarter-desktop">
+                <p class="subtitle">Install the project template:</p>
+                <pre class="is-large"><input readonly="" onclick="select()" value="dotnet new -i Bolero.Templates" /></pre>
+                <p class="subtitle">Create a project:</p>
+                <pre class="is-large"><input readonly="" onclick="select()" value="dotnet new bolero-app -o MyApp" /></pre>
+                <p class="subtitle">Build and run:</p>
+                <pre class="is-large"><input readonly="" onclick="select()" value="cd MyApp &amp;&amp; dotnet run" /></pre>
+              </div>
             </div>
           </div>
         </div>
