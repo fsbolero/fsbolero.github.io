@@ -18,6 +18,10 @@
   * {
     color: white !important;
   }
+
+  .fa {
+    font-size: 1.5em;
+  }
 }
 
 
@@ -36,11 +40,6 @@
     .navbar-brand .navbar-item:first-child {
         display: none;
     }
-}
-
-.navbar-menu, .navbar-menu *, .navbar-title {
-    font-family: 'Roboto', sans-serif !important;
-    font-size: 1rem !important;
 }
 
 .navbar-link.is-arrowless {
