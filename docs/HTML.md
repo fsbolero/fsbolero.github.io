@@ -46,8 +46,8 @@ In addition to representing an HTML node, the type `Node` can also represent a (
 ```fsharp
 let myElements =
     concat [
-        p [text "First paragraph"]
-        p [text "Second paragraph"]
+        p [] [text "First paragraph"]
+        p [] [text "Second paragraph"]
     ]
 ```
 

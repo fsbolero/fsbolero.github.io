@@ -78,8 +78,8 @@ Create elements, attributes, event handlers and Blazor components in plain F#</p
 <p>In addition to representing an HTML node, the type <code>Node</code> can also represent a (possibly empty) sequence of nodes. This is done using the <code>concat</code> function.</p>
 <pre><code class="language-fsharp">let myElements =
     concat [
-        p [text &quot;First paragraph&quot;]
-        p [text &quot;Second paragraph&quot;]
+        p [] [text &quot;First paragraph&quot;]
+        p [] [text &quot;Second paragraph&quot;]
     ]
 </code></pre>
 <p><code>empty</code> represents an empty sequence of nodes: it is equivalent to <code>concat []</code>. This doesn't seem very useful at first, but it is actually important for conditional elements.</p>
