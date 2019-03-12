@@ -34,7 +34,7 @@ On the client side, you will typically want to call these functions in the `upda
 1. In your Blazor startup (`Client/Startup.fs`), add support for remoting:
 
     ```fsharp
-    open Bolero.Remoting
+    open Bolero.Remoting.Client
 
     type Startup() =
 
@@ -115,6 +115,8 @@ Here is how to implement a remote service without any dependencies.
 2. In your ASP.NET Core startup (`Server/Startup.fs`), register the service:
 
     ```fsharp
+    open Bolero.Remoting.Server
+
     type Startup() =
 
         member this.ConfigureServices(services: IServiceCollection) =

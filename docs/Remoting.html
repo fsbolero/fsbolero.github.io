@@ -71,7 +71,7 @@ type MyService =
 <p>On the client side, you will typically want to call these functions in the <code>update</code> of the Elmish app. See <a href="https://elmish.github.io/elmish/basics.html">the Elmish documentation</a> to learn how to run commands in <code>update</code>.</p>
 <ol>
 <li><p>In your Blazor startup (<code>Client/Startup.fs</code>), add support for remoting:</p>
-<pre><code class="language-fsharp">open Bolero.Remoting
+<pre><code class="language-fsharp">open Bolero.Remoting.Client
 
 type Startup() =
 
@@ -142,7 +142,9 @@ let myService =
 </code></pre>
 </li>
 <li><p>In your ASP.NET Core startup (<code>Server/Startup.fs</code>), register the service:</p>
-<pre><code class="language-fsharp">type Startup() =
+<pre><code class="language-fsharp">open Bolero.Remoting.Server
+
+type Startup() =
 
     member this.ConfigureServices(services: IServiceCollection) =
         services.AddRemoting(myService)
@@ -235,7 +237,31 @@ let myService =
         </div>
       </section>
     
-  <footer class="section footer is-light">
+  <footer class="section footer first-footer has-text-centered">
+    <div class="container">
+      <div class="columns">
+        <div class="column">
+          <a target="_blank" href="https://github.com/fsbolero/template">
+            <img class="box no-padding" data-src="/img/screenshot-template.png" />
+            <h1 class="title">Bolero project template</h1>
+          </a>
+        </div>
+        <div class="column">
+          <a target="_blank" href="https://fsbolero.github.io/TodoMVC">
+            <img class="box no-padding" data-src="/img/screenshot-todomvc.png" />
+            <h1 class="title">TodoMVC</h1>
+          </a>
+        </div>
+        <div class="column">
+          <a target="_blank" href="https://tryfsharp.fsbolero.io">
+            <img class="box no-padding" data-src="/img/screenshot-tryfsharp.png" />
+            <h1 class="title">Try F# in your browser</h1>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <footer class="section footer second-footer">
     <div class="container">
       <div class="columns">
         <div class="column">
