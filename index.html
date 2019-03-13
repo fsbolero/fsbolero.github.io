@@ -69,7 +69,7 @@
     </div>
   </div>
   
-      <section class="hero is-large is-dark page-banner">
+      <section class="hero is-medium is-dark page-banner">
         <div class="hero-body has-text-centered">
           <h1 class="title is-spaced">Bolero: F# in WebAssembly</h1>
           <h2 class="subtitle">Develop SPAs with the full power of F# and .NET.</h2>
@@ -83,24 +83,39 @@
           </div>
         </div>
       </section>
-      <section class="hero is-dark">
-        <div class="hero-body has-text-centered">
-          <div class="container">
+      <section class="hero is-light is-dark">
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns is-desktop is-vcentered-tablet is-variable is-8 is-reversed-tablet">
+          <div class="column home-splash has-text-centered ">
+          <video src="/videos/create-project.mp4" controls="" poster="/videos/create-project.png">
+            <img data-src="/videos/create-project.png" />
+          </video>
+        </div>
+          <div class="column has-text-left-desktop has-text-centered">
             <h1 class="title is-spaced">Get started easily</h1>
-            <div class="columns">
-              <div class="column is-half-desktop is-offset-one-quarter-desktop">
-                <p class="subtitle">Install the project template:</p>
-                <pre class="is-large"><input readonly="" onclick="select()" value="dotnet new -i Bolero.Templates" /></pre>
-                <p class="subtitle">Create a project:</p>
-                <pre class="is-large"><input readonly="" onclick="select()" value="dotnet new bolero-app -o MyApp" /></pre>
-                <p class="subtitle">Build and run:</p>
-                <pre class="is-large"><input readonly="" onclick="select()" value="cd MyApp &amp;&amp; dotnet run" /></pre>
+            
+          <p class="subtitle">Install the project template:</p>
+          <pre class="is-large"><input readonly="" onclick="select()" value="dotnet new -i Bolero.Templates" /></pre>
+          <p class="subtitle">Create a project:</p>
+          <pre class="is-large"><input readonly="" onclick="select()" value="dotnet new bolero-app -o MyApp" /></pre>
+          <p class="subtitle">Build and run:</p>
+          <pre class="is-large"><input readonly="" onclick="select()" value="cd MyApp &amp;&amp; dotnet run -p src/MyApp.Server" /></pre>
+          <p>&nbsp;</p>
+        
+            <div class="level">
+              <div class="level-left">
+                <div class="level-item">
+                  <a class="button is-medium" href="/docs" target="_blank">Learn more...</a>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </section>
-      <section class="hero is-white">
+      </div>
+    </div>
+  </section>
+      <section class="hero is-white ">
     <div class="hero-body">
       <div class="container">
         <div class="columns is-desktop is-vcentered-tablet is-variable is-8">
@@ -123,20 +138,16 @@
               </div>
             </div>
           </div>
-          <div class="column home-splash is-narrow has-text-centered">
-            <img alt="DOM code in F#" data-src="/img/fsharp.png" />
-          </div>
+          <div class="column home-splash has-text-centered is-narrow"><img alt="DOM code in F#" data-src="/img/fsharp.png" /></div>
         </div>
       </div>
     </div>
   </section>
-      <section class="hero is-light">
+      <section class="hero is-light ">
     <div class="hero-body">
       <div class="container">
         <div class="columns is-desktop is-vcentered-tablet is-variable is-8 is-reversed-tablet">
-          <div class="column home-splash is-narrow has-text-centered">
-            <img data-src="/img/elmish.png" alt="Elmish model and update" />
-          </div>
+          <div class="column home-splash has-text-centered is-narrow"><img alt="" elmish="" model="" and="" update="" data-src="/img/elmish.png" /></div>
           <div class="column has-text-left-desktop has-text-centered">
             <h1 class="title is-spaced">Model-View-Update architecture with Elmish</h1>
             
@@ -155,7 +166,7 @@
       </div>
     </div>
   </section>
-      <section class="hero is-white">
+      <section class="hero is-white ">
     <div class="hero-body">
       <div class="container">
         <div class="columns is-desktop is-vcentered-tablet is-variable is-8">
@@ -174,20 +185,16 @@
               </div>
             </div>
           </div>
-          <div class="column home-splash is-narrow has-text-centered">
-            <img alt="HTML template and F# instantiation" data-src="/img/templating.png" />
-          </div>
+          <div class="column home-splash has-text-centered is-narrow"><img alt="HTML template and F# instantiation" data-src="/img/templating.png" /></div>
         </div>
       </div>
     </div>
   </section>
-      <section class="hero is-light">
+      <section class="hero is-light ">
     <div class="hero-body">
       <div class="container">
         <div class="columns is-desktop is-vcentered-tablet is-variable is-8 is-reversed-tablet">
-          <div class="column home-splash is-narrow has-text-centered">
-            <img data-src="/img/remoting.png" alt="Defining and calling a remote function" />
-          </div>
+          <div class="column home-splash has-text-centered is-narrow"><img alt="Defining and calling a remote function" data-src="/img/remoting.png" /></div>
           <div class="column has-text-left-desktop has-text-centered">
             <h1 class="title is-spaced">Seamless server remoting</h1>
             
@@ -206,7 +213,7 @@
       </div>
     </div>
   </section>
-      <section class="hero is-white">
+      <section class="hero is-white ">
     <div class="hero-body">
       <div class="container">
         <div class="columns is-desktop is-vcentered-tablet is-variable is-8">
@@ -225,9 +232,7 @@
               </div>
             </div>
           </div>
-          <div class="column home-splash is-narrow has-text-centered">
-            <img alt="Defining and using a route" data-src="/img/routing.png" />
-          </div>
+          <div class="column home-splash has-text-centered is-narrow"><img alt="Defining and using a route" data-src="/img/routing.png" /></div>
         </div>
       </div>
     </div>
