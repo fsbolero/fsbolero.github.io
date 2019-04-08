@@ -86,7 +86,7 @@ Easily call server-side functions from the client side.</p>
 
 type MyService =
     {
-        getEntry : string -&gt; Async&lt;option&lt;string&gt;&gt;  // Served at /myService/getEntry
+        getEntry : string -&gt; Async&lt;string option&gt;   // Served at /myService/getEntry
         setEntry : string * string -&gt; Async&lt;unit&gt;   // Served at /myService/setEntry
         deleteEntry : string -&gt; Async&lt;unit&gt;         // Served at /myService/deleteEntry
     }
@@ -120,7 +120,9 @@ type Startup() =
 </code></pre>
 </li>
 <li><p>In <code>update</code>, use the service in <code>Cmd</code>s:</p>
-<pre><code class="language-fsharp">type Model = { latestRetrievedEntry : string * string }
+<pre><code class="language-fsharp">type Model =
+  { latestRetrievedEntry : string * string
+    latestError : exn option }
 
 type Message =
     // Trigger a `getEntry` request
@@ -141,7 +143,8 @@ let update myService message model =
     | GotEntry(key, value) -&gt;
         { model with latestRetrievedEntry = (key, value) }, []
     | Error exn -&gt;
-        model, []
+        { model with latestError = Some exn }, []
+
 </code></pre>
 </li>
 </ol>
@@ -227,6 +230,193 @@ type Startup() =
 </ol>
 <h4 id="using-several-services">Using several services</h4>
 <p>You can of course define several remote services in the same application. Each of them needs to be registered by a separate call to <code>AddRemoting</code> in <code>ConfigureServices</code>. A single call to <code>UseRemoting</code> is enough in <code>Configure</code>.</p>
+<h3 id="authentication-and-authorization">Authentication and authorization</h3>
+<blockquote>
+<p>Introduced in v0.4.</p>
+</blockquote>
+<p>Bolero includes facilities for remote function authentication and authorization. They are based on standard ASP.NET Core functionality.</p>
+<ul>
+<li><strong>Authentication</strong> means signing in, signing out and identifying the current user in remote functions.</li>
+<li><strong>Authorization</strong> means specifying that a given remote function can only be used by authenticated users, optionally with additional criteria such as &quot;is admin&quot;.</li>
+</ul>
+<h4 id="authentication">Authentication</h4>
+<p>Authentication is done using standard ASP.NET Core authentication features. Enabling it is therefore done like a usual ASP.NET Core application. Here is an example setup for the server-side <code>Startup.fs</code> using cookie authentication:</p>
+<ul>
+<li><p>In <code>ConfigureServices</code>, use the following:</p>
+<pre><code class="language-fsharp">services
+    .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+        .AddCookie()
+        .Services
+    //.OtherMethods()...
+|&gt; ignore
+</code></pre>
+</li>
+<li><p>In <code>Configure</code>, use the following:</p>
+<pre><code class="language-fsharp">app.UseAuthentication()
+    // .OtherMethods()...
+|&gt; ignore
+</code></pre>
+</li>
+</ul>
+<p>To learn more about ASP.NET Core authentication, you can check the official documentation <a href="https://docs.microsoft.com/en-us/aspnet/core/security/authentication/cookie?view=aspnetcore-2.2">here</a>.</p>
+<p>Authentication in a remote function uses the <code>Microsoft.AspNetCore.Http.HttpContext</code>. To get access to it, wrap the function in <code>Remote.withContext</code>.</p>
+<pre><code class="language-fsharp">let myService =
+    {
+        functionWithoutAuth = fun arg -&gt; async {
+            return arg + 1
+        }
+
+        functionWithAuth = Remote.withContext &lt;| fun http arg -&gt; async {
+            // `http` has type HttpContext.
+            return arg + 1
+        }
+    }
+</code></pre>
+<p><code>HttpContext</code> has a lot of methods and properties. The extension methods added by Bolero and relevant for authentication are:</p>
+<ul>
+<li><code>SignIn()</code> is used to sign the user in. It takes a <code>username: string</code> argument, and a number of optional arguments:
+<ul>
+<li><code>persistFor: TimeSpan</code> decides for how long the signin lasts. If unset, the signin lasts for the duration of the user's browser session.</li>
+<li><code>claims: seq&lt;Claim&gt;</code> adds identity claims to the user, in addition to the <code>Name</code> claim that is created automatically for the username. Learn more about identity claims <a href="https://docs.microsoft.com/en-us/aspnet/core/security/authorization/claims?view=aspnetcore-2.2">here</a>. You can see it in used below when discussing <code>Remote.authorizeWith</code>.</li>
+<li><code>properties: AuthenticationProperties</code> adds authentication properties. <code>IsPersistent</code> and <code>ExpiresUTC</code> are overridden by <code>persistsFor</code> if that is used.</li>
+<li><code>authenticationType: string</code> sets the authentication type for the identity principal. The default is <code>&quot;Bolero.Remoting&quot;</code>.</li>
+</ul>
+</li>
+<li><code>SignOut()</code> is used to sign the user out. It takes a single optional argument, <code>properties: AuthenticationProperties</code>.</li>
+<li><code>TryUsername()</code> retrieves the current user's username, as a <code>string option</code>.</li>
+<li><code>TryIdentity()</code> retrieves the current user's ASP.Net Core identity, as a <code>ClaimsIdentity option</code>.</li>
+</ul>
+<p>For example, the following remote service implements simple login, logout and username retrieval:</p>
+<pre><code class="language-fsharp">type LoginService =
+    {
+        signIn : string -&gt; Async&lt;unit&gt;
+        signOut : unit -&gt; Async&lt;unit&gt;
+        getUsername : unit -&gt; Async&lt;string option&gt;
+    }
+
+let loginService =
+    {
+        signIn = Remote.withContext &lt;| fun http username -&gt; async {
+            if password = &quot;password&quot; then // Replace this with a proper check!
+                return! http.AsyncSignIn(username)
+        }
+        signOut = Remote.withContext &lt;| fun http () -&gt; async {
+            return! http.AsyncSignOut()
+        }
+        getUsername = Remote.withContext &lt;| fun http () -&gt; async {
+            return! http.TryUsername()
+        }
+    }
+</code></pre>
+<h4 id="authorization">Authorization</h4>
+<p>Authorization also uses standard ASP.NET Core features. It is enabled in the startup class's <code>ConfigureServices</code> method:</p>
+<pre><code class="language-fsharp">member this.ConfigureServices(services: IServiceCollection) =
+    services
+        .AddAuthorization()
+        //.OtherMethods()...
+    |&gt; ignore
+</code></pre>
+<p>You can then mark a remote function as authorized, ie. callable only by authenticated users, using the function <code>Remote.authorize</code>. This function has the same signature as <code>Remote.withContext</code>, but additionally indicates that the function is authorized.</p>
+<pre><code class="language-fsharp">type UserDataService =
+    {
+        getSecretData : unit -&gt; Async&lt;string&gt;
+    }
+
+let userDataService =
+    {
+        getSecretData = Remote.authorize &lt;| fun http () -&gt; async {
+            // User is guaranteed to be authenticated here.
+            return &quot;Secret user data!&quot;
+        }
+    }
+</code></pre>
+<p>You can use more fine-tuned authorization policies using <code>Remote.authorizeWith</code>. This function takes a list of ASP.NET Core <code>AuthorizeAttribute</code>s that specifies the authorization policy for this function. The following example can only be called by a user who was signed in as admin:</p>
+<pre><code class="language-fsharp">type UserDataService =
+    {
+        signIn : string * string -&gt; Async&lt;string&gt;
+        getSecretData : unit -&gt; Async&lt;string&gt;
+    }
+
+let userDataService =
+    {
+        signIn = Remote.withContext &lt;| fun http (username, password) -&gt; async {
+            if password = &quot;password&quot; then
+                // If the user is &quot;administrator&quot;, add the &quot;admin&quot; role
+                let claims =
+                    match username with
+                    | &quot;administrator&quot; -&gt; [Claim(ClaimTypes.Role, &quot;admin&quot;)]
+                    | _ -&gt; []
+                return! http.AsyncSignIn(username, claims = claims)
+        }
+
+        // Only an admin can call this function
+        getSecretData = Remote.authorizeWith [AuthorizeAttribute(Role = &quot;admin&quot;)] &lt;| fun http () -&gt; async {
+            return &quot;Super secret data for admin eyes only!&quot;
+        }
+    }
+</code></pre>
+<h4 id="from-the-client-side">From the client side</h4>
+<p>You can call an authorized function from the client side with the standard <code>Cmd.ofAsync</code>. If the user is not authorized, then the call will return an error with the exception <code>RemoteUnauthorizedException</code>.</p>
+<pre><code class="language-fsharp">type Model =
+  { secretData : string option
+    latestError : exn option }
+
+type Message =
+    // Trigger a `getSecretData` request
+    | GetSecretData
+    // Received response of a `getSecretData` request
+    | GotSecretData of data: string
+    // A request threw an error or was unauthorized
+    | Error of exn
+
+let update myService message model =
+    match message with
+    | GetSecretData -&gt;
+        model,
+        Cmd.ofAsync myService.getSecretData () GotSecretData Error
+    | GotSecretData data -&gt;
+        { model with secretData = Some data }, []
+    | Error RemoteUnauthorizedException -&gt;
+        // Tried to getSecretData, but the user was not signed in
+        { model with secretData = None }, []
+    | Error exn -&gt;
+        // Another error happened (eg. the server was unavailable)
+        { model with latestError = Some exn }, []
+</code></pre>
+<p>This way is particularly convenient if you have several remote functions that need to handle authorization errors the same way (eg by showing a login popup), as they can all use the same <code>Error</code> message.</p>
+<p>Alternatively, you can use the function <code>Cmd.ofRemote</code>. This function is similar to <code>Cmd.ofAsync</code>, except that it handles both success and unauthorized call with the same message by passing a value of type <code>RemoteResponse&lt;'resp&gt;</code>:</p>
+<pre><code class="language-fsharp">type RemoteResponse&lt;'resp&gt; =
+    | Success of 'resp
+    | Unauthorized
+</code></pre>
+<p>This way is more convenient for a remote function that needs to handle authorization errors in a specific way.</p>
+<pre><code class="language-fsharp">type Model =
+  { secretData : string option
+    latestError : exn option }
+
+type Message =
+    // Trigger a `getSecretData` request
+    | GetSecretData
+    // Received response of a `getSecretData` request
+    | GotSecretData of RemoteResponse&lt;string&gt;
+    // A request threw an error
+    | Error of exn
+
+let update myService message model =
+    match message with
+    | GetSecretData -&gt;
+        model,
+        Cmd.ofRemote myService.getSecretData () GotSecretData Error
+    | GotSecretData (Success data) -&gt;
+        { model with secretData = Some data }, []
+    | GotSecretData Unauthorized -&gt;
+        // Tried to getSecretData, but the user was not signed in
+        { model with secretData = None }, []
+    | Error exn -&gt;
+        // Another error happened (eg. the server was unavailable)
+        { model with latestError = exn }, []
+</code></pre>
+<p>The variant <code>Cmd.performRemote</code> doesn't take an <code>Error</code> message and ignores non-authorization-related errors.</p>
 </div></section>
             </div>
             <div class="column is-one-quarter-tablet is-one-fifth-desktop sidebar-column">
@@ -256,6 +446,8 @@ type Startup() =
                           <a href="#calling-on-the-client-side">Calling on the client side</a>
                         </li><li>
                           <a href="#defining-on-the-server-side">Defining on the server side</a>
+                        </li><li>
+                          <a href="#authentication-and-authorization">Authentication and authorization</a>
                         </li></ul>
                     </li></ul>
                 </div>
