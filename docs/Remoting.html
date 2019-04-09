@@ -274,7 +274,7 @@ type Startup() =
 </code></pre>
 <p><code>HttpContext</code> has a lot of methods and properties. The extension methods added by Bolero and relevant for authentication are:</p>
 <ul>
-<li><code>SignIn()</code> is used to sign the user in. It takes a <code>username: string</code> argument, and a number of optional arguments:
+<li><code>AsyncSignIn()</code> is used to sign the user in. It takes a <code>username: string</code> argument, and a number of optional arguments:
 <ul>
 <li><code>persistFor: TimeSpan</code> decides for how long the signin lasts. If unset, the signin lasts for the duration of the user's browser session.</li>
 <li><code>claims: seq&lt;Claim&gt;</code> adds identity claims to the user, in addition to the <code>Name</code> claim that is created automatically for the username. Learn more about identity claims <a href="https://docs.microsoft.com/en-us/aspnet/core/security/authorization/claims?view=aspnetcore-2.2">here</a>. You can see it in used below when discussing <code>Remote.authorizeWith</code>.</li>
@@ -282,7 +282,7 @@ type Startup() =
 <li><code>authenticationType: string</code> sets the authentication type for the identity principal. The default is <code>&quot;Bolero.Remoting&quot;</code>.</li>
 </ul>
 </li>
-<li><code>SignOut()</code> is used to sign the user out. It takes a single optional argument, <code>properties: AuthenticationProperties</code>.</li>
+<li><code>AsyncSignOut()</code> is used to sign the user out. It takes a single optional argument, <code>properties: AuthenticationProperties</code>.</li>
 <li><code>TryUsername()</code> retrieves the current user's username, as a <code>string option</code>.</li>
 <li><code>TryIdentity()</code> retrieves the current user's ASP.Net Core identity, as a <code>ClaimsIdentity option</code>.</li>
 </ul>

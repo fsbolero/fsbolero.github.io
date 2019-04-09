@@ -235,12 +235,12 @@ let myService =
 
 `HttpContext` has a lot of methods and properties. The extension methods added by Bolero and relevant for authentication are:
 
-* `SignIn()` is used to sign the user in. It takes a `username: string` argument, and a number of optional arguments:
+* `AsyncSignIn()` is used to sign the user in. It takes a `username: string` argument, and a number of optional arguments:
     * `persistFor: TimeSpan` decides for how long the signin lasts. If unset, the signin lasts for the duration of the user's browser session.
     * `claims: seq<Claim>` adds identity claims to the user, in addition to the `Name` claim that is created automatically for the username. Learn more about identity claims [here](https://docs.microsoft.com/en-us/aspnet/core/security/authorization/claims?view=aspnetcore-2.2). You can see it in used below when discussing `Remote.authorizeWith`.
     * `properties: AuthenticationProperties` adds authentication properties. `IsPersistent` and `ExpiresUTC` are overridden by `persistsFor` if that is used.
     * `authenticationType: string` sets the authentication type for the identity principal. The default is `"Bolero.Remoting"`.
-* `SignOut()` is used to sign the user out. It takes a single optional argument, `properties: AuthenticationProperties`.
+* `AsyncSignOut()` is used to sign the user out. It takes a single optional argument, `properties: AuthenticationProperties`.
 * `TryUsername()` retrieves the current user's username, as a `string option`.
 * `TryIdentity()` retrieves the current user's ASP.Net Core identity, as a `ClaimsIdentity option`.
 
