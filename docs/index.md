@@ -19,7 +19,7 @@ Bolero is built on top of [Blazor](https://blazor.net/) and adds a lot of featur
 
 ### Creating a project
 
-You can develop Bolero applications on Windows, OSX or Linux. It only has one prerequisite: the [.NET Core SDK](https://dotnet.microsoft.com/download), version 2.1 or newer.
+You can develop Bolero applications on Windows, OSX or Linux. It only has one prerequisite: the [.NET Core SDK](https://dotnet.microsoft.com/download/dotnet-core), version 3.0-preview5 or newer.
 
 The easiest way to get started is to use Bolero's dotnet template. To install it, run the following command:
 

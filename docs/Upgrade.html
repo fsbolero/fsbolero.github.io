@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Using Elmish | Bolero: F# in WebAssembly</title>
+  <title>Upgrade guide | Bolero: F# in WebAssembly</title>
   <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16" />
   <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
   <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[],"$DATA":{"$V":{}}}' />
@@ -75,131 +75,66 @@
             <div class="column content markdown-column">
               <section class="hero">
                 <div class="hero-body">
-                  <h1 class="title">Using Elmish</h1>
+                  <h1 class="title">Upgrade guide</h1>
                   <p class="subtitle">
-Leverage the Model-View-Update architecture using the <a href="https://elmish.github.io/elmish/">Elmish</a> library</p>
+How to update a project for newer releases</p>
 
                 </div>
               </section>
-              <section class="section"><div ws-preserve=""><blockquote>
-<p>Note: this page documents how to integrate Elmish in a Bolero application. It does not aim at explaining the Elmish architecture; you can learn about it <a href="https://elmish.github.io/elmish/">on Elmish's website</a>.</p>
-</blockquote>
-<h3 id="program-component">Program component</h3>
-<p>The main component for a Bolero application is <code>ProgramComponent&lt;'model, 'msg&gt;</code>. This is a Blazor component whose content is defined by an Elmish program.</p>
-<p>For example, given the following simple Elmish counter program:</p>
-<pre><code class="language-fsharp">type Model = { value: int }
-let initModel = { value = 0 }
-
-type Message = Increment | Decrement
-let update message model =
-    match message with
-    | Increment -&gt; { model with value = model.value + 1 }
-    | Decrement -&gt; { model with value = model.value - 1 }
-
-let view model dispatch =
-    div [] [
-        button [on.click (fun _ -&gt; dispatch Decrement)] [text &quot;-&quot;]
-        text (string model.value)
-        button [on.click (fun _ -&gt; dispatch Increment)] [text &quot;+&quot;]
-    ]
-
-let program =
-    Program.mkSimple (fun _ -&gt; initModel) update view
-</code></pre>
-<p>You can wrap it in a Blazor component as follows:</p>
-<pre><code class="language-fsharp">open Elmish
-open Bolero
-
-type MyApp() =
-    inherit ProgramComponent&lt;Model, Message&gt;()
-
-    override this.Program = program
-</code></pre>
-<h3 id="view-components">View components</h3>
-<p>Bolero works by calling the <code>view</code> on every <code>update</code>, and then diffing the returned node against the previously rendered page. This means that a part of the page that doesn't change after a given update still takes some computation to realize that it hasn't changed.</p>
-<p>Take the following example:</p>
-<pre><code class="language-fsharp">type Model = { firstName: string; lastName: string }
-let initModel = { firstName = &quot;&quot;; lastName = &quot;&quot; }
-
-type Message = SetFirstName of string | SetLastName of string
-let update message model =
-    match message with
-    | SetFirstName n -&gt; { model with firstName = n }
-    | SetLastName n -&gt; { model with lastName = n }
-
-let viewInput model setValue =
-    input [
-        attr.value model
-        on.change (fun e -&gt; setValue (unbox e.Value))
-    ]
-
-let view model dispatch =
-    div [] [
-        viewInput model.firstName (fun n -&gt; dispatch (SetFirstName n))
-        viewInput model.lastName (fun n -&gt; dispatch (SetLastName n))
-        text (sprintf &quot;Hello, %s %s!&quot; model.firstName model.lastName)
-    ]
-</code></pre>
-<p>This displays two input boxes prompting the user for a first name and a last name. On every change, <code>view</code> is called, and therefore <code>viewInput</code> is called twice, even though only one field has changed. Of course this is a tiny application so this doesn't cause any noticeable performance issue, but as the app gets bigger, this kind of unnecessary work may become a problem.</p>
-<p>This can be improved using <code>ElmishComponent&lt;'model, 'msg&gt;</code>. This component type only calls its view if its model has changed. It is typically used by passing a sub-model, rather than the full model; for example, in our case, we'll just pass the relevant field: either <code>model.firstName</code> or <code>model.lastName</code>.</p>
-<pre><code class="language-fsharp">type Input() =
-    // The first `string` is the model type.
-    // The second `string` is the message type.
-    inherit ElmishComponent&lt;string, string&gt;()
-
-    override this.View model dispatch =
-        input [
-            attr.value model
-            on.change (fun e -&gt; dispatch (unbox e.Value))
-        ]
-</code></pre>
-<p>Instantiating an <code>ElmishComponent</code> is done using the function <code>ecomp</code>. This function is parameterized by the component type, and takes a model and a dispatch function as arguments.</p>
-<pre><code class="language-fsharp">let view model dispatch =
-    div [] [
-        ecomp&lt;Input,_,_&gt; model.firstName (fun n -&gt; dispatch (SetFirstName n))
-        ecomp&lt;Input,_,_&gt; model.lastName (fun n -&gt; dispatch (SetLastName n))
-        text (sprintf &quot;Hello, %s %s!&quot; model.firstName model.lastName)
-    ]
-</code></pre>
-<h4 id="customizing-the-model-update-check">Customizing the model update check</h4>
-<p>Let's improve our <code>Input</code> component by adding a label. We can change the model to a record that contains both the label and the value.</p>
-<pre><code class="language-fsharp">type InputModel = { label: string; value: string }
-
-type Input() =
-    inherit ElmishComponent&lt;InputModel, string&gt;()
-</code></pre>
-<p>Since we know that the label of a given component will always be the same, we'd like <code>Input</code> to only look at the value when checking whether the model has changed. By default, <code>ElmishComponent</code> checks whether the model has changed by calling <code>obj.ReferenceEquals</code> on the old and new models. To specify a different check, we can override <code>ShouldRender(oldModel, newModel)</code>.</p>
-<pre><code class="language-fsharp">type InputModel = { label: string; value: string }
-
-type Input() =
-    inherit ElmishComponent&lt;InputModel, string&gt;()
-
-    // Check for model changes by only looking at the value.
-    override this.ShouldRender(oldModel, newModel) =
-        oldModel.value &lt;&gt; newModel.value
-
-    override this.View model dispatch =
-        label [] [
-            text model.label
-            input [
-                attr.value model.value
-                on.change (fun e -&gt; dispatch (unbox e.Value))
-            ]
-        ]
-
-let view model dispatch =
-    div [] [
-        ecomp&lt;Input,_,_&gt; {
-            label = &quot;First name: &quot;
-            value = model.firstName
-         } (fun n -&gt; dispatch (SetFirstName n))
-        ecomp&lt;Input,_,_&gt; {
-            label = &quot;Last name: &quot;
-            value = model.lastName
-         } (fun n -&gt; dispatch (SetLastName n))
-        text (sprintf &quot;Hello, %s %s!&quot; model.firstName model.lastName)
-    ]
-</code></pre>
+              <section class="section"><div ws-preserve=""><h3 id="from-v0.4-to-v0.5">From v0.4 to v0.5</h3>
+<p><img src="../img/blazor-icon.png" alt="Blazor 3.0" /></p>
+<p>Bolero 0.5 doesn't bring any breaking API changes.
+However, it upgrades the dependency on Blazor from 0.7 to 3.0-preview5; and by doing so, it also upgrades the dependency on .NET Core from 2.1 to 3.0-preview5.
+This brings a number of necessary changes to projects. Here are the necessary steps:</p>
+<ul>
+<li><p>Install <a href="https://dotnet.microsoft.com/download/dotnet-core">.NET Core 3.0-preview5</a>.</p>
+</li>
+<li><p>If your solution contains a <code>global.json</code> file with an explicit SDK version, either remove the file or update its SDK version to <code>3.0.100-preview5</code>.</p>
+</li>
+<li><p>In <code>paket.dependencies</code>:</p>
+<ul>
+<li>In the <code>framework</code> declaration, replace <code>netcoreapp2.1</code> with <code>netcoreapp3.0</code>.</li>
+<li>Remove the following <code>nuget</code> lines:
+<ul>
+<li><code>Microsoft.AspNetCore.App</code> (In ASP.NET Core 3.0, it is automatically included by the SDK)</li>
+<li><code>Microsoft.AspNetCore.Razor.Design</code></li>
+<li><code>Microsoft.AspNetCore.SignalR</code></li>
+</ul>
+</li>
+<li>Replace <code>clitool Microsoft.AspNetCore.Blazor.Cli</code> with <code>nuget Microsoft.AspNetCore.Blazor.DevServer</code>.</li>
+</ul>
+</li>
+<li><p>In <code>src/*.Client/paket.references</code>:</p>
+<ul>
+<li>Replace <code>Microsoft.AspNetCore.Blazor.Cli</code> with <code>Microsoft.AspNetCore.Blazor.DevServer</code>.</li>
+</ul>
+</li>
+<li><p>In <code>src/*.Server/paket.references</code>:</p>
+<ul>
+<li>Remove <code>Microsoft.AspNetCore.App</code>.</li>
+</ul>
+</li>
+<li><p>In both <code>*.fsproj</code> files, replace the <code>TargetFramework</code> from <code>netcoreapp2.1</code> to <code>netcoreapp3.0</code>.</p>
+</li>
+</ul>
+<p>You can now run <code>.paket/paket update</code> to update the packages.
+There are also a few code changes to apply:</p>
+<ul>
+<li><p>In <code>src/*.Client/Startup.fs</code>:</p>
+<ul>
+<li>Replace <code>Microsoft.AspNetCore.Blazor.Builder</code> with <code>Microsoft.AspNetCore.Components.Builder</code>.</li>
+<li>Replace <code>IBlazorApplicationBuilder</code> with <code>IComponentsApplicationBuilder</code>.</li>
+</ul>
+</li>
+<li><p>In <code>src/*.Server/Startup.fs</code>:</p>
+<ul>
+<li>Replace <code>IHostingEnvironment</code> with <code>IWebHostEnvironment</code>.</li>
+</ul>
+</li>
+</ul>
+<p>Your solution should now build and run successfully.
+If your code uses Blazor APIs directly, please check the Blazor <a href="https://devblogs.microsoft.com/aspnet/blazor-0-8-0-experimental-release-now-available/">0.8</a>, <a href="https://devblogs.microsoft.com/aspnet/blazor-0-9-0-experimental-release-now-available/">0.9</a> and <a href="https://devblogs.microsoft.com/aspnet/blazor-now-in-official-preview/">3.0</a> upgrade guides for more code changes you might need to make.</p>
+<p>If you are having any issues with this upgrade, don't hesitate to <a href="https://github.com/fsbolero/bolero/issues">post an issue on GitHub!</a></p>
 </div></section>
             </div>
             <div class="column is-one-quarter-tablet is-one-fifth-desktop sidebar-column">
@@ -216,12 +151,8 @@ let view model dispatch =
                       <a href="/docs/Templating">HTML templates</a>
                       <ul class="is-hidden"></ul>
                     </li><li>
-                      <a class="is-active" href="/docs/Elmish">Using Elmish</a>
-                      <ul><li>
-                          <a href="#program-component">Program component</a>
-                        </li><li>
-                          <a href="#view-components">View components</a>
-                        </li></ul>
+                      <a href="/docs/Elmish">Using Elmish</a>
+                      <ul class="is-hidden"></ul>
                     </li><li>
                       <a href="/docs/Routing">Routing</a>
                       <ul class="is-hidden"></ul>
@@ -229,8 +160,10 @@ let view model dispatch =
                       <a href="/docs/Remoting">Remoting</a>
                       <ul class="is-hidden"></ul>
                     </li><li>
-                      <a href="/docs/Upgrade">Upgrade guide</a>
-                      <ul class="is-hidden"></ul>
+                      <a class="is-active" href="/docs/Upgrade">Upgrade guide</a>
+                      <ul><li>
+                          <a href="#from-v04-to-v05">From v0.4 to v0.5</a>
+                        </li></ul>
                     </li></ul>
                 </div>
               </section>
