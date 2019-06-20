@@ -102,6 +102,7 @@ This brings a number of necessary changes to projects. Here are the necessary st
 </ul>
 </li>
 <li>Replace <code>clitool Microsoft.AspNetCore.Blazor.Cli</code> with <code>nuget Microsoft.AspNetCore.Blazor.DevServer</code>.</li>
+<li>For all the <code>Microsoft.AspNetCore.Blazor*</code> and <code>Bolero*</code> dependencies, remove version constraints if there are any (such as <code>~&gt; 0.7.0</code>), and add <code>prerelease</code> as a version constraint.</li>
 </ul>
 </li>
 <li><p>In <code>src/*.Client/paket.references</code>:</p>

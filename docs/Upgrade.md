@@ -22,6 +22,7 @@ This brings a number of necessary changes to projects. Here are the necessary st
     * `Microsoft.AspNetCore.Razor.Design`
     * `Microsoft.AspNetCore.SignalR`
   * Replace `clitool Microsoft.AspNetCore.Blazor.Cli` with `nuget Microsoft.AspNetCore.Blazor.DevServer`.
+  * For all the `Microsoft.AspNetCore.Blazor*` and `Bolero*` dependencies, remove version constraints if there are any (such as `~> 0.7.0`), and add `prerelease` as a version constraint.
 
 * In `src/*.Client/paket.references`:
   * Replace `Microsoft.AspNetCore.Blazor.Cli` with `Microsoft.AspNetCore.Blazor.DevServer`.
