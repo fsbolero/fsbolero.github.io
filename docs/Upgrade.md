@@ -30,7 +30,11 @@ This brings a number of necessary changes to projects. Here are the necessary st
 * In `src/*.Server/paket.references`:
   * Remove `Microsoft.AspNetCore.App`.
 
-* In both `*.fsproj` files, replace the `TargetFramework` from `netcoreapp2.1` to `netcoreapp3.0`.
+* In both `*.fsproj` files, replace the `TargetFramework` from `netcoreapp2.1` to `netcoreapp3.0`. Also, remove the following lines from `*.Client.fsproj`:
+    ```xml
+    <RunCommand>dotnet</RunCommand>
+    <RunArguments>blazor serve</RunArguments>
+    ```
 
 You can now run `.paket/paket update` to update the packages.
 There are also a few code changes to apply:

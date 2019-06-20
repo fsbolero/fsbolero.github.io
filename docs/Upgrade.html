@@ -115,7 +115,10 @@ This brings a number of necessary changes to projects. Here are the necessary st
 <li>Remove <code>Microsoft.AspNetCore.App</code>.</li>
 </ul>
 </li>
-<li><p>In both <code>*.fsproj</code> files, replace the <code>TargetFramework</code> from <code>netcoreapp2.1</code> to <code>netcoreapp3.0</code>.</p>
+<li><p>In both <code>*.fsproj</code> files, replace the <code>TargetFramework</code> from <code>netcoreapp2.1</code> to <code>netcoreapp3.0</code>. Also, remove the following lines from <code>*.Client.fsproj</code>:</p>
+<pre><code class="language-xml">&lt;RunCommand&gt;dotnet&lt;/RunCommand&gt;
+&lt;RunArguments&gt;blazor serve&lt;/RunArguments&gt;
+</code></pre>
 </li>
 </ul>
 <p>You can now run <code>.paket/paket update</code> to update the packages.
