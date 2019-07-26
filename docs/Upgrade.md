@@ -3,6 +3,43 @@ title: Upgrade guide
 subtitle: How to update a project for newer releases
 ---
 
+### From v0.5 to v0.6
+
+Bolero 0.6 updates the dependency on Blazor and .NET Core to 3.0-preview6. Here are the associated upgrade steps:
+
+* Install [.NET Core 3.0-preview6](https://dotnet.microsoft.com/download/dotnet-core).
+
+* The server-side `Startup.fs` code has changed. In `Configure`, the method `UseBlazor` has been removed; replace it with the following:
+
+    ```fsharp
+        .UseClientSideBlazorFiles<Client.Startup>()
+        .UseRouting()
+        .UseEndpoints(fun endpoints ->
+            endpoints.MapDefaultControllerRoute() |> ignore
+            endpoints.MapFallbackToClientSideBlazor<Client.Startup>("index.html") |> ignore)
+    ```
+
+    This requires the addition of the following line in `ConfigureServices`:
+
+    ```fsharp
+        services.AddMvcCore() |> ignore
+    ```
+
+HTML hot reloading also received changes.
+
+* A new NuGet package `Bolero.HotReload.Server` needs to be referenced by the `Server` project.
+
+* `IAppBuilder.UseHotReload` is deprecated; instead, add `endpoints.UseHotReload()` at the top of the `UseEndPoints` callback:
+
+    ```fsharp
+        .UseClientSideBlazorFiles<Client.Startup>()
+        .UseRouting()
+        .UseEndpoints(fun endpoints ->
+            endpoints.UseHotReload()
+            endpoints.MapDefaultControllerRoute() |> ignore
+            endpoints.MapFallbackToClientSideBlazor<Client.Startup>("index.html") |> ignore)
+    ```
+
 ### From v0.4 to v0.5
 
 ![Blazor 3.0](../img/blazor-icon.png)

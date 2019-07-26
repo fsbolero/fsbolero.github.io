@@ -81,7 +81,38 @@ How to update a project for newer releases</p>
 
                 </div>
               </section>
-              <section class="section"><div ws-preserve=""><h3 id="from-v0.4-to-v0.5">From v0.4 to v0.5</h3>
+              <section class="section"><div ws-preserve=""><h3 id="from-v0.5-to-v0.6">From v0.5 to v0.6</h3>
+<p>Bolero 0.6 updates the dependency on Blazor and .NET Core to 3.0-preview6. Here are the associated upgrade steps:</p>
+<ul>
+<li><p>Install <a href="https://dotnet.microsoft.com/download/dotnet-core">.NET Core 3.0-preview6</a>.</p>
+</li>
+<li><p>The server-side <code>Startup.fs</code> code has changed. In <code>Configure</code>, the method <code>UseBlazor</code> has been removed; replace it with the following:</p>
+<pre><code class="language-fsharp">    .UseClientSideBlazorFiles&lt;Client.Startup&gt;()
+    .UseRouting()
+    .UseEndpoints(fun endpoints -&gt;
+        endpoints.MapDefaultControllerRoute() |&gt; ignore
+        endpoints.MapFallbackToClientSideBlazor&lt;Client.Startup&gt;(&quot;index.html&quot;) |&gt; ignore)
+</code></pre>
+<p>This requires the addition of the following line in <code>ConfigureServices</code>:</p>
+<pre><code class="language-fsharp">    services.AddMvcCore() |&gt; ignore
+</code></pre>
+</li>
+</ul>
+<p>HTML hot reloading also received changes.</p>
+<ul>
+<li><p>A new NuGet package <code>Bolero.HotReload.Server</code> needs to be referenced by the <code>Server</code> project.</p>
+</li>
+<li><p><code>IAppBuilder.UseHotReload</code> is deprecated; instead, add <code>endpoints.UseHotReload()</code> at the top of the <code>UseEndPoints</code> callback:</p>
+<pre><code class="language-fsharp">    .UseClientSideBlazorFiles&lt;Client.Startup&gt;()
+    .UseRouting()
+    .UseEndpoints(fun endpoints -&gt;
+        endpoints.UseHotReload()
+        endpoints.MapDefaultControllerRoute() |&gt; ignore
+        endpoints.MapFallbackToClientSideBlazor&lt;Client.Startup&gt;(&quot;index.html&quot;) |&gt; ignore)
+</code></pre>
+</li>
+</ul>
+<h3 id="from-v0.4-to-v0.5">From v0.4 to v0.5</h3>
 <p><img src="../img/blazor-icon.png" alt="Blazor 3.0" /></p>
 <p>Bolero 0.5 doesn't bring any breaking API changes.
 However, it upgrades the dependency on Blazor from 0.7 to 3.0-preview5; and by doing so, it also upgrades the dependency on .NET Core from 2.1 to 3.0-preview5.
@@ -166,6 +197,8 @@ If your code uses Blazor APIs directly, please check the Blazor <a href="https:/
                     </li><li>
                       <a class="is-active" href="/docs/Upgrade">Upgrade guide</a>
                       <ul><li>
+                          <a href="#from-v05-to-v06">From v0.5 to v0.6</a>
+                        </li><li>
                           <a href="#from-v04-to-v05">From v0.4 to v0.5</a>
                         </li></ul>
                     </li></ul>
