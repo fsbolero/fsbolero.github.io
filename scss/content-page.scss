@@ -21,14 +21,6 @@
     }
   }
 
-  .sidebar-column .section {
-    @include from($tablet) {
-      position: -webkit-sticky;
-      position: sticky;
-      top: 0;
-    }
-  }
-
   .markdown-column {
     background: white;
   }

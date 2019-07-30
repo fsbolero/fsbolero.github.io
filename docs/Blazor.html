@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Upgrade guide | Bolero: F# in WebAssembly</title>
+  <title>Using Blazor features | Bolero: F# in WebAssembly</title>
   <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16" />
   <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
   <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[],"$DATA":{"$V":{}}}' />
@@ -78,101 +78,35 @@
             <div class="column content markdown-column">
               <section class="hero">
                 <div class="hero-body">
-                  <h1 class="title">Upgrade guide</h1>
-                  <p class="subtitle">
-How to update a project for newer releases</p>
+                  <h1 class="title">Using Blazor features</h1>
+                  <p class="subtitle"></p>
 
                 </div>
               </section>
-              <section class="section"><div ws-preserve=""><h3 id="from-v0.5-to-v0.6">From v0.5 to v0.6</h3>
-<p>Bolero 0.6 updates the dependency on Blazor and .NET Core to 3.0-preview6. Here are the associated upgrade steps:</p>
-<ul>
-<li><p>Install <a href="https://dotnet.microsoft.com/download/dotnet-core">.NET Core 3.0-preview6</a>.</p>
-</li>
-<li><p>The server-side <code>Startup.fs</code> code has changed. In <code>Configure</code>, the method <code>UseBlazor</code> has been removed; replace it with the following:</p>
-<pre><code class="language-fsharp">    .UseClientSideBlazorFiles&lt;Client.Startup&gt;()
-    .UseRouting()
-    .UseEndpoints(fun endpoints -&gt;
-        endpoints.MapDefaultControllerRoute() |&gt; ignore
-        endpoints.MapFallbackToClientSideBlazor&lt;Client.Startup&gt;(&quot;index.html&quot;) |&gt; ignore)
+              <section class="section"><div ws-preserve=""><p>This page documents some useful features of Blazor and how to best use them from a Bolero application.</p>
+<h3 id="dependency-injection">Dependency injection</h3>
+<p>Blazor provides the ability to work with the dependency injection mechanism introduced by ASP.NET Core. <a href="https://docs.microsoft.com/en-us/aspnet/core/blazor/dependency-injection?view=aspnetcore-3.0">Learn more about it on the official documentation</a>.</p>
+<h4 id="requiring-a-dependency">Requiring a dependency</h4>
+<p>Any Blazor component can require a dependency. This includes the Bolero <code>ProgramComponent</code>, as well as any <code>Component</code> class you create. This is done by creating a mutable property with the attribute <code>Microsoft.AspNetCore.Components.Inject</code>:</p>
+<pre><code class="language-fsharp">open Microsoft.AspNetCore.Components
+open Bolero
+
+type MyApp() =
+    inherit ProgramComponent&lt;Model, Message&gt;()
+    
+    [&lt;Inject&gt;]
+    member val MyDependency = Unchecked.defaultof&lt;IMyDependency&gt; with get, set
+    
+    override this.Program =
+        doSomethingWith this.MyDependency
 </code></pre>
-<p>This requires the addition of the following line in <code>ConfigureServices</code>:</p>
-<pre><code class="language-fsharp">    services.AddMvcCore() |&gt; ignore
+<h4 id="providing-a-dependency">Providing a dependency</h4>
+<p>Dependencies are injected from the client-side <code>Startup</code> class's <code>ConfigureServices</code> method:</p>
+<pre><code class="language-fsharp">type Startup() =
+
+    member __.ConfigureServices(services: IServiceCollection) =
+        services.AddSingleton&lt;IMyDependency&gt;(new MyDependency()) |&gt; ignore
 </code></pre>
-</li>
-</ul>
-<p>HTML hot reloading also received changes.</p>
-<ul>
-<li><p>A new NuGet package <code>Bolero.HotReload.Server</code> needs to be referenced by the <code>Server</code> project.</p>
-</li>
-<li><p><code>IAppBuilder.UseHotReload</code> is deprecated; instead, add <code>endpoints.UseHotReload()</code> at the top of the <code>UseEndPoints</code> callback:</p>
-<pre><code class="language-fsharp">    .UseClientSideBlazorFiles&lt;Client.Startup&gt;()
-    .UseRouting()
-    .UseEndpoints(fun endpoints -&gt;
-        endpoints.UseHotReload()
-        endpoints.MapDefaultControllerRoute() |&gt; ignore
-        endpoints.MapFallbackToClientSideBlazor&lt;Client.Startup&gt;(&quot;index.html&quot;) |&gt; ignore)
-</code></pre>
-</li>
-</ul>
-<h3 id="from-v0.4-to-v0.5">From v0.4 to v0.5</h3>
-<p><img src="../img/blazor-icon.png" alt="Blazor 3.0" /></p>
-<p>Bolero 0.5 doesn't bring any breaking API changes.
-However, it upgrades the dependency on Blazor from 0.7 to 3.0-preview5; and by doing so, it also upgrades the dependency on .NET Core from 2.1 to 3.0-preview5.
-This brings a number of necessary changes to projects. Here are the necessary steps:</p>
-<ul>
-<li><p>Install <a href="https://dotnet.microsoft.com/download/dotnet-core">.NET Core 3.0-preview5</a>.</p>
-</li>
-<li><p>If your solution contains a <code>global.json</code> file with an explicit SDK version, either remove the file or update its SDK version to <code>3.0.100-preview5</code>.</p>
-</li>
-<li><p>In <code>paket.dependencies</code>:</p>
-<ul>
-<li>In the <code>framework</code> declaration, replace <code>netcoreapp2.1</code> with <code>netcoreapp3.0</code>.</li>
-<li>Remove the following <code>nuget</code> lines:
-<ul>
-<li><code>Microsoft.AspNetCore.App</code> (In ASP.NET Core 3.0, it is automatically included by the SDK)</li>
-<li><code>Microsoft.AspNetCore.Razor.Design</code></li>
-<li><code>Microsoft.AspNetCore.SignalR</code></li>
-</ul>
-</li>
-<li>Replace <code>clitool Microsoft.AspNetCore.Blazor.Cli</code> with <code>nuget Microsoft.AspNetCore.Blazor.DevServer</code>.</li>
-<li>For all the <code>Microsoft.AspNetCore.Blazor*</code> and <code>Bolero*</code> dependencies, remove version constraints if there are any (such as <code>~&gt; 0.7.0</code>), and add <code>prerelease</code> as a version constraint.</li>
-</ul>
-</li>
-<li><p>In <code>src/*.Client/paket.references</code>:</p>
-<ul>
-<li>Replace <code>Microsoft.AspNetCore.Blazor.Cli</code> with <code>Microsoft.AspNetCore.Blazor.DevServer</code>.</li>
-</ul>
-</li>
-<li><p>In <code>src/*.Server/paket.references</code>:</p>
-<ul>
-<li>Remove <code>Microsoft.AspNetCore.App</code>.</li>
-</ul>
-</li>
-<li><p>In both <code>*.fsproj</code> files, replace the <code>TargetFramework</code> from <code>netcoreapp2.1</code> to <code>netcoreapp3.0</code>. Also, remove the following lines from <code>*.Client.fsproj</code>:</p>
-<pre><code class="language-xml">&lt;RunCommand&gt;dotnet&lt;/RunCommand&gt;
-&lt;RunArguments&gt;blazor serve&lt;/RunArguments&gt;
-</code></pre>
-</li>
-</ul>
-<p>You can now run <code>.paket/paket update</code> to update the packages.
-There are also a few code changes to apply:</p>
-<ul>
-<li><p>In <code>src/*.Client/Startup.fs</code>:</p>
-<ul>
-<li>Replace <code>Microsoft.AspNetCore.Blazor.Builder</code> with <code>Microsoft.AspNetCore.Components.Builder</code>.</li>
-<li>Replace <code>IBlazorApplicationBuilder</code> with <code>IComponentsApplicationBuilder</code>.</li>
-</ul>
-</li>
-<li><p>In <code>src/*.Server/Startup.fs</code>:</p>
-<ul>
-<li>Replace <code>IHostingEnvironment</code> with <code>IWebHostEnvironment</code>.</li>
-</ul>
-</li>
-</ul>
-<p>Your solution should now build and run successfully.
-If your code uses Blazor APIs directly, please check the Blazor <a href="https://devblogs.microsoft.com/aspnet/blazor-0-8-0-experimental-release-now-available/">0.8</a>, <a href="https://devblogs.microsoft.com/aspnet/blazor-0-9-0-experimental-release-now-available/">0.9</a> and <a href="https://devblogs.microsoft.com/aspnet/blazor-now-in-official-preview/">3.0</a> upgrade guides for more code changes you might need to make.</p>
-<p>If you are having any issues with this upgrade, don't hesitate to <a href="https://github.com/fsbolero/bolero/issues">post an issue on GitHub!</a></p>
 </div></section>
             </div>
             <div class="column is-one-quarter-tablet is-one-fifth-desktop sidebar-column">
@@ -198,15 +132,13 @@ If your code uses Blazor APIs directly, please check the Blazor <a href="https:/
                       <a href="/docs/Remoting">Remoting</a>
                       <ul class="is-hidden"></ul>
                     </li><li>
-                      <a href="/docs/Blazor">Using Blazor features</a>
-                      <ul class="is-hidden"></ul>
-                    </li><li>
-                      <a class="is-active" href="/docs/Upgrade">Upgrade guide</a>
+                      <a class="is-active" href="/docs/Blazor">Using Blazor features</a>
                       <ul><li>
-                          <a href="#from-v05-to-v06">From v0.5 to v0.6</a>
-                        </li><li>
-                          <a href="#from-v04-to-v05">From v0.4 to v0.5</a>
+                          <a href="#dependency-injection">Dependency injection</a>
                         </li></ul>
+                    </li><li>
+                      <a href="/docs/Upgrade">Upgrade guide</a>
+                      <ul class="is-hidden"></ul>
                     </li></ul>
                 </div>
               </section>
