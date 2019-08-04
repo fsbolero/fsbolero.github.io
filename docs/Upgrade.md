@@ -3,6 +3,18 @@ title: Upgrade guide
 subtitle: How to update a project for newer releases
 ---
 
+### From v0.6 to v0.7
+
+Bolero 0.6 updates the dependency on Blazor and .NET Core to 3.0-preview7. Here are the associated upgrade steps:
+
+* Install [.NET Core 3.0-preview7](https://dotnet.microsoft.com/download/dotnet-core).
+
+* `Cmd.ofRemote`, `Cmd.performRemote` and the related type `RemoteResponse<'T>` are obsolete. Here is how to update:
+
+    * If the remote call is to a non-authorized function, then simply use `Cmd.ofAsync` / `Cmd.performAsync`.
+    
+    * If the remote call is to an authorized function, then replace `RemoteResponse<'T>` with `option<'T>`, `Cmd.ofRemote` with `Cmd.ofAuthorized` and `Cmd.performRemote` with `Cmd.performAuthorized`.
+
 ### From v0.5 to v0.6
 
 Bolero 0.6 updates the dependency on Blazor and .NET Core to 3.0-preview6. Here are the associated upgrade steps:
