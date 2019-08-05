@@ -5,7 +5,7 @@ subtitle: How to update a project for newer releases
 
 ### From v0.6 to v0.7
 
-Bolero 0.6 updates the dependency on Blazor and .NET Core to 3.0-preview7. Here are the associated upgrade steps:
+Bolero 0.7 updates the dependency on Blazor and .NET Core to 3.0-preview7. Here are the associated upgrade steps:
 
 * Install [.NET Core 3.0-preview7](https://dotnet.microsoft.com/download/dotnet-core).
 
