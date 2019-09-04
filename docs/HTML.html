@@ -281,9 +281,6 @@ let hello model dispatch =
 <li><p><code>bind.checked</code> binds to the <code>checked</code> property of a checkbox input. Note that you also need to add <code>attr.``type`` &quot;checkbox&quot;</code> to the input.</p>
 </li>
 </ul>
-<blockquote>
-<p>Note: Radio buttons (<code>attr.``type`` &quot;radio&quot;</code>) are not yet supported by Blazor, and therefore by Bolero; see <a href="https://github.com/aspnet/Blazor/issues/1322">the issue on Blazor's tracker</a>.</p>
-</blockquote>
 <pre><code class="language-fsharp">type Model = { isChecked: bool }
 
 type Message =
@@ -294,6 +291,27 @@ let hello model dispatch =
         attr.``type`` &quot;checkbox&quot;
         bind.checked model.isChecked (fun c -&gt; dispatch (SetChecked c))
     ]
+</code></pre>
+<p>For radio buttons, you can use <code>bind.change</code> like so:</p>
+<pre><code class="language-fsharp">type Color = Red | Green | Blue
+type Model = { color: Color }
+
+type Message =
+    | SetColor of Color
+    
+let hello model dispatch =
+    forEach [Red; Green; Blue] &lt;| fun color -&gt;
+        input [
+            attr.``type`` &quot;radio&quot;
+
+            // use the same name for the 3 radio buttons to group them.
+            attr.name &quot;select-color&quot;
+
+            // HTML requires each button to have a different string value,
+            // but you don't have to use this string in the event handler
+            // if you have a better typed value at hand (here, `color`).
+            bind.change (string color) (fun _ -&gt; dispatch (SetColor color))
+        ]
 </code></pre>
 <h3 id="components">Components</h3>
 <blockquote>

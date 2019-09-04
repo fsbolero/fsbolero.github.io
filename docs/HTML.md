@@ -261,8 +261,6 @@ The functions in the `bind` module are:
 
 * `bind.checked` binds to the `checked` property of a checkbox input. Note that you also need to add ```attr.``type`` "checkbox"``` to the input.
 
-> Note: Radio buttons (```attr.``type`` "radio"```) are not yet supported by Blazor, and therefore by Bolero; see [the issue on Blazor's tracker](https://github.com/aspnet/Blazor/issues/1322).
-
 ```fsharp
 type Model = { isChecked: bool }
 
@@ -274,6 +272,30 @@ let hello model dispatch =
         attr.``type`` "checkbox"
         bind.checked model.isChecked (fun c -> dispatch (SetChecked c))
     ]
+```
+
+For radio buttons, you can use `bind.change` like so:
+
+```fsharp
+type Color = Red | Green | Blue
+type Model = { color: Color }
+
+type Message =
+    | SetColor of Color
+    
+let hello model dispatch =
+    forEach [Red; Green; Blue] <| fun color ->
+        input [
+            attr.``type`` "radio"
+
+            // use the same name for the 3 radio buttons to group them.
+            attr.name "select-color"
+
+            // HTML requires each button to have a different string value,
+            // but you don't have to use this string in the event handler
+            // if you have a better typed value at hand (here, `color`).
+            bind.change (string color) (fun _ -> dispatch (SetColor color))
+        ]
 ```
 
 ### Components
