@@ -234,9 +234,7 @@ type Startup() =
 </code></pre>
 </li>
 </ol>
-<h4 id="using-several-services">Using several services</h4>
-<p>You can of course define several remote services in the same application. Each of them needs to be registered by a separate call to <code>AddRemoting</code> in <code>ConfigureServices</code>. A single call to <code>UseRemoting</code> is enough in <code>Configure</code>.</p>
-<h3 id="iremotecontext">IRemoteContext</h3>
+<h4 id="iremotecontext">IRemoteContext</h4>
 <blockquote>
 <p>Introduced in v0.8.</p>
 </blockquote>
@@ -251,6 +249,8 @@ type Startup() =
 <li><p>If you are not using dependency injection, you can replace your handler record value with a function taking <code>IRemoteContext</code> as argument and returning a record.</p>
 </li>
 </ul>
+<h4 id="using-several-services">Using several services</h4>
+<p>You can of course define several remote services in the same application. Each of them needs to be registered by a separate call to <code>AddRemoting</code> in <code>ConfigureServices</code>. A single call to <code>UseRemoting</code> is enough in <code>Configure</code>.</p>
 <h3 id="authentication-and-authorization">Authentication and authorization</h3>
 <blockquote>
 <p>Introduced in v0.4.</p>
@@ -456,8 +456,6 @@ let update myService message model =
                           <a href="#calling-on-the-client-side">Calling on the client side</a>
                         </li><li>
                           <a href="#defining-on-the-server-side">Defining on the server side</a>
-                        </li><li>
-                          <a href="#iremotecontext">IRemoteContext</a>
                         </li><li>
                           <a href="#authentication-and-authorization">Authentication and authorization</a>
                         </li></ul>
