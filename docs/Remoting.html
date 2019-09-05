@@ -394,11 +394,7 @@ let update myService message model =
         { model with latestError = Some exn }, []
 </code></pre>
 <p>This way is particularly convenient if you have several remote functions that need to handle authorization errors the same way (eg by showing a login popup), as they can all use the same <code>Error</code> message.</p>
-<p>Alternatively, you can use the function <code>Cmd.ofRemote</code>. This function is similar to <code>Cmd.ofAsync</code>, except that it handles both success and unauthorized call with the same message by passing a value of type <code>RemoteResponse&lt;'resp&gt;</code>:</p>
-<pre><code class="language-fsharp">type RemoteResponse&lt;'resp&gt; =
-    | Success of 'resp
-    | Unauthorized
-</code></pre>
+<p>Alternatively, you can use the function <code>Cmd.ofAuthorized</code>. This function is similar to <code>Cmd.ofAsync</code>, except that it handles both success and unauthorized call with the same message by passing a value of type <code>option&lt;'resp&gt;</code>. This value is <code>None</code> if the user is not authorized, or <code>Some</code> with the returned value if the user is authorized.</p>
 <p>This way is more convenient for a remote function that needs to handle authorization errors in a specific way.</p>
 <pre><code class="language-fsharp">type Model =
   { secretData : string option
@@ -408,7 +404,7 @@ type Message =
     // Trigger a `getSecretData` request
     | GetSecretData
     // Received response of a `getSecretData` request
-    | GotSecretData of RemoteResponse&lt;string&gt;
+    | GotSecretData of option&lt;string&gt;
     // A request threw an error
     | Error of exn
 
@@ -417,9 +413,9 @@ let update myService message model =
     | GetSecretData -&gt;
         model,
         Cmd.ofRemote myService.getSecretData () GotSecretData Error
-    | GotSecretData (Success data) -&gt;
+    | GotSecretData (Some data) -&gt;
         { model with secretData = Some data }, []
-    | GotSecretData Unauthorized -&gt;
+    | GotSecretData None -&gt;
         // Tried to getSecretData, but the user was not signed in
         { model with secretData = None }, []
     | Error exn -&gt;

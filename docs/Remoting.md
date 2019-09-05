@@ -365,13 +365,7 @@ let update myService message model =
 
 This way is particularly convenient if you have several remote functions that need to handle authorization errors the same way (eg by showing a login popup), as they can all use the same `Error` message.
 
-Alternatively, you can use the function `Cmd.ofRemote`. This function is similar to `Cmd.ofAsync`, except that it handles both success and unauthorized call with the same message by passing a value of type `RemoteResponse<'resp>`:
-
-```fsharp
-type RemoteResponse<'resp> =
-    | Success of 'resp
-    | Unauthorized
-```
+Alternatively, you can use the function `Cmd.ofAuthorized`. This function is similar to `Cmd.ofAsync`, except that it handles both success and unauthorized call with the same message by passing a value of type `option<'resp>`. This value is `None` if the user is not authorized, or `Some` with the returned value if the user is authorized.
 
 This way is more convenient for a remote function that needs to handle authorization errors in a specific way.
 
@@ -384,7 +378,7 @@ type Message =
     // Trigger a `getSecretData` request
     | GetSecretData
     // Received response of a `getSecretData` request
-    | GotSecretData of RemoteResponse<string>
+    | GotSecretData of option<string>
     // A request threw an error
     | Error of exn
 
@@ -393,9 +387,9 @@ let update myService message model =
     | GetSecretData ->
         model,
         Cmd.ofRemote myService.getSecretData () GotSecretData Error
-    | GotSecretData (Success data) ->
+    | GotSecretData (Some data) ->
         { model with secretData = Some data }, []
-    | GotSecretData Unauthorized ->
+    | GotSecretData None ->
         // Tried to getSecretData, but the user was not signed in
         { model with secretData = None }, []
     | Error exn ->
