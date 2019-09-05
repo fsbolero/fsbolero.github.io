@@ -3,6 +3,40 @@ title: Upgrade guide
 subtitle: How to update a project for newer releases
 ---
 
+### From v0.7 to v0.8
+
+Bolero 0.8 upgrades the dependency on Blazor and .NET Core to 3.0-preview8. Here are the associated upgrade steps:
+
+* Install [.NET Core 3.0-preview8](https://dotnet.microsoft.com/download/dotnet-core).
+
+* The server-side module `Remote` has been removed, with its functions `withHttpContext`, `authorize` and `authorizeWith`.
+
+    Instead, a new type `IRemoteContext` is provided via dependency injection:
+
+    ```fsharp
+    type IRemoteContext =
+        inherit IHttpContextAccessor // member HttpContext : HttpContext with get, set
+        member Authorize : ('req -> Async<'resp>) -> ('req -> Async<'resp>)
+        member AuthorizeWith : seq<IAuthorizeData> -> ('req -> Async<'resp>) -> ('req -> Async<'resp>)
+    ```
+
+    To obtain this new value:
+
+    * If you use a `RemoteHandler` class with dependency injection, simply take `ctx: IRemoteContext` as additional argument in its constructor.
+
+    * If you use a plain record value, make it instead a function that takes `ctx: IRemoteContext` as argument and returns the record.
+        New overloads on `IServiceCollection.AddRemoting` can take such a function as argument.
+
+    Then, to use it:
+
+    * Replace `Remote.withContext <| fun http arg -> // ...` with a simple `fun arg -> ...`.
+
+    * Replace `Remote.authorize <| fun http arg -> // ...` with `ctx.Authorize <| fun arg -> ...`.
+
+    * Replace `Remote.authorizeWith attrs <| fun http arg -> // ...` with `ctx.AuthorizeWith attrs <| fun arg -> ...`.
+
+    In all three cases, use `ctx.HttpContext` instead of `http` in the function.
+
 ### From v0.6 to v0.7
 
 Bolero 0.7 updates the dependency on Blazor and .NET Core to 3.0-preview7. Here are the associated upgrade steps:

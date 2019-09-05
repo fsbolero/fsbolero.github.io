@@ -84,7 +84,39 @@ How to update a project for newer releases</p>
 
                 </div>
               </section>
-              <section class="section"><div ws-preserve=""><h3 id="from-v0.6-to-v0.7">From v0.6 to v0.7</h3>
+              <section class="section"><div ws-preserve=""><h3 id="from-v0.7-to-v0.8">From v0.7 to v0.8</h3>
+<p>Bolero 0.8 upgrades the dependency on Blazor and .NET Core to 3.0-preview8. Here are the associated upgrade steps:</p>
+<ul>
+<li><p>Install <a href="https://dotnet.microsoft.com/download/dotnet-core">.NET Core 3.0-preview8</a>.</p>
+</li>
+<li><p>The server-side module <code>Remote</code> has been removed, with its functions <code>withHttpContext</code>, <code>authorize</code> and <code>authorizeWith</code>.</p>
+<p>Instead, a new type <code>IRemoteContext</code> is provided via dependency injection:</p>
+<pre><code class="language-fsharp">type IRemoteContext =
+    inherit IHttpContextAccessor // member HttpContext : HttpContext with get, set
+    member Authorize : ('req -&gt; Async&lt;'resp&gt;) -&gt; ('req -&gt; Async&lt;'resp&gt;)
+    member AuthorizeWith : seq&lt;IAuthorizeData&gt; -&gt; ('req -&gt; Async&lt;'resp&gt;) -&gt; ('req -&gt; Async&lt;'resp&gt;)
+</code></pre>
+<p>To obtain this new value:</p>
+<ul>
+<li><p>If you use a <code>RemoteHandler</code> class with dependency injection, simply take <code>ctx: IRemoteContext</code> as additional argument in its constructor.</p>
+</li>
+<li><p>If you use a plain record value, make it instead a function that takes <code>ctx: IRemoteContext</code> as argument and returns the record.
+New overloads on <code>IServiceCollection.AddRemoting</code> can take such a function as argument.</p>
+</li>
+</ul>
+<p>Then, to use it:</p>
+<ul>
+<li><p>Replace <code>Remote.withContext &lt;| fun http arg -&gt; // ...</code> with a simple <code>fun arg -&gt; ...</code>.</p>
+</li>
+<li><p>Replace <code>Remote.authorize &lt;| fun http arg -&gt; // ...</code> with <code>ctx.Authorize &lt;| fun arg -&gt; ...</code>.</p>
+</li>
+<li><p>Replace <code>Remote.authorizeWith attrs &lt;| fun http arg -&gt; // ...</code> with <code>ctx.AuthorizeWith attrs &lt;| fun arg -&gt; ...</code>.</p>
+</li>
+</ul>
+<p>In all three cases, use <code>ctx.HttpContext</code> instead of <code>http</code> in the function.</p>
+</li>
+</ul>
+<h3 id="from-v0.6-to-v0.7">From v0.6 to v0.7</h3>
 <p>Bolero 0.7 updates the dependency on Blazor and .NET Core to 3.0-preview7. Here are the associated upgrade steps:</p>
 <ul>
 <li><p>Install <a href="https://dotnet.microsoft.com/download/dotnet-core">.NET Core 3.0-preview7</a>.</p>
@@ -217,6 +249,8 @@ If your code uses Blazor APIs directly, please check the Blazor <a href="https:/
                     </li><li>
                       <a class="is-active" href="/docs/Upgrade">Upgrade guide</a>
                       <ul><li>
+                          <a href="#from-v07-to-v08">From v0.7 to v0.8</a>
+                        </li><li>
                           <a href="#from-v06-to-v07">From v0.6 to v0.7</a>
                         </li><li>
                           <a href="#from-v05-to-v06">From v0.5 to v0.6</a>
