@@ -179,7 +179,11 @@ You might need to use injected dependencies in a remote service: a logger, a dat
             |> ignore
     ```
 
-#### `IRemoteContext`
+#### Using several services
+
+You can of course define several remote services in the same application. Each of them needs to be registered by a separate call to `AddRemoting` in `ConfigureServices`. A single call to `UseRemoting` is enough in `Configure`.
+
+### IRemoteContext
 
 > Introduced in v0.8.
 
@@ -195,10 +199,6 @@ Here is how to obtain an `IRemoteContext`:
     ```
 
 * If you are not using dependency injection, you can replace your handler record value with a function taking `IRemoteContext` as argument and returning a record.
-
-#### Using several services
-
-You can of course define several remote services in the same application. Each of them needs to be registered by a separate call to `AddRemoting` in `ConfigureServices`. A single call to `UseRemoting` is enough in `Configure`.
 
 ### Authentication and authorization
 
