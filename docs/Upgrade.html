@@ -84,10 +84,18 @@ How to update a project for newer releases</p>
 
                 </div>
               </section>
-              <section class="section"><div ws-preserve=""><h3 id="from-v0.7-to-v0.8">From v0.7 to v0.8</h3>
+              <section class="section"><div ws-preserve=""><h3 id="from-v0.8-to-v0.9">From v0.8 to v0.9</h3>
+<p>Bolero 0.9 upgrades the dependency on .NET Core to 3.0 RTM and on Blazor to 3.0-preview9. It doesn't include any breaking changes. Here are the associated upgrade steps:</p>
+<ul>
+<li><p>Install <a href="https://dotnet.microsoft.com/download/dotnet-core">the .NET Core 3.0 SDK</a>.</p>
+</li>
+<li><p>If you are using Visual Studio, upgrade to version 16.3.</p>
+</li>
+</ul>
+<h3 id="from-v0.7-to-v0.8">From v0.7 to v0.8</h3>
 <p>Bolero 0.8 upgrades the dependency on Blazor and .NET Core to 3.0-preview8. Here are the associated upgrade steps:</p>
 <ul>
-<li><p>Install <a href="https://dotnet.microsoft.com/download/dotnet-core">.NET Core 3.0-preview8</a>.</p>
+<li><p>Install <a href="https://dotnet.microsoft.com/download/dotnet-core">the .NET Core 3.0-preview8 SDK</a>.</p>
 </li>
 <li><p>The server-side module <code>Remote</code> has been removed, with its functions <code>withHttpContext</code>, <code>authorize</code> and <code>authorizeWith</code>.</p>
 <p>Instead, a new type <code>IRemoteContext</code> is provided via dependency injection:</p>
@@ -119,7 +127,7 @@ New overloads on <code>IServiceCollection.AddRemoting</code> can take such a fun
 <h3 id="from-v0.6-to-v0.7">From v0.6 to v0.7</h3>
 <p>Bolero 0.7 updates the dependency on Blazor and .NET Core to 3.0-preview7. Here are the associated upgrade steps:</p>
 <ul>
-<li><p>Install <a href="https://dotnet.microsoft.com/download/dotnet-core">.NET Core 3.0-preview7</a>.</p>
+<li><p>Install <a href="https://dotnet.microsoft.com/download/dotnet-core">the .NET Core 3.0-preview7 SDK</a>.</p>
 </li>
 <li><p><code>Cmd.ofRemote</code>, <code>Cmd.performRemote</code> and the related type <code>RemoteResponse&lt;'T&gt;</code> are obsolete. Here is how to update:</p>
 <ul>
@@ -133,7 +141,7 @@ New overloads on <code>IServiceCollection.AddRemoting</code> can take such a fun
 <h3 id="from-v0.5-to-v0.6">From v0.5 to v0.6</h3>
 <p>Bolero 0.6 updates the dependency on Blazor and .NET Core to 3.0-preview6. Here are the associated upgrade steps:</p>
 <ul>
-<li><p>Install <a href="https://dotnet.microsoft.com/download/dotnet-core">.NET Core 3.0-preview6</a>.</p>
+<li><p>Install <a href="https://dotnet.microsoft.com/download/dotnet-core">the .NET Core 3.0-preview6 SDK</a>.</p>
 </li>
 <li><p>The server-side <code>Startup.fs</code> code has changed. In <code>Configure</code>, the method <code>UseBlazor</code> has been removed; replace it with the following:</p>
 <pre><code class="language-fsharp">    .UseClientSideBlazorFiles&lt;Client.Startup&gt;()
@@ -167,7 +175,7 @@ New overloads on <code>IServiceCollection.AddRemoting</code> can take such a fun
 However, it upgrades the dependency on Blazor from 0.7 to 3.0-preview5; and by doing so, it also upgrades the dependency on .NET Core from 2.1 to 3.0-preview5.
 This brings a number of necessary changes to projects. Here are the necessary steps:</p>
 <ul>
-<li><p>Install <a href="https://dotnet.microsoft.com/download/dotnet-core">.NET Core 3.0-preview5</a>.</p>
+<li><p>Install <a href="https://dotnet.microsoft.com/download/dotnet-core">the .NET Core 3.0-preview5 SDK</a>.</p>
 </li>
 <li><p>If your solution contains a <code>global.json</code> file with an explicit SDK version, either remove the file or update its SDK version to <code>3.0.100-preview5</code>.</p>
 </li>
@@ -249,6 +257,8 @@ If your code uses Blazor APIs directly, please check the Blazor <a href="https:/
                     </li><li>
                       <a class="is-active" href="/docs/Upgrade">Upgrade guide</a>
                       <ul><li>
+                          <a href="#from-v08-to-v09">From v0.8 to v0.9</a>
+                        </li><li>
                           <a href="#from-v07-to-v08">From v0.7 to v0.8</a>
                         </li><li>
                           <a href="#from-v06-to-v07">From v0.6 to v0.7</a>

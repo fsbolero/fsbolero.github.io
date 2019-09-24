@@ -266,6 +266,65 @@ and ArticleId =
             | BlogList(user, page) -&gt; sprintf &quot;/list/%s/%i&quot; user page
     }
 </code></pre>
+<h3 id="page-models">Page Models</h3>
+<p>It is common to have a part of the application's model that is specific to a page. For example, a login page has the username and password that the user is typing. A &quot;list of items&quot; page has the items, which may have been downloaded from a <a href="Remoting">remote function</a>. And so on.</p>
+<p>Let's take for example an application like the following:</p>
+<pre><code class="language-fsharp">
+type PersonModel = { name: string; age: int }
+
+type LoginModel = { username: string; password: string }
+
+type Page =
+    | [&lt;EndPoint &quot;/people&quot;&gt;] People  // Displays a list of Person
+    | [&lt;EndPoint &quot;/login&quot;&gt;] Login    // Shows a login screen with Login data
+</code></pre>
+<p>There are essentially two ways to handle page models:</p>
+<ol>
+<li><p>Simply store the page model as a field of the application model. This is a reasonable way to go if you want to persist the state across page changes, and simply reuse the already loaded model when switching back to this page. For example, it may be a nice way to store the people in our application.</p>
+<pre><code class="language-fsharp">type Model =
+    {
+        page: Page
+        people: PersonModel list
+    }
+</code></pre>
+</li>
+<li><p>Store the page model in the Page union, so that it only exists when that is the current page. This is a better solution for our Login page: for security reasons, we don't want to keep the credentials in memory beyond the login page!</p>
+<p>For this purpose, Bolero has the type <code>PageModel&lt;'T&gt;</code>. When a page has an argument of type <code>PageModel&lt;'T&gt;</code>, it is not included in the page's URL and simply kept as internal state.</p>
+<pre><code class="language-fsharp">type Page =
+    | [&lt;EndPoint &quot;/people&quot;&gt;] People
+    | [&lt;EndPoint &quot;/login&quot;&gt;] Login of PageModel&lt;LoginModel&gt;
+</code></pre>
+<p><code>PageModel&lt;'T&gt;</code> is simply a record with a field <code>Model : 'T</code>:</p>
+<pre><code class="language-fsharp">type Message =
+    | SetPage of Page
+    | SetUsername of string
+    | SetPassword of string
+
+let updateLogin (update: LoginModel -&gt; LoginModel) (model: Model) : Model =
+    match model.page with
+    | Login login -&gt; { model with page = Login { Model = update login.Model } }
+    | _ -&gt; model
+
+let update (message: Message) (model: Model) =
+    match message with
+    | SetPage p -&gt; { model with page = p }
+    | SetUsername username -&gt; model |&gt; updateLogin (fun l -&gt; { l with username = username })
+    | SetPassword password -&gt; model |&gt; updateLogin (fun l -&gt; { l with password = password })
+</code></pre>
+<p>There is one more requirement to be able to use <code>PageModel</code>: you must define the default value for the page model. Indeed, when the user clicks a link <code>/login</code>, Bolero needs to know what <code>LoginModel</code> value it needs to pass to <code>Login</code>!
+In order to define this default page model, instead of creating the router with <code>Router.infer</code>, you must use <code>Router.inferWithModel</code>. It takes an additional function of type <code>Page -&gt; unit</code>. In this function, you must call <code>Router.definePageModel</code> with the default value of every page model in the router:</p>
+<pre><code class="language-fsharp">let defaultModel = function
+    | People -&gt; ()
+    | Login model -&gt; Router.definePageModel model { username = &quot;&quot;; password = &quot;&quot; }
+
+let router = Router.inferWithModel SetPage (fun m -&gt; m.page) defaultModel
+</code></pre>
+<p>And finally, when calling the functions <code>router.Link</code> or <code>router.HRef</code> to create a link to a page, you need to have a dummy page model value to pass to <code>Login</code>. You can use <code>Router.noModel</code> for this purpose:</p>
+<pre><code class="language-fsharp">let s = router.Link (Login Router.noModel)
+// s = &quot;/login&quot;
+</code></pre>
+</li>
+</ol>
 </div></section>
             </div>
             <div class="column is-one-quarter-tablet is-one-fifth-desktop sidebar-column">
@@ -292,6 +351,8 @@ and ArticleId =
                           <a href="#inferred-router">Inferred router</a>
                         </li><li>
                           <a href="#custom-router">Custom router</a>
+                        </li><li>
+                          <a href="#page-models">Page Models</a>
                         </li></ul>
                     </li><li>
                       <a href="/docs/Remoting">Remoting</a>

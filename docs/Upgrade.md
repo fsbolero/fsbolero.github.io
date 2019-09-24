@@ -3,11 +3,19 @@ title: Upgrade guide
 subtitle: How to update a project for newer releases
 ---
 
+### From v0.8 to v0.9
+
+Bolero 0.9 upgrades the dependency on .NET Core to 3.0 RTM and on Blazor to 3.0-preview9. It doesn't include any breaking changes. Here are the associated upgrade steps:
+
+* Install [the .NET Core 3.0 SDK](https://dotnet.microsoft.com/download/dotnet-core).
+
+* If you are using Visual Studio, upgrade to version 16.3.
+
 ### From v0.7 to v0.8
 
 Bolero 0.8 upgrades the dependency on Blazor and .NET Core to 3.0-preview8. Here are the associated upgrade steps:
 
-* Install [.NET Core 3.0-preview8](https://dotnet.microsoft.com/download/dotnet-core).
+* Install [the .NET Core 3.0-preview8 SDK](https://dotnet.microsoft.com/download/dotnet-core).
 
 * The server-side module `Remote` has been removed, with its functions `withHttpContext`, `authorize` and `authorizeWith`.
 
@@ -41,7 +49,7 @@ Bolero 0.8 upgrades the dependency on Blazor and .NET Core to 3.0-preview8. Here
 
 Bolero 0.7 updates the dependency on Blazor and .NET Core to 3.0-preview7. Here are the associated upgrade steps:
 
-* Install [.NET Core 3.0-preview7](https://dotnet.microsoft.com/download/dotnet-core).
+* Install [the .NET Core 3.0-preview7 SDK](https://dotnet.microsoft.com/download/dotnet-core).
 
 * `Cmd.ofRemote`, `Cmd.performRemote` and the related type `RemoteResponse<'T>` are obsolete. Here is how to update:
 
@@ -53,7 +61,7 @@ Bolero 0.7 updates the dependency on Blazor and .NET Core to 3.0-preview7. Here 
 
 Bolero 0.6 updates the dependency on Blazor and .NET Core to 3.0-preview6. Here are the associated upgrade steps:
 
-* Install [.NET Core 3.0-preview6](https://dotnet.microsoft.com/download/dotnet-core).
+* Install [the .NET Core 3.0-preview6 SDK](https://dotnet.microsoft.com/download/dotnet-core).
 
 * The server-side `Startup.fs` code has changed. In `Configure`, the method `UseBlazor` has been removed; replace it with the following:
 
@@ -94,7 +102,7 @@ Bolero 0.5 doesn't bring any breaking API changes.
 However, it upgrades the dependency on Blazor from 0.7 to 3.0-preview5; and by doing so, it also upgrades the dependency on .NET Core from 2.1 to 3.0-preview5.
 This brings a number of necessary changes to projects. Here are the necessary steps:
 
-* Install [.NET Core 3.0-preview5](https://dotnet.microsoft.com/download/dotnet-core).
+* Install [the .NET Core 3.0-preview5 SDK](https://dotnet.microsoft.com/download/dotnet-core).
 
 * If your solution contains a `global.json` file with an explicit SDK version, either remove the file or update its SDK version to `3.0.100-preview5`.
 

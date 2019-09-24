@@ -235,3 +235,80 @@ let customRouter2 : Router<Model, Message> =
             | BlogList(user, page) -> sprintf "/list/%s/%i" user page
     }
 ```
+
+### Page Models
+
+It is common to have a part of the application's model that is specific to a page. For example, a login page has the username and password that the user is typing. A "list of items" page has the items, which may have been downloaded from a [remote function](Remoting). And so on.
+
+Let's take for example an application like the following:
+
+```fsharp
+
+type PersonModel = { name: string; age: int }
+
+type LoginModel = { username: string; password: string }
+
+type Page =
+    | [<EndPoint "/people">] People  // Displays a list of Person
+    | [<EndPoint "/login">] Login    // Shows a login screen with Login data
+```
+
+There are essentially two ways to handle page models:
+
+1. Simply store the page model as a field of the application model. This is a reasonable way to go if you want to persist the state across page changes, and simply reuse the already loaded model when switching back to this page. For example, it may be a nice way to store the people in our application.
+
+    ```fsharp
+    type Model =
+        {
+            page: Page
+            people: PersonModel list
+        }
+    ```
+
+2. Store the page model in the Page union, so that it only exists when that is the current page. This is a better solution for our Login page: for security reasons, we don't want to keep the credentials in memory beyond the login page!
+
+    For this purpose, Bolero has the type `PageModel<'T>`. When a page has an argument of type `PageModel<'T>`, it is not included in the page's URL and simply kept as internal state.
+
+    ```fsharp
+    type Page =
+        | [<EndPoint "/people">] People
+        | [<EndPoint "/login">] Login of PageModel<LoginModel>
+    ```
+
+    `PageModel<'T>` is simply a record with a field `Model : 'T`:
+
+    ```fsharp
+    type Message =
+        | SetPage of Page
+        | SetUsername of string
+        | SetPassword of string
+
+    let updateLogin (update: LoginModel -> LoginModel) (model: Model) : Model =
+        match model.page with
+        | Login login -> { model with page = Login { Model = update login.Model } }
+        | _ -> model
+
+    let update (message: Message) (model: Model) =
+        match message with
+        | SetPage p -> { model with page = p }
+        | SetUsername username -> model |> updateLogin (fun l -> { l with username = username })
+        | SetPassword password -> model |> updateLogin (fun l -> { l with password = password })
+    ```
+
+    There is one more requirement to be able to use `PageModel`: you must define the default value for the page model. Indeed, when the user clicks a link `/login`, Bolero needs to know what `LoginModel` value it needs to pass to `Login`!
+    In order to define this default page model, instead of creating the router with `Router.infer`, you must use `Router.inferWithModel`. It takes an additional function of type `Page -> unit`. In this function, you must call `Router.definePageModel` with the default value of every page model in the router:
+
+    ```fsharp
+    let defaultModel = function
+        | People -> ()
+        | Login model -> Router.definePageModel model { username = ""; password = "" }
+
+    let router = Router.inferWithModel SetPage (fun m -> m.page) defaultModel
+    ```
+
+    And finally, when calling the functions `router.Link` or `router.HRef` to create a link to a page, you need to have a dummy page model value to pass to `Login`. You can use `Router.noModel` for this purpose:
+
+    ```fsharp
+    let s = router.Link (Login Router.noModel)
+    // s = "/login"
+    ```
