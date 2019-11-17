@@ -71,3 +71,13 @@
 .content pre {
   margin: 1em 0;
 }
+
+.edit-page-icon {
+  float: right;
+  padding: 10px;
+
+  a {
+    color: $grey;
+    font-size: $size-5;
+  }
+}
