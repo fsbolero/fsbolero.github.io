@@ -19,7 +19,7 @@ The type provider `Bolero.Template` takes one static parameter, which is a strin
     type Hello = Template<"hello.html">
     ```
 
-> The difference between the two is based on a simple heursitic: if the string contains the character `'<'`, it is read as plain HTML, otherwise it is read as a file path.
+> The difference between the two is based on a simple heuristic: if the string contains the character `'<'`, it is read as plain HTML, otherwise it is read as a file path.
 
 To instantiate a template, call its constructor and then the `.Elt()` method.
 
