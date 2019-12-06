@@ -42,7 +42,13 @@ dotnet run -p src/HelloWorld.Server
 
 This will start the server and run the following minimal application at `localhost:5000`:
 
-![Hello World application screenshot](helloworld-browser.png)
+![Hello World application screenshot](sample-app.png)
+
+This sample application demonstrates 3 `types` of web applications:
+
+1. A static web site - Home
+2. A Client side only application - Counter
+3. An application with Server side interaction- Download Data
 
 ### Discovering the startup project
 
@@ -53,8 +59,8 @@ The solution you just created comprises two projects.
     * `Main.fs` contains the main body of the page. This is where the meat of the application is: as you develop, you will mostly be coding here and in new files referenced from here.
 
     * `wwwroot/` contains static content. In particular, `index.html` is the actual page that is served. It contains a script reference to `blazor.webassembly.js`, which in turn loads your application.
-    
-        If you want to add styles and images to your application, this is the folder to put them.
+
+        If you want to add styles and images to your application, this is the folder to put them in.
 
     * `Startup.fs` sets up Blazor to get the application started. You will rarely need to touch it: essentially only to set up [remoting](Remoting), if you want to use it.
 

@@ -115,7 +115,13 @@ Welcome to Bolero: F# on WebAssembly!</p>
 dotnet run -p src/HelloWorld.Server
 </code></pre>
 <p>This will start the server and run the following minimal application at <code>localhost:5000</code>:</p>
-<p><img src="helloworld-browser.png" alt="Hello World application screenshot" /></p>
+<p><img src="sample-app.png" alt="Hello World application screenshot" /></p>
+<p>This sample application demonstrates 3 <code>types</code> of web applications:</p>
+<ol>
+<li>A static web site - Home</li>
+<li>A Client side only application - Counter</li>
+<li>An application with Server side interaction- Download Data</li>
+</ol>
 <h3 id="discovering-the-startup-project">Discovering the startup project</h3>
 <p>The solution you just created comprises two projects.</p>
 <ul>
@@ -124,7 +130,7 @@ dotnet run -p src/HelloWorld.Server
 <li><p><code>Main.fs</code> contains the main body of the page. This is where the meat of the application is: as you develop, you will mostly be coding here and in new files referenced from here.</p>
 </li>
 <li><p><code>wwwroot/</code> contains static content. In particular, <code>index.html</code> is the actual page that is served. It contains a script reference to <code>blazor.webassembly.js</code>, which in turn loads your application.</p>
-<p>If you want to add styles and images to your application, this is the folder to put them.</p>
+<p>If you want to add styles and images to your application, this is the folder to put them in.</p>
 </li>
 <li><p><code>Startup.fs</code> sets up Blazor to get the application started. You will rarely need to touch it: essentially only to set up <a href="Remoting">remoting</a>, if you want to use it.</p>
 </li>
