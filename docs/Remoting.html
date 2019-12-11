@@ -122,7 +122,9 @@ type Startup() =
 </code></pre>
 </li>
 <li><p>Retrieve the client-side service in the <code>ProgramComponent</code> by using <code>this.Remote</code>:</p>
-<pre><code class="language-fsharp">type App() =
+<pre><code class="language-fsharp">open Bolero.Remoting
+
+type App() =
     inherit ProgramComponent&lt;Model, Message&gt;()
 
     override this.Program =

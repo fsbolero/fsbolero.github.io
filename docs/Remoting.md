@@ -46,6 +46,8 @@ On the client side, you will typically want to call these functions in the `upda
 2. Retrieve the client-side service in the `ProgramComponent` by using `this.Remote`:
 
     ```fsharp
+    open Bolero.Remoting
+
     type App() =
         inherit ProgramComponent<Model, Message>()
 
