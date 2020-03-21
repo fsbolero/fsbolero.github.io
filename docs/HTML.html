@@ -262,7 +262,7 @@ let myElement (isBlue: bool) =
 <li>The current value, which generally comes from the <a href="Elmish">Elmish</a> model.</li>
 <li>A setter function, which generally calls the Elmish dispatch function.</li>
 </ol>
-<p>Here is an example using <code>bind.input</code>:</p>
+<p>Here is an example using <code>bind.input.string</code>:</p>
 <pre><code class="language-fsharp">type Model = { username: string }
 
 type Message =
@@ -270,24 +270,34 @@ type Message =
 
 let hello model dispatch =
     input [
-        bind.input model.username (fun n -&gt; dispatch (SetUsername n))
+        bind.input.string model.username (fun n -&gt; dispatch (SetUsername n))
+
+        // Equivalent but more concise, using the composition operator:
+        bind.input.string model.username (dispatch &lt;&lt; SetUsername)
     ]
 </code></pre>
-<p>The functions in the <code>bind</code> module are:</p>
+<p>The module <code>bind</code> contains the submodules <code>input</code> and <code>change</code>:</p>
 <ul>
-<li><p><code>bind.input</code> binds to the <code>value</code> property of an element, as a string, by listening to the <code>oninput</code> event. This means that the callback is called on every user interaction on the element that changes its value. For example, on a text input, it is triggered on every keystroke.</p>
-<p>It is suitable for <code>input</code> and <code>textarea</code> elements.</p>
+<li><p>Functions in <code>bind.input</code> bind to the <code>value</code> property of an element by listening to the <code>oninput</code> event. This means that the callback is called on every user interaction on the element that changes its value. For example, on a text input, it is triggered on every keystroke.</p>
+<p>They are suitable for <code>input</code> and <code>textarea</code> elements.</p>
 </li>
-<li><p><code>bind.change</code> is identical to <code>bind.input</code> except that it listens to the <code>onchange</code> event. This means that the callback is called when a change is &quot;committed&quot; by the user. For example, on a text input, it is triggered when the user presses Enter or unfocuses the element after changing the value.</p>
-<p>It is suitable for <code>input</code>, <code>textarea</code> and <code>select</code> elements.</p>
-</li>
-<li><p><code>bind.inputInt</code> and <code>bind.changeInt</code> bind to the <code>value</code> property of an element as an <code>int</code>, by listening to the corresponding event. They are particularly suitable with an input that has <code>attr.``type`` &quot;number&quot;</code>. If the value cannot be parsed as an <code>int</code> during an event, the setter is not called.</p>
-</li>
-<li><p><code>bind.inputFloat</code> and <code>bind.changeFloat</code> bind to the <code>value</code> property of an element as a <code>float</code>, by listening to the corresponding event. They are particularly suitable with an input that has <code>attr.``type`` &quot;number&quot;</code>. If the value cannot be parsed as a <code>float</code> during an event, the setter is not called.</p>
-</li>
-<li><p><code>bind.checked</code> binds to the <code>checked</code> property of a checkbox input. Note that you also need to add <code>attr.``type`` &quot;checkbox&quot;</code> to the input.</p>
+<li><p>Functions in <code>bind.change</code> are identical except that they listen to the <code>onchange</code> event. This means that the callback is called when a change is &quot;committed&quot; by the user. For example, on a text input, it is triggered when the user presses Enter or unfocuses the element after changing its value.</p>
+<p>They are suitable for <code>input</code>, <code>textarea</code> and <code>select</code> elements.</p>
 </li>
 </ul>
+<p>These submodules contain functions that bind to a value with the corresponding type:</p>
+<ul>
+<li><code>string</code></li>
+<li><code>int</code></li>
+<li><code>int64</code></li>
+<li><code>float</code></li>
+<li><code>float32</code></li>
+<li><code>decimal</code></li>
+<li><code>dateTime</code></li>
+<li><code>dateTimeOffset</code></li>
+</ul>
+<p>The number-typed functions are particularly suitable with an input that has <code>attr.``type`` &quot;number&quot;</code>.</p>
+<p>Additionally, the module <code>bind</code> directly contains a function <code>checked</code> which binds to the <code>checked</code> property of a checkbox input. Note that you also need to add <code>attr.``type`` &quot;checkbox&quot;</code> to the input.</p>
 <pre><code class="language-fsharp">type Model = { isChecked: bool }
 
 type Message =
@@ -299,7 +309,7 @@ let hello model dispatch =
         bind.checked model.isChecked (fun c -&gt; dispatch (SetChecked c))
     ]
 </code></pre>
-<p>For radio buttons, you can use <code>bind.change</code> like so:</p>
+<p>For radio buttons, you can use <code>bind.change.*</code> like so:</p>
 <pre><code class="language-fsharp">type Color = Red | Green | Blue
 type Model = { color: Color }
 
@@ -317,7 +327,7 @@ let hello model dispatch =
             // HTML requires each button to have a different string value,
             // but you don't have to use this string in the event handler
             // if you have a better typed value at hand (here, `color`).
-            bind.change (string color) (fun _ -&gt; dispatch (SetColor color))
+            bind.change.string (string color) (fun _ -&gt; dispatch (SetColor color))
         ]
 </code></pre>
 <h3 id="components">Components</h3>

@@ -231,7 +231,7 @@ Attributes defined in the `bind` module define two-way binding with the element'
 1. The current value, which generally comes from the [Elmish](Elmish) model.
 2. A setter function, which generally calls the Elmish dispatch function.
 
-Here is an example using `bind.input`:
+Here is an example using `bind.input.string`:
 
 ```fsharp
 type Model = { username: string }
@@ -241,25 +241,37 @@ type Message =
 
 let hello model dispatch =
     input [
-        bind.input model.username (fun n -> dispatch (SetUsername n))
+        bind.input.string model.username (fun n -> dispatch (SetUsername n))
+
+        // Equivalent but more concise, using the composition operator:
+        bind.input.string model.username (dispatch << SetUsername)
     ]
 ```
 
-The functions in the `bind` module are:
+The module `bind` contains the submodules `input` and `change`:
 
-* `bind.input` binds to the `value` property of an element, as a string, by listening to the `oninput` event. This means that the callback is called on every user interaction on the element that changes its value. For example, on a text input, it is triggered on every keystroke.
+* Functions in `bind.input` bind to the `value` property of an element by listening to the `oninput` event. This means that the callback is called on every user interaction on the element that changes its value. For example, on a text input, it is triggered on every keystroke.
 
-    It is suitable for `input` and `textarea` elements.
+    They are suitable for `input` and `textarea` elements.
 
-* `bind.change` is identical to `bind.input` except that it listens to the `onchange` event. This means that the callback is called when a change is "committed" by the user. For example, on a text input, it is triggered when the user presses Enter or unfocuses the element after changing the value.
+* Functions in `bind.change` are identical except that they listen to the `onchange` event. This means that the callback is called when a change is "committed" by the user. For example, on a text input, it is triggered when the user presses Enter or unfocuses the element after changing its value.
 
-    It is suitable for `input`, `textarea` and `select` elements.
+    They are suitable for `input`, `textarea` and `select` elements.
 
-* `bind.inputInt` and `bind.changeInt` bind to the `value` property of an element as an `int`, by listening to the corresponding event. They are particularly suitable with an input that has ```attr.``type`` "number"```. If the value cannot be parsed as an `int` during an event, the setter is not called.
+These submodules contain functions that bind to a value with the corresponding type:
 
-* `bind.inputFloat` and `bind.changeFloat` bind to the `value` property of an element as a `float`, by listening to the corresponding event. They are particularly suitable with an input that has ```attr.``type`` "number"```. If the value cannot be parsed as a `float` during an event, the setter is not called.
+* `string`
+* `int`
+* `int64`
+* `float`
+* `float32`
+* `decimal`
+* `dateTime`
+* `dateTimeOffset`
 
-* `bind.checked` binds to the `checked` property of a checkbox input. Note that you also need to add ```attr.``type`` "checkbox"``` to the input.
+The number-typed functions are particularly suitable with an input that has ```attr.``type`` "number"```.
+
+Additionally, the module `bind` directly contains a function `checked` which binds to the `checked` property of a checkbox input. Note that you also need to add ```attr.``type`` "checkbox"``` to the input.
 
 ```fsharp
 type Model = { isChecked: bool }
@@ -274,7 +286,7 @@ let hello model dispatch =
     ]
 ```
 
-For radio buttons, you can use `bind.change` like so:
+For radio buttons, you can use `bind.change.*` like so:
 
 ```fsharp
 type Color = Red | Green | Blue
@@ -294,7 +306,7 @@ let hello model dispatch =
             // HTML requires each button to have a different string value,
             // but you don't have to use this string in the event handler
             // if you have a better typed value at hand (here, `color`).
-            bind.change (string color) (fun _ -> dispatch (SetColor color))
+            bind.change.string (string color) (fun _ -> dispatch (SetColor color))
         ]
 ```
 
