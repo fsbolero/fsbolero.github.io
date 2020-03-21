@@ -91,7 +91,123 @@ How to update a project for newer releases</p>
 
                 </div>
               </section>
-              <section class="section"><div ws-preserve=""><h3 id="from-v0.8-to-v0.9">From v0.8 to v0.9</h3>
+              <section class="section"><div ws-preserve=""><h3 id="from-v0.11-to-v0.12">From v0.11 to v0.12</h3>
+<p>Bolero 0.12 upgrades the dependency on .NET Core SDK 3.1.102 or newer and on Blazor to 3.2-preview2. Here are the associated upgrade steps:</p>
+<ul>
+<li><p>Install <a href="https://dotnet.microsoft.com/download/dotnet-core">the .NET Core 3.1.102 SDK or newer</a>.</p>
+</li>
+<li><p>If you are using Visual Studio, check on the above page for the corresponding version (16.4 or 16.5).</p>
+</li>
+<li><p>Follow closely the upgrade guides for <a href="https://devblogs.microsoft.com/aspnet/blazor-webassembly-3-2-0-preview-1-release-now-available/">Blazor 3.2-preview1</a> and <a href="https://devblogs.microsoft.com/aspnet/blazor-webassembly-3-2-0-preview-2-release-now-available/">Blazor 3.2-preview2.</a> Note in particular the NuGet package renames in the latter. Regarding <code>WebAssemblyHost</code>, see the client-side changes below.</p>
+</li>
+<li><p>In your client <code>.fsproj</code> file, inside the <code>&lt;PropertyGroup&gt;</code> tag, add the following:</p>
+<pre><code class="language-xml">&lt;RazorLangVersion&gt;3.0&lt;/RazorLangVersion&gt;
+</code></pre>
+</li>
+<li><p>The client-side startup has been completely revamped in Blazor 3.2; <a href="https://devblogs.microsoft.com/aspnet/blazor-webassembly-3-2-0-preview-1-release-now-available/">see the Blazor 3.2-preview1 announcement for more details.</a>. A startup file like the following:</p>
+<pre><code class="language-fsharp">namespace HelloWorld.Client
+
+open Microsoft.AspNetCore.Blazor.Hosting
+open Microsoft.Extensions.DependencyInjection
+open Microsoft.AspNetCore.Components.Builder
+
+type Startup() =
+
+    member __.ConfigureServices(services: IServiceCollection) =
+        // [1] Services configuration:
+        services.AddRemoting() |&gt; ignore
+
+    member __.Configure(app: IComponentsApplicationBuilder) =
+        // [2] Component configuration:
+        app.AddComponent&lt;MyApp&gt;(&quot;#main&quot;)
+
+module Program =
+
+    [&lt;EntryPoint&gt;]
+    let Main args =
+        BlazorWebAssemblyHost.CreateDefaultBuilder()
+             .UseBlazorStartup&lt;Startup&gt;()
+             .Build()
+             .Run()
+        0
+</code></pre>
+<p>becomes:</p>
+<pre><code class="language-fsharp">namespace HelloWorld.Client
+
+open Microsoft.AspNetCore.Components.WebAssembly.Hosting
+
+module Program =
+
+    [&lt;EntryPoint&gt;]
+    let Main args =
+        let builder = WebAssemblyHostBuilder.CreateDefault(args)
+
+        // [1] Services configuration:
+        builder.Services.AddRemoting() |&gt; ignore
+
+        // [2] Component configuration:
+        builder.RootComponents.Add&lt;MyApp&gt;(&quot;#main&quot;)
+
+        builder.Build().RunAsync() |&gt; ignore
+        0
+</code></pre>
+</li>
+<li><p>In the server-side startup, replace the following:</p>
+<pre><code class="language-fsharp">app.UseClientSideBlazorFiles&lt;Client.Main.MyApp&gt;()
+</code></pre>
+<p>with:</p>
+<pre><code class="language-fsharp">app.UseBlazorFrameworkFiles()
+</code></pre>
+<p>and the following:</p>
+<pre><code class="language-fsharp">.UseEndpoints(fun endpoints -&gt;
+    endpoints.MapDefaultControllerRoute() |&gt; ignore
+    endpoints.MapFallbackToClientSideBlazor&lt;Client.Startup&gt;(&quot;index.html&quot;) |&gt; ignore)
+</code></pre>
+<p>with:</p>
+<pre><code class="language-fsharp">.UseEndpoints(fun endpoints -&gt;
+    endpoints.MapControllers() |&gt; ignore
+    endpoints.MapFallbackToFile(&quot;index.html&quot;) |&gt; ignore)
+</code></pre>
+<p>Additionally, in the <code>main</code> function, under <code>WebHost.CreateDefaultBuilder(args)</code>, add:</p>
+<pre><code class="language-fsharp">    .UseStaticWebAssets()
+</code></pre>
+<p>See <a href="https://devblogs.microsoft.com/aspnet/blazor-webassembly-3-2-0-preview-2-release-now-available/">the Blazor 3.2-preview2 announcement</a> for more details.</p>
+</li>
+</ul>
+<h3 id="from-v0.10-to-v0.11">From v0.10 to v0.11</h3>
+<p>Bolero 0.11 upgrades the dependency on .NET Core to 3.1 and on Blazor to 3.1-preview4. Here are the associated upgrade steps:</p>
+<ul>
+<li><p>Install <a href="https://dotnet.microsoft.com/download/dotnet-core">the .NET Core 3.1 SDK or newer</a>.</p>
+</li>
+<li><p>If you are using Visual Studio, upgrade to version 16.4.</p>
+</li>
+<li><p>Change the <code>&lt;TargetFramework&gt;</code> of your client <code>.fsproj</code> file from <code>netstandard2.0</code> to <code>netstandard2.1</code>.</p>
+</li>
+<li><p>Change the <code>&lt;TargetFramework&gt;</code> of your server <code>.fsproj</code> file from <code>netcoreapp3.0</code> to <code>netcoreapp3.1</code>.</p>
+</li>
+<li><p>The API for binders have been changed.<br />
+The <code>bind</code> module now contains submodules <code>bind.input</code> and <code>bind.change</code> which in turn contain functions for the type of value being bound: <code>string</code>, <code>int</code>, <code>int64</code>, <code>float</code>, <code>float32</code>, <code>decimal</code>, <code>dateTime</code> and <code>dateTimeOffset</code>.<br />
+Additionally, a module <code>bind.withCulture</code> contains the same submodules with functions taking an additional <code>CultureInfo</code> as argument to specify the culture to use to parse the value.</p>
+<p>For example, the following:</p>
+<pre><code class="language-fsharp">concat [
+    input [bind.input model.name (fun n -&gt; dispatch (SetName n))]
+    input [bind.inputInt model.age (fun a -&gt; dispatch (SetAge a))]
+]
+</code></pre>
+<p>becomes:</p>
+<pre><code class="language-fsharp">concat [
+    input [bind.input.string model.name (fun n -&gt; dispatch (SetName n))]
+    input [bind.input.int model.name (fun n -&gt; dispatch (SetName n))]
+]
+</code></pre>
+</li>
+</ul>
+<h3 id="from-v0.9-to-v0.10">From v0.9 to v0.10</h3>
+<p>Bolero 0.10 doesn't change the dependencies from 0.9. It has one breaking change:</p>
+<ul>
+<li>The function <code>ecomp</code> now takes an additional list of attributes as first argument.</li>
+</ul>
+<h3 id="from-v0.8-to-v0.9">From v0.8 to v0.9</h3>
 <p>Bolero 0.9 upgrades the dependency on .NET Core to 3.0 RTM and on Blazor to 3.0-preview9. It doesn't include any breaking changes. Here are the associated upgrade steps:</p>
 <ul>
 <li><p>Install <a href="https://dotnet.microsoft.com/download/dotnet-core">the .NET Core 3.0 SDK</a>.</p>
@@ -264,6 +380,12 @@ If your code uses Blazor APIs directly, please check the Blazor <a href="https:/
                     </li><li>
                       <a class="is-active" href="/docs/Upgrade">Upgrade guide</a>
                       <ul><li>
+                          <a href="#from-v011-to-v012">From v0.11 to v0.12</a>
+                        </li><li>
+                          <a href="#from-v010-to-v011">From v0.10 to v0.11</a>
+                        </li><li>
+                          <a href="#from-v09-to-v010">From v0.9 to v0.10</a>
+                        </li><li>
                           <a href="#from-v08-to-v09">From v0.8 to v0.9</a>
                         </li><li>
                           <a href="#from-v07-to-v08">From v0.7 to v0.8</a>

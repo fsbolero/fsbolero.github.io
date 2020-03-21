@@ -3,6 +3,151 @@ title: Upgrade guide
 subtitle: How to update a project for newer releases
 ---
 
+### From v0.11 to v0.12
+
+Bolero 0.12 upgrades the dependency on .NET Core SDK 3.1.102 or newer and on Blazor to 3.2-preview2. Here are the associated upgrade steps:
+
+* Install [the .NET Core 3.1.102 SDK or newer](https://dotnet.microsoft.com/download/dotnet-core).
+
+* If you are using Visual Studio, check on the above page for the corresponding version (16.4 or 16.5).
+
+* Follow closely the upgrade guides for [Blazor 3.2-preview1](https://devblogs.microsoft.com/aspnet/blazor-webassembly-3-2-0-preview-1-release-now-available/) and [Blazor 3.2-preview2.](https://devblogs.microsoft.com/aspnet/blazor-webassembly-3-2-0-preview-2-release-now-available/) Note in particular the NuGet package renames in the latter. Regarding `WebAssemblyHost`, see the client-side changes below.
+
+* In your client `.fsproj` file, inside the `<PropertyGroup>` tag, add the following:
+
+    ```xml
+    <RazorLangVersion>3.0</RazorLangVersion>
+    ```
+
+* The client-side startup has been completely revamped in Blazor 3.2; [see the Blazor 3.2-preview1 announcement for more details.](https://devblogs.microsoft.com/aspnet/blazor-webassembly-3-2-0-preview-1-release-now-available/). A startup file like the following:
+
+    ```fsharp
+    namespace HelloWorld.Client
+
+    open Microsoft.AspNetCore.Blazor.Hosting
+    open Microsoft.Extensions.DependencyInjection
+    open Microsoft.AspNetCore.Components.Builder
+
+    type Startup() =
+
+        member __.ConfigureServices(services: IServiceCollection) =
+            // [1] Services configuration:
+            services.AddRemoting() |> ignore
+
+        member __.Configure(app: IComponentsApplicationBuilder) =
+            // [2] Component configuration:
+            app.AddComponent<MyApp>("#main")
+
+    module Program =
+
+        [<EntryPoint>]
+        let Main args =
+            BlazorWebAssemblyHost.CreateDefaultBuilder()
+                 .UseBlazorStartup<Startup>()
+                 .Build()
+                 .Run()
+            0
+    ```
+
+    becomes:
+
+    ```fsharp
+    namespace HelloWorld.Client
+
+    open Microsoft.AspNetCore.Components.WebAssembly.Hosting
+
+    module Program =
+
+        [<EntryPoint>]
+        let Main args =
+            let builder = WebAssemblyHostBuilder.CreateDefault(args)
+
+            // [1] Services configuration:
+            builder.Services.AddRemoting() |> ignore
+
+            // [2] Component configuration:
+            builder.RootComponents.Add<MyApp>("#main")
+
+            builder.Build().RunAsync() |> ignore
+            0
+    ```
+
+* In the server-side startup, replace the following:
+
+    ```fsharp
+    app.UseClientSideBlazorFiles<Client.Main.MyApp>()
+    ```
+
+    with:
+
+    ```fsharp
+    app.UseBlazorFrameworkFiles()
+    ```
+
+    and the following:
+
+    ```fsharp
+    .UseEndpoints(fun endpoints ->
+        endpoints.MapDefaultControllerRoute() |> ignore
+        endpoints.MapFallbackToClientSideBlazor<Client.Startup>("index.html") |> ignore)
+    ```
+
+    with:
+
+    ```fsharp
+    .UseEndpoints(fun endpoints ->
+        endpoints.MapControllers() |> ignore
+        endpoints.MapFallbackToFile("index.html") |> ignore)
+    ```
+
+    Additionally, in the `main` function, under `WebHost.CreateDefaultBuilder(args)`, add:
+
+    ```fsharp
+        .UseStaticWebAssets()
+    ```
+
+    See [the Blazor 3.2-preview2 announcement](https://devblogs.microsoft.com/aspnet/blazor-webassembly-3-2-0-preview-2-release-now-available/) for more details.
+
+### From v0.10 to v0.11
+
+Bolero 0.11 upgrades the dependency on .NET Core to 3.1 and on Blazor to 3.1-preview4. Here are the associated upgrade steps:
+
+* Install [the .NET Core 3.1 SDK or newer](https://dotnet.microsoft.com/download/dotnet-core).
+
+* If you are using Visual Studio, upgrade to version 16.4.
+
+* Change the `<TargetFramework>` of your client `.fsproj` file from `netstandard2.0` to `netstandard2.1`.
+
+* Change the `<TargetFramework>` of your server `.fsproj` file from `netcoreapp3.0` to `netcoreapp3.1`.
+
+* The API for binders have been changed.  
+  The `bind` module now contains submodules `bind.input` and `bind.change` which in turn contain functions for the type of value being bound: `string`, `int`, `int64`, `float`, `float32`, `decimal`, `dateTime` and `dateTimeOffset`.  
+  Additionally, a module `bind.withCulture` contains the same submodules with functions taking an additional `CultureInfo` as argument to specify the culture to use to parse the value.
+
+  For example, the following:
+
+  ```fsharp
+  concat [
+      input [bind.input model.name (fun n -> dispatch (SetName n))]
+      input [bind.inputInt model.age (fun a -> dispatch (SetAge a))]
+  ]
+  ```
+
+  becomes:
+
+  ```fsharp
+  concat [
+      input [bind.input.string model.name (fun n -> dispatch (SetName n))]
+      input [bind.input.int model.name (fun n -> dispatch (SetName n))]
+  ]
+  ```
+
+### From v0.9 to v0.10
+
+Bolero 0.10 doesn't change the dependencies from 0.9. It has one breaking change:
+
+* The function `ecomp` now takes an additional list of attributes as first argument.
+
 ### From v0.8 to v0.9
 
 Bolero 0.9 upgrades the dependency on .NET Core to 3.0 RTM and on Blazor to 3.0-preview9. It doesn't include any breaking changes. Here are the associated upgrade steps:
