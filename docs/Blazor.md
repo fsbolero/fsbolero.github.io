@@ -94,7 +94,7 @@ let update (js: IJSRuntime) message model =
         let cmd =
             Cmd.ofTask
                 (fun args -> js.InvokeAsync("MyJsLib.myJSFunc", args).AsTask())
-                [| data |] RecvData Error
+                [| data |] CalledMyJSFunc Error
         model, cmd
     // ...
 
