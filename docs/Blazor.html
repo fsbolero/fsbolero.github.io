@@ -92,7 +92,7 @@
               </section>
               <section class="section"><div ws-preserve=""><p>This page documents some useful features of Blazor and how to best use them from a Bolero application.</p>
 <h3 id="dependency-injection">Dependency injection</h3>
-<p>Blazor provides the ability to work with the dependency injection mechanism introduced by ASP.NET Core. <a href="https://docs.microsoft.com/en-us/aspnet/core/blazor/dependency-injection?view=aspnetcore-3.0">Learn more about it on the official documentation</a>.</p>
+<p>Blazor provides the ability to work with the dependency injection mechanism introduced by ASP.NET Core. <a href="https://docs.microsoft.com/en-us/aspnet/core/blazor/dependency-injection">Learn more about it on the official documentation</a>.</p>
 <h4 id="requiring-a-dependency">Requiring a dependency</h4>
 <p>Any Blazor component can require a dependency. This includes the Bolero <code>ProgramComponent</code>, as well as any <code>Component</code> class you create. This is done by creating a mutable property with the attribute <code>Microsoft.AspNetCore.Components.Inject</code>:</p>
 <pre><code class="language-fsharp">open Microsoft.AspNetCore.Components
@@ -100,7 +100,7 @@ open Bolero
 
 type MyApp() =
     inherit ProgramComponent&lt;Model, Message&gt;()
-    
+
     [&lt;Inject&gt;]
     member val MyDependency = Unchecked.defaultof&lt;IMyDependency&gt; with get, set
     
@@ -113,6 +113,62 @@ type MyApp() =
 
     member __.ConfigureServices(services: IServiceCollection) =
         services.AddSingleton&lt;IMyDependency&gt;(new MyDependency()) |&gt; ignore
+</code></pre>
+<h3 id="javascript-interoperability">JavaScript interoperability</h3>
+<p>It is possible to use Blazor's JavaScript interoperability interface <code>IJSRuntime</code> in Bolero using dependency injection. <a href="https://docs.microsoft.com/en-us/aspnet/core/blazor/call-javascript-from-dotnet">Learn more about it on the official documentation</a>.</p>
+<pre><code class="language-fsharp">open Microsoft.JSInterop
+
+type MyComponent() =
+    inherit ElmishComponent&lt;Model, Message&gt;()
+
+    [&lt;Inject&gt;]
+    member val JSRuntime = Unchecked.defaultof&lt;IJSRuntime&gt; with get, set
+
+    override this.View model dispatch =
+        button [
+            on.task.click (fun _ -&gt;
+                this.JSRuntime.InvokeVoidAsync(&quot;console.log&quot;, model).AsTask())
+        ] [
+            text model
+        ]
+</code></pre>
+<h4 id="in-programcomponent">In <code>ProgramComponent</code></h4>
+<p>It is already injected in <code>ProgramComponent</code>, so you can use it directly without injecting it beforehand.</p>
+<pre><code class="language-fsharp">open Microsoft.JSInterop
+
+type MyApp() =
+    inherit ProgramComponent&lt;Model, Message&gt;()
+
+    override this.Program =
+        Program.mkSimple init update view
+        |&gt; Program.withTrace (fun msg model -&gt;
+            this.JSRuntime.InvokeVoidAsync(&quot;console.log&quot;, msg, model) |&gt; ignore)
+</code></pre>
+<h4 id="in-elmish-update-commands">In Elmish update commands</h4>
+<p>It is common to need JavaScript interoperation in the <code>update</code> function to call external functionality. The <code>IJSRuntime</code> can be passed to it from the <code>ProgramComponent</code>. Inside <code>update</code> the command <code>Cmd.ofTask</code> is particularly suitable to perform a JavaScript call and transform its return value into a message.</p>
+<pre><code class="language-fsharp">open Microsoft.JSInterop
+
+type Message =
+    | CallMyJSFunc of MyJSFuncArgType
+    | CalledMyJSFunc of MyJSFuncReturnType
+    | Error of exn
+
+let update (js: IJSRuntime) message model =
+    match message with
+    | CallMyJSFunc data -&gt;
+        let cmd =
+            Cmd.ofTask
+                (fun args -&gt; js.InvokeAsync(&quot;MyJsLib.myJSFunc&quot;, args).AsTask())
+                [| data |] RecvData Error
+        model, cmd
+    // ...
+
+type MyApp() =
+    inherit ProgramComponent&lt;Model, Message&gt;()
+    
+    override this.Program =
+        let update = update this.JSRuntime
+        Program.mkProgram init update view
 </code></pre>
 </div></section>
             </div>
@@ -142,6 +198,8 @@ type MyApp() =
                       <a class="is-active" href="/docs/Blazor">Using Blazor features</a>
                       <ul><li>
                           <a href="#dependency-injection">Dependency injection</a>
+                        </li><li>
+                          <a href="#javascript-interoperability">JavaScript interoperability</a>
                         </li></ul>
                     </li><li>
                       <a href="/docs/Upgrade">Upgrade guide</a>
