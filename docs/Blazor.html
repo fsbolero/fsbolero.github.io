@@ -108,11 +108,18 @@ type MyApp() =
         doSomethingWith this.MyDependency
 </code></pre>
 <h4 id="providing-a-dependency">Providing a dependency</h4>
-<p>Dependencies are injected from the client-side <code>Startup</code> class's <code>ConfigureServices</code> method:</p>
-<pre><code class="language-fsharp">type Startup() =
+<p>Dependencies are injected in the client-side host builder:</p>
+<pre><code class="language-fsharp">module Program =
 
-    member __.ConfigureServices(services: IServiceCollection) =
-        services.AddSingleton&lt;IMyDependency&gt;(new MyDependency()) |&gt; ignore
+    [&lt;EntryPoint&gt;]
+    let Main args =
+        let builder = WebAssemblyHostBuilder.CreateDefault(args)
+
+        builder.Services.AddSingleton&lt;IMyDependency, MyDependencyImpl&gt;() |&gt; ignore
+
+        builder.RootComponents.Add&lt;MyApp&gt;(&quot;#main&quot;)
+        builder.Build().RunAsync() |&gt; ignore
+        0
 </code></pre>
 <h3 id="javascript-interoperability">JavaScript interoperability</h3>
 <p>It is possible to use Blazor's JavaScript interoperability interface <code>IJSRuntime</code> in Bolero using dependency injection. <a href="https://docs.microsoft.com/en-us/aspnet/core/blazor/call-javascript-from-dotnet">Learn more about it on the official documentation</a>.</p>

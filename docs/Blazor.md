@@ -29,13 +29,20 @@ type MyApp() =
 
 #### Providing a dependency
 
-Dependencies are injected from the client-side `Startup` class's `ConfigureServices` method:
+Dependencies are injected in the client-side host builder:
 
 ```fsharp
-type Startup() =
+module Program =
 
-    member __.ConfigureServices(services: IServiceCollection) =
-        services.AddSingleton<IMyDependency>(new MyDependency()) |> ignore
+    [<EntryPoint>]
+    let Main args =
+        let builder = WebAssemblyHostBuilder.CreateDefault(args)
+
+        builder.Services.AddSingleton<IMyDependency, MyDependencyImpl>() |> ignore
+
+        builder.RootComponents.Add<MyApp>("#main")
+        builder.Build().RunAsync() |> ignore
+        0
 ```
 
 ### JavaScript interoperability
