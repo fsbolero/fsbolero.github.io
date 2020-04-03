@@ -197,7 +197,7 @@ Additionally, a module <code>bind.withCulture</code> contains the same submodule
 <p>becomes:</p>
 <pre><code class="language-fsharp">concat [
     input [bind.input.string model.name (fun n -&gt; dispatch (SetName n))]
-    input [bind.input.int model.name (fun n -&gt; dispatch (SetName n))]
+    input [bind.input.int model.age (fun a -&gt; dispatch (SetAge a))]
 ]
 </code></pre>
 </li>

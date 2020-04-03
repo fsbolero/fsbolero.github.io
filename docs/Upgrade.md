@@ -138,7 +138,7 @@ Bolero 0.11 upgrades the dependency on .NET Core to 3.1 and on Blazor to 3.1-pre
   ```fsharp
   concat [
       input [bind.input.string model.name (fun n -> dispatch (SetName n))]
-      input [bind.input.int model.name (fun n -> dispatch (SetName n))]
+      input [bind.input.int model.age (fun a -> dispatch (SetAge a))]
   ]
   ```
 
