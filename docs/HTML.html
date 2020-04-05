@@ -369,7 +369,8 @@ let hello model dispatch =
     override this.Render() =
         div [] [text (sprintf &quot;Hello, %s!&quot; this.Who)]
 </code></pre>
-<p>To instantiate a Blazor component, use the <code>comp</code> function. It is parameterized by the component type, and takes attributes and child nodes as arguments.</p>
+<p>To instantiate a Blazor component, use the <code>comp</code> function. It is parameterized by the component type, and takes attributes and child nodes as arguments.
+To set a parameter, pass it by name as an attribute using the <code>=&gt;</code> operator.</p>
 <pre><code class="language-fsharp">let myElement =
     comp&lt;MyComponent&gt; [&quot;Who&quot; =&gt; &quot;world&quot;] []
 </code></pre>

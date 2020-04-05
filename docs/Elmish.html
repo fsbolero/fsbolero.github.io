@@ -163,11 +163,11 @@ let view model dispatch =
             on.change (fun e -&gt; dispatch (unbox e.Value))
         ]
 </code></pre>
-<p>Instantiating an <code>ElmishComponent</code> is done using the function <code>ecomp</code>. This function is parameterized by the component type, and takes a model and a dispatch function as arguments.</p>
+<p>Instantiating an <code>ElmishComponent</code> is done using the function <code>ecomp</code>. This function is parameterized by the component type, and takes three arguments: a list of parameters (see <a href="HTML#components">Components</a>), a model and a dispatch function.</p>
 <pre><code class="language-fsharp">let view model dispatch =
     div [] [
-        ecomp&lt;Input,_,_&gt; model.firstName (fun n -&gt; dispatch (SetFirstName n))
-        ecomp&lt;Input,_,_&gt; model.lastName (fun n -&gt; dispatch (SetLastName n))
+        ecomp&lt;Input,_,_&gt; [] model.firstName (fun n -&gt; dispatch (SetFirstName n))
+        ecomp&lt;Input,_,_&gt; [] model.lastName (fun n -&gt; dispatch (SetLastName n))
         text (sprintf &quot;Hello, %s %s!&quot; model.firstName model.lastName)
     ]
 </code></pre>

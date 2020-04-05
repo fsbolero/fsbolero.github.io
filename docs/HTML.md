@@ -362,6 +362,7 @@ type MyComponent() =
 ```
 
 To instantiate a Blazor component, use the `comp` function. It is parameterized by the component type, and takes attributes and child nodes as arguments.
+To set a parameter, pass it by name as an attribute using the `=>` operator.
 
 ```fsharp
 let myElement =

@@ -91,13 +91,13 @@ type Input() =
         ]
 ```
 
-Instantiating an `ElmishComponent` is done using the function `ecomp`. This function is parameterized by the component type, and takes a model and a dispatch function as arguments.
+Instantiating an `ElmishComponent` is done using the function `ecomp`. This function is parameterized by the component type, and takes three arguments: a list of parameters (see [Components](HTML#components)), a model and a dispatch function.
 
 ```fsharp
 let view model dispatch =
     div [] [
-        ecomp<Input,_,_> model.firstName (fun n -> dispatch (SetFirstName n))
-        ecomp<Input,_,_> model.lastName (fun n -> dispatch (SetLastName n))
+        ecomp<Input,_,_> [] model.firstName (fun n -> dispatch (SetFirstName n))
+        ecomp<Input,_,_> [] model.lastName (fun n -> dispatch (SetLastName n))
         text (sprintf "Hello, %s %s!" model.firstName model.lastName)
     ]
 ```
