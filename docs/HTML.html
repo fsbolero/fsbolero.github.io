@@ -265,15 +265,6 @@ let myElement (isBlue: bool) =
         text &quot;Click me!&quot;
     ]
 </code></pre>
-<p>Asynchronous event handlers are also available in the submodules <code>on.task</code> and <code>on.async</code>. These modules contain functions that are identical to the ones directly in <code>on</code>, except that their callbacks return <code>Task</code> and <code>Async&lt;unit&gt;</code>, respectively.</p>
-<pre><code class="language-fsharp">let myElement (js: IJSRuntime) =
-    button [
-        on.task.click (fun e -&gt;
-            js.InvokeVoidAsync(&quot;console.log&quot;, e.ClientX).AsTask())
-    ] [
-        text &quot;Click me!&quot;
-    ]
-</code></pre>
 <h3 id="data-bindings">Data bindings</h3>
 <p>Attributes defined in the <code>bind</code> module define two-way binding with the element's value. These functions take two arguments:</p>
 <ol>

@@ -236,18 +236,6 @@ let myElement (js: IJSRuntime) =
     ]
 ```
 
-Asynchronous event handlers are also available in the submodules `on.task` and `on.async`. These modules contain functions that are identical to the ones directly in `on`, except that their callbacks return `Task` and `Async<unit>`, respectively.
-
-```fsharp
-let myElement (js: IJSRuntime) =
-    button [
-        on.task.click (fun e ->
-            js.InvokeVoidAsync("console.log", e.ClientX).AsTask())
-    ] [
-        text "Click me!"
-    ]
-```
-
 ### Data bindings
 
 Attributes defined in the `bind` module define two-way binding with the element's value. These functions take two arguments:
