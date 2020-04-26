@@ -177,6 +177,47 @@ type MyApp() =
         let update = update this.JSRuntime
         Program.mkProgram init update view
 </code></pre>
+<h4 id="html-element-references">HTML element references</h4>
+<p><a href="https://docs.microsoft.com/en-us/aspnet/core/blazor/call-javascript-from-dotnet?view=aspnetcore-3.1#capture-references-to-elements">Blazor's type <code>ElementReference</code></a> allows passing a reference to a rendered HTML element to JavaScript.
+This is useful for interacting with JavaScript libraries that insert themselves in a given element, creating for example a map or a rich text editor; or libraries that interact with more fundamental JavaScript APIs, like focusing an element.</p>
+<p>In Bolero, the type <code>ElementReferenceBinder</code> is a small utility that makes working with <code>ElementReference</code> from F# simple.</p>
+<ol>
+<li>The element to bind must be inside a Component class.</li>
+<li>Create an <code>ElementReferenceBinder</code> as a field of this class.</li>
+<li>To bind it to an element, pass it to the attribute <code>attr.ref</code> of this element.</li>
+<li>To use it, use its <code>.Ref</code> property.</li>
+</ol>
+<p>For example, given this small JavaScript function that can focus a DOM element it receives as argument:</p>
+<pre><code class="language-javascript">const MyJsLib = {
+    focus: function(elt) {
+        elt.focus();
+    }
+}
+</code></pre>
+<p>This function can be called as follows from a Bolero component:</p>
+<pre><code class="language-fsharp">type MyInputWithFocusButton() = // (1)
+    inherit ElmishComponent&lt;string, string&gt;()
+
+    let inputRef = ElementReferenceBinder() // (2)
+
+    [&lt;Inject&gt;]
+    member val JSRuntime = Unchecked.defaultof&lt;IJSRuntime&gt; with get, set
+
+    override this.View model dispatch =
+        concat [
+            input [
+                attr.ref inputRef // (3)
+                bind.input.string model dispatch
+            ]
+            button [
+                on.task.click (fun _ -&gt;
+                    this.JSRuntime.InvokeVoidAsync(&quot;MyJsLib.focus&quot;, inputRef.Ref) // (4)
+                )
+            ] [
+                text &quot;Focus this input box&quot;
+            ]
+        ]
+</code></pre>
 </div></section>
             </div>
             <div class="column is-one-quarter-tablet is-one-fifth-desktop sidebar-column">
