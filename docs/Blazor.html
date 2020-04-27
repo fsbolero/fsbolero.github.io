@@ -184,7 +184,7 @@ This is useful for interacting with JavaScript libraries that insert themselves 
 <ol>
 <li>The element to bind must be inside a Component class.</li>
 <li>Create an <code>ElementReferenceBinder</code> as a field of this class.</li>
-<li>To bind it to an element, pass it to the attribute <code>attr.ref</code> of this element.</li>
+<li>To bind it to an element, pass it to the attribute <code>attr.bindRef</code> of this element.</li>
 <li>To use it, use its <code>.Ref</code> property.</li>
 </ol>
 <p>For example, given this small JavaScript function that can focus a DOM element it receives as argument:</p>
@@ -206,7 +206,7 @@ This is useful for interacting with JavaScript libraries that insert themselves 
     override this.View model dispatch =
         concat [
             input [
-                attr.ref inputRef // (3)
+                attr.bindRef inputRef // (3)
                 bind.input.string model dispatch
             ]
             button [
