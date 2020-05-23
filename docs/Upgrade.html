@@ -22,7 +22,7 @@
       <div class="navbar-menu">
         <nav class="navbar-start"><a href="/" class="navbar-item is-hoverable has-text-weight-bold">Home</a><div class="navbar-item is-hoverable has-text-weight-bold has-dropdown">
             <a href="/docs" class="navbar-link is-arrowless">Documentation</a>
-            <div class="navbar-dropdown has-text-weight-normal"><a class="navbar-item" href="/docs">Getting Started</a><a class="navbar-item" href="/docs/HTML">Writing HTML</a><a class="navbar-item" href="/docs/Templating">HTML templates</a><a class="navbar-item" href="/docs/Elmish">Using Elmish</a><a class="navbar-item" href="/docs/Routing">Routing</a><a class="navbar-item" href="/docs/Remoting">Remoting</a><a class="navbar-item" href="/docs/Blazor">Using Blazor features</a><a class="navbar-item" href="/docs/Upgrade">Upgrade guide</a></div>
+            <div class="navbar-dropdown has-text-weight-normal"><a class="navbar-item" href="/docs">Getting Started</a><a class="navbar-item" href="/docs/HTML">Writing HTML</a><a class="navbar-item" href="/docs/Templating">HTML templates</a><a class="navbar-item" href="/docs/Elmish">Using Elmish</a><a class="navbar-item" href="/docs/Routing">Routing</a><a class="navbar-item" href="/docs/Remoting">Remoting</a><a class="navbar-item" href="/docs/Blazor">Using Blazor features</a><a class="navbar-item" href="/docs/Upgrade">Upgrade guide</a><a class="navbar-item" href="/docs/reference">API Reference</a></div>
           </div><a href="https://tryfsharp.fsbolero.io" class="navbar-item is-hoverable has-text-weight-bold">Try F#</a></nav>
         <nav class="navbar-end">
           <a target="_blank" title="GitHub" href="https://github.com/fsbolero/bolero" class="navbar-item is-hoverable"><i class="fa fa-github"></i></a>
@@ -63,6 +63,9 @@
           </li><li>
             <a href="/docs/Upgrade">Upgrade guide</a>
             
+          </li><li>
+            <a href="/docs/reference">API Reference</a>
+            
           </li></ul>
           </li><li>
             <a href="https://tryfsharp.fsbolero.io">Try F#</a>
@@ -91,7 +94,62 @@ How to update a project for newer releases</p>
 
                 </div>
               </section>
-              <section class="section"><div ws-preserve=""><h3 id="from-v0.11-to-v0.12">From v0.11 to v0.12</h3>
+              
+              <section class="section"><div ws-preserve=""><h3 id="from-v0.12-to-v0.13">From v0.12 to v0.13</h3>
+<p>Bolero 0.13 upgrades the dependency on .NET Core SDK 3.1.300 or newer and on Blazor to 3.2.0. Here are the associated upgrade steps:</p>
+<ul>
+<li><p>Install <a href="https://dotnet.microsoft.com/download/dotnet-core">the .NET Core 3.1.300 SDK or newer</a>.</p>
+</li>
+<li><p>If you are using Visual Studio, it is recommended to upgrade to version 16.6.</p>
+</li>
+<li><p>If you use remoting, in your client-side startup, replace the following:</p>
+<pre><code class="language-fsharp">builder.Services.AddRemoting() |&gt; ignore
+</code></pre>
+<p>with:</p>
+<pre><code class="language-fsharp">builder.Services.AddRemoting(builder.HostEnvironment) |&gt; ignore
+</code></pre>
+<p>Note also that <code>AddRemoting</code> now adds a named <code>HttpClient</code> intended solely for use by remoting.
+If you were using the injected <code>HttpClient</code> for your own purposes, then you will need to inject one separately using the standard method:</p>
+<pre><code class="language-fsharp">builder.Services.AddSingleton(new HttpClient(BaseAddress = Uri(builder.HostEnvironment.BaseAddress))) |&gt; ignore
+</code></pre>
+</li>
+<li><p>There is a new <code>BoleroHostConfig</code> which simplifies the configuration of the server-side hosting.
+While the <code>_Host.cshtml</code> and <code>HostModel.fs</code> that were included in previous versions of the project template should continue to work correctly, it is recommended to switch to using <code>BoleroHostConfig</code>.</p>
+<ul>
+<li><p>Remove <code>HostModel.fs</code>.</p>
+</li>
+<li><p>In <code>Pages/_Host.cshtml</code>, apply the following change:</p>
+<pre><code class="language-diff">@page &quot;/&quot;
+@namespace HelloWorld
+-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+-@model HostModel
++@using Bolero.Server.RazorHost
++@inject IBoleroHostConfig BoleroHostConfig
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Hello world!&lt;/title&gt;
+  &lt;meta charset=&quot;UTF-8&quot; /&gt;
+  &lt;base href=&quot;/&quot; /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+-  &lt;div id=&quot;main&quot;&gt;@(await Html.RenderComponentAsync&lt;HelloWorld.Client.MyApp&gt;(Model.IsServer ? RenderMode.ServerPrerendered : RenderMode.Static))&lt;/div&gt;
++  &lt;div id=&quot;main&quot;&gt;@(await Html.RenderComponentAsync&lt;HelloWorld.Client.MyApp&gt;(BoleroHostConfig))&lt;/div&gt;
+-  &lt;script src=&quot;_framework/blazor.@(Model.IsServer ? &quot;server&quot; : &quot;webassembly&quot;).js&quot;&gt;&lt;/script&gt;
++  @Html.RenderBoleroScript(BoleroHostConfig)
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+</li>
+<li><p>In <code>Startup.fs</code>, open the namespace <code>Bolero.Server.RazorHost</code> and inject <code>BoleroHostConfig</code> in <code>ConfigureServices</code>:</p>
+<pre><code class="language-fsharp">services.AddBoleroHost() |&gt; ignore
+</code></pre>
+<p>This method takes optional arguments that configure the hosting of the application (server vs client, prerendered or not, etc).</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="from-v0.11-to-v0.12">From v0.11 to v0.12</h3>
 <p>Bolero 0.12 upgrades the dependency on .NET Core SDK 3.1.102 or newer and on Blazor to 3.2-preview2. Here are the associated upgrade steps:</p>
 <ul>
 <li><p>Install <a href="https://dotnet.microsoft.com/download/dotnet-core">the .NET Core 3.1.102 SDK or newer</a>.</p>
@@ -380,6 +438,8 @@ If your code uses Blazor APIs directly, please check the Blazor <a href="https:/
                     </li><li>
                       <a class="is-active" href="/docs/Upgrade">Upgrade guide</a>
                       <ul><li>
+                          <a href="#from-v012-to-v013">From v0.12 to v0.13</a>
+                        </li><li>
                           <a href="#from-v011-to-v012">From v0.11 to v0.12</a>
                         </li><li>
                           <a href="#from-v010-to-v011">From v0.10 to v0.11</a>
@@ -396,6 +456,9 @@ If your code uses Blazor APIs directly, please check the Blazor <a href="https:/
                         </li><li>
                           <a href="#from-v04-to-v05">From v0.4 to v0.5</a>
                         </li></ul>
+                    </li><li>
+                      <a href="/docs/reference">API Reference</a>
+                      <ul class="is-hidden"></ul>
                     </li></ul>
                 </div>
               </section>
@@ -444,7 +507,7 @@ If your code uses Blazor APIs directly, please check the Blazor <a href="https:/
         <div class="column">
           <h1 class="title">Documentation</h1>
           <div class="menu">
-            <ul class="menu-list"><li><a href="/docs">Getting Started</a></li><li><a href="/docs/HTML">Writing HTML</a></li><li><a href="/docs/Templating">HTML templates</a></li><li><a href="/docs/Elmish">Using Elmish</a></li><li><a href="/docs/Routing">Routing</a></li><li><a href="/docs/Remoting">Remoting</a></li><li><a href="/docs/Blazor">Using Blazor features</a></li><li><a href="/docs/Upgrade">Upgrade guide</a></li></ul>
+            <ul class="menu-list"><li><a href="/docs">Getting Started</a></li><li><a href="/docs/HTML">Writing HTML</a></li><li><a href="/docs/Templating">HTML templates</a></li><li><a href="/docs/Elmish">Using Elmish</a></li><li><a href="/docs/Routing">Routing</a></li><li><a href="/docs/Remoting">Remoting</a></li><li><a href="/docs/Blazor">Using Blazor features</a></li><li><a href="/docs/Upgrade">Upgrade guide</a></li><li><a href="/docs/reference">API Reference</a></li></ul>
           </div>
         </div>
         <div class="column">
@@ -466,7 +529,7 @@ If your code uses Blazor APIs directly, please check the Blazor <a href="https:/
               <a class="github-button" href="https://github.com/fsbolero/bolero" data-size="large" aria-label="Star fsbolero/bolero on GitHub">Bolero on GitHub</a>
             </li>
             <li>
-              <a href="https://twitter.com/fsbolero?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large" data-dnt="true" data-show-count="false">Follow @fsbolero</a>
+              <a href="https://twitter.com/fsbolero?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large" data-dnt="true" data-show-count="false">Follow &commat;fsbolero</a>
             </li>
             <li>
               <a target="_blank" href="https://nuget.org/packages/Bolero"><img alt="NuGet" src="https://img.shields.io/nuget/v/Bolero.svg?label=Bolero%20on%20NuGet&amp;logo=nuget&amp;style=for-the-badge" /></a>

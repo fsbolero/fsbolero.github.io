@@ -22,7 +22,7 @@
       <div class="navbar-menu">
         <nav class="navbar-start"><a href="/" class="navbar-item is-hoverable has-text-weight-bold">Home</a><div class="navbar-item is-hoverable has-text-weight-bold has-dropdown">
             <a href="/docs" class="navbar-link is-arrowless">Documentation</a>
-            <div class="navbar-dropdown has-text-weight-normal"><a class="navbar-item" href="/docs">Getting Started</a><a class="navbar-item" href="/docs/HTML">Writing HTML</a><a class="navbar-item" href="/docs/Templating">HTML templates</a><a class="navbar-item" href="/docs/Elmish">Using Elmish</a><a class="navbar-item" href="/docs/Routing">Routing</a><a class="navbar-item" href="/docs/Remoting">Remoting</a><a class="navbar-item" href="/docs/Blazor">Using Blazor features</a><a class="navbar-item" href="/docs/Upgrade">Upgrade guide</a></div>
+            <div class="navbar-dropdown has-text-weight-normal"><a class="navbar-item" href="/docs">Getting Started</a><a class="navbar-item" href="/docs/HTML">Writing HTML</a><a class="navbar-item" href="/docs/Templating">HTML templates</a><a class="navbar-item" href="/docs/Elmish">Using Elmish</a><a class="navbar-item" href="/docs/Routing">Routing</a><a class="navbar-item" href="/docs/Remoting">Remoting</a><a class="navbar-item" href="/docs/Blazor">Using Blazor features</a><a class="navbar-item" href="/docs/Upgrade">Upgrade guide</a><a class="navbar-item" href="/docs/reference">API Reference</a></div>
           </div><a href="https://tryfsharp.fsbolero.io" class="navbar-item is-hoverable has-text-weight-bold">Try F#</a></nav>
         <nav class="navbar-end">
           <a target="_blank" title="GitHub" href="https://github.com/fsbolero/bolero" class="navbar-item is-hoverable"><i class="fa fa-github"></i></a>
@@ -63,6 +63,9 @@
           </li><li>
             <a href="/docs/Upgrade">Upgrade guide</a>
             
+          </li><li>
+            <a href="/docs/reference">API Reference</a>
+            
           </li></ul>
           </li><li>
             <a href="https://tryfsharp.fsbolero.io">Try F#</a>
@@ -91,6 +94,7 @@ Leverage the Model-View-Update architecture using the <a href="https://elmish.gi
 
                 </div>
               </section>
+              
               <section class="section"><div ws-preserve=""><blockquote>
 <p>Note: this page documents how to integrate Elmish in a Bolero application. It does not aim at explaining the Elmish architecture; you can learn about it <a href="https://elmish.github.io/elmish/">on Elmish's website</a>.</p>
 </blockquote>
@@ -244,6 +248,9 @@ let view model dispatch =
                     </li><li>
                       <a href="/docs/Upgrade">Upgrade guide</a>
                       <ul class="is-hidden"></ul>
+                    </li><li>
+                      <a href="/docs/reference">API Reference</a>
+                      <ul class="is-hidden"></ul>
                     </li></ul>
                 </div>
               </section>
@@ -292,7 +299,7 @@ let view model dispatch =
         <div class="column">
           <h1 class="title">Documentation</h1>
           <div class="menu">
-            <ul class="menu-list"><li><a href="/docs">Getting Started</a></li><li><a href="/docs/HTML">Writing HTML</a></li><li><a href="/docs/Templating">HTML templates</a></li><li><a href="/docs/Elmish">Using Elmish</a></li><li><a href="/docs/Routing">Routing</a></li><li><a href="/docs/Remoting">Remoting</a></li><li><a href="/docs/Blazor">Using Blazor features</a></li><li><a href="/docs/Upgrade">Upgrade guide</a></li></ul>
+            <ul class="menu-list"><li><a href="/docs">Getting Started</a></li><li><a href="/docs/HTML">Writing HTML</a></li><li><a href="/docs/Templating">HTML templates</a></li><li><a href="/docs/Elmish">Using Elmish</a></li><li><a href="/docs/Routing">Routing</a></li><li><a href="/docs/Remoting">Remoting</a></li><li><a href="/docs/Blazor">Using Blazor features</a></li><li><a href="/docs/Upgrade">Upgrade guide</a></li><li><a href="/docs/reference">API Reference</a></li></ul>
           </div>
         </div>
         <div class="column">
@@ -314,7 +321,7 @@ let view model dispatch =
               <a class="github-button" href="https://github.com/fsbolero/bolero" data-size="large" aria-label="Star fsbolero/bolero on GitHub">Bolero on GitHub</a>
             </li>
             <li>
-              <a href="https://twitter.com/fsbolero?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large" data-dnt="true" data-show-count="false">Follow @fsbolero</a>
+              <a href="https://twitter.com/fsbolero?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large" data-dnt="true" data-show-count="false">Follow &commat;fsbolero</a>
             </li>
             <li>
               <a target="_blank" href="https://nuget.org/packages/Bolero"><img alt="NuGet" src="https://img.shields.io/nuget/v/Bolero.svg?label=Bolero%20on%20NuGet&amp;logo=nuget&amp;style=for-the-badge" /></a>

@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API Reference | Bolero: F# in WebAssembly</title>
+  <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16" />
+  <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
+  <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[],"$DATA":{"$V":{}}}' />
+
+  <link rel="stylesheet" href="/css/all.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js" type="text/javascript" charset="UTF-8"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/languages/fsharp.min.js" type="text/javascript" charset="UTF-8"></script><link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/vs.min.css"></link>
+
+</head>
+<body>
+  <header class="navbar ">
+    <div class="container">
+      <div class="navbar-brand">
+        <a class="navbar-item is-hoverable" onclick="Website.Client.ToggleDrawer()"><i class="fa fa-bars"></i></a>
+        <span class="navbar-item"><a href="/">Bolero</a></span>
+      </div>
+      <div class="navbar-menu">
+        <nav class="navbar-start"><a href="/" class="navbar-item is-hoverable has-text-weight-bold">Home</a><div class="navbar-item is-hoverable has-text-weight-bold has-dropdown">
+            <a href="/docs" class="navbar-link is-arrowless">Documentation</a>
+            <div class="navbar-dropdown has-text-weight-normal"><a class="navbar-item" href="/docs">Getting Started</a><a class="navbar-item" href="/docs/HTML">Writing HTML</a><a class="navbar-item" href="/docs/Templating">HTML templates</a><a class="navbar-item" href="/docs/Elmish">Using Elmish</a><a class="navbar-item" href="/docs/Routing">Routing</a><a class="navbar-item" href="/docs/Remoting">Remoting</a><a class="navbar-item" href="/docs/Blazor">Using Blazor features</a><a class="navbar-item" href="/docs/Upgrade">Upgrade guide</a><a class="navbar-item" href="/docs/reference">API Reference</a></div>
+          </div><a href="https://tryfsharp.fsbolero.io" class="navbar-item is-hoverable has-text-weight-bold">Try F#</a></nav>
+        <nav class="navbar-end">
+          <a target="_blank" title="GitHub" href="https://github.com/fsbolero/bolero" class="navbar-item is-hoverable"><i class="fa fa-github"></i></a>
+          <a target="_blank" title="Twitter" href="https://twitter.com/fsbolero" class="navbar-item is-hoverable"><i class="fa fa-twitter"></i></a>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <div class="drawer-backdrop" onclick="Website.Client.ToggleDrawer()">
+    <div id="left-drawer" class="lhs-drawer">
+      <nav class="menu">
+        <ul class="menu-list"><li>
+            <a href="/">Home</a>
+            
+          </li><li>
+            <a href="/docs">Documentation</a>
+            <ul><li>
+            <a href="/docs">Getting Started</a>
+            
+          </li><li>
+            <a href="/docs/HTML">Writing HTML</a>
+            
+          </li><li>
+            <a href="/docs/Templating">HTML templates</a>
+            
+          </li><li>
+            <a href="/docs/Elmish">Using Elmish</a>
+            
+          </li><li>
+            <a href="/docs/Routing">Routing</a>
+            
+          </li><li>
+            <a href="/docs/Remoting">Remoting</a>
+            
+          </li><li>
+            <a href="/docs/Blazor">Using Blazor features</a>
+            
+          </li><li>
+            <a href="/docs/Upgrade">Upgrade guide</a>
+            
+          </li><li>
+            <a href="/docs/reference">API Reference</a>
+            
+          </li></ul>
+          </li><li>
+            <a href="https://tryfsharp.fsbolero.io">Try F#</a>
+            
+          </li></ul>
+      </nav>
+    </div>
+  </div>
+  
+      <section class="with-sidebar-background">
+        <div class="container">
+          <div class="columns is-gapless">
+            <div class="column content markdown-column">
+              <div class="edit-page-icon" style="display: none">
+                <a href="https://github.com/fsbolero/website/tree/master/src/Website/docs/reference.md" target="_blank" title="Contribute to this page on GitHub">
+                  <i class="fa fa-edit"></i>
+                </a>
+              </div>
+              
+              
+              <section class="section"><div ws-preserve=""><p>
+<h1>Bolero</h1>
+
+  <h2>Bolero Namespace</h2>
+    <!-- If there is more than 1 category in the type, generate TOC -->
+    <ul>
+        <li><a href="#section1_0">Components</a></li>            
+        <li><a href="#section1_1">HTML</a></li>            
+        <li><a href="#section1_2">Remoting</a></li>            
+        <li><a href="#section1_3">Routing</a></li>            
+    </ul>
+      <h3><a class="anchor" name="section1_0" href="#section1_0">Components</a></h3>    
+    <div>
+      <table class="table table-bordered type-list">
+    <thead>
+      <tr><td>Type</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td class="type-name">
+            <a href="bolero-component.html">Component</a>
+          </td>
+          <td class="xmldoc">
+          <p>Base class for components built from <a href="bolero-node.html" title="Node"><code>Bolero.Node</code></a>s.</p>
+
+
+          </td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="bolero-component-1.html">Component<'model></a>
+          </td>
+          <td class="xmldoc">
+          <p>Base class for components with a typed model.</p>
+
+
+          </td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="bolero-elmishcomponent-2.html">ElmishComponent<'model, 'msg></a>
+          </td>
+          <td class="xmldoc">
+          <p>Base class for components that are part of an Elmish view.</p>
+
+
+          </td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="bolero-programcomponent-2.html">ProgramComponent<'model, 'msg></a>
+          </td>
+          <td class="xmldoc">
+          <p>Base class for components that run an Elmish program.</p>
+
+
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+    </div>
+      <h3><a class="anchor" name="section1_1" href="#section1_1">HTML</a></h3>    
+    <div>
+      <table class="table table-bordered type-list">
+    <thead>
+      <tr><td>Type</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td class="type-name">
+            <a href="bolero-attr.html">Attr</a>
+          </td>
+          <td class="xmldoc">
+          <p>HTML attribute or Blazor component parameter.
+Use <a href="bolero-html-attr.html" title="attr"><code>Bolero.Html.attr</code></a> or <code>(=&gt;)</code> to create attributes.</p>
+
+
+          </td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="bolero-elementreferencebinder.html">ElementReferenceBinder</a>
+          </td>
+          <td class="xmldoc">
+          <p>A utility to bind a reference to a rendered HTML element.
+See <a href="https://fsbolero.io/docs/Blazor#html-element-references">https://fsbolero.io/docs/Blazor#html-element-references</a></p>
+
+
+          </td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="bolero-node.html">Node</a>
+          </td>
+          <td class="xmldoc">
+          <p>HTML fragment.</p>
+
+
+          </td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="bolero-template.html">Template</a>
+          </td>
+          <td class="xmldoc">
+          <p>Provide content from a template HTML file.</p>
+
+
+          </td>
+        </tr>
+    </tbody>
+  </table>
+  <table class="table table-bordered module-list">
+    <thead>
+      <tr><td>Module</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td class="module-name">
+            <a href="bolero-html.html">Html</a>
+          </td>
+          <td class="xmldoc">
+          <p>Create HTML elements, attributes and event handlers.</p>
+
+
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+    </div>
+      <h3><a class="anchor" name="section1_2" href="#section1_2">Remoting</a></h3>    
+    <div>
+      <table class="table table-bordered module-list">
+    <thead>
+      <tr><td>Module</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td class="module-name">
+            <a href="bolero-json.html">Json</a>
+          </td>
+          <td class="xmldoc">
+          <p>Customize JSON serialization for remoting.</p>
+
+
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+    </div>
+      <h3><a class="anchor" name="section1_3" href="#section1_3">Routing</a></h3>    
+    <div>
+      <table class="table table-bordered type-list">
+    <thead>
+      <tr><td>Type</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td class="type-name">
+            <a href="bolero-endpointattribute.html">EndPointAttribute</a>
+          </td>
+          <td class="xmldoc">
+          <p>Declare how an F# union case matches to a URI.</p>
+
+
+          </td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="bolero-irouter-2.html">IRouter<'model, 'msg></a>
+          </td>
+          <td class="xmldoc">
+          <p>A router that binds page navigation with Elmish.</p>
+
+
+          </td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="bolero-invalidrouter.html">InvalidRouter</a>
+          </td>
+          <td class="xmldoc">
+          <p>Exception thrown when a router is incorrectly defined.</p>
+
+
+          </td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="bolero-invalidrouterkind.html">InvalidRouterKind</a>
+          </td>
+          <td class="xmldoc">
+          <p>The kinds of invalid router.</p>
+
+
+          </td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="bolero-pagemodel-1.html">PageModel<'T></a>
+          </td>
+          <td class="xmldoc">
+          <p>A wrapper type to include a model in a router page type.
+See <a href="https://fsbolero.io/docs/Routing#page-models">https://fsbolero.io/docs/Routing#page-models</a></p>
+
+
+          </td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="bolero-router-2.html">Router<'model, 'msg></a>
+          </td>
+          <td class="xmldoc">
+          <p>A simple hand-written router.</p>
+
+
+          </td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="bolero-router-3.html">Router<'ep, 'model, 'msg></a>
+          </td>
+          <td class="xmldoc">
+          <p>A simple router where the endpoint corresponds to a value easily gettable from the model.</p>
+
+
+          </td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="bolero-routerextensions.html">RouterExtensions</a>
+          </td>
+          <td class="xmldoc">
+          
+
+          </td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="bolero-wildcardattribute.html">WildcardAttribute</a>
+          </td>
+          <td class="xmldoc">
+          <p>Declare that the given field of an F# union case matches the entire
+remainder of the URL path.
+If field is unspecified, this applies to the last field of the case.</p>
+
+
+          </td>
+        </tr>
+    </tbody>
+  </table>
+  <table class="table table-bordered module-list">
+    <thead>
+      <tr><td>Module</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td class="module-name">
+            <a href="bolero-program.html">Program</a>
+          </td>
+          <td class="xmldoc">
+          <p>Functions to enable the router in an Elmish program.</p>
+
+
+          </td>
+        </tr>
+        <tr>
+          <td class="module-name">
+            <a href="bolero-router.html">Router</a>
+          </td>
+          <td class="xmldoc">
+          <p>Functions for building Routers that bind page navigation with Elmish.</p>
+
+
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+    </div>
+  <h2>Bolero.Remoting Namespace</h2>
+    <div>
+      <table class="table table-bordered type-list">
+    <thead>
+      <tr><td>Type</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td class="type-name">
+            <a href="bolero-remoting-iremoteprovider.html">IRemoteProvider</a>
+          </td>
+          <td class="xmldoc">
+          <p>Provides remote service implementations.</p>
+
+
+          </td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="bolero-remoting-iremoteservice.html">IRemoteService</a>
+          </td>
+          <td class="xmldoc">
+          <p>Indicate that this type is a remote service, served at the given base URL path.</p>
+
+
+          </td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="bolero-remoting-remoteexception.html">RemoteException</a>
+          </td>
+          <td class="xmldoc">
+          <p>Exception thrown on the client when a remote call fails.</p>
+
+
+          </td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="bolero-remoting-remoteunauthorizedexception.html">RemoteUnauthorizedException</a>
+          </td>
+          <td class="xmldoc">
+          <p>Exception thrown when a remote function fails to authorize a call.</p>
+
+
+          </td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="bolero-remoting-remotingextensions.html">RemotingExtensions</a>
+          </td>
+          <td class="xmldoc">
+          <p>Extension methods to retrieve remote services from a program component.</p>
+
+
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+    </div>
+  <h2>Bolero.Remoting.Client Namespace</h2>
+    <div>
+      <table class="table table-bordered type-list">
+    <thead>
+      <tr><td>Type</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td class="type-name">
+            <a href="bolero-remoting-client-remoteresponse-1.html">RemoteResponse<'resp></a>
+          </td>
+          <td class="xmldoc">
+              <div class="alert alert-warning">
+              <strong>WARNING: </strong> This API is obsolete
+              <p>Use Cmd.ofAuthorized / performAuthorized</p>
+              </div> 
+          
+          </td>
+        </tr>
+    </tbody>
+  </table>
+  <table class="table table-bordered module-list">
+    <thead>
+      <tr><td>Module</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td class="module-name">
+            <a href="bolero-remoting-client-cmd.html">Cmd</a>
+          </td>
+          <td class="xmldoc">
+          <p>Elmish commands for Async and Task jobs, remote calls and JavaScript interop.</p>
+
+
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+    </div>
+  <h2>Bolero.Remoting.Server Namespace</h2>
+    <div>
+      <table class="table table-bordered type-list">
+    <thead>
+      <tr><td>Type</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td class="type-name">
+            <a href="bolero-remoting-server-iremotecontext.html">IRemoteContext</a>
+          </td>
+          <td class="xmldoc">
+          <p>The context to inject in a remote service to authorize remote functions.</p>
+
+
+          </td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="bolero-remoting-server-serverremotingextensions.html">ServerRemotingExtensions</a>
+          </td>
+          <td class="xmldoc">
+          <p>Extension methods to enable support for remoting in the ASP.NET Core server side.</p>
+
+
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+    </div>
+  <h2>Bolero.Server.RazorHost Namespace</h2>
+    <div>
+      <table class="table table-bordered type-list">
+    <thead>
+      <tr><td>Type</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td class="type-name">
+            <a href="bolero-server-razorhost-ibolerohostbaseconfig.html">IBoleroHostBaseConfig</a>
+          </td>
+          <td class="xmldoc">
+          
+          </td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="bolero-server-razorhost-ibolerohostconfig.html">IBoleroHostConfig</a>
+          </td>
+          <td class="xmldoc">
+          
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+    </div>
+</p>
+</div></section>
+            </div>
+            <div class="column is-one-quarter-tablet is-one-fifth-desktop sidebar-column">
+              <section class="section">
+                <div class="menu">
+                  <div class="menu-label">Documentation</div>
+                  <ul class="menu-list"><li>
+                      <a href="/docs">Getting Started</a>
+                      <ul class="is-hidden"></ul>
+                    </li><li>
+                      <a href="/docs/HTML">Writing HTML</a>
+                      <ul class="is-hidden"></ul>
+                    </li><li>
+                      <a href="/docs/Templating">HTML templates</a>
+                      <ul class="is-hidden"></ul>
+                    </li><li>
+                      <a href="/docs/Elmish">Using Elmish</a>
+                      <ul class="is-hidden"></ul>
+                    </li><li>
+                      <a href="/docs/Routing">Routing</a>
+                      <ul class="is-hidden"></ul>
+                    </li><li>
+                      <a href="/docs/Remoting">Remoting</a>
+                      <ul class="is-hidden"></ul>
+                    </li><li>
+                      <a href="/docs/Blazor">Using Blazor features</a>
+                      <ul class="is-hidden"></ul>
+                    </li><li>
+                      <a href="/docs/Upgrade">Upgrade guide</a>
+                      <ul class="is-hidden"></ul>
+                    </li><li>
+                      <a class="is-active" href="/docs/reference">API Reference</a>
+                      <ul></ul>
+                    </li></ul>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </section>
+    
+  <footer class="section footer first-footer has-text-centered">
+    <div class="container">
+      <div class="columns">
+        <div class="column">
+          <a target="_blank" href="https://github.com/fsbolero/template">
+            <img class="box no-padding" data-src="/img/screenshot-template.png" />
+            <h1 class="title">Bolero project template</h1>
+          </a>
+        </div>
+        <div class="column">
+          <a target="_blank" href="https://fsbolero.github.io/TodoMVC">
+            <img class="box no-padding" data-src="/img/screenshot-todomvc.png" />
+            <h1 class="title">TodoMVC</h1>
+          </a>
+        </div>
+        <div class="column">
+          <a target="_blank" href="https://tryfsharp.fsbolero.io">
+            <img class="box no-padding" data-src="/img/screenshot-tryfsharp.png" />
+            <h1 class="title">Try F# in your browser</h1>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <footer class="section footer second-footer">
+    <div class="container">
+      <div class="columns">
+        <div class="column">
+          <h1 class="title"><a href="/">Home</a></h1>
+          <h1 class="title">Made with Bolero</h1>
+          <div class="menu">
+            <ul class="menu-list">
+              <li><a target="_blank" href="https://tryfsharp.fsbolero.io">Try F#</a></li>
+              <li><a target="_blank" href="https://github.com/fsbolero/TodoMVC">TodoMVC</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="column">
+          <h1 class="title">Documentation</h1>
+          <div class="menu">
+            <ul class="menu-list"><li><a href="/docs">Getting Started</a></li><li><a href="/docs/HTML">Writing HTML</a></li><li><a href="/docs/Templating">HTML templates</a></li><li><a href="/docs/Elmish">Using Elmish</a></li><li><a href="/docs/Routing">Routing</a></li><li><a href="/docs/Remoting">Remoting</a></li><li><a href="/docs/Blazor">Using Blazor features</a></li><li><a href="/docs/Upgrade">Upgrade guide</a></li><li><a href="/docs/reference">API Reference</a></li></ul>
+          </div>
+        </div>
+        <div class="column">
+          <h1 class="title">We leverage</h1>
+          <div class="menu">
+            <ul class="menu-list">
+              <li><a target="_blank" href="https://fsharp.org">F#</a></li>
+              <li><a target="_blank" href="https://elmish.github.io/elmish/">Elmish</a></li>
+              <li><a target="_blank" href="https://dot.net">.NET Core</a></li>
+              <li><a target="_blank" href="https://blazor.net">Blazor</a></li>
+              <li><a target="_blank" href="https://webassembly.org/">WebAssembly</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="column">
+          <h1 class="title">Find us</h1>
+          <ul>
+            <li>
+              <a class="github-button" href="https://github.com/fsbolero/bolero" data-size="large" aria-label="Star fsbolero/bolero on GitHub">Bolero on GitHub</a>
+            </li>
+            <li>
+              <a href="https://twitter.com/fsbolero?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large" data-dnt="true" data-show-count="false">Follow &commat;fsbolero</a>
+            </li>
+            <li>
+              <a target="_blank" href="https://nuget.org/packages/Bolero"><img alt="NuGet" src="https://img.shields.io/nuget/v/Bolero.svg?label=Bolero%20on%20NuGet&amp;logo=nuget&amp;style=for-the-badge" /></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/8.6.0/lazyload.min.js"></script>
+  <script type="text/javascript">new LazyLoad();</script>
+  <script src="/js/Client.min.js"></script>
+  <script async="" defer="" src="https://buttons.github.io/buttons.js"></script>
+  <script async="" defer="" src="https://platform.twitter.com/widgets.js"></script>
+  
+  
+</body>
+</html>

@@ -3,6 +3,71 @@ title: Upgrade guide
 subtitle: How to update a project for newer releases
 ---
 
+### From v0.12 to v0.13
+
+Bolero 0.13 upgrades the dependency on .NET Core SDK 3.1.300 or newer and on Blazor to 3.2.0. Here are the associated upgrade steps:
+
+* Install [the .NET Core 3.1.300 SDK or newer](https://dotnet.microsoft.com/download/dotnet-core).
+
+* If you are using Visual Studio, it is recommended to upgrade to version 16.6.
+
+* If you use remoting, in your client-side startup, replace the following:
+
+    ```fsharp
+    builder.Services.AddRemoting() |> ignore
+    ```
+
+    with:
+
+    ```fsharp
+    builder.Services.AddRemoting(builder.HostEnvironment) |> ignore
+    ```
+
+    Note also that `AddRemoting` now adds a named `HttpClient` intended solely for use by remoting.
+    If you were using the injected `HttpClient` for your own purposes, then you will need to inject one separately using the standard method:
+
+    ```fsharp
+    builder.Services.AddSingleton(new HttpClient(BaseAddress = Uri(builder.HostEnvironment.BaseAddress))) |> ignore
+    ```
+
+* There is a new `BoleroHostConfig` which simplifies the configuration of the server-side hosting.
+    While the `_Host.cshtml` and `HostModel.fs` that were included in previous versions of the project template should continue to work correctly, it is recommended to switch to using `BoleroHostConfig`.
+
+    * Remove `HostModel.fs`.
+
+    * In `Pages/_Host.cshtml`, apply the following change:
+
+        ```diff
+        @page "/"
+        @namespace HelloWorld
+        -@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+        -@model HostModel
+        +@using Bolero.Server.RazorHost
+        +@inject IBoleroHostConfig BoleroHostConfig
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <title>Hello world!</title>
+          <meta charset="UTF-8" />
+          <base href="/" />
+        </head>
+        <body>
+        -  <div id="main">@(await Html.RenderComponentAsync<HelloWorld.Client.MyApp>(Model.IsServer ? RenderMode.ServerPrerendered : RenderMode.Static))</div>
+        +  <div id="main">@(await Html.RenderComponentAsync<HelloWorld.Client.MyApp>(BoleroHostConfig))</div>
+        -  <script src="_framework/blazor.@(Model.IsServer ? "server" : "webassembly").js"></script>
+        +  @Html.RenderBoleroScript(BoleroHostConfig)
+        </body>
+        </html>
+        ```
+
+    * In `Startup.fs`, open the namespace `Bolero.Server.RazorHost` and inject `BoleroHostConfig` in `ConfigureServices`:
+
+        ```fsharp
+        services.AddBoleroHost() |> ignore
+        ```
+
+        This method takes optional arguments that configure the hosting of the application (server vs client, prerendered or not, etc).
+
 ### From v0.11 to v0.12
 
 Bolero 0.12 upgrades the dependency on .NET Core SDK 3.1.102 or newer and on Blazor to 3.2-preview2. Here are the associated upgrade steps:

@@ -1,0 +1,2167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API Reference | Bolero: F# in WebAssembly</title>
+  <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16" />
+  <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
+  <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[],"$DATA":{"$V":{}}}' />
+
+  <link rel="stylesheet" href="/css/all.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js" type="text/javascript" charset="UTF-8"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/languages/fsharp.min.js" type="text/javascript" charset="UTF-8"></script><link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/vs.min.css"></link>
+
+</head>
+<body>
+  <header class="navbar ">
+    <div class="container">
+      <div class="navbar-brand">
+        <a class="navbar-item is-hoverable" onclick="Website.Client.ToggleDrawer()"><i class="fa fa-bars"></i></a>
+        <span class="navbar-item"><a href="/">Bolero</a></span>
+      </div>
+      <div class="navbar-menu">
+        <nav class="navbar-start"><a href="/" class="navbar-item is-hoverable has-text-weight-bold">Home</a><div class="navbar-item is-hoverable has-text-weight-bold has-dropdown">
+            <a href="/docs" class="navbar-link is-arrowless">Documentation</a>
+            <div class="navbar-dropdown has-text-weight-normal"><a class="navbar-item" href="/docs">Getting Started</a><a class="navbar-item" href="/docs/HTML">Writing HTML</a><a class="navbar-item" href="/docs/Templating">HTML templates</a><a class="navbar-item" href="/docs/Elmish">Using Elmish</a><a class="navbar-item" href="/docs/Routing">Routing</a><a class="navbar-item" href="/docs/Remoting">Remoting</a><a class="navbar-item" href="/docs/Blazor">Using Blazor features</a><a class="navbar-item" href="/docs/Upgrade">Upgrade guide</a><a class="navbar-item" href="/docs/reference">API Reference</a></div>
+          </div><a href="https://tryfsharp.fsbolero.io" class="navbar-item is-hoverable has-text-weight-bold">Try F#</a></nav>
+        <nav class="navbar-end">
+          <a target="_blank" title="GitHub" href="https://github.com/fsbolero/bolero" class="navbar-item is-hoverable"><i class="fa fa-github"></i></a>
+          <a target="_blank" title="Twitter" href="https://twitter.com/fsbolero" class="navbar-item is-hoverable"><i class="fa fa-twitter"></i></a>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <div class="drawer-backdrop" onclick="Website.Client.ToggleDrawer()">
+    <div id="left-drawer" class="lhs-drawer">
+      <nav class="menu">
+        <ul class="menu-list"><li>
+            <a href="/">Home</a>
+            
+          </li><li>
+            <a href="/docs">Documentation</a>
+            <ul><li>
+            <a href="/docs">Getting Started</a>
+            
+          </li><li>
+            <a href="/docs/HTML">Writing HTML</a>
+            
+          </li><li>
+            <a href="/docs/Templating">HTML templates</a>
+            
+          </li><li>
+            <a href="/docs/Elmish">Using Elmish</a>
+            
+          </li><li>
+            <a href="/docs/Routing">Routing</a>
+            
+          </li><li>
+            <a href="/docs/Remoting">Remoting</a>
+            
+          </li><li>
+            <a href="/docs/Blazor">Using Blazor features</a>
+            
+          </li><li>
+            <a href="/docs/Upgrade">Upgrade guide</a>
+            
+          </li><li>
+            <a href="/docs/reference">API Reference</a>
+            
+          </li></ul>
+          </li><li>
+            <a href="https://tryfsharp.fsbolero.io">Try F#</a>
+            
+          </li></ul>
+      </nav>
+    </div>
+  </div>
+  
+      <section class="with-sidebar-background">
+        <div class="container">
+          <div class="columns is-gapless">
+            <div class="column content markdown-column">
+              <div class="edit-page-icon" style="display: none">
+                <a href="https://github.com/fsbolero/website/tree/master/src/Website/docs/reference.md" target="_blank" title="Contribute to this page on GitHub">
+                  <i class="fa fa-edit"></i>
+                </a>
+              </div>
+              
+              
+              <section class="section"><div ws-preserve=""><p>
+
+<h1>attr</h1>
+<p>
+  <span>Namespace: Bolero</span><br />
+  <span>Parent Module: <a href="bolero-html.html">Html</a></span>
+  </p>
+<div class="xmldoc">
+<p>HTML attributes.</p>
+
+</div>
+
+<!-- Render nested types and modules, if there are any -->
+  <h2>Nested types and modules</h2>
+  <div>
+      <table class="table table-bordered module-list">
+    <thead>
+      <tr><td>Module</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td class="module-name">
+            <a href="bolero-html-attr-async.html">async</a>
+          </td>
+          <td class="xmldoc">
+          
+          </td>
+        </tr>
+        <tr>
+          <td class="module-name">
+            <a href="bolero-html-attr-task.html">task</a>
+          </td>
+          <td class="xmldoc">
+          
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  </div>
+
+  <h3>Functions and values</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Function or value</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '152', 152)" onmouseover="showTip(event, '152', 152)">
+            accept(v)
+          </code>
+          <div class="tip" id="152">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>accept</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '153', 153)" onmouseover="showTip(event, '153', 153)">
+            acceptCharset(v)
+          </code>
+          <div class="tip" id="153">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>accept-charset</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '154', 154)" onmouseover="showTip(event, '154', 154)">
+            accesskey(v)
+          </code>
+          <div class="tip" id="154">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>accesskey</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '155', 155)" onmouseover="showTip(event, '155', 155)">
+            action(v)
+          </code>
+          <div class="tip" id="155">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>action</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '156', 156)" onmouseover="showTip(event, '156', 156)">
+            align(v)
+          </code>
+          <div class="tip" id="156">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>align</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '157', 157)" onmouseover="showTip(event, '157', 157)">
+            allow(v)
+          </code>
+          <div class="tip" id="157">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>allow</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '158', 158)" onmouseover="showTip(event, '158', 158)">
+            alt(v)
+          </code>
+          <div class="tip" id="158">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>alt</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '159', 159)" onmouseover="showTip(event, '159', 159)">
+            aria name v
+          </code>
+          <div class="tip" id="159">
+            <strong>Signature:</strong> name:string -&gt; v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>aria-X</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '160', 160)" onmouseover="showTip(event, '160', 160)">
+            async&#39;(v)
+          </code>
+          <div class="tip" id="160">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>async</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '161', 161)" onmouseover="showTip(event, '161', 161)">
+            autocapitalize(v)
+          </code>
+          <div class="tip" id="161">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>autocapitalize</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '162', 162)" onmouseover="showTip(event, '162', 162)">
+            autocomplete(v)
+          </code>
+          <div class="tip" id="162">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>autocomplete</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '163', 163)" onmouseover="showTip(event, '163', 163)">
+            autofocus(v)
+          </code>
+          <div class="tip" id="163">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>autofocus</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '164', 164)" onmouseover="showTip(event, '164', 164)">
+            autoplay(v)
+          </code>
+          <div class="tip" id="164">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>autoplay</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '165', 165)" onmouseover="showTip(event, '165', 165)">
+            bgcolor(v)
+          </code>
+          <div class="tip" id="165">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>bgcolor</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '166', 166)" onmouseover="showTip(event, '166', 166)">
+            bindRef(refBinder)
+          </code>
+          <div class="tip" id="166">
+            <strong>Signature:</strong> refBinder:ElementReferenceBinder -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Bind an element reference.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '167', 167)" onmouseover="showTip(event, '167', 167)">
+            border(v)
+          </code>
+          <div class="tip" id="167">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>border</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '168', 168)" onmouseover="showTip(event, '168', 168)">
+            buffered(v)
+          </code>
+          <div class="tip" id="168">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>buffered</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '169', 169)" onmouseover="showTip(event, '169', 169)">
+            callback name value
+          </code>
+          <div class="tip" id="169">
+            <strong>Signature:</strong> name:string -&gt; value:(&#39;T -&gt; unit) -&gt; Attr<br />
+                          <strong>Type parameters:</strong> 'T                      </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an attribute whose value is a callback.
+Use this function for Blazor component attributes of type <code>EventCallback&lt;T&gt;</code>.
+Note: for HTML event handlers, prefer functions from the module <a href="bolero-html-on.html" title="on"><code>on</code></a>.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '170', 170)" onmouseover="showTip(event, '170', 170)">
+            challenge(v)
+          </code>
+          <div class="tip" id="170">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>challenge</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '171', 171)" onmouseover="showTip(event, '171', 171)">
+            charset(v)
+          </code>
+          <div class="tip" id="171">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>charset</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '172', 172)" onmouseover="showTip(event, '172', 172)">
+            checked(v)
+          </code>
+          <div class="tip" id="172">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>checked</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '173', 173)" onmouseover="showTip(event, '173', 173)">
+            cite(v)
+          </code>
+          <div class="tip" id="173">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>cite</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '174', 174)" onmouseover="showTip(event, '174', 174)">
+            class(v)
+          </code>
+          <div class="tip" id="174">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>class</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '175', 175)" onmouseover="showTip(event, '175', 175)">
+            classes(classes)
+          </code>
+          <div class="tip" id="175">
+            <strong>Signature:</strong> classes:string list -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>class</code> attribute containing the given class names.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '176', 176)" onmouseover="showTip(event, '176', 176)">
+            code(v)
+          </code>
+          <div class="tip" id="176">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>code</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '177', 177)" onmouseover="showTip(event, '177', 177)">
+            codebase(v)
+          </code>
+          <div class="tip" id="177">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>codebase</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '178', 178)" onmouseover="showTip(event, '178', 178)">
+            color(v)
+          </code>
+          <div class="tip" id="178">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>color</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '179', 179)" onmouseover="showTip(event, '179', 179)">
+            cols(v)
+          </code>
+          <div class="tip" id="179">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>cols</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '180', 180)" onmouseover="showTip(event, '180', 180)">
+            colspan(v)
+          </code>
+          <div class="tip" id="180">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>colspan</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '181', 181)" onmouseover="showTip(event, '181', 181)">
+            content(v)
+          </code>
+          <div class="tip" id="181">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>content</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '182', 182)" onmouseover="showTip(event, '182', 182)">
+            contenteditable(v)
+          </code>
+          <div class="tip" id="182">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>contenteditable</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '183', 183)" onmouseover="showTip(event, '183', 183)">
+            contextmenu(v)
+          </code>
+          <div class="tip" id="183">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>contextmenu</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '184', 184)" onmouseover="showTip(event, '184', 184)">
+            controls(v)
+          </code>
+          <div class="tip" id="184">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>controls</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '185', 185)" onmouseover="showTip(event, '185', 185)">
+            coords(v)
+          </code>
+          <div class="tip" id="185">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>coords</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '186', 186)" onmouseover="showTip(event, '186', 186)">
+            crossorigin(v)
+          </code>
+          <div class="tip" id="186">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>crossorigin</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '187', 187)" onmouseover="showTip(event, '187', 187)">
+            csp(v)
+          </code>
+          <div class="tip" id="187">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>csp</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '188', 188)" onmouseover="showTip(event, '188', 188)">
+            data(v)
+          </code>
+          <div class="tip" id="188">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>data</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '189', 189)" onmouseover="showTip(event, '189', 189)">
+            datetime(v)
+          </code>
+          <div class="tip" id="189">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>datetime</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '190', 190)" onmouseover="showTip(event, '190', 190)">
+            decoding(v)
+          </code>
+          <div class="tip" id="190">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>decoding</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '191', 191)" onmouseover="showTip(event, '191', 191)">
+            default(v)
+          </code>
+          <div class="tip" id="191">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>default</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '192', 192)" onmouseover="showTip(event, '192', 192)">
+            defer(v)
+          </code>
+          <div class="tip" id="192">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>defer</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '193', 193)" onmouseover="showTip(event, '193', 193)">
+            dir(v)
+          </code>
+          <div class="tip" id="193">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>dir</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '194', 194)" onmouseover="showTip(event, '194', 194)">
+            dirname(v)
+          </code>
+          <div class="tip" id="194">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>dirname</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '195', 195)" onmouseover="showTip(event, '195', 195)">
+            disabled(v)
+          </code>
+          <div class="tip" id="195">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>disabled</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '196', 196)" onmouseover="showTip(event, '196', 196)">
+            download(v)
+          </code>
+          <div class="tip" id="196">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>download</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '197', 197)" onmouseover="showTip(event, '197', 197)">
+            draggable(v)
+          </code>
+          <div class="tip" id="197">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>draggable</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '198', 198)" onmouseover="showTip(event, '198', 198)">
+            dropzone(v)
+          </code>
+          <div class="tip" id="198">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>dropzone</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '199', 199)" onmouseover="showTip(event, '199', 199)">
+            enctype(v)
+          </code>
+          <div class="tip" id="199">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>enctype</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '200', 200)" onmouseover="showTip(event, '200', 200)">
+            for(v)
+          </code>
+          <div class="tip" id="200">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>for</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '201', 201)" onmouseover="showTip(event, '201', 201)">
+            form(v)
+          </code>
+          <div class="tip" id="201">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>form</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '202', 202)" onmouseover="showTip(event, '202', 202)">
+            formaction(v)
+          </code>
+          <div class="tip" id="202">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>formaction</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '203', 203)" onmouseover="showTip(event, '203', 203)">
+            fragment name node
+          </code>
+          <div class="tip" id="203">
+            <strong>Signature:</strong> name:string -&gt; node:Node -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an attribute whose value is an HTML fragment.
+Use this function for Blazor component attributes of type <code>RenderFragment</code>.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '204', 204)" onmouseover="showTip(event, '204', 204)">
+            fragmentWith name node
+          </code>
+          <div class="tip" id="204">
+            <strong>Signature:</strong> name:string -&gt; node:(&#39;?8271 -&gt; Node) -&gt; Attr<br />
+                          <strong>Type parameters:</strong> '?8271                      </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an attribute whose value is a parameterized HTML fragment.
+Use this function for Blazor component attributes of type <code>RenderFragment&lt;T&gt;</code>.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '205', 205)" onmouseover="showTip(event, '205', 205)">
+            headers(v)
+          </code>
+          <div class="tip" id="205">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>headers</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '206', 206)" onmouseover="showTip(event, '206', 206)">
+            height(v)
+          </code>
+          <div class="tip" id="206">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>height</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '207', 207)" onmouseover="showTip(event, '207', 207)">
+            hidden(v)
+          </code>
+          <div class="tip" id="207">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>hidden</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '208', 208)" onmouseover="showTip(event, '208', 208)">
+            high(v)
+          </code>
+          <div class="tip" id="208">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>high</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '209', 209)" onmouseover="showTip(event, '209', 209)">
+            href(v)
+          </code>
+          <div class="tip" id="209">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>href</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '210', 210)" onmouseover="showTip(event, '210', 210)">
+            hreflang(v)
+          </code>
+          <div class="tip" id="210">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>hreflang</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '211', 211)" onmouseover="showTip(event, '211', 211)">
+            httpEquiv(v)
+          </code>
+          <div class="tip" id="211">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>http-equiv</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '212', 212)" onmouseover="showTip(event, '212', 212)">
+            icon(v)
+          </code>
+          <div class="tip" id="212">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>icon</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '213', 213)" onmouseover="showTip(event, '213', 213)">
+            id(v)
+          </code>
+          <div class="tip" id="213">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>id</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '214', 214)" onmouseover="showTip(event, '214', 214)">
+            importance(v)
+          </code>
+          <div class="tip" id="214">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>importance</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '215', 215)" onmouseover="showTip(event, '215', 215)">
+            integrity(v)
+          </code>
+          <div class="tip" id="215">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>integrity</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '216', 216)" onmouseover="showTip(event, '216', 216)">
+            ismap(v)
+          </code>
+          <div class="tip" id="216">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>ismap</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '217', 217)" onmouseover="showTip(event, '217', 217)">
+            itemprop(v)
+          </code>
+          <div class="tip" id="217">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>itemprop</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '218', 218)" onmouseover="showTip(event, '218', 218)">
+            key(k)
+          </code>
+          <div class="tip" id="218">
+            <strong>Signature:</strong> k:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '219', 219)" onmouseover="showTip(event, '219', 219)">
+            keytype(v)
+          </code>
+          <div class="tip" id="219">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>keytype</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '220', 220)" onmouseover="showTip(event, '220', 220)">
+            kind(v)
+          </code>
+          <div class="tip" id="220">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>kind</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '221', 221)" onmouseover="showTip(event, '221', 221)">
+            label(v)
+          </code>
+          <div class="tip" id="221">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>label</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '222', 222)" onmouseover="showTip(event, '222', 222)">
+            lang(v)
+          </code>
+          <div class="tip" id="222">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>lang</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '223', 223)" onmouseover="showTip(event, '223', 223)">
+            language(v)
+          </code>
+          <div class="tip" id="223">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>language</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '224', 224)" onmouseover="showTip(event, '224', 224)">
+            lazyload(v)
+          </code>
+          <div class="tip" id="224">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>lazyload</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '225', 225)" onmouseover="showTip(event, '225', 225)">
+            list(v)
+          </code>
+          <div class="tip" id="225">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>list</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '226', 226)" onmouseover="showTip(event, '226', 226)">
+            loop(v)
+          </code>
+          <div class="tip" id="226">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>loop</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '227', 227)" onmouseover="showTip(event, '227', 227)">
+            low(v)
+          </code>
+          <div class="tip" id="227">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>low</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '228', 228)" onmouseover="showTip(event, '228', 228)">
+            manifest(v)
+          </code>
+          <div class="tip" id="228">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>manifest</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '229', 229)" onmouseover="showTip(event, '229', 229)">
+            max(v)
+          </code>
+          <div class="tip" id="229">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>max</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '230', 230)" onmouseover="showTip(event, '230', 230)">
+            maxlength(v)
+          </code>
+          <div class="tip" id="230">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>maxlength</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '231', 231)" onmouseover="showTip(event, '231', 231)">
+            media(v)
+          </code>
+          <div class="tip" id="231">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>media</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '232', 232)" onmouseover="showTip(event, '232', 232)">
+            method(v)
+          </code>
+          <div class="tip" id="232">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>method</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '233', 233)" onmouseover="showTip(event, '233', 233)">
+            min(v)
+          </code>
+          <div class="tip" id="233">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>min</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '234', 234)" onmouseover="showTip(event, '234', 234)">
+            minlength(v)
+          </code>
+          <div class="tip" id="234">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>minlength</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '235', 235)" onmouseover="showTip(event, '235', 235)">
+            multiple(v)
+          </code>
+          <div class="tip" id="235">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>multiple</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '236', 236)" onmouseover="showTip(event, '236', 236)">
+            muted(v)
+          </code>
+          <div class="tip" id="236">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>muted</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '237', 237)" onmouseover="showTip(event, '237', 237)">
+            name(v)
+          </code>
+          <div class="tip" id="237">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>name</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '238', 238)" onmouseover="showTip(event, '238', 238)">
+            novalidate(v)
+          </code>
+          <div class="tip" id="238">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>novalidate</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '239', 239)" onmouseover="showTip(event, '239', 239)">
+            open(v)
+          </code>
+          <div class="tip" id="239">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>open</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '240', 240)" onmouseover="showTip(event, '240', 240)">
+            optimum(v)
+          </code>
+          <div class="tip" id="240">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>optimum</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '241', 241)" onmouseover="showTip(event, '241', 241)">
+            pattern(v)
+          </code>
+          <div class="tip" id="241">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>pattern</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '242', 242)" onmouseover="showTip(event, '242', 242)">
+            ping(v)
+          </code>
+          <div class="tip" id="242">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>ping</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '243', 243)" onmouseover="showTip(event, '243', 243)">
+            placeholder(v)
+          </code>
+          <div class="tip" id="243">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>placeholder</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '244', 244)" onmouseover="showTip(event, '244', 244)">
+            poster(v)
+          </code>
+          <div class="tip" id="244">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>poster</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '245', 245)" onmouseover="showTip(event, '245', 245)">
+            preload(v)
+          </code>
+          <div class="tip" id="245">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>preload</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '246', 246)" onmouseover="showTip(event, '246', 246)">
+            readonly(v)
+          </code>
+          <div class="tip" id="246">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>readonly</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '247', 247)" onmouseover="showTip(event, '247', 247)">
+            ref(f)
+          </code>
+          <div class="tip" id="247">
+            <strong>Signature:</strong> f:(ElementReference -&gt; unit) -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Bind an element reference.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '248', 248)" onmouseover="showTip(event, '248', 248)">
+            rel(v)
+          </code>
+          <div class="tip" id="248">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>rel</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '249', 249)" onmouseover="showTip(event, '249', 249)">
+            required(v)
+          </code>
+          <div class="tip" id="249">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>required</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '250', 250)" onmouseover="showTip(event, '250', 250)">
+            reversed(v)
+          </code>
+          <div class="tip" id="250">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>reversed</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '251', 251)" onmouseover="showTip(event, '251', 251)">
+            rows(v)
+          </code>
+          <div class="tip" id="251">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>rows</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '252', 252)" onmouseover="showTip(event, '252', 252)">
+            rowspan(v)
+          </code>
+          <div class="tip" id="252">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>rowspan</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '253', 253)" onmouseover="showTip(event, '253', 253)">
+            sandbox(v)
+          </code>
+          <div class="tip" id="253">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>sandbox</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '254', 254)" onmouseover="showTip(event, '254', 254)">
+            scope(v)
+          </code>
+          <div class="tip" id="254">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>scope</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '255', 255)" onmouseover="showTip(event, '255', 255)">
+            selected(v)
+          </code>
+          <div class="tip" id="255">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>selected</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '256', 256)" onmouseover="showTip(event, '256', 256)">
+            shape(v)
+          </code>
+          <div class="tip" id="256">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>shape</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '257', 257)" onmouseover="showTip(event, '257', 257)">
+            size(v)
+          </code>
+          <div class="tip" id="257">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>size</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '258', 258)" onmouseover="showTip(event, '258', 258)">
+            sizes(v)
+          </code>
+          <div class="tip" id="258">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>sizes</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '259', 259)" onmouseover="showTip(event, '259', 259)">
+            slot(v)
+          </code>
+          <div class="tip" id="259">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>slot</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '260', 260)" onmouseover="showTip(event, '260', 260)">
+            span(v)
+          </code>
+          <div class="tip" id="260">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>span</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '261', 261)" onmouseover="showTip(event, '261', 261)">
+            spellcheck(v)
+          </code>
+          <div class="tip" id="261">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>spellcheck</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '262', 262)" onmouseover="showTip(event, '262', 262)">
+            src(v)
+          </code>
+          <div class="tip" id="262">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>src</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '263', 263)" onmouseover="showTip(event, '263', 263)">
+            srcdoc(v)
+          </code>
+          <div class="tip" id="263">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>srcdoc</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '264', 264)" onmouseover="showTip(event, '264', 264)">
+            srclang(v)
+          </code>
+          <div class="tip" id="264">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>srclang</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '265', 265)" onmouseover="showTip(event, '265', 265)">
+            srcset(v)
+          </code>
+          <div class="tip" id="265">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>srcset</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '266', 266)" onmouseover="showTip(event, '266', 266)">
+            start(v)
+          </code>
+          <div class="tip" id="266">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>start</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '267', 267)" onmouseover="showTip(event, '267', 267)">
+            step(v)
+          </code>
+          <div class="tip" id="267">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>step</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '268', 268)" onmouseover="showTip(event, '268', 268)">
+            style(v)
+          </code>
+          <div class="tip" id="268">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>style</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '269', 269)" onmouseover="showTip(event, '269', 269)">
+            summary(v)
+          </code>
+          <div class="tip" id="269">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>summary</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '270', 270)" onmouseover="showTip(event, '270', 270)">
+            tabindex(v)
+          </code>
+          <div class="tip" id="270">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>tabindex</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '271', 271)" onmouseover="showTip(event, '271', 271)">
+            target(v)
+          </code>
+          <div class="tip" id="271">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>target</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '272', 272)" onmouseover="showTip(event, '272', 272)">
+            title(v)
+          </code>
+          <div class="tip" id="272">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>title</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '273', 273)" onmouseover="showTip(event, '273', 273)">
+            translate(v)
+          </code>
+          <div class="tip" id="273">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>translate</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '274', 274)" onmouseover="showTip(event, '274', 274)">
+            type(v)
+          </code>
+          <div class="tip" id="274">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>type</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '275', 275)" onmouseover="showTip(event, '275', 275)">
+            usemap(v)
+          </code>
+          <div class="tip" id="275">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>usemap</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '276', 276)" onmouseover="showTip(event, '276', 276)">
+            value(v)
+          </code>
+          <div class="tip" id="276">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>value</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '277', 277)" onmouseover="showTip(event, '277', 277)">
+            width(v)
+          </code>
+          <div class="tip" id="277">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>width</code> attribute.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '278', 278)" onmouseover="showTip(event, '278', 278)">
+            wrap(v)
+          </code>
+          <div class="tip" id="278">
+            <strong>Signature:</strong> v:obj -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>wrap</code> attribute.</p>
+
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</p>
+</div></section>
+            </div>
+            <div class="column is-one-quarter-tablet is-one-fifth-desktop sidebar-column">
+              <section class="section">
+                <div class="menu">
+                  <div class="menu-label">Documentation</div>
+                  <ul class="menu-list"><li>
+                      <a href="/docs">Getting Started</a>
+                      <ul class="is-hidden"></ul>
+                    </li><li>
+                      <a href="/docs/HTML">Writing HTML</a>
+                      <ul class="is-hidden"></ul>
+                    </li><li>
+                      <a href="/docs/Templating">HTML templates</a>
+                      <ul class="is-hidden"></ul>
+                    </li><li>
+                      <a href="/docs/Elmish">Using Elmish</a>
+                      <ul class="is-hidden"></ul>
+                    </li><li>
+                      <a href="/docs/Routing">Routing</a>
+                      <ul class="is-hidden"></ul>
+                    </li><li>
+                      <a href="/docs/Remoting">Remoting</a>
+                      <ul class="is-hidden"></ul>
+                    </li><li>
+                      <a href="/docs/Blazor">Using Blazor features</a>
+                      <ul class="is-hidden"></ul>
+                    </li><li>
+                      <a href="/docs/Upgrade">Upgrade guide</a>
+                      <ul class="is-hidden"></ul>
+                    </li><li>
+                      <a class="is-active" href="/docs/reference">API Reference</a>
+                      <ul></ul>
+                    </li></ul>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </section>
+    
+  <footer class="section footer first-footer has-text-centered">
+    <div class="container">
+      <div class="columns">
+        <div class="column">
+          <a target="_blank" href="https://github.com/fsbolero/template">
+            <img class="box no-padding" data-src="/img/screenshot-template.png" />
+            <h1 class="title">Bolero project template</h1>
+          </a>
+        </div>
+        <div class="column">
+          <a target="_blank" href="https://fsbolero.github.io/TodoMVC">
+            <img class="box no-padding" data-src="/img/screenshot-todomvc.png" />
+            <h1 class="title">TodoMVC</h1>
+          </a>
+        </div>
+        <div class="column">
+          <a target="_blank" href="https://tryfsharp.fsbolero.io">
+            <img class="box no-padding" data-src="/img/screenshot-tryfsharp.png" />
+            <h1 class="title">Try F# in your browser</h1>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <footer class="section footer second-footer">
+    <div class="container">
+      <div class="columns">
+        <div class="column">
+          <h1 class="title"><a href="/">Home</a></h1>
+          <h1 class="title">Made with Bolero</h1>
+          <div class="menu">
+            <ul class="menu-list">
+              <li><a target="_blank" href="https://tryfsharp.fsbolero.io">Try F#</a></li>
+              <li><a target="_blank" href="https://github.com/fsbolero/TodoMVC">TodoMVC</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="column">
+          <h1 class="title">Documentation</h1>
+          <div class="menu">
+            <ul class="menu-list"><li><a href="/docs">Getting Started</a></li><li><a href="/docs/HTML">Writing HTML</a></li><li><a href="/docs/Templating">HTML templates</a></li><li><a href="/docs/Elmish">Using Elmish</a></li><li><a href="/docs/Routing">Routing</a></li><li><a href="/docs/Remoting">Remoting</a></li><li><a href="/docs/Blazor">Using Blazor features</a></li><li><a href="/docs/Upgrade">Upgrade guide</a></li><li><a href="/docs/reference">API Reference</a></li></ul>
+          </div>
+        </div>
+        <div class="column">
+          <h1 class="title">We leverage</h1>
+          <div class="menu">
+            <ul class="menu-list">
+              <li><a target="_blank" href="https://fsharp.org">F#</a></li>
+              <li><a target="_blank" href="https://elmish.github.io/elmish/">Elmish</a></li>
+              <li><a target="_blank" href="https://dot.net">.NET Core</a></li>
+              <li><a target="_blank" href="https://blazor.net">Blazor</a></li>
+              <li><a target="_blank" href="https://webassembly.org/">WebAssembly</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="column">
+          <h1 class="title">Find us</h1>
+          <ul>
+            <li>
+              <a class="github-button" href="https://github.com/fsbolero/bolero" data-size="large" aria-label="Star fsbolero/bolero on GitHub">Bolero on GitHub</a>
+            </li>
+            <li>
+              <a href="https://twitter.com/fsbolero?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large" data-dnt="true" data-show-count="false">Follow &commat;fsbolero</a>
+            </li>
+            <li>
+              <a target="_blank" href="https://nuget.org/packages/Bolero"><img alt="NuGet" src="https://img.shields.io/nuget/v/Bolero.svg?label=Bolero%20on%20NuGet&amp;logo=nuget&amp;style=for-the-badge" /></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/8.6.0/lazyload.min.js"></script>
+  <script type="text/javascript">new LazyLoad();</script>
+  <script src="/js/Client.min.js"></script>
+  <script async="" defer="" src="https://buttons.github.io/buttons.js"></script>
+  <script async="" defer="" src="https://platform.twitter.com/widgets.js"></script>
+  
+  
+</body>
+</html>

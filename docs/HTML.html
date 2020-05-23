@@ -22,7 +22,7 @@
       <div class="navbar-menu">
         <nav class="navbar-start"><a href="/" class="navbar-item is-hoverable has-text-weight-bold">Home</a><div class="navbar-item is-hoverable has-text-weight-bold has-dropdown">
             <a href="/docs" class="navbar-link is-arrowless">Documentation</a>
-            <div class="navbar-dropdown has-text-weight-normal"><a class="navbar-item" href="/docs">Getting Started</a><a class="navbar-item" href="/docs/HTML">Writing HTML</a><a class="navbar-item" href="/docs/Templating">HTML templates</a><a class="navbar-item" href="/docs/Elmish">Using Elmish</a><a class="navbar-item" href="/docs/Routing">Routing</a><a class="navbar-item" href="/docs/Remoting">Remoting</a><a class="navbar-item" href="/docs/Blazor">Using Blazor features</a><a class="navbar-item" href="/docs/Upgrade">Upgrade guide</a></div>
+            <div class="navbar-dropdown has-text-weight-normal"><a class="navbar-item" href="/docs">Getting Started</a><a class="navbar-item" href="/docs/HTML">Writing HTML</a><a class="navbar-item" href="/docs/Templating">HTML templates</a><a class="navbar-item" href="/docs/Elmish">Using Elmish</a><a class="navbar-item" href="/docs/Routing">Routing</a><a class="navbar-item" href="/docs/Remoting">Remoting</a><a class="navbar-item" href="/docs/Blazor">Using Blazor features</a><a class="navbar-item" href="/docs/Upgrade">Upgrade guide</a><a class="navbar-item" href="/docs/reference">API Reference</a></div>
           </div><a href="https://tryfsharp.fsbolero.io" class="navbar-item is-hoverable has-text-weight-bold">Try F#</a></nav>
         <nav class="navbar-end">
           <a target="_blank" title="GitHub" href="https://github.com/fsbolero/bolero" class="navbar-item is-hoverable"><i class="fa fa-github"></i></a>
@@ -63,6 +63,9 @@
           </li><li>
             <a href="/docs/Upgrade">Upgrade guide</a>
             
+          </li><li>
+            <a href="/docs/reference">API Reference</a>
+            
           </li></ul>
           </li><li>
             <a href="https://tryfsharp.fsbolero.io">Try F#</a>
@@ -87,10 +90,11 @@
                     Writing HTML
                   </h1>
                   <p class="subtitle">
-Create elements, attributes, event handlers and Blazor components in plain F#</p>
+Create elements, attributes and event handlers in plain F#</p>
 
                 </div>
               </section>
+              
               <section class="section"><div ws-preserve=""><p>All of the functions described here are defined in the module <code>Bolero.Html</code>.</p>
 <p>See also how to create HTML elements using <a href="Templating">HTML templates</a>.</p>
 <h3 id="elements">Elements</h3>
@@ -339,40 +343,6 @@ let hello model dispatch =
             bind.change.string (string color) (fun _ -&gt; dispatch (SetColor color))
         ]
 </code></pre>
-<h3 id="components">Components</h3>
-<blockquote>
-<p>Note: this section describes how to create and use plain Blazor components. It is recommended to use Elmish components whenever possible; see <a href="Elmish">Using Elmish</a>.</p>
-</blockquote>
-<p>You can create plain Blazor components by inheriting from the <code>Component</code> type.</p>
-<pre><code class="language-fsharp">type MyComponent() =
-    inherit Component()
-
-    override this.Render() =
-        div [] [text &quot;Hello, world!&quot;]
-</code></pre>
-<p>To add parameters to the component, use a property with the <code>Parameter</code> attribute from namespace <code>Microsoft.AspNetCore.Blazor</code>.</p>
-<pre><code class="language-fsharp">type MyComponent() =
-    inherit Component()
-
-    [&lt;Parameter&gt;]
-    member val Who = &quot;&quot; with get, set
-
-    override this.Render() =
-        div [] [text (sprintf &quot;Hello, %s!&quot; this.Who)]
-</code></pre>
-<p>To instantiate a Blazor component, use the <code>comp</code> function. It is parameterized by the component type, and takes attributes and child nodes as arguments.
-To set a parameter, pass it by name as an attribute using the <code>=&gt;</code> operator.</p>
-<pre><code class="language-fsharp">let myElement =
-    comp&lt;MyComponent&gt; [&quot;Who&quot; =&gt; &quot;world&quot;] []
-</code></pre>
-<h3 id="navlink">NavLink</h3>
-<p>The function <code>navLink</code> is a helper to create a Blazor <code>NavLink</code> component. This component creates an <code>&lt;a&gt;</code> tag which dynamically receives the <code>&quot;active&quot;</code> CSS class whenever the current page URL matches its own <code>href</code>. The match is customized by passing <code>NavLinkMatch.All</code> (to only match the full URL path) or <code>NavLinkMatch.Prefix</code> (to match any URL that starts with the <code>navLink</code>'s <code>href</code>).</p>
-<pre><code class="language-fsharp">let myMenu =
-    ul [] [
-        li [] [navLink NavLinkMatch.All [attr.href &quot;/&quot;] [text &quot;Home&quot;]]
-        li [] [navLink NavLinkMatch.Prefix [attr.href &quot;/blog&quot;] [text &quot;Blog&quot;]]
-    ]
-</code></pre>
 </div></section>
             </div>
             <div class="column is-one-quarter-tablet is-one-fifth-desktop sidebar-column">
@@ -392,10 +362,6 @@ To set a parameter, pass it by name as an attribute using the <code>=&gt;</code>
                           <a href="#event-handlers">Event handlers</a>
                         </li><li>
                           <a href="#data-bindings">Data bindings</a>
-                        </li><li>
-                          <a href="#components">Components</a>
-                        </li><li>
-                          <a href="#navlink">NavLink</a>
                         </li></ul>
                     </li><li>
                       <a href="/docs/Templating">HTML templates</a>
@@ -414,6 +380,9 @@ To set a parameter, pass it by name as an attribute using the <code>=&gt;</code>
                       <ul class="is-hidden"></ul>
                     </li><li>
                       <a href="/docs/Upgrade">Upgrade guide</a>
+                      <ul class="is-hidden"></ul>
+                    </li><li>
+                      <a href="/docs/reference">API Reference</a>
                       <ul class="is-hidden"></ul>
                     </li></ul>
                 </div>
@@ -463,7 +432,7 @@ To set a parameter, pass it by name as an attribute using the <code>=&gt;</code>
         <div class="column">
           <h1 class="title">Documentation</h1>
           <div class="menu">
-            <ul class="menu-list"><li><a href="/docs">Getting Started</a></li><li><a href="/docs/HTML">Writing HTML</a></li><li><a href="/docs/Templating">HTML templates</a></li><li><a href="/docs/Elmish">Using Elmish</a></li><li><a href="/docs/Routing">Routing</a></li><li><a href="/docs/Remoting">Remoting</a></li><li><a href="/docs/Blazor">Using Blazor features</a></li><li><a href="/docs/Upgrade">Upgrade guide</a></li></ul>
+            <ul class="menu-list"><li><a href="/docs">Getting Started</a></li><li><a href="/docs/HTML">Writing HTML</a></li><li><a href="/docs/Templating">HTML templates</a></li><li><a href="/docs/Elmish">Using Elmish</a></li><li><a href="/docs/Routing">Routing</a></li><li><a href="/docs/Remoting">Remoting</a></li><li><a href="/docs/Blazor">Using Blazor features</a></li><li><a href="/docs/Upgrade">Upgrade guide</a></li><li><a href="/docs/reference">API Reference</a></li></ul>
           </div>
         </div>
         <div class="column">
@@ -485,7 +454,7 @@ To set a parameter, pass it by name as an attribute using the <code>=&gt;</code>
               <a class="github-button" href="https://github.com/fsbolero/bolero" data-size="large" aria-label="Star fsbolero/bolero on GitHub">Bolero on GitHub</a>
             </li>
             <li>
-              <a href="https://twitter.com/fsbolero?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large" data-dnt="true" data-show-count="false">Follow @fsbolero</a>
+              <a href="https://twitter.com/fsbolero?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large" data-dnt="true" data-show-count="false">Follow &commat;fsbolero</a>
             </li>
             <li>
               <a target="_blank" href="https://nuget.org/packages/Bolero"><img alt="NuGet" src="https://img.shields.io/nuget/v/Bolero.svg?label=Bolero%20on%20NuGet&amp;logo=nuget&amp;style=for-the-badge" /></a>

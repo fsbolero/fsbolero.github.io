@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Getting started | Bolero: F# in WebAssembly</title>
+  <title>API Reference | Bolero: F# in WebAssembly</title>
   <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16" />
   <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
   <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[],"$DATA":{"$V":{}}}' />
@@ -79,73 +79,150 @@
         <div class="container">
           <div class="columns is-gapless">
             <div class="column content markdown-column">
-              <div class="edit-page-icon">
-                <a href="https://github.com/fsbolero/website/tree/master/src/Website/docs/index.md" target="_blank" title="Contribute to this page on GitHub">
+              <div class="edit-page-icon" style="display: none">
+                <a href="https://github.com/fsbolero/website/tree/master/src/Website/docs/reference.md" target="_blank" title="Contribute to this page on GitHub">
                   <i class="fa fa-edit"></i>
                 </a>
               </div>
-              <section class="hero">
-                <div class="hero-body">
-                  <h1 class="title">
-                    Getting started
-                  </h1>
-                  <p class="subtitle">
-Welcome to Bolero: F# on WebAssembly!</p>
-
-                </div>
-              </section>
               
-              <section class="section"><div ws-preserve=""><h3 id="what-is-bolero">What is Bolero?</h3>
-<p>Bolero is a set of free and open-source libraries and tools to write <a href="https://webassembly.org/"><strong>WebAssembly</strong></a> applications in <a href="https://fsharp.org/"><strong>F#</strong></a>. With it, you can write fully dynamic client-side web applications from the comfort of a strongly-typed functional language, all with great performance.</p>
-<p>Bolero is built on top of <a href="https://blazor.net/">Blazor</a> and adds a lot of features designed specifically to work in F#:</p>
-<ul>
-<li><a href="Elmish">Elmish</a> Model-View-Update architecture for a functional approach to reactive content.</li>
-<li><a href="HTML">HTML-in-F#</a> syntax inspired by WebSharper.UI and Fable.</li>
-<li>Alternatively, <a href="Templating">HTML templates</a> with hot reloading provide a comfortable design experience.</li>
-<li><a href="Routing">URL Routing</a> the F# way, automatically matching URLs with F# union types.</li>
-<li>Easy <a href="Remoting">Remoting</a> with an ASP.NET Core server side.</li>
-<li>F#-specific optimizations: Bolero strips F# metadata from compiled assemblies, reducing the download size of the application.</li>
-</ul>
-<h3 id="creating-a-project">Creating a project</h3>
-<p>You can develop Bolero applications on Windows, OSX or Linux. It only has one prerequisite: the <a href="https://dotnet.microsoft.com/download/dotnet-core">.NET Core SDK</a>, version 3.1.102 or newer.</p>
-<p>The easiest way to get started is to use Bolero's dotnet template. To install it, run the following command:</p>
-<pre><code class="language-shell">dotnet new -i Bolero.Templates
-</code></pre>
-<p>Then, you can create a new Bolero application:</p>
-<pre><code class="language-shell">dotnet new bolero-app -o HelloWorld
-</code></pre>
-<p>This will create a new folder <code>HelloWorld</code> and create an application inside it. The template has additional options, described <a href="https://github.com/fsbolero/Template">at its home page</a>. You can run it with:</p>
-<pre><code class="language-shell">cd HelloWorld
-dotnet run -p src/HelloWorld.Server
-</code></pre>
-<p>This will start the server and run the following minimal application at <code>localhost:5000</code>:</p>
-<p><img src="sample-app.png" alt="Hello World application screenshot" /></p>
-<p>This sample application demonstrates 3 <code>types</code> of web applications:</p>
-<ol>
-<li>A static web site - Home</li>
-<li>A Client side only application - Counter</li>
-<li>An application with Server side interaction- Download Data</li>
-</ol>
-<h3 id="discovering-the-startup-project">Discovering the startup project</h3>
-<p>The solution you just created comprises two projects.</p>
-<ul>
-<li><p><code>src/HelloWorld.Client</code> is the project that gets compiled to WebAssembly, and contains your client-side code.</p>
-<ul>
-<li><p><code>Main.fs</code> contains the main body of the page. This is where the meat of the application is: as you develop, you will mostly be coding here and in new files referenced from here.</p>
-</li>
-<li><p><code>wwwroot/</code> contains static content. In particular, <code>index.html</code> is the actual page that is served. It contains a script reference to <code>blazor.webassembly.js</code>, which in turn loads your application.</p>
-<p>If you want to add styles and images to your application, this is the folder to put them in.</p>
-</li>
-<li><p><code>Startup.fs</code> sets up Blazor to get the application started. You will rarely need to touch it: essentially only to set up <a href="Remoting">remoting</a>, if you want to use it.</p>
-</li>
-</ul>
-</li>
-<li><p><code>src/HelloWorld.Server</code> is an ASP.NET Core application that serves as the host. This project is optional: if you pass <code>--server=false</code> when creating the solution with <code>dotnet new</code>, then it will not be created. Note however that it is necessary for <a href="Templating#hot-reloading">templating hot reloading</a> and <a href="Remoting">remoting</a>.</p>
-<ul>
-<li><code>Startup.fs</code>, similarly to its client counterpart, sets up ASP.NET Core to get the server started.</li>
-</ul>
-</li>
-</ul>
+              
+              <section class="section"><div ws-preserve=""><p>
+
+<h1>ElmishComponent<'model, 'msg></h1>
+<p>
+
+    <span>Namespace: Bolero</span><br />
+            <span>
+            Attributes: <br />
+[&lt;AbstractClass&gt;]<br />
+            
+        </span>
+</p>
+<div class="xmldoc">
+<p>Base class for components that are part of an Elmish view.</p>
+
+</div>
+  <h3>Constructors</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Constructor</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '647', 647)" onmouseover="showTip(event, '647', 647)">
+            new()
+          </code>
+          <div class="tip" id="647">
+            <strong>Signature:</strong> unit -&gt; ElmishComponent&lt;&#39;model,&#39;msg&gt;<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    
+              <p>CompiledName: <code>.ctor</code></p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>Instance members</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Instance member</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '648', 648)" onmouseover="showTip(event, '648', 648)">
+            x.Dispatch()
+          </code>
+          <div class="tip" id="648">
+            <strong>Signature:</strong> unit -&gt; Dispatch&lt;&#39;msg&gt;<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>The Elmish dispatch function.</p>
+
+
+              <p>CompiledName: <code>set_Dispatch</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '649', 649)" onmouseover="showTip(event, '649', 649)">
+            x.Dispatch()
+          </code>
+          <div class="tip" id="649">
+            <strong>Signature:</strong> unit -&gt; unit<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;Parameter&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                    <p>The Elmish dispatch function.</p>
+
+
+              <p>CompiledName: <code>get_Dispatch</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '650', 650)" onmouseover="showTip(event, '650', 650)">
+            x.Model()
+          </code>
+          <div class="tip" id="650">
+            <strong>Signature:</strong> unit -&gt; &#39;model<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>The current value of the Elmish model.
+Can be just a part of the full program's model.</p>
+
+
+              <p>CompiledName: <code>set_Model</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '651', 651)" onmouseover="showTip(event, '651', 651)">
+            x.Model()
+          </code>
+          <div class="tip" id="651">
+            <strong>Signature:</strong> unit -&gt; unit<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;Parameter&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                    <p>The current value of the Elmish model.
+Can be just a part of the full program's model.</p>
+
+
+              <p>CompiledName: <code>get_Model</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '652', 652)" onmouseover="showTip(event, '652', 652)">
+            x.View arg1 arg2
+          </code>
+          <div class="tip" id="652">
+            <strong>Signature:</strong> &#39;model -&gt; Dispatch&lt;&#39;msg&gt; -&gt; Node<br />
+              <strong>Modifiers:</strong> abstract<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>The Elmish view function.</p>
+
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</p>
 </div></section>
             </div>
             <div class="column is-one-quarter-tablet is-one-fifth-desktop sidebar-column">
@@ -153,14 +230,8 @@ dotnet run -p src/HelloWorld.Server
                 <div class="menu">
                   <div class="menu-label">Documentation</div>
                   <ul class="menu-list"><li>
-                      <a class="is-active" href="/docs">Getting Started</a>
-                      <ul><li>
-                          <a href="#what-is-bolero">What is Bolero?</a>
-                        </li><li>
-                          <a href="#creating-a-project">Creating a project</a>
-                        </li><li>
-                          <a href="#discovering-the-startup-project">Discovering the startup project</a>
-                        </li></ul>
+                      <a href="/docs">Getting Started</a>
+                      <ul class="is-hidden"></ul>
                     </li><li>
                       <a href="/docs/HTML">Writing HTML</a>
                       <ul class="is-hidden"></ul>
@@ -183,8 +254,8 @@ dotnet run -p src/HelloWorld.Server
                       <a href="/docs/Upgrade">Upgrade guide</a>
                       <ul class="is-hidden"></ul>
                     </li><li>
-                      <a href="/docs/reference">API Reference</a>
-                      <ul class="is-hidden"></ul>
+                      <a class="is-active" href="/docs/reference">API Reference</a>
+                      <ul></ul>
                     </li></ul>
                 </div>
               </section>

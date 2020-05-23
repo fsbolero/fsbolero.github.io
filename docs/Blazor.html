@@ -22,7 +22,7 @@
       <div class="navbar-menu">
         <nav class="navbar-start"><a href="/" class="navbar-item is-hoverable has-text-weight-bold">Home</a><div class="navbar-item is-hoverable has-text-weight-bold has-dropdown">
             <a href="/docs" class="navbar-link is-arrowless">Documentation</a>
-            <div class="navbar-dropdown has-text-weight-normal"><a class="navbar-item" href="/docs">Getting Started</a><a class="navbar-item" href="/docs/HTML">Writing HTML</a><a class="navbar-item" href="/docs/Templating">HTML templates</a><a class="navbar-item" href="/docs/Elmish">Using Elmish</a><a class="navbar-item" href="/docs/Routing">Routing</a><a class="navbar-item" href="/docs/Remoting">Remoting</a><a class="navbar-item" href="/docs/Blazor">Using Blazor features</a><a class="navbar-item" href="/docs/Upgrade">Upgrade guide</a></div>
+            <div class="navbar-dropdown has-text-weight-normal"><a class="navbar-item" href="/docs">Getting Started</a><a class="navbar-item" href="/docs/HTML">Writing HTML</a><a class="navbar-item" href="/docs/Templating">HTML templates</a><a class="navbar-item" href="/docs/Elmish">Using Elmish</a><a class="navbar-item" href="/docs/Routing">Routing</a><a class="navbar-item" href="/docs/Remoting">Remoting</a><a class="navbar-item" href="/docs/Blazor">Using Blazor features</a><a class="navbar-item" href="/docs/Upgrade">Upgrade guide</a><a class="navbar-item" href="/docs/reference">API Reference</a></div>
           </div><a href="https://tryfsharp.fsbolero.io" class="navbar-item is-hoverable has-text-weight-bold">Try F#</a></nav>
         <nav class="navbar-end">
           <a target="_blank" title="GitHub" href="https://github.com/fsbolero/bolero" class="navbar-item is-hoverable"><i class="fa fa-github"></i></a>
@@ -63,6 +63,9 @@
           </li><li>
             <a href="/docs/Upgrade">Upgrade guide</a>
             
+          </li><li>
+            <a href="/docs/reference">API Reference</a>
+            
           </li></ul>
           </li><li>
             <a href="https://tryfsharp.fsbolero.io">Try F#</a>
@@ -86,11 +89,104 @@
                   <h1 class="title">
                     Using Blazor features
                   </h1>
-                  <p class="subtitle"></p>
+                  <p class="subtitle">
+Blazor Components and their interoperability</p>
 
                 </div>
               </section>
-              <section class="section"><div ws-preserve=""><p>This page documents some useful features of Blazor and how to best use them from a Bolero application.</p>
+              
+              <section class="section"><div ws-preserve=""><h3 id="components">Components</h3>
+<h4 id="creating-a-component">Creating a component</h4>
+<blockquote>
+<p>Note: this section describes how to create and use plain Blazor components. It is recommended to use Elmish components whenever possible; see <a href="Elmish">Using Elmish</a>.</p>
+</blockquote>
+<p>You can create plain Blazor components by inheriting from the <code>Component</code> type.</p>
+<pre><code class="language-fsharp">type MyComponent() =
+    inherit Component()
+
+    override this.Render() =
+        div [] [text &quot;Hello, world!&quot;]
+</code></pre>
+<p>To add parameters to the component, use a property with the <code>Parameter</code> attribute from namespace <code>Microsoft.AspNetCore.Blazor</code>.</p>
+<pre><code class="language-fsharp">type MyComponent() =
+    inherit Component()
+
+    [&lt;Parameter&gt;]
+    member val Who = &quot;&quot; with get, set
+
+    override this.Render() =
+        div [] [text (sprintf &quot;Hello, %s!&quot; this.Who)]
+</code></pre>
+<h4 id="using-a-component">Using a component</h4>
+<p>This section documents how to use a Blazor Component, either referenced from a C# Razor project, or created in F# by inheriting from <code>Component</code>.</p>
+<p>To instantiate a Blazor component, use the <code>comp</code> function. It is parameterized by the component type, and takes attributes and child nodes as arguments.
+To set a parameter, pass it by name as an attribute using the <code>=&gt;</code> operator.</p>
+<pre><code class="language-fsharp">let myElement =
+    comp&lt;MyComponent&gt; [&quot;Who&quot; =&gt; &quot;world&quot;] []
+</code></pre>
+<p>However, some parameter types must be handled specially:</p>
+<ul>
+<li><p>Parameters of type <code>EventCallback&lt;T&gt;</code> can be passed using one of these functions:</p>
+<ul>
+<li><code>attr.callback</code>, which takes a function <code>T -&gt; unit</code>;</li>
+<li><code>attr.async.callback</code>, which takes a function <code>T -&gt; Async&lt;unit&gt;</code>;</li>
+<li><code>attr.task.callback</code>, which takes a function <code>T -&gt; Task</code>.</li>
+</ul>
+<p>Here is an example using the library <a href="https://www.matblazor.com/">MatBlazor</a>:</p>
+<pre><code class="language-fsharp">open MatBlazor
+
+let myButton model dispatch =
+    comp&lt;MatButton&gt;
+      [ attr.callback &quot;OnClick&quot; (fun _ -&gt; dispatch ButtonClicked) ]
+      [ text &quot;Click me!&quot; ]
+</code></pre>
+<p>In Blazor, these parameters would be passed as <code>Action&lt;T&gt;</code>.</p>
+</li>
+<li><p>Parameters of type <code>RenderFragment</code> and <code>RenderFragment&lt;T&gt;</code> can be passed using the function <code>attr.fragment</code> and <code>attr.fragmentWith</code>, respectively. The former takes a <code>Node</code>, and the latter a function <code>T -&gt; Node</code>.</p>
+<p>Here is again an example using MatBlazor:</p>
+<pre><code class="language-fsharp">open MatBlazor
+
+type Car =
+  { Name: string
+    Price: decimal
+    Horsepower: int }
+
+type Model =
+  { Cars: Car[] }
+
+let myTable model dispatch =
+    comp&lt;MatTable&gt;
+      [ &quot;Items&quot; =&gt; model.Cars
+
+        attr.fragment &quot;MatTableHeader&quot; (
+          concat
+            [ th [] [ text &quot;Name&quot; ]
+              th [] [ text &quot;Price&quot; ]
+              th [] [ text &quot;Horsepower&quot;]
+            ]
+        )
+
+        attr.fragmentWith &quot;MatTableRow&quot; (fun (car: Car) -&gt;
+          concat
+            [ td [] [ text car.Name ]
+              td [] [ textf &quot;%.2f&quot; car.Price ]
+              td [] [ textf &quot;%i&quot; car.Horsepower ]
+            ]
+        )
+      ]
+      []
+</code></pre>
+</li>
+</ul>
+<h3 id="navlink">NavLink</h3>
+<p>The function <code>navLink</code> is a helper to create a Blazor <code>NavLink</code> component. This component creates an <code>&lt;a&gt;</code> tag which dynamically receives the <code>&quot;active&quot;</code> CSS class whenever the current page URL matches its own <code>href</code>. The match is customized by passing <code>NavLinkMatch.All</code> (to only match the full URL path) or <code>NavLinkMatch.Prefix</code> (to match any URL that starts with the <code>navLink</code>'s <code>href</code>).</p>
+<pre><code class="language-fsharp">let myMenu =
+    ul [] [
+        li [] [navLink NavLinkMatch.All [attr.href &quot;/&quot;] [text &quot;Home&quot;]]
+        li [] [navLink NavLinkMatch.Prefix [attr.href &quot;/blog&quot;] [text &quot;Blog&quot;]]
+    ]
+</code></pre>
+<p>This page documents some useful features of Blazor and how to best use them from a Bolero application.</p>
 <h3 id="dependency-injection">Dependency injection</h3>
 <p>Blazor provides the ability to work with the dependency injection mechanism introduced by ASP.NET Core. <a href="https://docs.microsoft.com/en-us/aspnet/core/blazor/dependency-injection">Learn more about it on the official documentation</a>.</p>
 <h4 id="requiring-a-dependency">Requiring a dependency</h4>
@@ -152,7 +248,9 @@ type MyApp() =
             this.JSRuntime.InvokeVoidAsync(&quot;console.log&quot;, msg, model) |&gt; ignore)
 </code></pre>
 <h4 id="in-elmish-update-commands">In Elmish update commands</h4>
-<p>It is common to need JavaScript interoperation in the <code>update</code> function to call external functionality. The <code>IJSRuntime</code> can be passed to it from the <code>ProgramComponent</code>. Inside <code>update</code> the command <code>Cmd.ofTask</code> is particularly suitable to perform a JavaScript call and transform its return value into a message.</p>
+<p>It is common to need JavaScript interoperation in the <code>update</code> function to call external functionality. The <code>IJSRuntime</code> can be passed to it from the <code>ProgramComponent</code>.
+Inside <code>update</code>, the commands <code>Cmd.ofJS</code> and <code>Cmd.performJS</code> do a JavaScript call and transform its return value into a message.
+<code>ofJS</code> also transforms potential exceptions into a message, whereas <code>performJS</code> ignores such exceptions.</p>
 <pre><code class="language-fsharp">open Microsoft.JSInterop
 
 type Message =
@@ -163,10 +261,7 @@ type Message =
 let update (js: IJSRuntime) message model =
     match message with
     | CallMyJSFunc data -&gt;
-        let cmd =
-            Cmd.ofTask
-                (fun args -&gt; js.InvokeAsync(&quot;MyJsLib.myJSFunc&quot;, args).AsTask())
-                [| data |] CalledMyJSFunc Error
+        let cmd = Cmd.ofJS js &quot;MyJsLib.myJSFunc&quot; [| data |] CalledMyJSFunc Error
         model, cmd
     // ...
 
@@ -176,6 +271,13 @@ type MyApp() =
     override this.Program =
         let update = update this.JSRuntime
         Program.mkProgram init update view
+</code></pre>
+<p>These functions really are simple wrappers around <code>Cmd.ofTask</code>/<code>Cmd.performTask</code>.
+For example, the above call is equivalent to:</p>
+<pre><code class="language-fsharp">let cmd =
+    Cmd.ofTask
+        (fun args -&gt; js.InvokeAsync(&quot;MyJsLib.myJSFunc&quot;, args).AsTask())
+        [| data |] CalledMyJSFunc Error
 </code></pre>
 <h4 id="html-element-references">HTML element references</h4>
 <p><a href="https://docs.microsoft.com/en-us/aspnet/core/blazor/call-javascript-from-dotnet?view=aspnetcore-3.1#capture-references-to-elements">Blazor's type <code>ElementReference</code></a> allows passing a reference to a rendered HTML element to JavaScript.
@@ -245,12 +347,19 @@ This is useful for interacting with JavaScript libraries that insert themselves 
                     </li><li>
                       <a class="is-active" href="/docs/Blazor">Using Blazor features</a>
                       <ul><li>
+                          <a href="#components">Components</a>
+                        </li><li>
+                          <a href="#navlink">NavLink</a>
+                        </li><li>
                           <a href="#dependency-injection">Dependency injection</a>
                         </li><li>
                           <a href="#javascript-interoperability">JavaScript interoperability</a>
                         </li></ul>
                     </li><li>
                       <a href="/docs/Upgrade">Upgrade guide</a>
+                      <ul class="is-hidden"></ul>
+                    </li><li>
+                      <a href="/docs/reference">API Reference</a>
                       <ul class="is-hidden"></ul>
                     </li></ul>
                 </div>
@@ -300,7 +409,7 @@ This is useful for interacting with JavaScript libraries that insert themselves 
         <div class="column">
           <h1 class="title">Documentation</h1>
           <div class="menu">
-            <ul class="menu-list"><li><a href="/docs">Getting Started</a></li><li><a href="/docs/HTML">Writing HTML</a></li><li><a href="/docs/Templating">HTML templates</a></li><li><a href="/docs/Elmish">Using Elmish</a></li><li><a href="/docs/Routing">Routing</a></li><li><a href="/docs/Remoting">Remoting</a></li><li><a href="/docs/Blazor">Using Blazor features</a></li><li><a href="/docs/Upgrade">Upgrade guide</a></li></ul>
+            <ul class="menu-list"><li><a href="/docs">Getting Started</a></li><li><a href="/docs/HTML">Writing HTML</a></li><li><a href="/docs/Templating">HTML templates</a></li><li><a href="/docs/Elmish">Using Elmish</a></li><li><a href="/docs/Routing">Routing</a></li><li><a href="/docs/Remoting">Remoting</a></li><li><a href="/docs/Blazor">Using Blazor features</a></li><li><a href="/docs/Upgrade">Upgrade guide</a></li><li><a href="/docs/reference">API Reference</a></li></ul>
           </div>
         </div>
         <div class="column">
@@ -322,7 +431,7 @@ This is useful for interacting with JavaScript libraries that insert themselves 
               <a class="github-button" href="https://github.com/fsbolero/bolero" data-size="large" aria-label="Star fsbolero/bolero on GitHub">Bolero on GitHub</a>
             </li>
             <li>
-              <a href="https://twitter.com/fsbolero?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large" data-dnt="true" data-show-count="false">Follow @fsbolero</a>
+              <a href="https://twitter.com/fsbolero?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large" data-dnt="true" data-show-count="false">Follow &commat;fsbolero</a>
             </li>
             <li>
               <a target="_blank" href="https://nuget.org/packages/Bolero"><img alt="NuGet" src="https://img.shields.io/nuget/v/Bolero.svg?label=Bolero%20on%20NuGet&amp;logo=nuget&amp;style=for-the-badge" /></a>

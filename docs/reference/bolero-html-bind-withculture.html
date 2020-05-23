@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Getting started | Bolero: F# in WebAssembly</title>
+  <title>API Reference | Bolero: F# in WebAssembly</title>
   <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16" />
   <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
   <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[],"$DATA":{"$V":{}}}' />
@@ -79,73 +79,61 @@
         <div class="container">
           <div class="columns is-gapless">
             <div class="column content markdown-column">
-              <div class="edit-page-icon">
-                <a href="https://github.com/fsbolero/website/tree/master/src/Website/docs/index.md" target="_blank" title="Contribute to this page on GitHub">
+              <div class="edit-page-icon" style="display: none">
+                <a href="https://github.com/fsbolero/website/tree/master/src/Website/docs/reference.md" target="_blank" title="Contribute to this page on GitHub">
                   <i class="fa fa-edit"></i>
                 </a>
               </div>
-              <section class="hero">
-                <div class="hero-body">
-                  <h1 class="title">
-                    Getting started
-                  </h1>
-                  <p class="subtitle">
-Welcome to Bolero: F# on WebAssembly!</p>
-
-                </div>
-              </section>
               
-              <section class="section"><div ws-preserve=""><h3 id="what-is-bolero">What is Bolero?</h3>
-<p>Bolero is a set of free and open-source libraries and tools to write <a href="https://webassembly.org/"><strong>WebAssembly</strong></a> applications in <a href="https://fsharp.org/"><strong>F#</strong></a>. With it, you can write fully dynamic client-side web applications from the comfort of a strongly-typed functional language, all with great performance.</p>
-<p>Bolero is built on top of <a href="https://blazor.net/">Blazor</a> and adds a lot of features designed specifically to work in F#:</p>
-<ul>
-<li><a href="Elmish">Elmish</a> Model-View-Update architecture for a functional approach to reactive content.</li>
-<li><a href="HTML">HTML-in-F#</a> syntax inspired by WebSharper.UI and Fable.</li>
-<li>Alternatively, <a href="Templating">HTML templates</a> with hot reloading provide a comfortable design experience.</li>
-<li><a href="Routing">URL Routing</a> the F# way, automatically matching URLs with F# union types.</li>
-<li>Easy <a href="Remoting">Remoting</a> with an ASP.NET Core server side.</li>
-<li>F#-specific optimizations: Bolero strips F# metadata from compiled assemblies, reducing the download size of the application.</li>
-</ul>
-<h3 id="creating-a-project">Creating a project</h3>
-<p>You can develop Bolero applications on Windows, OSX or Linux. It only has one prerequisite: the <a href="https://dotnet.microsoft.com/download/dotnet-core">.NET Core SDK</a>, version 3.1.102 or newer.</p>
-<p>The easiest way to get started is to use Bolero's dotnet template. To install it, run the following command:</p>
-<pre><code class="language-shell">dotnet new -i Bolero.Templates
-</code></pre>
-<p>Then, you can create a new Bolero application:</p>
-<pre><code class="language-shell">dotnet new bolero-app -o HelloWorld
-</code></pre>
-<p>This will create a new folder <code>HelloWorld</code> and create an application inside it. The template has additional options, described <a href="https://github.com/fsbolero/Template">at its home page</a>. You can run it with:</p>
-<pre><code class="language-shell">cd HelloWorld
-dotnet run -p src/HelloWorld.Server
-</code></pre>
-<p>This will start the server and run the following minimal application at <code>localhost:5000</code>:</p>
-<p><img src="sample-app.png" alt="Hello World application screenshot" /></p>
-<p>This sample application demonstrates 3 <code>types</code> of web applications:</p>
-<ol>
-<li>A static web site - Home</li>
-<li>A Client side only application - Counter</li>
-<li>An application with Server side interaction- Download Data</li>
-</ol>
-<h3 id="discovering-the-startup-project">Discovering the startup project</h3>
-<p>The solution you just created comprises two projects.</p>
-<ul>
-<li><p><code>src/HelloWorld.Client</code> is the project that gets compiled to WebAssembly, and contains your client-side code.</p>
-<ul>
-<li><p><code>Main.fs</code> contains the main body of the page. This is where the meat of the application is: as you develop, you will mostly be coding here and in new files referenced from here.</p>
-</li>
-<li><p><code>wwwroot/</code> contains static content. In particular, <code>index.html</code> is the actual page that is served. It contains a script reference to <code>blazor.webassembly.js</code>, which in turn loads your application.</p>
-<p>If you want to add styles and images to your application, this is the folder to put them in.</p>
-</li>
-<li><p><code>Startup.fs</code> sets up Blazor to get the application started. You will rarely need to touch it: essentially only to set up <a href="Remoting">remoting</a>, if you want to use it.</p>
-</li>
-</ul>
-</li>
-<li><p><code>src/HelloWorld.Server</code> is an ASP.NET Core application that serves as the host. This project is optional: if you pass <code>--server=false</code> when creating the solution with <code>dotnet new</code>, then it will not be created. Note however that it is necessary for <a href="Templating#hot-reloading">templating hot reloading</a> and <a href="Remoting">remoting</a>.</p>
-<ul>
-<li><code>Startup.fs</code>, similarly to its client counterpart, sets up ASP.NET Core to get the server started.</li>
-</ul>
-</li>
-</ul>
+              
+              <section class="section"><div ws-preserve=""><p>
+
+<h1>withCulture</h1>
+<p>
+  <span>Namespace: Bolero</span><br />
+  <span>Parent Module: <a href="bolero-html-bind.html">bind</a></span>
+  </p>
+<div class="xmldoc">
+<p>Bind to the value of an input and convert using the given CultureInfo.</p>
+
+</div>
+
+<!-- Render nested types and modules, if there are any -->
+  <h2>Nested types and modules</h2>
+  <div>
+      <table class="table table-bordered module-list">
+    <thead>
+      <tr><td>Module</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td class="module-name">
+            <a href="bolero-html-bind-withculture-change.html">change</a>
+          </td>
+          <td class="xmldoc">
+          <p>Bind to the value of an input.
+The value is updated on the onchange event.</p>
+
+
+          </td>
+        </tr>
+        <tr>
+          <td class="module-name">
+            <a href="bolero-html-bind-withculture-input.html">input</a>
+          </td>
+          <td class="xmldoc">
+          <p>Bind to the value of an input.
+The value is updated on the oninput event.</p>
+
+
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  </div>
+
+</p>
 </div></section>
             </div>
             <div class="column is-one-quarter-tablet is-one-fifth-desktop sidebar-column">
@@ -153,14 +141,8 @@ dotnet run -p src/HelloWorld.Server
                 <div class="menu">
                   <div class="menu-label">Documentation</div>
                   <ul class="menu-list"><li>
-                      <a class="is-active" href="/docs">Getting Started</a>
-                      <ul><li>
-                          <a href="#what-is-bolero">What is Bolero?</a>
-                        </li><li>
-                          <a href="#creating-a-project">Creating a project</a>
-                        </li><li>
-                          <a href="#discovering-the-startup-project">Discovering the startup project</a>
-                        </li></ul>
+                      <a href="/docs">Getting Started</a>
+                      <ul class="is-hidden"></ul>
                     </li><li>
                       <a href="/docs/HTML">Writing HTML</a>
                       <ul class="is-hidden"></ul>
@@ -183,8 +165,8 @@ dotnet run -p src/HelloWorld.Server
                       <a href="/docs/Upgrade">Upgrade guide</a>
                       <ul class="is-hidden"></ul>
                     </li><li>
-                      <a href="/docs/reference">API Reference</a>
-                      <ul class="is-hidden"></ul>
+                      <a class="is-active" href="/docs/reference">API Reference</a>
+                      <ul></ul>
                     </li></ul>
                 </div>
               </section>

@@ -1,6 +1,6 @@
 ---
 title: Writing HTML
-subtitle: Create elements, attributes, event handlers and Blazor components in plain F#
+subtitle: Create elements, attributes and event handlers in plain F#
 ---
 
 All of the functions described here are defined in the module `Bolero.Html`.
@@ -320,51 +320,4 @@ let hello model dispatch =
             // if you have a better typed value at hand (here, `color`).
             bind.change.string (string color) (fun _ -> dispatch (SetColor color))
         ]
-```
-
-### Components
-
-> Note: this section describes how to create and use plain Blazor components. It is recommended to use Elmish components whenever possible; see [Using Elmish](Elmish).
-
-You can create plain Blazor components by inheriting from the `Component` type.
-
-```fsharp
-type MyComponent() =
-    inherit Component()
-
-    override this.Render() =
-        div [] [text "Hello, world!"]
-```
-
-To add parameters to the component, use a property with the `Parameter` attribute from namespace `Microsoft.AspNetCore.Blazor`.
-
-```fsharp
-type MyComponent() =
-    inherit Component()
-
-    [<Parameter>]
-    member val Who = "" with get, set
-
-    override this.Render() =
-        div [] [text (sprintf "Hello, %s!" this.Who)]
-```
-
-To instantiate a Blazor component, use the `comp` function. It is parameterized by the component type, and takes attributes and child nodes as arguments.
-To set a parameter, pass it by name as an attribute using the `=>` operator.
-
-```fsharp
-let myElement =
-    comp<MyComponent> ["Who" => "world"] []
-```
-
-### NavLink
-
-The function `navLink` is a helper to create a Blazor `NavLink` component. This component creates an `<a>` tag which dynamically receives the `"active"` CSS class whenever the current page URL matches its own `href`. The match is customized by passing `NavLinkMatch.All` (to only match the full URL path) or `NavLinkMatch.Prefix` (to match any URL that starts with the `navLink`'s `href`).
-
-```fsharp
-let myMenu =
-    ul [] [
-        li [] [navLink NavLinkMatch.All [attr.href "/"] [text "Home"]]
-        li [] [navLink NavLinkMatch.Prefix [attr.href "/blog"] [text "Blog"]]
-    ]
 ```
