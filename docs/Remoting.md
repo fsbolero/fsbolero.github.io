@@ -327,7 +327,7 @@ let userDataService (ctx: IRemoteContext) =
         }
 
         // Only an admin can call this function
-        getSecretData = ctx.AuthorizeWith [AuthorizeAttribute(Role = "admin")] <| fun () -> async {
+        getSecretData = ctx.AuthorizeWith [AuthorizeAttribute(Roles = "admin")] <| fun () -> async {
             return "Super secret data for admin eyes only!"
         }
     }
