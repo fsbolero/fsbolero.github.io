@@ -178,6 +178,35 @@ let myTable model dispatch =
 </code></pre>
 </li>
 </ul>
+<h4 id="cascading">Cascading</h4>
+<p>You can use <a href="https://docs.microsoft.com/en-us/aspnet/core/blazor/components/cascading-values-and-parameters">Cascading Values and Cascading Parameters</a> as well</p>
+<pre><code class="language-fsharp">let view state dispatch = 
+   comp&lt;CascadingValue&lt;int&gt;&gt; [ &quot;Value&quot; =&gt; 42; &quot;Name&quot; =&gt; &quot;MeaningOfLife&quot; ] [ body ]
+</code></pre>
+<p>in this case <code>body</code> is the content of your view somewhere down the hierarchy you may have something like this</p>
+<pre><code class="language-fsharp">type MyProgramComponent() =
+    inherit ProgramComponent&lt;State, Msg&gt;()
+
+    [&lt;CascadingParameter(Name = &quot;MeaningOfLife&quot;)&gt;]
+    member val MeaningofLife: int = 0 with get, set
+    
+    override this.Program =
+        Program.mkProgram init update view
+        |&gt; Program.runWith this.MeaningOfLife
+</code></pre>
+<p>or a blazor component as well</p>
+<pre><code class="language-fsharp">type FooComponent() =
+    inherit Component()
+
+    [&lt;CascadingParameter&gt;]
+    member val MeaningOfLife = 0 with get, set
+
+    override this.Render() =
+        concat [
+            h1 [] [text &quot;Foo component&quot;]
+            p [] [textf &quot;The meaning of life is %i&quot; this.MeaningOfLife]
+        ]
+</code></pre>
 <h3 id="navlink">NavLink</h3>
 <p>The function <code>navLink</code> is a helper to create a Blazor <code>NavLink</code> component. This component creates an <code>&lt;a&gt;</code> tag which dynamically receives the <code>&quot;active&quot;</code> CSS class whenever the current page URL matches its own <code>href</code>. The match is customized by passing <code>NavLinkMatch.All</code> (to only match the full URL path) or <code>NavLinkMatch.Prefix</code> (to match any URL that starts with the <code>navLink</code>'s <code>href</code>).</p>
 <pre><code class="language-fsharp">let myMenu =

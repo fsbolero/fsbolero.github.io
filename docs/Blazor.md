@@ -103,6 +103,38 @@ However, some parameter types must be handled specially:
           []
     ```
 
+#### Cascading
+You can use [Cascading Values and Cascading Parameters](https://docs.microsoft.com/en-us/aspnet/core/blazor/components/cascading-values-and-parameters) as well
+```fsharp
+let view state dispatch = 
+   comp<CascadingValue<int>> [ "Value" => 42; "Name" => "MeaningOfLife" ] [ body ]
+```
+in this case `body` is the content of your view somewhere down the hierarchy you may have something like this
+```fsharp
+type MyProgramComponent() =
+    inherit ProgramComponent<State, Msg>()
+
+    [<CascadingParameter(Name = "MeaningOfLife")>]
+    member val MeaningofLife: int = 0 with get, set
+    
+    override this.Program =
+        Program.mkProgram init update view
+        |> Program.runWith this.MeaningOfLife
+```
+or a blazor component as well
+```fsharp
+type FooComponent() =
+    inherit Component()
+
+    [<CascadingParameter>]
+    member val MeaningOfLife = 0 with get, set
+
+    override this.Render() =
+        concat [
+            h1 [] [text "Foo component"]
+            p [] [textf "The meaning of life is %i" this.MeaningOfLife]
+        ]
+```
 ### NavLink
 
 The function `navLink` is a helper to create a Blazor `NavLink` component. This component creates an `<a>` tag which dynamically receives the `"active"` CSS class whenever the current page URL matches its own `href`. The match is customized by passing `NavLinkMatch.All` (to only match the full URL path) or `NavLinkMatch.Prefix` (to match any URL that starts with the `navLink`'s `href`).
