@@ -271,12 +271,12 @@ let cmd =
 [Blazor's type `ElementReference`](https://docs.microsoft.com/en-us/aspnet/core/blazor/call-javascript-from-dotnet?view=aspnetcore-3.1#capture-references-to-elements) allows passing a reference to a rendered HTML element to JavaScript.
 This is useful for interacting with JavaScript libraries that insert themselves in a given element, creating for example a map or a rich text editor; or libraries that interact with more fundamental JavaScript APIs, like focusing an element.
 
-In Bolero, the type `ElementReferenceBinder` is a small utility that makes working with `ElementReference` from F# simple.
+In Bolero, the type `HtmlRef` is a small utility that makes working with `ElementReference` from F# simple.
 
 1. The element to bind must be inside a Component class.
-2. Create an `ElementReferenceBinder` as a field of this class.
-3. To bind it to an element, pass it to the attribute `attr.bindRef` of this element.
-4. To use it, use its `.Ref` property.
+2. Create an `HtmlRef` as a field of this class.
+3. To bind it to an element, pass it to the attribute `attr.bind` of this element.
+4. To use it, use its `.Value` property.
 
 For example, given this small JavaScript function that can focus a DOM element it receives as argument:
 
@@ -294,7 +294,7 @@ This function can be called as follows from a Bolero component:
 type MyInputWithFocusButton() = // (1)
     inherit ElmishComponent<string, string>()
 
-    let inputRef = ElementReferenceBinder() // (2)
+    let inputRef = HtmlRef() // (2)
 
     [<Inject>]
     member val JSRuntime = Unchecked.defaultof<IJSRuntime> with get, set
@@ -302,15 +302,53 @@ type MyInputWithFocusButton() = // (1)
     override this.View model dispatch =
         concat [
             input [
-                attr.bindRef inputRef // (3)
+                attr.bind inputRef // (3)
                 bind.input.string model dispatch
             ]
             button [
                 on.task.click (fun _ ->
-                    this.JSRuntime.InvokeVoidAsync("MyJsLib.focus", inputRef.Ref) // (4)
+                    this.JSRuntime.InvokeVoidAsync("MyJsLib.focus", inputRef.Value) // (4)
                 )
             ] [
                 text "Focus this input box"
+            ]
+        ]
+```
+
+### Blazor component references
+
+Just like with HTML elements, it is possible to capture a reference to an instantiated Blazor component.
+Whereas HTML element references are mostly useful with JavaScript interop, Blazor component references are used directly in F# to eg. call methods on the component itself.
+
+Capturing a Blazor component reference is done exactly the same way as capturing an HTML element reference, except that the reference type is `Ref<Component>` instead of `HtmlRef`, where `Component` is the component type.
+For example, given the following component:
+
+```fsharp
+type MyComponent() =
+    inherit Component()
+    
+    override this.Render() =
+        div [] [text "This is my component"]
+        
+    member this.Refresh() =
+        Console.WriteLine("Refreshing this component!")
+```
+
+you can get a reference to an instance of it as follows:
+
+```fsharp
+type MyApplication() =
+    inherit Component()
+    
+    let myComponentRef = Ref<MyComponent>()
+    
+    override this.Render() =
+        div [] [
+            comp<MyComponent> [attr.ref myComponentRef] []
+            button [
+                on.click (fun _ -> myComponentRef.Value.Refresh())
+            ] [
+                text "Refresh my component!"
             ]
         ]
 ```
