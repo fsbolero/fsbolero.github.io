@@ -95,7 +95,31 @@ How to update a project for newer releases</p>
                 </div>
               </section>
               
-              <section class="section"><div ws-preserve=""><h3 id="from-v0.12-to-v0.13">From v0.12 to v0.13</h3>
+              <section class="section"><div ws-preserve=""><h3 id="from-v0.14-to-v0.15">From v0.14 to v0.15</h3>
+<p>Bolero v0.15 doesn't change the SDK requirements. Here are the upgrade steps:</p>
+<ul>
+<li><p>Elmish has been updated to v3.0. As a consequence, some functions are now obsolete.
+For example, <code>Cmd.ofAsync</code> should now be replaced with <code>Cmd.OfAsync.either</code>.
+It is a simple renaming, you can simply follow the compiler warnings.</p>
+</li>
+<li><p>The HTML element reference API has changed:</p>
+<ul>
+<li>The type <code>ElementRefBinder</code> was renamed to <code>HtmlRef</code>;</li>
+<li>its <code>Ref</code> property was renamed to <code>Value</code>;</li>
+<li>The function <code>attr.bindRef</code> was renamed to <code>attr.ref</code>;</li>
+<li>The function <code>attr.ref</code> taking a function as argument has been removed.</li>
+</ul>
+</li>
+</ul>
+<h3 id="from-v0.13-to-v0.14">From v0.13 to v0.14</h3>
+<p>Bolero 0.14 doesn't change the SDK requirements. Here are the upgrade steps:</p>
+<ul>
+<li>The module <code>Bolero.Json</code> has been removed.
+Instead, Bolero's remoting now uses the standard <code>System.Text.Json</code>, together with the library <a href="https://github.com/tarmil/fsharp.systemtextjson"><code>FSharp.SystemTextJson</code></a> to provide support for F# types such as records, unions, options, lists, etc.
+If you had JSON format customization based on Bolero.Json attributes, you must replace them with System.Text.Json-based customization.
+Otherwise, there is nothing to do.</li>
+</ul>
+<h3 id="from-v0.12-to-v0.13">From v0.12 to v0.13</h3>
 <p>Bolero 0.13 upgrades the dependency on .NET Core SDK 3.1.300 or newer and on Blazor to 3.2.0. Here are the associated upgrade steps:</p>
 <ul>
 <li><p>Install <a href="https://dotnet.microsoft.com/download/dotnet-core">the .NET Core 3.1.300 SDK or newer</a>.</p>
@@ -438,6 +462,10 @@ If your code uses Blazor APIs directly, please check the Blazor <a href="https:/
                     </li><li>
                       <a class="is-active" href="/docs/Upgrade">Upgrade guide</a>
                       <ul><li>
+                          <a href="#from-v014-to-v015">From v0.14 to v0.15</a>
+                        </li><li>
+                          <a href="#from-v013-to-v014">From v0.13 to v0.14</a>
+                        </li><li>
                           <a href="#from-v012-to-v013">From v0.12 to v0.13</a>
                         </li><li>
                           <a href="#from-v011-to-v012">From v0.11 to v0.12</a>

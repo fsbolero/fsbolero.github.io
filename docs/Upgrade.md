@@ -3,6 +3,29 @@ title: Upgrade guide
 subtitle: How to update a project for newer releases
 ---
 
+### From v0.14 to v0.15
+
+Bolero v0.15 doesn't change the SDK requirements. Here are the upgrade steps:
+
+* Elmish has been updated to v3.0. As a consequence, some functions are now obsolete.
+    For example, `Cmd.ofAsync` should now be replaced with `Cmd.OfAsync.either`.
+    It is a simple renaming, you can simply follow the compiler warnings.
+    
+* The HTML element reference API has changed:
+    * The type `ElementRefBinder` was renamed to `HtmlRef`;
+    * its `Ref` property was renamed to `Value`;
+    * The function `attr.bindRef` was renamed to `attr.ref`;
+    * The function `attr.ref` taking a function as argument has been removed.
+
+### From v0.13 to v0.14
+
+Bolero 0.14 doesn't change the SDK requirements. Here are the upgrade steps:
+
+* The module `Bolero.Json` has been removed.
+    Instead, Bolero's remoting now uses the standard `System.Text.Json`, together with the library [`FSharp.SystemTextJson`](https://github.com/tarmil/fsharp.systemtextjson) to provide support for F# types such as records, unions, options, lists, etc.
+    If you had JSON format customization based on Bolero.Json attributes, you must replace them with System.Text.Json-based customization.
+    Otherwise, there is nothing to do.
+
 ### From v0.12 to v0.13
 
 Bolero 0.13 upgrades the dependency on .NET Core SDK 3.1.300 or newer and on Blazor to 3.2.0. Here are the associated upgrade steps:
