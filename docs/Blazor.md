@@ -230,8 +230,8 @@ type MyApp() =
 #### In Elmish update commands
 
 It is common to need JavaScript interoperation in the `update` function to call external functionality. The `IJSRuntime` can be passed to it from the `ProgramComponent`.
-Inside `update`, the commands `Cmd.ofJS` and `Cmd.performJS` do a JavaScript call and transform its return value into a message.
-`ofJS` also transforms potential exceptions into a message, whereas `performJS` ignores such exceptions.
+Inside `update`, the commands located in the module `Cmd.OfJS` do a JavaScript call and transform its return value into a message.
+Just like standard Elmish commands, `Cmd.OfJS.either` also transforms potential exceptions into a message, whereas `Cmd.OfJS.perform` ignores such exceptions.
 
 ```fsharp
 open Microsoft.JSInterop
@@ -244,7 +244,7 @@ type Message =
 let update (js: IJSRuntime) message model =
     match message with
     | CallMyJSFunc data ->
-        let cmd = Cmd.ofJS js "MyJsLib.myJSFunc" [| data |] CalledMyJSFunc Error
+        let cmd = Cmd.OfJS.either js "MyJsLib.myJSFunc" [| data |] CalledMyJSFunc Error
         model, cmd
     // ...
 
@@ -256,12 +256,12 @@ type MyApp() =
         Program.mkProgram init update view
 ```
 
-These functions really are simple wrappers around `Cmd.ofTask`/`Cmd.performTask`.
+These functions really are simple wrappers around `Cmd.OfTask.either`/`perform`.
 For example, the above call is equivalent to:
 
 ```fsharp
 let cmd =
-    Cmd.ofTask
+    Cmd.OfTask.either
         (fun args -> js.InvokeAsync("MyJsLib.myJSFunc", args).AsTask())
         [| data |] CalledMyJSFunc Error
 ```

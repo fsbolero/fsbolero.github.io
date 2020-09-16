@@ -95,6 +95,7 @@
         <li><a href="#section1_0">Components</a></li>            
         <li><a href="#section1_1">HTML</a></li>            
         <li><a href="#section1_2">Routing</a></li>            
+        <li><a href="#section1_3">Other namespace members</a></li>            
     </ul>
       <h3><a class="anchor" name="section1_0" href="#section1_0">Components</a></h3>    
     <div>
@@ -133,16 +134,6 @@
 
           </td>
         </tr>
-        <tr>
-          <td class="type-name">
-            <a href="bolero-programcomponent-2.html">ProgramComponent<'model, 'msg></a>
-          </td>
-          <td class="xmldoc">
-          <p>Base class for components that run an Elmish program.</p>
-
-
-          </td>
-        </tr>
     </tbody>
   </table>
 
@@ -160,7 +151,7 @@
           </td>
           <td class="xmldoc">
           <p>HTML attribute or Blazor component parameter.
-Use <a href="bolero-html-attr.html" title="attr"><code>Bolero.Html.attr</code></a> or <code>(=&gt;)</code> to create attributes.</p>
+Use <code>Bolero.Html.attr</code> or <code>(=&gt;)</code> to create attributes.</p>
 
 
           </td>
@@ -168,6 +159,21 @@ Use <a href="bolero-html-attr.html" title="attr"><code>Bolero.Html.attr</code></
         <tr>
           <td class="type-name">
             <a href="bolero-elementreferencebinder.html">ElementReferenceBinder</a>
+          </td>
+          <td class="xmldoc">
+              <div class="alert alert-warning">
+              <strong>WARNING: </strong> This API is obsolete
+              <p>Use HtmlRef.</p>
+              </div> 
+          <p>A utility to bind a reference to a rendered HTML element.
+See <a href="https://fsbolero.io/docs/Blazor#html-element-references">https://fsbolero.io/docs/Blazor#html-element-references</a></p>
+
+
+          </td>
+        </tr>
+        <tr>
+          <td class="type-name">
+            <a href="bolero-htmlref.html">HtmlRef</a>
           </td>
           <td class="xmldoc">
           <p>A utility to bind a reference to a rendered HTML element.
@@ -188,27 +194,21 @@ See <a href="https://fsbolero.io/docs/Blazor#html-element-references">https://fs
         </tr>
         <tr>
           <td class="type-name">
-            <a href="bolero-template.html">Template</a>
+            <a href="bolero-ref-1.html">Ref<'T></a>
           </td>
           <td class="xmldoc">
-          <p>Provide content from a template HTML file.</p>
+          <p>A utility to bind a reference to a rendered component.
+See <a href="https://fsbolero.io/docs/Blazor#html-element-references">https://fsbolero.io/docs/Blazor#html-element-references</a></p>
 
 
           </td>
         </tr>
-    </tbody>
-  </table>
-  <table class="table table-bordered module-list">
-    <thead>
-      <tr><td>Module</td><td>Description</td></tr>
-    </thead>
-    <tbody>
         <tr>
-          <td class="module-name">
-            <a href="bolero-html.html">Html</a>
+          <td class="type-name">
+            <a href="bolero-template.html">Template</a>
           </td>
           <td class="xmldoc">
-          <p>Create HTML elements, attributes and event handlers.</p>
+          <p>Provide content from a template HTML file.</p>
 
 
           </td>
@@ -347,6 +347,40 @@ If field is unspecified, this applies to the last field of the case.</p>
   </table>
 
     </div>
+      <h3><a class="anchor" name="section1_3" href="#section1_3">Other namespace members</a></h3>    
+    <div>
+      <table class="table table-bordered type-list">
+    <thead>
+      <tr><td>Type</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td class="type-name">
+            <a href="bolero-ref.html">Ref</a>
+          </td>
+          <td class="xmldoc">
+          
+          </td>
+        </tr>
+    </tbody>
+  </table>
+  <table class="table table-bordered module-list">
+    <thead>
+      <tr><td>Module</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td class="module-name">
+            <a href="bolero-html.html">Html</a>
+          </td>
+          <td class="xmldoc">
+          
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+    </div>
   <h2>Bolero.Remoting Namespace</h2>
     <div>
       <table class="table table-bordered type-list">
@@ -439,7 +473,7 @@ If field is unspecified, this applies to the last field of the case.</p>
             <a href="bolero-remoting-client-cmd.html">Cmd</a>
           </td>
           <td class="xmldoc">
-          <p>Elmish commands for Async and Task jobs, remote calls and JavaScript interop.</p>
+          <p>Elmish commands for remote calls and JavaScript interop.</p>
 
 
           </td>

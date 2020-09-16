@@ -93,11 +93,38 @@
   <span>Namespace: Bolero.Remoting.Client</span><br />
   </p>
 <div class="xmldoc">
-<p>Elmish commands for Async and Task jobs, remote calls and JavaScript interop.</p>
+<p>Elmish commands for remote calls and JavaScript interop.</p>
 
 </div>
 
 <!-- Render nested types and modules, if there are any -->
+  <h2>Nested types and modules</h2>
+  <div>
+      <table class="table table-bordered module-list">
+    <thead>
+      <tr><td>Module</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td class="module-name">
+            <a href="bolero-remoting-client-cmd-ofauthorized.html">OfAuthorized</a>
+          </td>
+          <td class="xmldoc">
+          
+          </td>
+        </tr>
+        <tr>
+          <td class="module-name">
+            <a href="bolero-remoting-client-cmd-ofjs.html">OfJS</a>
+          </td>
+          <td class="xmldoc">
+          
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  </div>
 
   <h3>Functions and values</h3>
   <table class="table table-bordered member-list">
@@ -107,30 +134,22 @@
     <tbody>
       <tr>
         <td class="member-name">
-          <code onmouseout="hideTip(event, '600', 600)" onmouseover="showTip(event, '600', 600)">
-            ofAuthorized f arg ofSuccess ofError
+          <code onmouseout="hideTip(event, '8', 8)" onmouseover="showTip(event, '8', 8)">
+            either(...)
           </code>
-          <div class="tip" id="600">
-            <strong>Signature:</strong> f:(&#39;req -&gt; Async&lt;&#39;resp&gt;) -&gt; arg:&#39;req -&gt; ofSuccess:(&#39;resp option -&gt; &#39;msg) -&gt; ofError:(exn -&gt; &#39;msg) -&gt; Cmd&lt;&#39;msg&gt;<br />
-                          <strong>Type parameters:</strong> 'req, 'resp, 'msg                      </div>
+          <div class="tip" id="8">
+            <strong>Signature:</strong> js:IJSRuntime -&gt; jsFunctionName:string -&gt; args:obj [] -&gt; ofSuccess:(&#39;?8168 -&gt; &#39;?8169) -&gt; ofError:(exn -&gt; &#39;?8169) -&gt; Cmd&lt;&#39;?8169&gt;<br />
+                          <strong>Type parameters:</strong> '?8168, '?8169                        <span>
+            <strong>Attributes:</strong><br />
+[&lt;Obsolete(&quot;Use Cmd.OfJS.either&quot;)&gt;]<br />
+          </span>
+          </div>
         </td>
         <td class="xmldoc">
-                    <p>Command that will call a remote Bolero function with authorization and map the result
-into successful Some if authorized, successful None if not, or error (of exception)</p>
-
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '601', 601)" onmouseover="showTip(event, '601', 601)">
-            ofJS(...)
-          </code>
-          <div class="tip" id="601">
-            <strong>Signature:</strong> js:IJSRuntime -&gt; jsFunctionName:string -&gt; args:obj [] -&gt; ofSuccess:(&#39;res -&gt; &#39;msg) -&gt; ofError:(exn -&gt; &#39;msg) -&gt; Cmd&lt;&#39;msg&gt;<br />
-                          <strong>Type parameters:</strong> 'res, 'msg                      </div>
-        </td>
-        <td class="xmldoc">
+              <div class="alert alert-warning">
+              <strong>WARNING: </strong> This API is obsolete
+              <p>Use Cmd.OfJS.either</p>
+              </div> 
                     <p>Command that will perform a JavaScript interop call and map the result to a message
 or error (of exception)</p>
 
@@ -139,21 +158,45 @@ or error (of exception)</p>
       </tr>
       <tr>
         <td class="member-name">
-          <code onmouseout="hideTip(event, '602', 602)" onmouseover="showTip(event, '602', 602)">
-            ofRemote f arg ofSuccess ofError
+          <code onmouseout="hideTip(event, '9', 9)" onmouseover="showTip(event, '9', 9)">
+            ofAuthorized f arg ofSuccess ofError
           </code>
-          <div class="tip" id="602">
-            <strong>Signature:</strong> f:(&#39;req -&gt; Async&lt;&#39;resp&gt;) -&gt; arg:&#39;req -&gt; ofSuccess:(RemoteResponse&lt;&#39;resp&gt; -&gt; &#39;msg) -&gt; ofError:(exn -&gt; &#39;msg) -&gt; Cmd&lt;&#39;msg&gt;<br />
-                          <strong>Type parameters:</strong> 'req, 'resp, 'msg                        <span>
+          <div class="tip" id="9">
+            <strong>Signature:</strong> f:(&#39;?8160 -&gt; Async&lt;&#39;?8161&gt;) -&gt; arg:&#39;?8160 -&gt; ofSuccess:(&#39;?8161 option -&gt; &#39;?8162) -&gt; ofError:(exn -&gt; &#39;?8162) -&gt; Cmd&lt;&#39;?8162&gt;<br />
+                          <strong>Type parameters:</strong> '?8160, '?8161, '?8162                        <span>
             <strong>Attributes:</strong><br />
-[&lt;Obsolete(&quot;Use ofAsync or ofAuthorized&quot;)&gt;]<br />
+[&lt;Obsolete(&quot;Use Cmd.OfAuthorized.either&quot;)&gt;]<br />
           </span>
           </div>
         </td>
         <td class="xmldoc">
               <div class="alert alert-warning">
               <strong>WARNING: </strong> This API is obsolete
-              <p>Use ofAsync or ofAuthorized</p>
+              <p>Use Cmd.OfAuthorized.either</p>
+              </div> 
+                    <p>Command that will call a remote Bolero function with authorization and map the result
+into successful Some if authorized, successful None if not, or error (of exception)</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '10', 10)" onmouseover="showTip(event, '10', 10)">
+            ofRemote f arg ofSuccess ofError
+          </code>
+          <div class="tip" id="10">
+            <strong>Signature:</strong> f:(&#39;req -&gt; Async&lt;&#39;resp&gt;) -&gt; arg:&#39;req -&gt; ofSuccess:(RemoteResponse&lt;&#39;resp&gt; -&gt; &#39;msg) -&gt; ofError:(exn -&gt; &#39;msg) -&gt; Cmd&lt;&#39;msg&gt;<br />
+                          <strong>Type parameters:</strong> 'req, 'resp, 'msg                        <span>
+            <strong>Attributes:</strong><br />
+[&lt;Obsolete(&quot;Use Cmd.OfAsync.either or Cmd.OfAuthorized.either&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+              <div class="alert alert-warning">
+              <strong>WARNING: </strong> This API is obsolete
+              <p>Use Cmd.OfAsync.either or Cmd.OfAuthorized.either</p>
               </div> 
                     <p>Command that will call a remote Bolero function with authorization and map the result
 into response or error (of exception)</p>
@@ -163,30 +206,22 @@ into response or error (of exception)</p>
       </tr>
       <tr>
         <td class="member-name">
-          <code onmouseout="hideTip(event, '603', 603)" onmouseover="showTip(event, '603', 603)">
-            performAsync f arg ofSuccess
-          </code>
-          <div class="tip" id="603">
-            <strong>Signature:</strong> f:(&#39;req -&gt; Async&lt;&#39;resp&gt;) -&gt; arg:&#39;req -&gt; ofSuccess:(&#39;resp -&gt; &#39;msg) -&gt; Cmd&lt;&#39;msg&gt;<br />
-                          <strong>Type parameters:</strong> 'req, 'resp, 'msg                      </div>
-        </td>
-        <td class="xmldoc">
-                    <p>Command that will evaluate an async block and map the success to a message
-discarding any possible error</p>
-
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '604', 604)" onmouseover="showTip(event, '604', 604)">
+          <code onmouseout="hideTip(event, '11', 11)" onmouseover="showTip(event, '11', 11)">
             performAuthorized f arg ofSuccess
           </code>
-          <div class="tip" id="604">
-            <strong>Signature:</strong> f:(&#39;req -&gt; Async&lt;&#39;resp&gt;) -&gt; arg:&#39;req -&gt; ofSuccess:(&#39;resp option -&gt; &#39;msg) -&gt; Cmd&lt;&#39;msg&gt;<br />
-                          <strong>Type parameters:</strong> 'req, 'resp, 'msg                      </div>
+          <div class="tip" id="11">
+            <strong>Signature:</strong> f:(&#39;?8164 -&gt; Async&lt;&#39;?8165&gt;) -&gt; arg:&#39;?8164 -&gt; ofSuccess:(&#39;?8165 option -&gt; &#39;?8166) -&gt; Cmd&lt;&#39;?8166&gt;<br />
+                          <strong>Type parameters:</strong> '?8164, '?8165, '?8166                        <span>
+            <strong>Attributes:</strong><br />
+[&lt;Obsolete(&quot;Use Cmd.OfAuthorized.perform&quot;)&gt;]<br />
+          </span>
+          </div>
         </td>
         <td class="xmldoc">
+              <div class="alert alert-warning">
+              <strong>WARNING: </strong> This API is obsolete
+              <p>Use Cmd.OfAuthorized.perform</p>
+              </div> 
                     <p>Command that will call a remote Bolero function with authorization and map the result
 into Some if authorized, None if not, discarding any possible error</p>
 
@@ -195,14 +230,22 @@ into Some if authorized, None if not, discarding any possible error</p>
       </tr>
       <tr>
         <td class="member-name">
-          <code onmouseout="hideTip(event, '605', 605)" onmouseover="showTip(event, '605', 605)">
+          <code onmouseout="hideTip(event, '12', 12)" onmouseover="showTip(event, '12', 12)">
             performJS(...)
           </code>
-          <div class="tip" id="605">
-            <strong>Signature:</strong> js:IJSRuntime -&gt; jsFunctionName:string -&gt; args:obj [] -&gt; ofSuccess:(&#39;res -&gt; &#39;msg) -&gt; Cmd&lt;&#39;msg&gt;<br />
-                          <strong>Type parameters:</strong> 'res, 'msg                      </div>
+          <div class="tip" id="12">
+            <strong>Signature:</strong> js:IJSRuntime -&gt; jsFunctionName:string -&gt; args:obj [] -&gt; ofSuccess:(&#39;?8171 -&gt; &#39;?8172) -&gt; Cmd&lt;&#39;?8172&gt;<br />
+                          <strong>Type parameters:</strong> '?8171, '?8172                        <span>
+            <strong>Attributes:</strong><br />
+[&lt;Obsolete(&quot;Use Cmd.OfJS.perform&quot;)&gt;]<br />
+          </span>
+          </div>
         </td>
         <td class="xmldoc">
+              <div class="alert alert-warning">
+              <strong>WARNING: </strong> This API is obsolete
+              <p>Use Cmd.OfJS.perform</p>
+              </div> 
                     <p>Command that will perform a JavaScript interop call and map the result to a message
 discarding any possible error</p>
 
@@ -211,40 +254,24 @@ discarding any possible error</p>
       </tr>
       <tr>
         <td class="member-name">
-          <code onmouseout="hideTip(event, '606', 606)" onmouseover="showTip(event, '606', 606)">
+          <code onmouseout="hideTip(event, '13', 13)" onmouseover="showTip(event, '13', 13)">
             performRemote f arg ofSuccess
           </code>
-          <div class="tip" id="606">
+          <div class="tip" id="13">
             <strong>Signature:</strong> f:(&#39;req -&gt; Async&lt;&#39;resp&gt;) -&gt; arg:&#39;req -&gt; ofSuccess:(RemoteResponse&lt;&#39;resp&gt; -&gt; &#39;msg) -&gt; Cmd&lt;&#39;msg&gt;<br />
                           <strong>Type parameters:</strong> 'req, 'resp, 'msg                        <span>
             <strong>Attributes:</strong><br />
-[&lt;Obsolete(&quot;Use performAsync or performAuthorized&quot;)&gt;]<br />
+[&lt;Obsolete(&quot;Use Cmd.OfAsync.perform or Cmd.OfAuthorized.perform&quot;)&gt;]<br />
           </span>
           </div>
         </td>
         <td class="xmldoc">
               <div class="alert alert-warning">
               <strong>WARNING: </strong> This API is obsolete
-              <p>Use performAsync or performAuthorized</p>
+              <p>Use Cmd.OfAsync.perform or Cmd.OfAuthorized.perform</p>
               </div> 
                     <p>Command that will call a remote Bolero function with authorization and map the success
 to a message discarding any possible error</p>
-
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '607', 607)" onmouseover="showTip(event, '607', 607)">
-            performTask f arg ofSuccess
-          </code>
-          <div class="tip" id="607">
-            <strong>Signature:</strong> f:(&#39;req -&gt; Task&lt;&#39;resp&gt;) -&gt; arg:&#39;req -&gt; ofSuccess:(&#39;resp -&gt; &#39;msg) -&gt; Cmd&lt;&#39;msg&gt;<br />
-                          <strong>Type parameters:</strong> 'req, 'resp, 'msg                      </div>
-        </td>
-        <td class="xmldoc">
-                    <p>Command that will evaluate a task and map the success to a message
-discarding any possible error</p>
 
 
         </td>

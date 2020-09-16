@@ -278,8 +278,8 @@ type MyApp() =
 </code></pre>
 <h4 id="in-elmish-update-commands">In Elmish update commands</h4>
 <p>It is common to need JavaScript interoperation in the <code>update</code> function to call external functionality. The <code>IJSRuntime</code> can be passed to it from the <code>ProgramComponent</code>.
-Inside <code>update</code>, the commands <code>Cmd.ofJS</code> and <code>Cmd.performJS</code> do a JavaScript call and transform its return value into a message.
-<code>ofJS</code> also transforms potential exceptions into a message, whereas <code>performJS</code> ignores such exceptions.</p>
+Inside <code>update</code>, the commands located in the module <code>Cmd.OfJS</code> do a JavaScript call and transform its return value into a message.
+Just like standard Elmish commands, <code>Cmd.OfJS.either</code> also transforms potential exceptions into a message, whereas <code>Cmd.OfJS.perform</code> ignores such exceptions.</p>
 <pre><code class="language-fsharp">open Microsoft.JSInterop
 
 type Message =
@@ -290,7 +290,7 @@ type Message =
 let update (js: IJSRuntime) message model =
     match message with
     | CallMyJSFunc data -&gt;
-        let cmd = Cmd.ofJS js &quot;MyJsLib.myJSFunc&quot; [| data |] CalledMyJSFunc Error
+        let cmd = Cmd.OfJS.either js &quot;MyJsLib.myJSFunc&quot; [| data |] CalledMyJSFunc Error
         model, cmd
     // ...
 
@@ -301,10 +301,10 @@ type MyApp() =
         let update = update this.JSRuntime
         Program.mkProgram init update view
 </code></pre>
-<p>These functions really are simple wrappers around <code>Cmd.ofTask</code>/<code>Cmd.performTask</code>.
+<p>These functions really are simple wrappers around <code>Cmd.OfTask.either</code>/<code>perform</code>.
 For example, the above call is equivalent to:</p>
 <pre><code class="language-fsharp">let cmd =
-    Cmd.ofTask
+    Cmd.OfTask.either
         (fun args -&gt; js.InvokeAsync(&quot;MyJsLib.myJSFunc&quot;, args).AsTask())
         [| data |] CalledMyJSFunc Error
 </code></pre>

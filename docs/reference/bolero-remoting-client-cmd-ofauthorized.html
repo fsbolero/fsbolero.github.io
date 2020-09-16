@@ -88,10 +88,10 @@
               
               <section class="section"><div ws-preserve=""><p>
 
-<h1>async</h1>
+<h1>OfAuthorized</h1>
 <p>
-  <span>Namespace: Bolero</span><br />
-  <span>Parent Module: <a href="bolero-html-attr.html">attr</a></span>
+  <span>Namespace: Bolero.Remoting.Client</span><br />
+  <span>Parent Module: <a href="bolero-remoting-client-cmd.html">Cmd</a></span>
   </p>
 <div class="xmldoc">
 </div>
@@ -106,17 +106,47 @@
     <tbody>
       <tr>
         <td class="member-name">
-          <code onmouseout="hideTip(event, '280', 280)" onmouseover="showTip(event, '280', 280)">
-            callback name value
+          <code onmouseout="hideTip(event, '14', 14)" onmouseover="showTip(event, '14', 14)">
+            attempt f arg ofError
           </code>
-          <div class="tip" id="280">
-            <strong>Signature:</strong> name:string -&gt; value:(&#39;T -&gt; Async&lt;unit&gt;) -&gt; Attr<br />
-                          <strong>Type parameters:</strong> 'T                      </div>
+          <div class="tip" id="14">
+            <strong>Signature:</strong> f:(&#39;req -&gt; Async&lt;&#39;resp&gt;) -&gt; arg:&#39;req -&gt; ofError:(exn -&gt; &#39;msg) -&gt; Cmd&lt;&#39;msg&gt;<br />
+                          <strong>Type parameters:</strong> 'req, 'resp, 'msg                      </div>
         </td>
         <td class="xmldoc">
-                    <p>Create an attribute whose value is an asynchronous callback.
-Use this function for Blazor component attributes of type <code>EventCallback&lt;T&gt;</code>.
-Note: for HTML event handlers, prefer functions from the module <code>on.async</code>.</p>
+                    <p>Command that will call a remote Bolero function with authorization and map the error (of exception)</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '15', 15)" onmouseover="showTip(event, '15', 15)">
+            either f arg ofSuccess ofError
+          </code>
+          <div class="tip" id="15">
+            <strong>Signature:</strong> f:(&#39;req -&gt; Async&lt;&#39;resp&gt;) -&gt; arg:&#39;req -&gt; ofSuccess:(&#39;resp option -&gt; &#39;msg) -&gt; ofError:(exn -&gt; &#39;msg) -&gt; Cmd&lt;&#39;msg&gt;<br />
+                          <strong>Type parameters:</strong> 'req, 'resp, 'msg                      </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Command that will call a remote Bolero function with authorization and map the result
+into successful Some if authorized, successful None if not, or error (of exception)</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '16', 16)" onmouseover="showTip(event, '16', 16)">
+            perform f arg ofSuccess
+          </code>
+          <div class="tip" id="16">
+            <strong>Signature:</strong> f:(&#39;req -&gt; Async&lt;&#39;resp&gt;) -&gt; arg:&#39;req -&gt; ofSuccess:(&#39;resp option -&gt; &#39;msg) -&gt; Cmd&lt;&#39;msg&gt;<br />
+                          <strong>Type parameters:</strong> 'req, 'resp, 'msg                      </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Command that will call a remote Bolero function with authorization and map the result
+into Some if authorized, None if not, discarding any possible error</p>
 
 
         </td>
