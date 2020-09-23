@@ -275,7 +275,7 @@ In Bolero, the type `HtmlRef` is a small utility that makes working with `Elemen
 
 1. The element to bind must be inside a Component class.
 2. Create an `HtmlRef` as a field of this class.
-3. To bind it to an element, pass it to the attribute `attr.bind` of this element.
+3. To bind it to an element, pass it to the attribute `attr.ref` of this element.
 4. To use it, use its `.Value` property.
 
 For example, given this small JavaScript function that can focus a DOM element it receives as argument:
@@ -302,7 +302,7 @@ type MyInputWithFocusButton() = // (1)
     override this.View model dispatch =
         concat [
             input [
-                attr.bind inputRef // (3)
+                attr.ref inputRef // (3)
                 bind.input.string model dispatch
             ]
             button [
