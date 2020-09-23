@@ -136,11 +136,11 @@ Here is how to implement a remote service without any dependencies.
 
         member this.Configure(app: IApplicationBuilder) =
             app.UseRemoting()
-                .UseBlazor<Client.Startup>()
+                // .OtherMethods()...
             |> ignore
     ```
 
-    Note that `UseRemoting` (and any other middleware) must be called *before* `UseBlazor`, because `UseBlazor` unconditionally catches all requests.
+    Note that `UseRemoting` (and any other middleware) should be called *before* `UseRouting` to make sure that it catches the requests to its endpoints.
 
 #### Using dependency injection
 
@@ -180,6 +180,8 @@ You might need to use injected dependencies in a remote service: a logger, a dat
             services.AddRemoting<MyServiceHandler>()
             |> ignore
     ```
+
+3. In your ASP.NET Core startup, start the remoting middleware, just like for a simple service.
 
 #### IRemoteContext
 
@@ -232,6 +234,7 @@ Authentication is done using standard ASP.NET Core authentication features. Enab
 
     ```fsharp
     app.UseAuthentication()
+        .UseRemoting()
         // .OtherMethods()...
     |> ignore
     ```

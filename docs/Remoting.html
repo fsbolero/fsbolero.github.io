@@ -206,10 +206,10 @@ type Startup() =
 
     member this.Configure(app: IApplicationBuilder) =
         app.UseRemoting()
-            .UseBlazor&lt;Client.Startup&gt;()
+            // .OtherMethods()...
         |&gt; ignore
 </code></pre>
-<p>Note that <code>UseRemoting</code> (and any other middleware) must be called <em>before</em> <code>UseBlazor</code>, because <code>UseBlazor</code> unconditionally catches all requests.</p>
+<p>Note that <code>UseRemoting</code> (and any other middleware) should be called <em>before</em> <code>UseRouting</code> to make sure that it catches the requests to its endpoints.</p>
 </li>
 </ol>
 <h4 id="using-dependency-injection">Using dependency injection</h4>
@@ -245,6 +245,8 @@ type Startup() =
         services.AddRemoting&lt;MyServiceHandler&gt;()
         |&gt; ignore
 </code></pre>
+</li>
+<li><p>In your ASP.NET Core startup, start the remoting middleware, just like for a simple service.</p>
 </li>
 </ol>
 <h4 id="iremotecontext">IRemoteContext</h4>
@@ -288,6 +290,7 @@ type Startup() =
 </li>
 <li><p>In <code>Configure</code>, use the following:</p>
 <pre><code class="language-fsharp">app.UseAuthentication()
+    .UseRemoting()
     // .OtherMethods()...
 |&gt; ignore
 </code></pre>
