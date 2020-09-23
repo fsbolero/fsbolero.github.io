@@ -96,7 +96,7 @@ Bind the page's URL to the Elmish model.</p>
               </section>
               
               <section class="section"><div ws-preserve=""><h3 id="prerequisites">Prerequisites</h3>
-<p>In order to use routing, you need to make sure that the page's base URL is set correctly. In most cases, you simply need to add the following inside the <code>&lt;head&gt;</code> of your page (<code>wwwroot/index.html</code>):</p>
+<p>In order to use routing, you need to make sure that the page's base URL is set correctly. In most cases, you simply need to add the following inside the <code>&lt;head&gt;</code> of your page (<code>Pages/_Host.cshtml</code> for hosted apps, <code>wwwroot/index.html</code> for client-only apps):</p>
 <pre><code class="language-html">&lt;base href=&quot;/&quot;&gt;
 </code></pre>
 <p>If the root of your application is a subpath, then you need to set that subpath as the base, <strong>including the trailing slash</strong>. For example, if you have an application served at <code>https://someone.github.io/myrepo/</code>, then you need the following:</p>

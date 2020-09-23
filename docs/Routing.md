@@ -5,7 +5,7 @@ subtitle: Bind the page's URL to the Elmish model.
 
 ### Prerequisites
 
-In order to use routing, you need to make sure that the page's base URL is set correctly. In most cases, you simply need to add the following inside the `<head>` of your page (`wwwroot/index.html`):
+In order to use routing, you need to make sure that the page's base URL is set correctly. In most cases, you simply need to add the following inside the `<head>` of your page (`Pages/_Host.cshtml` for hosted apps, `wwwroot/index.html` for client-only apps):
 
 ```html
 <base href="/">
