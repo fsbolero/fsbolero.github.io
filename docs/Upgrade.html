@@ -95,7 +95,36 @@ How to update a project for newer releases</p>
                 </div>
               </section>
               
-              <section class="section"><div ws-preserve=""><h3 id="from-v0.14-to-v0.15">From v0.14 to v0.15</h3>
+              <section class="section"><div ws-preserve=""><h3 id="from-v0.15-to-v0.16">From v0.15 to v0.16</h3>
+<p>Bolero v0.16 upgrades the dependency to .NET 5. Here are the associated upgrade steps:</p>
+<ul>
+<li><p>Install <a href="https://dotnet.microsoft.com/download">the .NET SDK 5.0.100 or newer</a>.</p>
+</li>
+<li><p>If you are using Visual Studio, it is recommended to upgrade to version 16.8.</p>
+</li>
+<li><p>In your <em>client-side</em> project files:</p>
+<ul>
+<li><p>Replace the line:</p>
+<pre><code class="language-xml">&lt;Project Sdk=&quot;Microsoft.NET.Sdk.Web&quot;&gt;
+</code></pre>
+<p>with:</p>
+<pre><code class="language-xml">&lt;Project Sdk=&quot;Microsoft.NET.Sdk.BlazorWebAssembly&quot;&gt;
+</code></pre>
+</li>
+<li><p>Remove the dependency on the NuGet package <code>Microsoft.AspNetCore.Components.WebAssembly.Build</code>.</p>
+</li>
+</ul>
+</li>
+<li><p>In <em>all</em> your project files:</p>
+<ul>
+<li><p>Replace the <code>TargetFramework</code> with <code>net5.0</code>.</p>
+</li>
+<li><p>Update the dependency version on all <code>Microsoft.AspNetCore.*</code> packages to <code>5.0.*</code> (for NuGet) or <code>~&gt; 5.0.0</code> (for Paket).</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="from-v0.14-to-v0.15">From v0.14 to v0.15</h3>
 <p>Bolero v0.15 doesn't change the SDK requirements. Here are the upgrade steps:</p>
 <ul>
 <li><p>Elmish has been updated to v3.0. As a consequence, some functions are now obsolete.
@@ -462,6 +491,8 @@ If your code uses Blazor APIs directly, please check the Blazor <a href="https:/
                     </li><li>
                       <a class="is-active" href="/docs/Upgrade">Upgrade guide</a>
                       <ul><li>
+                          <a href="#from-v015-to-v016">From v0.15 to v0.16</a>
+                        </li><li>
                           <a href="#from-v014-to-v015">From v0.14 to v0.15</a>
                         </li><li>
                           <a href="#from-v013-to-v014">From v0.13 to v0.14</a>

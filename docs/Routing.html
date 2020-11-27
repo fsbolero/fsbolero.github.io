@@ -103,13 +103,13 @@ Bind the page's URL to the Elmish model.</p>
 <pre><code class="language-html">&lt;base href=&quot;/myrepo/&quot;&gt;
 </code></pre>
 <h3 id="inferred-router">Inferred router</h3>
-<p>The easiest way to create a router is by using an inferred router. In this mode of operation, you create an endpoint type which has a 1-to-1 correspondance with your supported URLs, and store it in the Elmish model.</p>
+<p>The easiest way to create a router is by using an inferred router. In this mode of operation, you create an endpoint type which has a 1-to-1 correspondence with your supported URLs, and store it in the Elmish model.</p>
 <p>Here are the steps to set up an inferred router:</p>
 <ol>
 <li><p>Create the endpoint type. Typically, it will be an F# union type where each case corresponds to a path prefixed by the case's name and the case's arguments are the consecutive fragments of the path. For example:</p>
 <pre><code class="language-fsharp">type Page =
     | Home                                  // -&gt; /Home
-    | BlogArticle of id: int                // -&gt; /BlogEntry/42
+    | BlogArticle of id: int                // -&gt; /BlogArticle/42
     | BlogList of user: string * page: int  // -&gt; /BlogList/tarmil/1
 </code></pre>
 <p>See <a href="#format">Format</a> for all the supported types and how to customize the corresponding path.</p>
@@ -169,7 +169,7 @@ let update message model =
 <li><p>F# union types. Each case corresponds to a path prefixed by the case's name. The case's arguments are the consecutive fragments of the path:</p>
 <pre><code class="language-fsharp">type Page =
     | Home                                  // -&gt; /Home
-    | BlogArticle of id: int                // -&gt; /BlogEntry/42
+    | BlogArticle of id: int                // -&gt; /BlogArticle/42
     | BlogList of user: string * page: int  // -&gt; /BlogList/tarmil/1
 </code></pre>
 <p>To customize the path, you can use the <code>EndPoint</code> attribute, with parameters indicated by <code>{curly_braces}</code>.</p>
@@ -186,7 +186,7 @@ let update message model =
     | [&lt;EndPoint &quot;/list/{user}/tagged/{*tags}&quot;&gt;]
       ListTagged of user: string * tags: list&lt;string&gt;
 
-Tagged(&quot;tarmil&quot;, [&quot;bolero&quot;; &quot;webassembly&quot;])
+ListTagged(&quot;tarmil&quot;, [&quot;bolero&quot;; &quot;webassembly&quot;])
 // -&gt; /list/tarmil/tagged/bolero/webassembly
 </code></pre>
 <p>Several cases can share a common prefix in their paths, as long as any parameters in this common prefix have the same type.</p>

@@ -19,7 +19,7 @@ If the root of your application is a subpath, then you need to set that subpath 
 
 ### Inferred router
 
-The easiest way to create a router is by using an inferred router. In this mode of operation, you create an endpoint type which has a 1-to-1 correspondance with your supported URLs, and store it in the Elmish model.
+The easiest way to create a router is by using an inferred router. In this mode of operation, you create an endpoint type which has a 1-to-1 correspondence with your supported URLs, and store it in the Elmish model.
 
 Here are the steps to set up an inferred router:
 
@@ -28,7 +28,7 @@ Here are the steps to set up an inferred router:
     ```fsharp
     type Page =
         | Home                                  // -> /Home
-        | BlogArticle of id: int                // -> /BlogEntry/42
+        | BlogArticle of id: int                // -> /BlogArticle/42
         | BlogList of user: string * page: int  // -> /BlogList/tarmil/1
     ```
     
@@ -101,7 +101,7 @@ The router has a few helpful utilities:
     ```fsharp
     type Page =
         | Home                                  // -> /Home
-        | BlogArticle of id: int                // -> /BlogEntry/42
+        | BlogArticle of id: int                // -> /BlogArticle/42
         | BlogList of user: string * page: int  // -> /BlogList/tarmil/1
     ```
 
@@ -123,8 +123,8 @@ The router has a few helpful utilities:
     type Page =
         | [<EndPoint "/list/{user}/tagged/{*tags}">]
           ListTagged of user: string * tags: list<string>
-          
-    Tagged("tarmil", ["bolero"; "webassembly"])
+
+    ListTagged("tarmil", ["bolero"; "webassembly"])
     // -> /list/tarmil/tagged/bolero/webassembly
     ```
     

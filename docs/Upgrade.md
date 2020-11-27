@@ -3,6 +3,36 @@ title: Upgrade guide
 subtitle: How to update a project for newer releases
 ---
 
+### From v0.15 to v0.16
+
+Bolero v0.16 upgrades the dependency to .NET 5. Here are the associated upgrade steps:
+
+* Install [the .NET SDK 5.0.100 or newer](https://dotnet.microsoft.com/download).
+
+* If you are using Visual Studio, it is recommended to upgrade to version 16.8.
+
+* In your *client-side* project files:
+
+    * Replace the line:
+    
+        ```xml
+        <Project Sdk="Microsoft.NET.Sdk.Web">
+        ```
+        
+        with:
+        
+        ```xml
+        <Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+        ```
+        
+    * Remove the dependency on the NuGet package `Microsoft.AspNetCore.Components.WebAssembly.Build`.
+
+* In *all* your project files:
+
+    * Replace the `TargetFramework` with `net5.0`.
+    
+    * Update the dependency version on all `Microsoft.AspNetCore.*` packages to `5.0.*` (for NuGet) or `~> 5.0.0` (for Paket).
+
 ### From v0.14 to v0.15
 
 Bolero v0.15 doesn't change the SDK requirements. Here are the upgrade steps:
