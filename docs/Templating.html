@@ -346,17 +346,22 @@ listFriends [&quot;Alice&quot;; &quot;Bob&quot;; &quot;Chloe&quot;]
     |&gt; ignore
 </code></pre>
 </li>
-<li><p>Enable hot reload in the startup class's <code>Configure</code>:</p>
+<li><p>Enable hot reload in the startup class's <code>Configure</code>, within the call to <code>UseEndpoints</code>:</p>
 <pre><code class="language-fsharp">member this.Configure(app: IApplicationBuilder, env: IHostingEnvironment) =
     app
-        #if DEBUG
-        .UseHotReload()
-        #endif
-        .UseBlazor&lt;Client.Startup&gt;()
+        .UseRouting()
+        // ...
+        .UseEndpoints(fun endpoints -&gt;
+            #if DEBUG
+            endpoints.UseHotReload()
+            #endif
+            // ...
+        )
     |&gt; ignore
 </code></pre>
 </li>
 </ul>
+<p>Note the use of <code>#if DEBUG</code> ... <code>#endif</code> to ensure that hot reload is only enabled when compiling in debug mode, and not in release mode.</p>
 </li>
 <li><p>On the client side:</p>
 <ul>
@@ -371,7 +376,7 @@ listFriends [&quot;Alice&quot;; &quot;Bob&quot;; &quot;Chloe&quot;]
     override this.Program =
         Program.mkSimple (fun _ -&gt; initModel) update view
         #if DEBUG
-        |&gt; Program.withHotReloading
+        |&gt; Program.withHotReload
         #endif
 </code></pre>
 </li>

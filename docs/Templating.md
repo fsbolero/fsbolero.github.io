@@ -343,17 +343,23 @@ Here is how to enable it in an existing project with a server side:
             |> ignore
         ```
 
-    * Enable hot reload in the startup class's `Configure`:
+    * Enable hot reload in the startup class's `Configure`, within the call to `UseEndpoints`:
     
         ```fsharp
         member this.Configure(app: IApplicationBuilder, env: IHostingEnvironment) =
             app
-                #if DEBUG
-                .UseHotReload()
-                #endif
-                .UseBlazor<Client.Startup>()
+                .UseRouting()
+                // ...
+                .UseEndpoints(fun endpoints ->
+                    #if DEBUG
+                    endpoints.UseHotReload()
+                    #endif
+                    // ...
+                )
             |> ignore
         ```
+
+    Note the use of `#if DEBUG` ... `#endif` to ensure that hot reload is only enabled when compiling in debug mode, and not in release mode.
 
 * On the client side:
 
@@ -372,6 +378,6 @@ Here is how to enable it in an existing project with a server side:
             override this.Program =
                 Program.mkSimple (fun _ -> initModel) update view
                 #if DEBUG
-                |> Program.withHotReloading
+                |> Program.withHotReload
                 #endif
         ```
