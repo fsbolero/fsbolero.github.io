@@ -136,11 +136,11 @@ type Input() =
 
 let view model dispatch =
     div [] [
-        ecomp<Input,_,_> {
+        ecomp<Input,_,_> [] {
             label = "First name: "
             value = model.firstName
          } (fun n -> dispatch (SetFirstName n))
-        ecomp<Input,_,_> {
+        ecomp<Input,_,_> [] {
             label = "Last name: "
             value = model.lastName
          } (fun n -> dispatch (SetLastName n))

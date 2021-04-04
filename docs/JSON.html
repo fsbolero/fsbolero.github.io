@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>API Reference | Bolero: F# in WebAssembly</title>
+  <title>Dealing with JSON | Bolero: F# in WebAssembly</title>
   <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16" />
   <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
   <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[],"$DATA":{"$V":{}}}' />
@@ -82,188 +82,74 @@
         <div class="container">
           <div class="columns is-gapless">
             <div class="column content markdown-column">
-              <div class="edit-page-icon" style="display: none">
-                <a href="https://github.com/fsbolero/website/tree/master/src/Website/docs/reference.md" target="_blank" title="Contribute to this page on GitHub">
+              <div class="edit-page-icon">
+                <a href="https://github.com/fsbolero/website/tree/master/src/Website/docs/JSON.md" target="_blank" title="Contribute to this page on GitHub">
                   <i class="fa fa-edit"></i>
                 </a>
               </div>
+              <section class="hero">
+                <div class="hero-body">
+                  <h1 class="title">
+                    Dealing with JSON
+                  </h1>
+                  <p class="subtitle">
+Use the inbuilt <a href="https://github.com/Tarmil/FSharp.SystemTextJson">extensions</a> to System.Text.Json for handling F# specific types</p>
+
+                </div>
+              </section>
               
-              
-              <section class="section"><div ws-preserve=""><p>
+              <section class="section"><div ws-preserve=""><blockquote>
+<p>Bolero uses <a href="https://docs.microsoft.com/en-us/dotnet/standard/serialization/system-text-json-overview">System.Text.Json</a> and <a href="https://github.com/Tarmil/FSharp.SystemTextJson">FSharp.SystemTextJson</a> for JSON handling. You are free to use any other JSON library of your choosing if you so wish.</p>
+</blockquote>
+<h3 id="configuration">Configuration</h3>
+<p>For <em>hosted Blazor WebAssembly</em> &amp; <em>Blazor server</em> apps, Bolero is already configured to use <code>JsonFSharpConverter</code> for remoting by default.</p>
+<p>For <em>standalone Blazor WebAssembly</em> app, use either <code>JsonSerializerOptions</code> with  <code>JsonFSharpConverter</code> or add <code>JsonFSharpConverterAttribute</code>.</p>
+<p>Learn more about the <a href="https://docs.microsoft.com/en-us/aspnet/core/blazor/hosting-models?view=aspnetcore-3.1">Blazor hosting models</a>.</p>
+<h4 id="using-options">Using options</h4>
+<p>Add <code>JsonFSharpConverter</code> to the converters in <code>JsonSerializerOptions</code>, and the format will be applied to all F# types.</p>
+<pre><code class="language-fsharp">open System.Text.Json
+open System.Text.Json.Serialization
 
-<h1>ServerRemotingExtensions</h1>
-<p>
+let options = JsonSerializerOptions()
+options.Converters.Add(JsonFSharpConverter())
+JsonSerializer.Serialize({| x = &quot;Bolero&quot; |}, options)
+</code></pre>
+<h4 id="using-attributes">Using attributes</h4>
+<p>Add <code>JsonFSharpConverterAttribute</code> to the type that needs to be serialized.</p>
+<pre><code class="language-fsharp">open System.Text.Json
+open System.Text.Json.Serialization
 
-    <span>Namespace: Bolero.Remoting.Server</span><br />
-            <span>
-            Attributes: <br />
-[&lt;Extension&gt;]<br />
-            
-        </span>
-</p>
-<div class="xmldoc">
-<p>Extension methods to enable support for remoting in the ASP.NET Core server side.</p>
+[&lt;JsonFSharpConverter&gt;]
+type Example = { x: string }
+JsonSerializer.Serialize({x = &quot;Bolero&quot; })
+</code></pre>
+<h4 id="advantages-and-disadvantages">Advantages and disadvantages</h4>
+<p>The options way is generally recommended because it applies the format to all F# types. In addition to your defined types, this also includes:</p>
+<ul>
+<li>Types defined in referenced libraries that you can't modify to add an attribute. This includes standard library types such as <code>option</code> and <code>Result</code>.</li>
+<li>Anonymous records.</li>
+</ul>
+<p>The attribute way cannot handle the above cases.</p>
+<p>The advantage of the attribute way is that it allows calling <code>Serialize</code> and <code>Deserialize</code> without having to pass options every time. This is particularly useful if you are passing your own data to a library that calls these functions itself and doesn't take options.</p>
+<h3 id="named-records">Named records</h3>
+<p>Named record fields are serialized in the order in which they were declared in the type declaration.</p>
+<pre><code class="language-fsharp">type Example = { x: string; y: string }
 
-</div>
-  <h3>Static members</h3>
-  <table class="table table-bordered member-list">
-    <thead>
-      <tr><td>Static member</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '681', 681)" onmouseover="showTip(event, '681', 681)">
-            ServerRemotingExtensions.AddRemoting(...)
-          </code>
-          <div class="tip" id="681">
-            <strong>Signature:</strong> (this:IServiceCollection * configureSerialization:(JsonSerializerOptions -&gt; unit) option) -&gt; IServiceCollection<br />
-                          <strong>Type parameters:</strong> 'T                        <span>
-            <strong>Attributes:</strong><br />
-[&lt;Extension&gt;]<br />
-          </span>
-          </div>
-        </td>
-        <td class="xmldoc">
-                    <p>Add a remote service using dependency injection.</p>
+JsonSerializer.Serialize({ x = &quot;Hello&quot;; y = &quot;world!&quot; })
+// --&gt; {&quot;x&quot;:&quot;Hello&quot;,&quot;y&quot;:&quot;world!&quot;}
+JsonSerializer.Deserialize(&quot;&quot;&quot;{&quot;x&quot;:&quot;Hello&quot;,&quot;y&quot;:&quot;World!&quot;}&quot;&quot;&quot;)
+// --&gt; { x = &quot;Hello&quot;; y = &quot;world!&quot; }
+</code></pre>
+<h3 id="anonymous-records">Anonymous records</h3>
+<p>Anonymous record fields are serialized in alphabetical order.</p>
+<pre><code class="language-fsharp">JsonSerializer.Serialize({| x = &quot;Hello&quot;; y = &quot;world!&quot; |}, options)
+// --&gt; {&quot;x&quot;:&quot;Hello&quot;,&quot;y&quot;:&quot;world!&quot;}
 
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '682', 682)" onmouseover="showTip(event, '682', 682)">
-            ServerRemotingExtensions.AddRemoting(...)
-          </code>
-          <div class="tip" id="682">
-            <strong>Signature:</strong> (this:IServiceCollection * handler:&#39;T * configureSerialization:(JsonSerializerOptions -&gt; unit) option) -&gt; IServiceCollection<br />
-                          <strong>Type parameters:</strong> 'T                        <span>
-            <strong>Attributes:</strong><br />
-[&lt;Extension&gt;]<br />
-          </span>
-          </div>
-        </td>
-        <td class="xmldoc">
-                    <p>Add a remote service.</p>
-
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '683', 683)" onmouseover="showTip(event, '683', 683)">
-            ServerRemotingExtensions.AddRemoting(...)
-          </code>
-          <div class="tip" id="683">
-            <strong>Signature:</strong> (this:IServiceCollection * handler:(IRemoteContext -&gt; &#39;T) * configureSerialization:(JsonSerializerOptions -&gt; unit) option) -&gt; IServiceCollection<br />
-                          <strong>Type parameters:</strong> 'T                        <span>
-            <strong>Attributes:</strong><br />
-[&lt;Extension&gt;]<br />
-          </span>
-          </div>
-        </td>
-        <td class="xmldoc">
-                    <p>Add a remote service.</p>
-
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '684', 684)" onmouseover="showTip(event, '684', 684)">
-            ServerRemotingExtensions.AddRemoting(...)
-          </code>
-          <div class="tip" id="684">
-            <strong>Signature:</strong> (this:IServiceCollection * basePath:string * handler:&#39;T * configureSerialization:(JsonSerializerOptions -&gt; unit) option) -&gt; IServiceCollection<br />
-                          <strong>Type parameters:</strong> 'T                        <span>
-            <strong>Attributes:</strong><br />
-[&lt;Extension&gt;]<br />
-          </span>
-          </div>
-        </td>
-        <td class="xmldoc">
-                    <p>Add a remote service at the given path.</p>
-
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '685', 685)" onmouseover="showTip(event, '685', 685)">
-            ServerRemotingExtensions.AddRemoting(...)
-          </code>
-          <div class="tip" id="685">
-            <strong>Signature:</strong> (this:IServiceCollection * basePath:string * handler:(IRemoteContext -&gt; &#39;T) * configureSerialization:(JsonSerializerOptions -&gt; unit) option) -&gt; IServiceCollection<br />
-                          <strong>Type parameters:</strong> 'T                        <span>
-            <strong>Attributes:</strong><br />
-[&lt;Extension&gt;]<br />
-          </span>
-          </div>
-        </td>
-        <td class="xmldoc">
-                    <p>Add a remote service at the given path.</p>
-
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '686', 686)" onmouseover="showTip(event, '686', 686)">
-            ServerRemotingExtensions.AddRemoting(...)
-          </code>
-          <div class="tip" id="686">
-            <strong>Signature:</strong> (this:IServiceCollection * basePath:PathString * handler:&#39;T * configureSerialization:(JsonSerializerOptions -&gt; unit) option) -&gt; IServiceCollection<br />
-                          <strong>Type parameters:</strong> 'T                        <span>
-            <strong>Attributes:</strong><br />
-[&lt;Extension&gt;]<br />
-          </span>
-          </div>
-        </td>
-        <td class="xmldoc">
-                    <p>Add a remote service at the given path.</p>
-
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '687', 687)" onmouseover="showTip(event, '687', 687)">
-            ServerRemotingExtensions.AddRemoting(...)
-          </code>
-          <div class="tip" id="687">
-            <strong>Signature:</strong> (this:IServiceCollection * basePath:PathString * handler:(IRemoteContext -&gt; &#39;T) * configureSerialization:(JsonSerializerOptions -&gt; unit) option) -&gt; IServiceCollection<br />
-                          <strong>Type parameters:</strong> 'T                        <span>
-            <strong>Attributes:</strong><br />
-[&lt;Extension&gt;]<br />
-          </span>
-          </div>
-        </td>
-        <td class="xmldoc">
-                    <p>Add a remote service at the given path.</p>
-
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '688', 688)" onmouseover="showTip(event, '688', 688)">
-            ServerRemotingExtensions.UseRemoting(...)
-          </code>
-          <div class="tip" id="688">
-            <strong>Signature:</strong> this:IApplicationBuilder -&gt; IApplicationBuilder<br />
-                                    <span>
-            <strong>Attributes:</strong><br />
-[&lt;Extension&gt;]<br />
-          </span>
-          </div>
-        </td>
-        <td class="xmldoc">
-                    
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</p>
+JsonSerializer.Deserialize&lt;{| x : string ; y : string |}&gt;(&quot;&quot;&quot;{&quot;x&quot;:&quot;Hello&quot;,&quot;y&quot;:&quot;World!&quot;}&quot;&quot;&quot;, options)
+// --&gt; {| x = &quot;Hello&quot;; y = &quot;world!&quot; |}
+</code></pre>
+<h3 id="more-info">More info</h3>
+<p>For examples using standard library types such as unions, tuples, <code>option</code>, <code>Map</code>, <code>list</code> &amp; <code>Set</code>, more information is on the <a href="https://github.com/Tarmil/FSharp.SystemTextJson">FSharp.SystemTextJson</a> project site.</p>
 </div></section>
             </div>
             <div class="column is-one-quarter-tablet is-one-fifth-desktop sidebar-column">
@@ -292,14 +178,22 @@
                       <a href="/docs/Blazor">Using Blazor features</a>
                       <ul class="is-hidden"></ul>
                     </li><li>
-                      <a href="/docs/JSON">Dealing with JSON</a>
-                      <ul class="is-hidden"></ul>
+                      <a class="is-active" href="/docs/JSON">Dealing with JSON</a>
+                      <ul><li>
+                          <a href="#configuration">Configuration</a>
+                        </li><li>
+                          <a href="#named-records">Named records</a>
+                        </li><li>
+                          <a href="#anonymous-records">Anonymous records</a>
+                        </li><li>
+                          <a href="#more-info">More info</a>
+                        </li></ul>
                     </li><li>
                       <a href="/docs/Upgrade">Upgrade guide</a>
                       <ul class="is-hidden"></ul>
                     </li><li>
-                      <a class="is-active" href="/docs/reference">API Reference</a>
-                      <ul></ul>
+                      <a href="/docs/reference">API Reference</a>
+                      <ul class="is-hidden"></ul>
                     </li></ul>
                 </div>
               </section>

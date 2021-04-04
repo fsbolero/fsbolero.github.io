@@ -91,174 +91,31 @@
               
               <section class="section"><div ws-preserve=""><p>
 
-<h1>ServerRemotingExtensions</h1>
+<h1>BoleroPageResult</h1>
 <p>
 
-    <span>Namespace: Bolero.Remoting.Server</span><br />
-            <span>
-            Attributes: <br />
-[&lt;Extension&gt;]<br />
-            
-        </span>
-</p>
+    <span>Namespace: Bolero.Server</span><br />
+    </p>
 <div class="xmldoc">
-<p>Extension methods to enable support for remoting in the ASP.NET Core server side.</p>
-
 </div>
-  <h3>Static members</h3>
+  <h3>Constructors</h3>
   <table class="table table-bordered member-list">
     <thead>
-      <tr><td>Static member</td><td>Description</td></tr>
+      <tr><td>Constructor</td><td>Description</td></tr>
     </thead>
     <tbody>
       <tr>
         <td class="member-name">
-          <code onmouseout="hideTip(event, '681', 681)" onmouseover="showTip(event, '681', 681)">
-            ServerRemotingExtensions.AddRemoting(...)
+          <code onmouseout="hideTip(event, '689', 689)" onmouseover="showTip(event, '689', 689)">
+            new(page)
           </code>
-          <div class="tip" id="681">
-            <strong>Signature:</strong> (this:IServiceCollection * configureSerialization:(JsonSerializerOptions -&gt; unit) option) -&gt; IServiceCollection<br />
-                          <strong>Type parameters:</strong> 'T                        <span>
-            <strong>Attributes:</strong><br />
-[&lt;Extension&gt;]<br />
-          </span>
-          </div>
-        </td>
-        <td class="xmldoc">
-                    <p>Add a remote service using dependency injection.</p>
-
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '682', 682)" onmouseover="showTip(event, '682', 682)">
-            ServerRemotingExtensions.AddRemoting(...)
-          </code>
-          <div class="tip" id="682">
-            <strong>Signature:</strong> (this:IServiceCollection * handler:&#39;T * configureSerialization:(JsonSerializerOptions -&gt; unit) option) -&gt; IServiceCollection<br />
-                          <strong>Type parameters:</strong> 'T                        <span>
-            <strong>Attributes:</strong><br />
-[&lt;Extension&gt;]<br />
-          </span>
-          </div>
-        </td>
-        <td class="xmldoc">
-                    <p>Add a remote service.</p>
-
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '683', 683)" onmouseover="showTip(event, '683', 683)">
-            ServerRemotingExtensions.AddRemoting(...)
-          </code>
-          <div class="tip" id="683">
-            <strong>Signature:</strong> (this:IServiceCollection * handler:(IRemoteContext -&gt; &#39;T) * configureSerialization:(JsonSerializerOptions -&gt; unit) option) -&gt; IServiceCollection<br />
-                          <strong>Type parameters:</strong> 'T                        <span>
-            <strong>Attributes:</strong><br />
-[&lt;Extension&gt;]<br />
-          </span>
-          </div>
-        </td>
-        <td class="xmldoc">
-                    <p>Add a remote service.</p>
-
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '684', 684)" onmouseover="showTip(event, '684', 684)">
-            ServerRemotingExtensions.AddRemoting(...)
-          </code>
-          <div class="tip" id="684">
-            <strong>Signature:</strong> (this:IServiceCollection * basePath:string * handler:&#39;T * configureSerialization:(JsonSerializerOptions -&gt; unit) option) -&gt; IServiceCollection<br />
-                          <strong>Type parameters:</strong> 'T                        <span>
-            <strong>Attributes:</strong><br />
-[&lt;Extension&gt;]<br />
-          </span>
-          </div>
-        </td>
-        <td class="xmldoc">
-                    <p>Add a remote service at the given path.</p>
-
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '685', 685)" onmouseover="showTip(event, '685', 685)">
-            ServerRemotingExtensions.AddRemoting(...)
-          </code>
-          <div class="tip" id="685">
-            <strong>Signature:</strong> (this:IServiceCollection * basePath:string * handler:(IRemoteContext -&gt; &#39;T) * configureSerialization:(JsonSerializerOptions -&gt; unit) option) -&gt; IServiceCollection<br />
-                          <strong>Type parameters:</strong> 'T                        <span>
-            <strong>Attributes:</strong><br />
-[&lt;Extension&gt;]<br />
-          </span>
-          </div>
-        </td>
-        <td class="xmldoc">
-                    <p>Add a remote service at the given path.</p>
-
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '686', 686)" onmouseover="showTip(event, '686', 686)">
-            ServerRemotingExtensions.AddRemoting(...)
-          </code>
-          <div class="tip" id="686">
-            <strong>Signature:</strong> (this:IServiceCollection * basePath:PathString * handler:&#39;T * configureSerialization:(JsonSerializerOptions -&gt; unit) option) -&gt; IServiceCollection<br />
-                          <strong>Type parameters:</strong> 'T                        <span>
-            <strong>Attributes:</strong><br />
-[&lt;Extension&gt;]<br />
-          </span>
-          </div>
-        </td>
-        <td class="xmldoc">
-                    <p>Add a remote service at the given path.</p>
-
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '687', 687)" onmouseover="showTip(event, '687', 687)">
-            ServerRemotingExtensions.AddRemoting(...)
-          </code>
-          <div class="tip" id="687">
-            <strong>Signature:</strong> (this:IServiceCollection * basePath:PathString * handler:(IRemoteContext -&gt; &#39;T) * configureSerialization:(JsonSerializerOptions -&gt; unit) option) -&gt; IServiceCollection<br />
-                          <strong>Type parameters:</strong> 'T                        <span>
-            <strong>Attributes:</strong><br />
-[&lt;Extension&gt;]<br />
-          </span>
-          </div>
-        </td>
-        <td class="xmldoc">
-                    <p>Add a remote service at the given path.</p>
-
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '688', 688)" onmouseover="showTip(event, '688', 688)">
-            ServerRemotingExtensions.UseRemoting(...)
-          </code>
-          <div class="tip" id="688">
-            <strong>Signature:</strong> this:IApplicationBuilder -&gt; IApplicationBuilder<br />
-                                    <span>
-            <strong>Attributes:</strong><br />
-[&lt;Extension&gt;]<br />
-          </span>
-          </div>
+          <div class="tip" id="689">
+            <strong>Signature:</strong> page:Node -&gt; BoleroPageResult<br />
+                                  </div>
         </td>
         <td class="xmldoc">
                     
+              <p>CompiledName: <code>.ctor</code></p>
         </td>
       </tr>
     </tbody>

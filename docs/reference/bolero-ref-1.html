@@ -22,7 +22,7 @@
       <div class="navbar-menu">
         <nav class="navbar-start"><a href="/" class="navbar-item is-hoverable has-text-weight-bold">Home</a><div class="navbar-item is-hoverable has-text-weight-bold has-dropdown">
             <a href="/docs" class="navbar-link is-arrowless">Documentation</a>
-            <div class="navbar-dropdown has-text-weight-normal"><a class="navbar-item" href="/docs">Getting Started</a><a class="navbar-item" href="/docs/HTML">Writing HTML</a><a class="navbar-item" href="/docs/Templating">HTML templates</a><a class="navbar-item" href="/docs/Elmish">Using Elmish</a><a class="navbar-item" href="/docs/Routing">Routing</a><a class="navbar-item" href="/docs/Remoting">Remoting</a><a class="navbar-item" href="/docs/Blazor">Using Blazor features</a><a class="navbar-item" href="/docs/Upgrade">Upgrade guide</a><a class="navbar-item" href="/docs/reference">API Reference</a></div>
+            <div class="navbar-dropdown has-text-weight-normal"><a class="navbar-item" href="/docs">Getting Started</a><a class="navbar-item" href="/docs/HTML">Writing HTML</a><a class="navbar-item" href="/docs/Templating">HTML templates</a><a class="navbar-item" href="/docs/Elmish">Using Elmish</a><a class="navbar-item" href="/docs/Routing">Routing</a><a class="navbar-item" href="/docs/Remoting">Remoting</a><a class="navbar-item" href="/docs/Blazor">Using Blazor features</a><a class="navbar-item" href="/docs/JSON">Dealing with JSON</a><a class="navbar-item" href="/docs/Upgrade">Upgrade guide</a><a class="navbar-item" href="/docs/reference">API Reference</a></div>
           </div><a href="https://tryfsharp.fsbolero.io" class="navbar-item is-hoverable has-text-weight-bold">Try F#</a></nav>
         <nav class="navbar-end">
           <a target="_blank" title="GitHub" href="https://github.com/fsbolero/bolero" class="navbar-item is-hoverable"><i class="fa fa-github"></i></a>
@@ -59,6 +59,9 @@
             
           </li><li>
             <a href="/docs/Blazor">Using Blazor features</a>
+            
+          </li><li>
+            <a href="/docs/JSON">Dealing with JSON</a>
             
           </li><li>
             <a href="/docs/Upgrade">Upgrade guide</a>
@@ -106,10 +109,10 @@ See <a href="https://fsbolero.io/docs/Blazor#html-element-references">https://fs
     <tbody>
       <tr>
         <td class="member-name">
-          <code onmouseout="hideTip(event, '652', 652)" onmouseover="showTip(event, '652', 652)">
+          <code onmouseout="hideTip(event, '656', 656)" onmouseover="showTip(event, '656', 656)">
             new()
           </code>
-          <div class="tip" id="652">
+          <div class="tip" id="656">
             <strong>Signature:</strong> unit -&gt; Ref&lt;&#39;T&gt;<br />
                                   </div>
         </td>
@@ -128,15 +131,16 @@ See <a href="https://fsbolero.io/docs/Blazor#html-element-references">https://fs
     <tbody>
       <tr>
         <td class="member-name">
-          <code onmouseout="hideTip(event, '653', 653)" onmouseover="showTip(event, '653', 653)">
+          <code onmouseout="hideTip(event, '657', 657)" onmouseover="showTip(event, '657', 657)">
             x.Value()
           </code>
-          <div class="tip" id="653">
-            <strong>Signature:</strong> unit -&gt; &#39;T<br />
+          <div class="tip" id="657">
+            <strong>Signature:</strong> unit -&gt; &#39;T option<br />
                                   </div>
         </td>
         <td class="xmldoc">
-                    <p>The element or component reference.</p>
+                    <p>The element or component reference.
+None if it hasn't been bound using attr.ref.</p>
 
 
               <p>CompiledName: <code>set_Value</code></p>
@@ -144,15 +148,16 @@ See <a href="https://fsbolero.io/docs/Blazor#html-element-references">https://fs
       </tr>
       <tr>
         <td class="member-name">
-          <code onmouseout="hideTip(event, '654', 654)" onmouseover="showTip(event, '654', 654)">
+          <code onmouseout="hideTip(event, '658', 658)" onmouseover="showTip(event, '658', 658)">
             x.Value()
           </code>
-          <div class="tip" id="654">
+          <div class="tip" id="658">
             <strong>Signature:</strong> unit -&gt; unit<br />
                                   </div>
         </td>
         <td class="xmldoc">
-                    <p>The element or component reference.</p>
+                    <p>The element or component reference.
+None if it hasn't been bound using attr.ref.</p>
 
 
               <p>CompiledName: <code>get_Value</code></p>
@@ -187,6 +192,9 @@ See <a href="https://fsbolero.io/docs/Blazor#html-element-references">https://fs
                       <ul class="is-hidden"></ul>
                     </li><li>
                       <a href="/docs/Blazor">Using Blazor features</a>
+                      <ul class="is-hidden"></ul>
+                    </li><li>
+                      <a href="/docs/JSON">Dealing with JSON</a>
                       <ul class="is-hidden"></ul>
                     </li><li>
                       <a href="/docs/Upgrade">Upgrade guide</a>
@@ -242,7 +250,7 @@ See <a href="https://fsbolero.io/docs/Blazor#html-element-references">https://fs
         <div class="column">
           <h1 class="title">Documentation</h1>
           <div class="menu">
-            <ul class="menu-list"><li><a href="/docs">Getting Started</a></li><li><a href="/docs/HTML">Writing HTML</a></li><li><a href="/docs/Templating">HTML templates</a></li><li><a href="/docs/Elmish">Using Elmish</a></li><li><a href="/docs/Routing">Routing</a></li><li><a href="/docs/Remoting">Remoting</a></li><li><a href="/docs/Blazor">Using Blazor features</a></li><li><a href="/docs/Upgrade">Upgrade guide</a></li><li><a href="/docs/reference">API Reference</a></li></ul>
+            <ul class="menu-list"><li><a href="/docs">Getting Started</a></li><li><a href="/docs/HTML">Writing HTML</a></li><li><a href="/docs/Templating">HTML templates</a></li><li><a href="/docs/Elmish">Using Elmish</a></li><li><a href="/docs/Routing">Routing</a></li><li><a href="/docs/Remoting">Remoting</a></li><li><a href="/docs/Blazor">Using Blazor features</a></li><li><a href="/docs/JSON">Dealing with JSON</a></li><li><a href="/docs/Upgrade">Upgrade guide</a></li><li><a href="/docs/reference">API Reference</a></li></ul>
           </div>
         </div>
         <div class="column">
