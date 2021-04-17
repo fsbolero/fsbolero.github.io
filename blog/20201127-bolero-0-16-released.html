@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>API Reference | Bolero: F# in WebAssembly</title>
+  <title>Bolero 0.16 released for .NET 5 | Bolero: F# in WebAssembly</title>
   <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16" />
   <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
   <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[],"$DATA":{"$V":{}}}' />
@@ -85,120 +85,42 @@
       <div class="container">
         <div class="columns is-gapless">
           <div class="column content markdown-column">
-          <div class="edit-page-icon" style="display: none">
-            <a href="https://github.com/fsbolero/website/tree/master/src/Website/docs/reference.md" target="_blank" title="Contribute to this page on GitHub">
-              <i class="fa fa-edit"></i>
-            </a>
-          </div>
-          
-          <section class="section"><div ws-preserve=""><p>
+          <section class="hero">
+            <div class="hero-body">
+              <h1 class="title">Bolero 0.16 released for .NET 5</h1>
+              <p class="subtitle">
+Updated to the latest and greatest version of .NET</p>
 
-<h1>Page</h1>
-<p>
-
-    <span>Namespace: Bolero.Server.Components</span><br />
-    </p>
-<div class="xmldoc">
-</div>
-  <h3>Constructors</h3>
-  <table class="table table-bordered member-list">
-    <thead>
-      <tr><td>Constructor</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '697', 697)" onmouseover="showTip(event, '697', 697)">
-            new()
-          </code>
-          <div class="tip" id="697">
-            <strong>Signature:</strong> unit -&gt; Page<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                    
-              <p>CompiledName: <code>.ctor</code></p>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <h3>Instance members</h3>
-  <table class="table table-bordered member-list">
-    <thead>
-      <tr><td>Instance member</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '698', 698)" onmouseover="showTip(event, '698', 698)">
-            x.Node()
-          </code>
-          <div class="tip" id="698">
-            <strong>Signature:</strong> unit -&gt; Node<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                    
-              <p>CompiledName: <code>set_Node</code></p>
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '699', 699)" onmouseover="showTip(event, '699', 699)">
-            x.Node()
-          </code>
-          <div class="tip" id="699">
-            <strong>Signature:</strong> unit -&gt; unit<br />
-                                    <span>
-            <strong>Attributes:</strong><br />
-[&lt;Parameter&gt;]<br />
-          </span>
-          </div>
-        </td>
-        <td class="xmldoc">
-                    
-              <p>CompiledName: <code>get_Node</code></p>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</p>
+            </div>
+          </section>
+          <section class="section"><div ws-preserve=""><p>We are happy to announce the release of <a href="https://fsbolero.io">Bolero</a> version 0.16. Bolero is a library that enables writing full-stack applications in F#, whose client side runs in WebAssembly using Blazor.</p>
+<p>This release updates Bolero for the brand new <a href="https://dotnet.microsoft.com/download">.NET 5</a>! You can now take advantage of .NET 5's improvements in your F# application, including better performance both in server-side and WebAssembly modes, and improved trimming for smaller WebAssembly download sizes.</p>
+<p>Install the latest project template with:</p>
+<pre><code>dotnet new -i Bolero.Templates::0.16.5
+</code></pre>
+<p>or follow the <a href="https://fsbolero.io/docs/Upgrade">upgrade guide</a> for your existing projects.</p>
+<p>Happy coding!</p>
 </div></section>
         </div>
           <div class="column is-one-quarter-tablet is-one-fifth-desktop sidebar-column">
             <section class="section">
               <div class="menu">
-                <div class="menu-label">Documentation</div>
+                <div class="menu-label">Articles</div>
                 <ul class="menu-list"><li>
-                    <a href="/docs">Getting Started</a>
+                    <a class="is-active" href="/blog/20201127-bolero-0-16-released">Bolero 0.16 released for .NET 5</a>
                     <ul class="is-hidden"></ul>
                   </li><li>
-                    <a href="/docs/HTML">Writing HTML</a>
+                    <a href="/blog/20200915-bolero-0-15-released">Bolero 0.15 released</a>
                     <ul class="is-hidden"></ul>
                   </li><li>
-                    <a href="/docs/Templating">HTML templates</a>
+                    <a href="/blog/20200807-bolero-0-14-released">Bolero 0.14 released</a>
                     <ul class="is-hidden"></ul>
                   </li><li>
-                    <a href="/docs/Elmish">Using Elmish</a>
+                    <a href="/blog/20200523-bolero-0-13-released">Bolero 0.13 released</a>
                     <ul class="is-hidden"></ul>
                   </li><li>
-                    <a href="/docs/Routing">Routing</a>
+                    <a href="/blog/20200323-bolero-0-12-released">Bolero 0.12 released</a>
                     <ul class="is-hidden"></ul>
-                  </li><li>
-                    <a href="/docs/Remoting">Remoting</a>
-                    <ul class="is-hidden"></ul>
-                  </li><li>
-                    <a href="/docs/Blazor">Using Blazor features</a>
-                    <ul class="is-hidden"></ul>
-                  </li><li>
-                    <a href="/docs/JSON">Dealing with JSON</a>
-                    <ul class="is-hidden"></ul>
-                  </li><li>
-                    <a href="/docs/Upgrade">Upgrade guide</a>
-                    <ul class="is-hidden"></ul>
-                  </li><li>
-                    <a class="is-active" href="/docs/reference">API Reference</a>
-                    <ul></ul>
                   </li></ul>
               </div>
             </section>
@@ -206,7 +128,6 @@
         </div>
       </div>
     </section>
-      
     
   <footer class="section footer first-footer has-text-centered">
     <div class="container">

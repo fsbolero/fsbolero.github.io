@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>API Reference | Bolero: F# in WebAssembly</title>
+  <title>Bolero 0.15 released | Bolero: F# in WebAssembly</title>
   <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16" />
   <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
   <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[],"$DATA":{"$V":{}}}' />
@@ -85,120 +85,84 @@
       <div class="container">
         <div class="columns is-gapless">
           <div class="column content markdown-column">
-          <div class="edit-page-icon" style="display: none">
-            <a href="https://github.com/fsbolero/website/tree/master/src/Website/docs/reference.md" target="_blank" title="Contribute to this page on GitHub">
-              <i class="fa fa-edit"></i>
-            </a>
-          </div>
-          
-          <section class="section"><div ws-preserve=""><p>
+          <section class="hero">
+            <div class="hero-body">
+              <h1 class="title">Bolero 0.15 released</h1>
+              <p class="subtitle">
+Update to Elmish 3.0, improvements to element binders and various fixes.</p>
 
-<h1>Page</h1>
-<p>
+            </div>
+          </section>
+          <section class="section"><div ws-preserve=""><p>We are happy to announce the release of <a href="https://fsbolero.io">Bolero</a> version 0.15. Bolero is a library that enables writing full-stack applications in F#, whose client side runs in WebAssembly using <a href="https://blazor.net/">Blazor</a>.</p>
+<p>This release requires the .NET Core SDK version 3.1.402, which you can download <a href="https://dotnet.microsoft.com/download/dotnet-core/3.1">here</a> for Windows, OSX or Linux.</p>
+<p>Install the latest project template with:</p>
+<pre><code class="language-shell">dotnet new -i Bolero.Templates::0.15.4
+</code></pre>
+<h2 id="features">Features</h2>
+<ul>
+<li><p><a href="https://github.com/fsbolero/bolero/issues/56">#56</a>: Update to Elmish 3.0. Also update the <code>Cmd</code> module to match Elmish 3's API, adding submodules <code>Cmd.OfAuthorized</code> and <code>Cmd.OfJS</code>.</p>
+</li>
+<li><p><a href="https://github.com/fsbolero/bolero/issues/163">#163</a> Rework the HTML element reference API and add Blazor component reference:</p>
+<ul>
+<li><code>ElementRefBinder</code> renamed to <code>HtmlRef</code> (old name still available but obsolete)</li>
+<li><code>attr.bindRef</code> renamed to <code>attr.ref</code> (old name still available but obsolete)</li>
+<li><code>attr.ref</code> taking a function removed</li>
+<li><code>ref.Ref</code> renamed to <code>ref.Value</code></li>
+</ul>
+<pre><code class="language-fsharp">let theDiv = HtmlRef()    // Used to be: let theDiv = ElementRefBinder()
 
-    <span>Namespace: Bolero.Server.Components</span><br />
-    </p>
-<div class="xmldoc">
-</div>
-  <h3>Constructors</h3>
-  <table class="table table-bordered member-list">
-    <thead>
-      <tr><td>Constructor</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '697', 697)" onmouseover="showTip(event, '697', 697)">
-            new()
-          </code>
-          <div class="tip" id="697">
-            <strong>Signature:</strong> unit -&gt; Page<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                    
-              <p>CompiledName: <code>.ctor</code></p>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <h3>Instance members</h3>
-  <table class="table table-bordered member-list">
-    <thead>
-      <tr><td>Instance member</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '698', 698)" onmouseover="showTip(event, '698', 698)">
-            x.Node()
-          </code>
-          <div class="tip" id="698">
-            <strong>Signature:</strong> unit -&gt; Node<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                    
-              <p>CompiledName: <code>set_Node</code></p>
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '699', 699)" onmouseover="showTip(event, '699', 699)">
-            x.Node()
-          </code>
-          <div class="tip" id="699">
-            <strong>Signature:</strong> unit -&gt; unit<br />
-                                    <span>
-            <strong>Attributes:</strong><br />
-[&lt;Parameter&gt;]<br />
-          </span>
-          </div>
-        </td>
-        <td class="xmldoc">
-                    
-              <p>CompiledName: <code>get_Node</code></p>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</p>
+div [
+    attr.ref theDiv    // Used to be: attr.bindRef theDiv
+    on.click (fun _ -&gt; doSomethingWith theDiv.Value)    // Used to be: doSomethingWith theDiv.Ref
+] []
+</code></pre>
+<ul>
+<li>Added <code>Ref&lt;'Component&gt;</code> which provides the same capability for Blazor components, using the same <code>attr.ref</code>:</li>
+</ul>
+<pre><code class="language-fsharp">let theComp = Ref&lt;MyComponent&gt;()
+
+comp&lt;MyComponent&gt; [
+    attr.ref theComp
+    on.click (fun _ -&gt; doSomethingWith theComp.Value)
+] []
+</code></pre>
+</li>
+<li><p><a href="https://github.com/fsbolero/bolero/issues/168">#168</a>: Move the module <code>Bolero.Html</code> to a separate assembly and make all of its functions inline, in order to reduce the downloaded binary size.</p>
+</li>
+</ul>
+<h2 id="fixes">Fixes</h2>
+<ul>
+<li><p><a href="https://github.com/fsbolero/bolero/issues/144">#144</a>: When a router is enabled and the user clicks a link that points to a URI not handled by the router, do navigate to this URI.</p>
+</li>
+<li><p><a href="https://github.com/fsbolero/bolero/issues/166">#166</a>: Ensure that Elmish subscriptions and init commands are not run during server-side prerender.</p>
+</li>
+<li><p><a href="https://github.com/fsbolero/bolero/issues/174">#174</a>: Change ShouldRender to invoke override instead of base implementation (thanks @dougquidd!)</p>
+</li>
+<li><p><a href="https://github.com/fsbolero/bolero/issues/175">#175</a>: Do not render Ref until after Child Content (thanks @dougquidd!)</p>
+</li>
+</ul>
+<p>Happy coding!</p>
 </div></section>
         </div>
           <div class="column is-one-quarter-tablet is-one-fifth-desktop sidebar-column">
             <section class="section">
               <div class="menu">
-                <div class="menu-label">Documentation</div>
+                <div class="menu-label">Articles</div>
                 <ul class="menu-list"><li>
-                    <a href="/docs">Getting Started</a>
+                    <a href="/blog/20201127-bolero-0-16-released">Bolero 0.16 released for .NET 5</a>
                     <ul class="is-hidden"></ul>
                   </li><li>
-                    <a href="/docs/HTML">Writing HTML</a>
+                    <a class="is-active" href="/blog/20200915-bolero-0-15-released">Bolero 0.15 released</a>
                     <ul class="is-hidden"></ul>
                   </li><li>
-                    <a href="/docs/Templating">HTML templates</a>
+                    <a href="/blog/20200807-bolero-0-14-released">Bolero 0.14 released</a>
                     <ul class="is-hidden"></ul>
                   </li><li>
-                    <a href="/docs/Elmish">Using Elmish</a>
+                    <a href="/blog/20200523-bolero-0-13-released">Bolero 0.13 released</a>
                     <ul class="is-hidden"></ul>
                   </li><li>
-                    <a href="/docs/Routing">Routing</a>
+                    <a href="/blog/20200323-bolero-0-12-released">Bolero 0.12 released</a>
                     <ul class="is-hidden"></ul>
-                  </li><li>
-                    <a href="/docs/Remoting">Remoting</a>
-                    <ul class="is-hidden"></ul>
-                  </li><li>
-                    <a href="/docs/Blazor">Using Blazor features</a>
-                    <ul class="is-hidden"></ul>
-                  </li><li>
-                    <a href="/docs/JSON">Dealing with JSON</a>
-                    <ul class="is-hidden"></ul>
-                  </li><li>
-                    <a href="/docs/Upgrade">Upgrade guide</a>
-                    <ul class="is-hidden"></ul>
-                  </li><li>
-                    <a class="is-active" href="/docs/reference">API Reference</a>
-                    <ul></ul>
                   </li></ul>
               </div>
             </section>
@@ -206,7 +170,6 @@
         </div>
       </div>
     </section>
-      
     
   <footer class="section footer first-footer has-text-centered">
     <div class="container">

@@ -23,7 +23,7 @@
         <nav class="navbar-start"><a href="/" class="navbar-item is-hoverable has-text-weight-bold">Home</a><div class="navbar-item is-hoverable has-text-weight-bold has-dropdown">
             <a href="/docs" class="navbar-link is-arrowless">Documentation</a>
             <div class="navbar-dropdown has-text-weight-normal"><a class="navbar-item" href="/docs">Getting Started</a><a class="navbar-item" href="/docs/HTML">Writing HTML</a><a class="navbar-item" href="/docs/Templating">HTML templates</a><a class="navbar-item" href="/docs/Elmish">Using Elmish</a><a class="navbar-item" href="/docs/Routing">Routing</a><a class="navbar-item" href="/docs/Remoting">Remoting</a><a class="navbar-item" href="/docs/Blazor">Using Blazor features</a><a class="navbar-item" href="/docs/JSON">Dealing with JSON</a><a class="navbar-item" href="/docs/Upgrade">Upgrade guide</a><a class="navbar-item" href="/docs/reference">API Reference</a></div>
-          </div><a href="https://tryfsharp.fsbolero.io" class="navbar-item is-hoverable has-text-weight-bold">Try F#</a></nav>
+          </div><a href="/blog" class="navbar-item is-hoverable has-text-weight-bold">Blog</a><a href="https://tryfsharp.fsbolero.io" class="navbar-item is-hoverable has-text-weight-bold">Try F#</a></nav>
         <nav class="navbar-end">
           <a target="_blank" title="GitHub" href="https://github.com/fsbolero/bolero" class="navbar-item is-hoverable"><i class="fa fa-github"></i></a>
           <a target="_blank" title="Twitter" href="https://twitter.com/fsbolero" class="navbar-item is-hoverable"><i class="fa fa-twitter"></i></a>
@@ -71,6 +71,9 @@
             
           </li></ul>
           </li><li>
+            <a href="/blog">Blog</a>
+            
+          </li><li>
             <a href="https://tryfsharp.fsbolero.io">Try F#</a>
             
           </li></ul>
@@ -79,26 +82,23 @@
   </div>
   
       <section class="with-sidebar-background">
-        <div class="container">
-          <div class="columns is-gapless">
-            <div class="column content markdown-column">
-              <div class="edit-page-icon">
-                <a href="https://github.com/fsbolero/website/tree/master/src/Website/docs/Remoting.md" target="_blank" title="Contribute to this page on GitHub">
-                  <i class="fa fa-edit"></i>
-                </a>
-              </div>
-              <section class="hero">
-                <div class="hero-body">
-                  <h1 class="title">
-                    Remoting
-                  </h1>
-                  <p class="subtitle">
+      <div class="container">
+        <div class="columns is-gapless">
+          <div class="column content markdown-column">
+          <div class="edit-page-icon">
+            <a href="https://github.com/fsbolero/website/tree/master/src/Website/docs/Remoting.md" target="_blank" title="Contribute to this page on GitHub">
+              <i class="fa fa-edit"></i>
+            </a>
+          </div>
+          <section class="hero">
+              <div class="hero-body">
+                <h1 class="title">Remoting</h1>
+                <p class="subtitle">
 Easily call server-side functions from the client side.</p>
 
-                </div>
-              </section>
-              
-              <section class="section"><div ws-preserve=""><h3 id="defining-the-service">Defining the service</h3>
+              </div>
+            </section>
+          <section class="section"><div ws-preserve=""><h3 id="defining-the-service">Defining the service</h3>
 <p>A set of server-side functions is defined as a record called a <em>remote service</em>. Each function is a field in this record, and must take one argument and return <code>Async&lt;_&gt;</code>. If you need to pass several arguments to a server-side function, use a tuple.</p>
 <p>The record should implement <code>IRemoteService</code> to define the URL for its functions. Each function is served at the path <code>{service.BasePath}/{fieldName}</code>.</p>
 <p>For example, here is the definition of a service for a simple key-value pair storage:</p>
@@ -443,56 +443,57 @@ let update myService message model =
 </code></pre>
 <p>The variant <code>Cmd.performRemote</code> doesn't take an <code>Error</code> message and ignores non-authorization-related errors.</p>
 </div></section>
-            </div>
-            <div class="column is-one-quarter-tablet is-one-fifth-desktop sidebar-column">
-              <section class="section">
-                <div class="menu">
-                  <div class="menu-label">Documentation</div>
-                  <ul class="menu-list"><li>
-                      <a href="/docs">Getting Started</a>
-                      <ul class="is-hidden"></ul>
-                    </li><li>
-                      <a href="/docs/HTML">Writing HTML</a>
-                      <ul class="is-hidden"></ul>
-                    </li><li>
-                      <a href="/docs/Templating">HTML templates</a>
-                      <ul class="is-hidden"></ul>
-                    </li><li>
-                      <a href="/docs/Elmish">Using Elmish</a>
-                      <ul class="is-hidden"></ul>
-                    </li><li>
-                      <a href="/docs/Routing">Routing</a>
-                      <ul class="is-hidden"></ul>
-                    </li><li>
-                      <a class="is-active" href="/docs/Remoting">Remoting</a>
-                      <ul><li>
-                          <a href="#defining-the-service">Defining the service</a>
-                        </li><li>
-                          <a href="#calling-on-the-client-side">Calling on the client side</a>
-                        </li><li>
-                          <a href="#defining-on-the-server-side">Defining on the server side</a>
-                        </li><li>
-                          <a href="#authentication-and-authorization">Authentication and authorization</a>
-                        </li></ul>
-                    </li><li>
-                      <a href="/docs/Blazor">Using Blazor features</a>
-                      <ul class="is-hidden"></ul>
-                    </li><li>
-                      <a href="/docs/JSON">Dealing with JSON</a>
-                      <ul class="is-hidden"></ul>
-                    </li><li>
-                      <a href="/docs/Upgrade">Upgrade guide</a>
-                      <ul class="is-hidden"></ul>
-                    </li><li>
-                      <a href="/docs/reference">API Reference</a>
-                      <ul class="is-hidden"></ul>
-                    </li></ul>
-                </div>
-              </section>
-            </div>
+        </div>
+          <div class="column is-one-quarter-tablet is-one-fifth-desktop sidebar-column">
+            <section class="section">
+              <div class="menu">
+                <div class="menu-label">Documentation</div>
+                <ul class="menu-list"><li>
+                    <a href="/docs">Getting Started</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/HTML">Writing HTML</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Templating">HTML templates</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Elmish">Using Elmish</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Routing">Routing</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a class="is-active" href="/docs/Remoting">Remoting</a>
+                    <ul><li>
+                        <a href="#defining-the-service">Defining the service</a>
+                      </li><li>
+                        <a href="#calling-on-the-client-side">Calling on the client side</a>
+                      </li><li>
+                        <a href="#defining-on-the-server-side">Defining on the server side</a>
+                      </li><li>
+                        <a href="#authentication-and-authorization">Authentication and authorization</a>
+                      </li></ul>
+                  </li><li>
+                    <a href="/docs/Blazor">Using Blazor features</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/JSON">Dealing with JSON</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Upgrade">Upgrade guide</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/reference">API Reference</a>
+                    <ul class="is-hidden"></ul>
+                  </li></ul>
+              </div>
+            </section>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
+      
     
   <footer class="section footer first-footer has-text-centered">
     <div class="container">

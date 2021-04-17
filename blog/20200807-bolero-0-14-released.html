@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>API Reference | Bolero: F# in WebAssembly</title>
+  <title>Bolero 0.14 released | Bolero: F# in WebAssembly</title>
   <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16" />
   <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
   <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[],"$DATA":{"$V":{}}}' />
@@ -85,120 +85,130 @@
       <div class="container">
         <div class="columns is-gapless">
           <div class="column content markdown-column">
-          <div class="edit-page-icon" style="display: none">
-            <a href="https://github.com/fsbolero/website/tree/master/src/Website/docs/reference.md" target="_blank" title="Contribute to this page on GitHub">
-              <i class="fa fa-edit"></i>
-            </a>
-          </div>
-          
-          <section class="section"><div ws-preserve=""><p>
+          <section class="hero">
+            <div class="hero-body">
+              <h1 class="title">Bolero 0.14 released</h1>
+              <p class="subtitle">
+Switching to System.Text.Json, using Blazor fragments, URL encoding in the router and more.</p>
 
-<h1>Page</h1>
-<p>
+            </div>
+          </section>
+          <section class="section"><div ws-preserve=""><p>We are happy to announce the release of <a href="https://fsbolero.io">Bolero</a> version 0.14. Bolero is a library that enables writing full-stack applications in F#, whose client side runs in WebAssembly using <a href="https://blazor.net/">Blazor</a>.</p>
+<p>This release requires the .NET Core SDK version 3.1.300 or newer, which you can download <a href="https://dotnet.microsoft.com/download/dotnet-core/3.1">here</a> for Windows, OSX or Linux.</p>
+<p>Install the latest project template with:</p>
+<pre><code>dotnet new -i Bolero.Templates::0.14.13
+</code></pre>
+<h2 id="changes">Changes</h2>
+<ul>
+<li><p><a href="https://github.com/fsbolero/bolero/issues/135">#135</a> Inferred router performs URL encoding/decoding on <code>string</code>-typed parameters.</p>
+<pre><code class="language-fsharp">type Page =
+    | [&lt;EndPoint &quot;/article/{slug}&quot;&gt;]
+      Article of slug: string
 
-    <span>Namespace: Bolero.Server.Components</span><br />
-    </p>
-<div class="xmldoc">
-</div>
-  <h3>Constructors</h3>
-  <table class="table table-bordered member-list">
-    <thead>
-      <tr><td>Constructor</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '697', 697)" onmouseover="showTip(event, '697', 697)">
-            new()
-          </code>
-          <div class="tip" id="697">
-            <strong>Signature:</strong> unit -&gt; Page<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                    
-              <p>CompiledName: <code>.ctor</code></p>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <h3>Instance members</h3>
-  <table class="table table-bordered member-list">
-    <thead>
-      <tr><td>Instance member</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '698', 698)" onmouseover="showTip(event, '698', 698)">
-            x.Node()
-          </code>
-          <div class="tip" id="698">
-            <strong>Signature:</strong> unit -&gt; Node<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                    
-              <p>CompiledName: <code>set_Node</code></p>
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '699', 699)" onmouseover="showTip(event, '699', 699)">
-            x.Node()
-          </code>
-          <div class="tip" id="699">
-            <strong>Signature:</strong> unit -&gt; unit<br />
-                                    <span>
-            <strong>Attributes:</strong><br />
-[&lt;Parameter&gt;]<br />
-          </span>
-          </div>
-        </td>
-        <td class="xmldoc">
-                    
-              <p>CompiledName: <code>get_Node</code></p>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</p>
+let router = Router.infer SetPage (fun model -&gt; model.page)
+
+router.Link (Article &quot;Déjà-vu&quot;) = &quot;/article/D%C3%A9j%C3%A0-vu&quot;
+</code></pre>
+</li>
+<li><p><a href="https://github.com/fsbolero/bolero/issues/151">#151</a> Accept either a relative or absolute path in custom router's <code>getRoute</code>.</p>
+</li>
+<li><p><a href="https://github.com/fsbolero/bolero/issues/155">#155</a> Add function <code>fragment</code> to create a Bolero <code>Node</code> from a Blazor <code>RenderFragment</code>.</p>
+<p>This enables creating components that take fragments as parameters:</p>
+<pre><code class="language-fsharp">type Input() =
+    inherit Component()
+
+    [&lt;Parameter&gt;]
+    member val Label = Unchecked.defaultof&lt;RenderFragment&gt; with get, set
+
+    override this.Render() =
+        label [] [
+            fragment this.Label
+            input []
+        ]
+
+let myInput = comp&lt;Input&gt; [attr.fragment &quot;Label&quot; (div [] [text &quot;My input&quot;])] []
+</code></pre>
+<p>In particular, a <code>RenderFragment</code> parameter named <code>ChildContent</code> defines the children of the component, ie. the content passed as second argument to <code>comp</code>.</p>
+<pre><code class="language-fsharp">type Panel() =
+    inherit Component()
+
+    [&lt;Parameter&gt;]
+    member val ChildContent = Unchecked.defaultof&lt;RenderFragment&gt; with get, set
+
+    [&lt;Parameter&gt;]
+    member val Title = &quot;&quot; with get, set
+
+    override this.Render() =
+        div [attr.classes [&quot;panel&quot;]] [
+            h1 [attr.classes [&quot;panel-title&quot;]] [
+                text this.Title
+            ]
+            div [attr.classes [&quot;panel-body&quot;]] [
+                fragment this.ChildContent
+            ]
+        ]
+
+let myPanel =
+    comp&lt;Panel&gt; [&quot;Title&quot; =&gt; &quot;Welcome to Bolero&quot;] [
+        text &quot;Let's learn about &quot;
+        a [attr.href &quot;https://fsbolero.io&quot;] [text &quot;Bolero&quot;]
+        text &quot;!&quot;
+    ]
+</code></pre>
+</li>
+<li><p><a href="https://github.com/fsbolero/bolero/issues/159">#159</a> <strong>Breaking change</strong>: Remove the module <code>Bolero.Json</code>, and use System.Text.Json together with <a href="https://github.com/Tarmil/FSharp.SystemTextJson">FSharp.SystemTextJson</a> instead for remoting.</p>
+<p>Remoting serialization can be customized by passing an additional argument <code>configureSerialization: JsonSerializerOptions -&gt; unit</code> to <code>services.AddRemoting()</code> in both the server-side and client-side startup functions.</p>
+<p>Client-side:</p>
+<pre><code class="language-fsharp">open System.Text.Json.Serialization
+
+[&lt;EntryPoint&gt;]
+let Main args =
+    let builder = WebAssemblyHostBuilder.CreateDefault(args)
+
+    builder.Services.AddRemoting(builder.HostEnvironment, fun serializerOptions -&gt;
+        JsonFSharpConverter(JsonUnionEncoding.ThothLike)
+        |&gt; serializerOptions.Converters.Add
+    ) |&gt; ignore
+
+    // ...
+</code></pre>
+<p>Server-side:</p>
+<pre><code class="language-fsharp">open System.Text.Json.Serialization
+
+type Startup() =
+
+    member this.ConfigureServices(services: IServiceCollection) =
+        services.AddRemoting&lt;MyRemoteService&gt;(fun serializerOptions -&gt;
+            JsonFSharpConverter(JsonUnionEncoding.ThothLike)
+            |&gt; serializerOptions.Converters.Add
+        ) |&gt; ignore
+
+        // ...
+</code></pre>
+</li>
+</ul>
+<p>Happy coding!</p>
 </div></section>
         </div>
           <div class="column is-one-quarter-tablet is-one-fifth-desktop sidebar-column">
             <section class="section">
               <div class="menu">
-                <div class="menu-label">Documentation</div>
+                <div class="menu-label">Articles</div>
                 <ul class="menu-list"><li>
-                    <a href="/docs">Getting Started</a>
+                    <a href="/blog/20201127-bolero-0-16-released">Bolero 0.16 released for .NET 5</a>
                     <ul class="is-hidden"></ul>
                   </li><li>
-                    <a href="/docs/HTML">Writing HTML</a>
+                    <a href="/blog/20200915-bolero-0-15-released">Bolero 0.15 released</a>
                     <ul class="is-hidden"></ul>
                   </li><li>
-                    <a href="/docs/Templating">HTML templates</a>
+                    <a class="is-active" href="/blog/20200807-bolero-0-14-released">Bolero 0.14 released</a>
                     <ul class="is-hidden"></ul>
                   </li><li>
-                    <a href="/docs/Elmish">Using Elmish</a>
+                    <a href="/blog/20200523-bolero-0-13-released">Bolero 0.13 released</a>
                     <ul class="is-hidden"></ul>
                   </li><li>
-                    <a href="/docs/Routing">Routing</a>
+                    <a href="/blog/20200323-bolero-0-12-released">Bolero 0.12 released</a>
                     <ul class="is-hidden"></ul>
-                  </li><li>
-                    <a href="/docs/Remoting">Remoting</a>
-                    <ul class="is-hidden"></ul>
-                  </li><li>
-                    <a href="/docs/Blazor">Using Blazor features</a>
-                    <ul class="is-hidden"></ul>
-                  </li><li>
-                    <a href="/docs/JSON">Dealing with JSON</a>
-                    <ul class="is-hidden"></ul>
-                  </li><li>
-                    <a href="/docs/Upgrade">Upgrade guide</a>
-                    <ul class="is-hidden"></ul>
-                  </li><li>
-                    <a class="is-active" href="/docs/reference">API Reference</a>
-                    <ul></ul>
                   </li></ul>
               </div>
             </section>
@@ -206,7 +216,6 @@
         </div>
       </div>
     </section>
-      
     
   <footer class="section footer first-footer has-text-centered">
     <div class="container">

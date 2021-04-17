@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>API Reference | Bolero: F# in WebAssembly</title>
+  <title>Bolero 0.12 released | Bolero: F# in WebAssembly</title>
   <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16" />
   <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
   <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[],"$DATA":{"$V":{}}}' />
@@ -85,120 +85,143 @@
       <div class="container">
         <div class="columns is-gapless">
           <div class="column content markdown-column">
-          <div class="edit-page-icon" style="display: none">
-            <a href="https://github.com/fsbolero/website/tree/master/src/Website/docs/reference.md" target="_blank" title="Contribute to this page on GitHub">
-              <i class="fa fa-edit"></i>
-            </a>
-          </div>
-          
-          <section class="section"><div ws-preserve=""><p>
+          <section class="hero">
+            <div class="hero-body">
+              <h1 class="title">Bolero 0.12 released</h1>
+              <p class="subtitle">
+Updated for .NET Core 3.1 and Blazor 3.2, introducing lazy components, improved data binders, and more.</p>
 
-<h1>Page</h1>
-<p>
+            </div>
+          </section>
+          <section class="section"><div ws-preserve=""><p>We are happy to announce the release of <a href="https://fsbolero.io">Bolero</a> version 0.12. Bolero is a library that enables writing full-stack applications in F#, whose client side runs in WebAssembly using <a href="https://blazor.net/">Blazor</a>.</p>
+<p>This release requires the .NET Core SDK version 3.1.102 or newer, which you can download <a href="https://dotnet.microsoft.com/download/dotnet-core/3.1">here</a> for Windows, OSX or Linux.</p>
+<p>Install the latest project template with:</p>
+<pre><code>dotnet new -i Bolero.Templates::0.12.3
+</code></pre>
+<p>If you have an existing Bolero project, you can check <a href="https://fsbolero.io/docs/Upgrade">the upgrade guide</a> to learn how to update your project for Bolero 0.12.</p>
+<h2 id="blazor-3.2">Blazor 3.2</h2>
+<p>Bolero 0.12 brings the dependency up to date to Blazor 3.2-preview2. This release brought a number of breaking changes, notably to package names where some occurrences of the name <code>Blazor</code> became <code>Components.WebAssembly</code>, so make sure to follow <a href="https://fsbolero.io/docs/Upgrade">the upgrade guide</a> for your existing projects.</p>
+<p>Blazor 3.2-preview2 also fixes <a href="https://github.com/mono/linker/issues/927">the mono linker issue</a> that prevented compiling any project referencing FSharp.Core with 3.2-preview1.</p>
+<h2 id="improvements">Improvements</h2>
+<p>Since the previous blog was about Bolero 0.9, let's talk about some improvements added since then.</p>
+<h3 id="improved-binders">Improved binders</h3>
+<p>The <code>bind</code> module provides functions for two-way binding between the Elmish model and user inputs in the view. In Bolero 0.11, we improved their implementation by using the same underlying methods as Blazor uses when generating C# from Razor pages. This brings feature parity in terms of supported types by adding <code>int64</code>, <code>float32</code>, <code>decimal</code>, <code>DateTime</code> and <code>DateTimeOffset</code>.</p>
+<p>Additionally, the API of this module has changed. It now contains submodules <code>input</code> and <code>change</code>, each binding values to the corresponding event. These submodules contains functions for each supported type: <code>string</code>, <code>int</code>, and so on.</p>
+<p>For example, the following:</p>
+<pre><code class="language-fsharp">concat [
+    input [bind.input model.name (fun n -&gt; dispatch (SetName n))]
+    input [bind.changeInt model.age (fun a -&gt; dispatch (SetAge a))]
+]
+</code></pre>
+<p>becomes:</p>
+<pre><code class="language-fsharp">concat [
+    input [bind.input.string model.name (fun n -&gt; dispatch (SetName n))]
+    input [bind.change.int model.age (fun a -&gt; dispatch (SetAge a))]
+]
+</code></pre>
+<p>And finally, the module <code>bind.withCulture</code> provides the same submodules and functions, but taking an extra <code>CultureInfo</code> argument to specify how values should be parsed and displayed in terms of date format, decimal point, etc.</p>
+<h3 id="lazy-component-functions">Lazy component functions</h3>
+<p>Sometimes, we know that a whole chunk of a page will only change when a given part of the model changes.</p>
+<pre><code class="language-fsharp">// A helper component for text inputs with a label
+module Input =
+    type Model = { label: string; value: string }
 
-    <span>Namespace: Bolero.Server.Components</span><br />
-    </p>
-<div class="xmldoc">
-</div>
-  <h3>Constructors</h3>
-  <table class="table table-bordered member-list">
-    <thead>
-      <tr><td>Constructor</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '697', 697)" onmouseover="showTip(event, '697', 697)">
-            new()
-          </code>
-          <div class="tip" id="697">
-            <strong>Signature:</strong> unit -&gt; Page<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                    
-              <p>CompiledName: <code>.ctor</code></p>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <h3>Instance members</h3>
-  <table class="table table-bordered member-list">
-    <thead>
-      <tr><td>Instance member</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '698', 698)" onmouseover="showTip(event, '698', 698)">
-            x.Node()
-          </code>
-          <div class="tip" id="698">
-            <strong>Signature:</strong> unit -&gt; Node<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                    
-              <p>CompiledName: <code>set_Node</code></p>
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '699', 699)" onmouseover="showTip(event, '699', 699)">
-            x.Node()
-          </code>
-          <div class="tip" id="699">
-            <strong>Signature:</strong> unit -&gt; unit<br />
-                                    <span>
-            <strong>Attributes:</strong><br />
-[&lt;Parameter&gt;]<br />
-          </span>
-          </div>
-        </td>
-        <td class="xmldoc">
-                    
-              <p>CompiledName: <code>get_Node</code></p>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</p>
+    // In this function, we know that only value should ever change, not label.
+    let view model dispatch =
+        label [] [
+            text model.label
+            input [bind.change.string model.value dispatch]
+        ]
+
+// Our application
+type Model = { firstName: string; lastName: string }
+
+type Message = SetFirstName of string | SetLastName of string
+
+let view model dispatch =
+    concat [
+        Input.view { label = &quot;First name&quot;; value = model.firstName } (dispatch &lt;&lt; SetFirstName)
+        Input.view { label = &quot;Last name&quot;; value = model.lastName } (dispatch &lt;&lt; SetLastName)
+    ]
+</code></pre>
+<p>This knowledge is useful, because we can tell Blazor's renderer not to try and rerender it unless necessary. This can be done by creating a component that takes the changing model as a parameter:</p>
+<pre><code class="language-fsharp">module Input =
+    type Model = { label: string; value: string }
+
+    type Component() =
+        inherit ElmishComponent&lt;Model, string&gt;()
+        
+        // Only rerender if the value has changed.
+        override _.ShouldRender(oldModel, newModel) =
+            oldModel.value &lt;&gt; newModel.value
+            
+        override _.View model dispatch =
+            label [] [
+                text model.label
+                input [bind.change.string model.value dispatch]
+            ]
+            
+    let view model dispatch =
+        ecomp&lt;Component,_,_&gt; model dispatch
+</code></pre>
+<p>This is a bit tedious and verbose, though. So in Bolero 0.11, we took inspiration from Fable's <code>lazyView</code> family of functions to add a very similar <code>lazyComp</code> family of functions. The above becomes:</p>
+<pre><code class="language-fsharp">module Input =
+    type Model = { label: string; value: string }
+    
+    // Don't rerender if the value is the same.
+    // Ignore the label, we know it won't change.
+    let equal oldModel newModel =
+        oldModel.value = newModel.value
+    
+    let strictView model dispatch =
+        label [] [
+            text model.label
+            input [bind.change.string model.value dispatch]
+        ]
+    
+    let view model dispatch =
+        lazyComp2With equal strictView model dispatch
+        
+    // lazyComp2With means:
+    //  * lazyComp: it's a lazy component.
+    //  * 2: it passes 2 arguments to the actual view function (the model and the dispatch).
+    //  * With: it uses a custom equality function to check whether to rerender.
+</code></pre>
+<p>Thanks @brikken for your work on this!</p>
+<h3 id="asynchronous-event-handlers">Asynchronous event handlers</h3>
+<p>We have also added support for asynchronous event handlers. They are located in submodules <code>on.async</code> and <code>on.task</code> and use callbacks that return <code>Async&lt;unit&gt;</code> and <code>Task</code>, respectively.</p>
+<pre><code class="language-fsharp">let myButton (js: IJSRuntime) =
+    button [
+        on.task.click (fun event -&gt;
+            js.InvokeVoidAsync(&quot;console.log&quot;, event.ClientX).AsTask()
+        )
+    ] [text &quot;Click me!&quot;]
+</code></pre>
+<p>We recommend not abusing these by putting too much logic directly in event handlers though; it is generally better practice to simply <code>dispatch</code> a message in the event handler, and do the actual processing in the Elmish <code>update</code> function.</p>
+<h3 id="and-more">And more...</h3>
+<p>The full list of changes is available <a href="https://github.com/fsbolero/Bolero/releases">on the GitHub releases page.</a></p>
+<p>Happy coding!</p>
 </div></section>
         </div>
           <div class="column is-one-quarter-tablet is-one-fifth-desktop sidebar-column">
             <section class="section">
               <div class="menu">
-                <div class="menu-label">Documentation</div>
+                <div class="menu-label">Articles</div>
                 <ul class="menu-list"><li>
-                    <a href="/docs">Getting Started</a>
+                    <a href="/blog/20201127-bolero-0-16-released">Bolero 0.16 released for .NET 5</a>
                     <ul class="is-hidden"></ul>
                   </li><li>
-                    <a href="/docs/HTML">Writing HTML</a>
+                    <a href="/blog/20200915-bolero-0-15-released">Bolero 0.15 released</a>
                     <ul class="is-hidden"></ul>
                   </li><li>
-                    <a href="/docs/Templating">HTML templates</a>
+                    <a href="/blog/20200807-bolero-0-14-released">Bolero 0.14 released</a>
                     <ul class="is-hidden"></ul>
                   </li><li>
-                    <a href="/docs/Elmish">Using Elmish</a>
+                    <a href="/blog/20200523-bolero-0-13-released">Bolero 0.13 released</a>
                     <ul class="is-hidden"></ul>
                   </li><li>
-                    <a href="/docs/Routing">Routing</a>
+                    <a class="is-active" href="/blog/20200323-bolero-0-12-released">Bolero 0.12 released</a>
                     <ul class="is-hidden"></ul>
-                  </li><li>
-                    <a href="/docs/Remoting">Remoting</a>
-                    <ul class="is-hidden"></ul>
-                  </li><li>
-                    <a href="/docs/Blazor">Using Blazor features</a>
-                    <ul class="is-hidden"></ul>
-                  </li><li>
-                    <a href="/docs/JSON">Dealing with JSON</a>
-                    <ul class="is-hidden"></ul>
-                  </li><li>
-                    <a href="/docs/Upgrade">Upgrade guide</a>
-                    <ul class="is-hidden"></ul>
-                  </li><li>
-                    <a class="is-active" href="/docs/reference">API Reference</a>
-                    <ul></ul>
                   </li></ul>
               </div>
             </section>
@@ -206,7 +229,6 @@
         </div>
       </div>
     </section>
-      
     
   <footer class="section footer first-footer has-text-centered">
     <div class="container">

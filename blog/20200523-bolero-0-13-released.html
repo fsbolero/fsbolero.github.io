@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>API Reference | Bolero: F# in WebAssembly</title>
+  <title>Bolero 0.13 released | Bolero: F# in WebAssembly</title>
   <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16" />
   <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
   <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[],"$DATA":{"$V":{}}}' />
@@ -85,120 +85,132 @@
       <div class="container">
         <div class="columns is-gapless">
           <div class="column content markdown-column">
-          <div class="edit-page-icon" style="display: none">
-            <a href="https://github.com/fsbolero/website/tree/master/src/Website/docs/reference.md" target="_blank" title="Contribute to this page on GitHub">
-              <i class="fa fa-edit"></i>
-            </a>
-          </div>
-          
-          <section class="section"><div ws-preserve=""><p>
+          <section class="hero">
+            <div class="hero-body">
+              <h1 class="title">Bolero 0.13 released</h1>
+              <p class="subtitle">
+Updated to Blazor 3.2.0 final release, with improvements to server-side hosting and component attributes.</p>
 
-<h1>Page</h1>
-<p>
+            </div>
+          </section>
+          <section class="section"><div ws-preserve=""><p>We are happy to announce the release of <a href="https://fsbolero.io">Bolero</a> version 0.13. Bolero is a library that enables writing full-stack applications in F#, whose client side runs in WebAssembly using <a href="https://blazor.net/">Blazor</a>.</p>
+<p>This release requires the .NET Core SDK version 3.1.300 or newer, which you can download <a href="https://dotnet.microsoft.com/download/dotnet-core/3.1">here</a> for Windows, OSX or Linux.</p>
+<p>Install the latest project template with:</p>
+<pre><code>dotnet new -i Bolero.Templates::0.13.6
+</code></pre>
+<p>If you have an existing Bolero project, you can check <a href="https://fsbolero.io/docs/Upgrade">the upgrade guide</a> to learn how to update your project for Bolero 0.13.</p>
+<h2 id="blazor-3.2.0-final-release">Blazor 3.2.0 final release</h2>
+<p>The Blazor team <a href="https://devblogs.microsoft.com/aspnet/blazor-webassembly-3-2-0-now-available/">have released their first stable version</a>, v3.2.0. Congratulations to them!</p>
+<p>In Bolero 0.13, we have updated the dependencies to v3.2.0, and as a consequence, we have also removed the <code>preview</code> tag from Bolero's package version.</p>
+<h2 id="improved-server-side-hosting">Improved server-side hosting</h2>
+<p>Bolero applications can be hosted by an ASP.NET Core server, not only when running in server-side mode, but also in WebAssembly mode. This enables features such as server-side prerendering of the page contents. Until v0.12, some of the hosting configuration logic was implemented in the Bolero project template, in a file called <code>HostModel.fs</code> and in the server-side Razor page <code>_Host.cshtml</code>.</p>
+<p>In v0.13, this logic has been streamlined into <code>Bolero.Server</code>. <code>HostModel.fs</code> is now gone, <code>_Host.cshtml</code> is simpler, and configuration is centralized in the ASP.NET Core application startup. <a href="https://fsbolero.io/docs/Upgrade">See the upgrade guide for how to adapt an existing project</a>.</p>
+<pre><code class="language-fsharp">open Microsoft.Extensions.DependencyInjection
+open Bolero.Server.RazorHost
 
-    <span>Namespace: Bolero.Server.Components</span><br />
-    </p>
-<div class="xmldoc">
-</div>
-  <h3>Constructors</h3>
-  <table class="table table-bordered member-list">
-    <thead>
-      <tr><td>Constructor</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '697', 697)" onmouseover="showTip(event, '697', 697)">
-            new()
-          </code>
-          <div class="tip" id="697">
-            <strong>Signature:</strong> unit -&gt; Page<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                    
-              <p>CompiledName: <code>.ctor</code></p>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <h3>Instance members</h3>
-  <table class="table table-bordered member-list">
-    <thead>
-      <tr><td>Instance member</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '698', 698)" onmouseover="showTip(event, '698', 698)">
-            x.Node()
-          </code>
-          <div class="tip" id="698">
-            <strong>Signature:</strong> unit -&gt; Node<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                    
-              <p>CompiledName: <code>set_Node</code></p>
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '699', 699)" onmouseover="showTip(event, '699', 699)">
-            x.Node()
-          </code>
-          <div class="tip" id="699">
-            <strong>Signature:</strong> unit -&gt; unit<br />
-                                    <span>
-            <strong>Attributes:</strong><br />
-[&lt;Parameter&gt;]<br />
-          </span>
-          </div>
-        </td>
-        <td class="xmldoc">
-                    
-              <p>CompiledName: <code>get_Node</code></p>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</p>
+type Startup() =
+
+    member _.ConfigureServices(services: IServiceCollection) =
+        services.AddBoleroHost() |&gt; ignore
+        // Add other services, including MVC...
+</code></pre>
+<p>This method <code>AddBoleroHost()</code> has optional arguments that configure the hosting of Bolero applications:</p>
+<ul>
+<li><p><code>server: bool</code> decides where the application runs: in WebAssembly if <code>server = false</code>, or on the server if <code>server = true</code>. The default is <code>false</code>.</p>
+</li>
+<li><p><code>prerendered: bool</code> decides whether the application's initial view should be prerendered in the served HTML (<code>true</code>), or should be blank and only rendered once the application is loaded (<code>false</code>).</p>
+</li>
+<li><p><code>devToggle: bool</code>: when this is <code>true</code> and the ASP.NET Core application runs in the <code>Development</code> <a href="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/environments?view=aspnetcore-3.1">environment</a>, the <code>server</code> option can be temporarily overridden by passing <code>?server=true</code> or <code>?server=false</code> in the URL. This is particularly useful when developing a WebAssembly application, to temporarily switch to server mode for easier debugging.</p>
+</li>
+</ul>
+<h2 id="component-attributes">Component attributes</h2>
+<p>It is simple to use Blazor components from Bolero: call the <code>comp</code> function parameterized by the component type, then pass a list of attributes and a list of children, and voilà. Here is an example using the <a href="https://www.matblazor.com">MatBlazor</a> library for Material UI style components:</p>
+<pre><code class="language-fsharp">open Bolero.Html
+open MatBlazor
+
+let myButton =
+    comp&lt;MatButton&gt;
+      [ &quot;Icon&quot; =&gt; &quot;favorite&quot;
+        &quot;Link&quot; =&gt; &quot;https://github.com/BlazorComponents/MatBlazor&quot; ]
+      [ text &quot;Click me!&quot; ]
+</code></pre>
+<p>However, some attribute types need specific handling. Bolero 0.13 adds functions for the following:</p>
+<ul>
+<li><p><code>EventCallback&lt;T&gt;</code> can be used using one of the following functions:</p>
+<ul>
+<li><code>attr.callback : string -&gt; (T -&gt; unit) -&gt; Attr</code> to create a synchronous handler;</li>
+<li><code>attr.async.callback : string -&gt; (T -&gt; Async&lt;unit&gt;) -&gt; Attr</code> or</li>
+<li><code>attr.task.callback : string -&gt; (T -&gt; Task) -&gt; Attr</code> to create an asynchronous handler.</li>
+</ul>
+<p>For example:</p>
+<pre><code class="language-fsharp">let myButton (js: IJSRuntime) =
+    comp&lt;MatButton&gt;
+      [ attr.task.callback &quot;OnClick&quot; (fun _ -&gt; js.InvokeVoidAsync(&quot;alert&quot;, &quot;Clicked!&quot;).AsTask()) ]
+      [ text &quot;Click me!&quot; ]
+</code></pre>
+</li>
+<li><p><code>RenderFragment</code> and <code>RenderFragment&lt;T&gt;</code> can be used using the following functions:</p>
+<ul>
+<li><code>attr.fragment : string -&gt; Node -&gt; Attr</code> for <code>RenderFragment</code>;</li>
+<li><code>attr.fragmentWith : string -&gt; (T -&gt; Node) -&gt; Attr</code> for <code>RenderFragment&lt;T&gt;</code>.</li>
+</ul>
+<p>For example:</p>
+<pre><code class="language-fsharp">open MatBlazor
+
+type Car =
+  { Name: string
+    Price: decimal
+    Horsepower: int }
+
+type Model =
+  { Cars: Car[] }
+
+let myTable model dispatch =
+    comp&lt;MatTable&gt;
+      [ &quot;Items&quot; =&gt; model.Cars
+
+        attr.fragment &quot;MatTableHeader&quot; (
+          concat
+            [ th [] [ text &quot;Name&quot; ]
+              th [] [ text &quot;Price&quot; ]
+              th [] [ text &quot;Horsepower&quot;]
+            ]
+        )
+
+        attr.fragmentWith &quot;MatTableRow&quot; (fun (car: Car) -&gt;
+          concat
+            [ td [] [ text car.Name ]
+              td [] [ textf &quot;%.2f&quot; car.Price ]
+              td [] [ textf &quot;%i&quot; car.Horsepower ]
+            ]
+        )
+      ]
+      []
+</code></pre>
+</li>
+</ul>
+<p>Happy coding!</p>
 </div></section>
         </div>
           <div class="column is-one-quarter-tablet is-one-fifth-desktop sidebar-column">
             <section class="section">
               <div class="menu">
-                <div class="menu-label">Documentation</div>
+                <div class="menu-label">Articles</div>
                 <ul class="menu-list"><li>
-                    <a href="/docs">Getting Started</a>
+                    <a href="/blog/20201127-bolero-0-16-released">Bolero 0.16 released for .NET 5</a>
                     <ul class="is-hidden"></ul>
                   </li><li>
-                    <a href="/docs/HTML">Writing HTML</a>
+                    <a href="/blog/20200915-bolero-0-15-released">Bolero 0.15 released</a>
                     <ul class="is-hidden"></ul>
                   </li><li>
-                    <a href="/docs/Templating">HTML templates</a>
+                    <a href="/blog/20200807-bolero-0-14-released">Bolero 0.14 released</a>
                     <ul class="is-hidden"></ul>
                   </li><li>
-                    <a href="/docs/Elmish">Using Elmish</a>
+                    <a class="is-active" href="/blog/20200523-bolero-0-13-released">Bolero 0.13 released</a>
                     <ul class="is-hidden"></ul>
                   </li><li>
-                    <a href="/docs/Routing">Routing</a>
+                    <a href="/blog/20200323-bolero-0-12-released">Bolero 0.12 released</a>
                     <ul class="is-hidden"></ul>
-                  </li><li>
-                    <a href="/docs/Remoting">Remoting</a>
-                    <ul class="is-hidden"></ul>
-                  </li><li>
-                    <a href="/docs/Blazor">Using Blazor features</a>
-                    <ul class="is-hidden"></ul>
-                  </li><li>
-                    <a href="/docs/JSON">Dealing with JSON</a>
-                    <ul class="is-hidden"></ul>
-                  </li><li>
-                    <a href="/docs/Upgrade">Upgrade guide</a>
-                    <ul class="is-hidden"></ul>
-                  </li><li>
-                    <a class="is-active" href="/docs/reference">API Reference</a>
-                    <ul></ul>
                   </li></ul>
               </div>
             </section>
@@ -206,7 +218,6 @@
         </div>
       </div>
     </section>
-      
     
   <footer class="section footer first-footer has-text-centered">
     <div class="container">

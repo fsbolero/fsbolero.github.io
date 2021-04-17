@@ -23,7 +23,7 @@
         <nav class="navbar-start"><a href="/" class="navbar-item is-hoverable has-text-weight-bold">Home</a><div class="navbar-item is-hoverable has-text-weight-bold has-dropdown">
             <a href="/docs" class="navbar-link is-arrowless">Documentation</a>
             <div class="navbar-dropdown has-text-weight-normal"><a class="navbar-item" href="/docs">Getting Started</a><a class="navbar-item" href="/docs/HTML">Writing HTML</a><a class="navbar-item" href="/docs/Templating">HTML templates</a><a class="navbar-item" href="/docs/Elmish">Using Elmish</a><a class="navbar-item" href="/docs/Routing">Routing</a><a class="navbar-item" href="/docs/Remoting">Remoting</a><a class="navbar-item" href="/docs/Blazor">Using Blazor features</a><a class="navbar-item" href="/docs/JSON">Dealing with JSON</a><a class="navbar-item" href="/docs/Upgrade">Upgrade guide</a><a class="navbar-item" href="/docs/reference">API Reference</a></div>
-          </div><a href="https://tryfsharp.fsbolero.io" class="navbar-item is-hoverable has-text-weight-bold">Try F#</a></nav>
+          </div><a href="/blog" class="navbar-item is-hoverable has-text-weight-bold">Blog</a><a href="https://tryfsharp.fsbolero.io" class="navbar-item is-hoverable has-text-weight-bold">Try F#</a></nav>
         <nav class="navbar-end">
           <a target="_blank" title="GitHub" href="https://github.com/fsbolero/bolero" class="navbar-item is-hoverable"><i class="fa fa-github"></i></a>
           <a target="_blank" title="Twitter" href="https://twitter.com/fsbolero" class="navbar-item is-hoverable"><i class="fa fa-twitter"></i></a>
@@ -71,6 +71,9 @@
             
           </li></ul>
           </li><li>
+            <a href="/blog">Blog</a>
+            
+          </li><li>
             <a href="https://tryfsharp.fsbolero.io">Try F#</a>
             
           </li></ul>
@@ -79,26 +82,23 @@
   </div>
   
       <section class="with-sidebar-background">
-        <div class="container">
-          <div class="columns is-gapless">
-            <div class="column content markdown-column">
-              <div class="edit-page-icon">
-                <a href="https://github.com/fsbolero/website/tree/master/src/Website/docs/Upgrade.md" target="_blank" title="Contribute to this page on GitHub">
-                  <i class="fa fa-edit"></i>
-                </a>
-              </div>
-              <section class="hero">
-                <div class="hero-body">
-                  <h1 class="title">
-                    Upgrade guide
-                  </h1>
-                  <p class="subtitle">
+      <div class="container">
+        <div class="columns is-gapless">
+          <div class="column content markdown-column">
+          <div class="edit-page-icon">
+            <a href="https://github.com/fsbolero/website/tree/master/src/Website/docs/Upgrade.md" target="_blank" title="Contribute to this page on GitHub">
+              <i class="fa fa-edit"></i>
+            </a>
+          </div>
+          <section class="hero">
+              <div class="hero-body">
+                <h1 class="title">Upgrade guide</h1>
+                <p class="subtitle">
 How to update a project for newer releases</p>
 
-                </div>
-              </section>
-              
-              <section class="section"><div ws-preserve=""><h3 id="from-v0.15-to-v0.16">From v0.15 to v0.16</h3>
+              </div>
+            </section>
+          <section class="section"><div ws-preserve=""><h3 id="from-v0.15-to-v0.16">From v0.15 to v0.16</h3>
 <p>Bolero v0.16 upgrades the dependency to .NET 5. Here are the associated upgrade steps:</p>
 <ul>
 <li><p>Install <a href="https://dotnet.microsoft.com/download">the .NET SDK 5.0.100 or newer</a>.</p>
@@ -465,72 +465,73 @@ There are also a few code changes to apply:</p>
 If your code uses Blazor APIs directly, please check the Blazor <a href="https://devblogs.microsoft.com/aspnet/blazor-0-8-0-experimental-release-now-available/">0.8</a>, <a href="https://devblogs.microsoft.com/aspnet/blazor-0-9-0-experimental-release-now-available/">0.9</a> and <a href="https://devblogs.microsoft.com/aspnet/blazor-now-in-official-preview/">3.0</a> upgrade guides for more code changes you might need to make.</p>
 <p>If you are having any issues with this upgrade, don't hesitate to <a href="https://github.com/fsbolero/bolero/issues">post an issue on GitHub!</a></p>
 </div></section>
-            </div>
-            <div class="column is-one-quarter-tablet is-one-fifth-desktop sidebar-column">
-              <section class="section">
-                <div class="menu">
-                  <div class="menu-label">Documentation</div>
-                  <ul class="menu-list"><li>
-                      <a href="/docs">Getting Started</a>
-                      <ul class="is-hidden"></ul>
-                    </li><li>
-                      <a href="/docs/HTML">Writing HTML</a>
-                      <ul class="is-hidden"></ul>
-                    </li><li>
-                      <a href="/docs/Templating">HTML templates</a>
-                      <ul class="is-hidden"></ul>
-                    </li><li>
-                      <a href="/docs/Elmish">Using Elmish</a>
-                      <ul class="is-hidden"></ul>
-                    </li><li>
-                      <a href="/docs/Routing">Routing</a>
-                      <ul class="is-hidden"></ul>
-                    </li><li>
-                      <a href="/docs/Remoting">Remoting</a>
-                      <ul class="is-hidden"></ul>
-                    </li><li>
-                      <a href="/docs/Blazor">Using Blazor features</a>
-                      <ul class="is-hidden"></ul>
-                    </li><li>
-                      <a href="/docs/JSON">Dealing with JSON</a>
-                      <ul class="is-hidden"></ul>
-                    </li><li>
-                      <a class="is-active" href="/docs/Upgrade">Upgrade guide</a>
-                      <ul><li>
-                          <a href="#from-v015-to-v016">From v0.15 to v0.16</a>
-                        </li><li>
-                          <a href="#from-v014-to-v015">From v0.14 to v0.15</a>
-                        </li><li>
-                          <a href="#from-v013-to-v014">From v0.13 to v0.14</a>
-                        </li><li>
-                          <a href="#from-v012-to-v013">From v0.12 to v0.13</a>
-                        </li><li>
-                          <a href="#from-v011-to-v012">From v0.11 to v0.12</a>
-                        </li><li>
-                          <a href="#from-v010-to-v011">From v0.10 to v0.11</a>
-                        </li><li>
-                          <a href="#from-v09-to-v010">From v0.9 to v0.10</a>
-                        </li><li>
-                          <a href="#from-v08-to-v09">From v0.8 to v0.9</a>
-                        </li><li>
-                          <a href="#from-v07-to-v08">From v0.7 to v0.8</a>
-                        </li><li>
-                          <a href="#from-v06-to-v07">From v0.6 to v0.7</a>
-                        </li><li>
-                          <a href="#from-v05-to-v06">From v0.5 to v0.6</a>
-                        </li><li>
-                          <a href="#from-v04-to-v05">From v0.4 to v0.5</a>
-                        </li></ul>
-                    </li><li>
-                      <a href="/docs/reference">API Reference</a>
-                      <ul class="is-hidden"></ul>
-                    </li></ul>
-                </div>
-              </section>
-            </div>
+        </div>
+          <div class="column is-one-quarter-tablet is-one-fifth-desktop sidebar-column">
+            <section class="section">
+              <div class="menu">
+                <div class="menu-label">Documentation</div>
+                <ul class="menu-list"><li>
+                    <a href="/docs">Getting Started</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/HTML">Writing HTML</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Templating">HTML templates</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Elmish">Using Elmish</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Routing">Routing</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Remoting">Remoting</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Blazor">Using Blazor features</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/JSON">Dealing with JSON</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a class="is-active" href="/docs/Upgrade">Upgrade guide</a>
+                    <ul><li>
+                        <a href="#from-v015-to-v016">From v0.15 to v0.16</a>
+                      </li><li>
+                        <a href="#from-v014-to-v015">From v0.14 to v0.15</a>
+                      </li><li>
+                        <a href="#from-v013-to-v014">From v0.13 to v0.14</a>
+                      </li><li>
+                        <a href="#from-v012-to-v013">From v0.12 to v0.13</a>
+                      </li><li>
+                        <a href="#from-v011-to-v012">From v0.11 to v0.12</a>
+                      </li><li>
+                        <a href="#from-v010-to-v011">From v0.10 to v0.11</a>
+                      </li><li>
+                        <a href="#from-v09-to-v010">From v0.9 to v0.10</a>
+                      </li><li>
+                        <a href="#from-v08-to-v09">From v0.8 to v0.9</a>
+                      </li><li>
+                        <a href="#from-v07-to-v08">From v0.7 to v0.8</a>
+                      </li><li>
+                        <a href="#from-v06-to-v07">From v0.6 to v0.7</a>
+                      </li><li>
+                        <a href="#from-v05-to-v06">From v0.5 to v0.6</a>
+                      </li><li>
+                        <a href="#from-v04-to-v05">From v0.4 to v0.5</a>
+                      </li></ul>
+                  </li><li>
+                    <a href="/docs/reference">API Reference</a>
+                    <ul class="is-hidden"></ul>
+                  </li></ul>
+              </div>
+            </section>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
+      
     
   <footer class="section footer first-footer has-text-centered">
     <div class="container">
