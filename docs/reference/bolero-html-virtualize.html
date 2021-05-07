@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bolero: F# in WebAssembly</title>
+  <title>API Reference | Bolero: F# in WebAssembly</title>
   <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16" />
   <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
   <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[],"$DATA":{"$V":{}}}' />
@@ -13,7 +13,7 @@
 
 </head>
 <body>
-  <header class="navbar overlay-bar">
+  <header class="navbar ">
     <div class="container">
       <div class="navbar-brand">
         <a class="navbar-item is-hoverable" onclick="Website.Client.ToggleDrawer()"><i class="fa fa-bars"></i></a>
@@ -84,175 +84,149 @@
     </div>
   </div>
   
-      <section class="hero is-medium is-dark page-banner">
-        <div class="hero-body has-text-centered">
-          <h1 class="title is-spaced">Bolero: F# in WebAssembly</h1>
-          <h2 class="subtitle">Develop SPAs with the full power of F# and .NET.</h2>
-          <div>
-            <a class="button is-warning has-text-weight-bold" href="https://tryfsharp.fsbolero.io" target="_blank">
-              <span>Try F# in WebAssembly</span>
-              <span class="icon is-small">
-                <i class="fa fa-external-link" aria-hidden="true"></i>
-              </span>
+      <section class="with-sidebar-background">
+      <div class="container">
+        <div class="columns is-gapless">
+          <div class="column content markdown-column">
+          <div class="edit-page-icon" style="display: none">
+            <a href="https://github.com/fsbolero/website/tree/master/src/Website/docs/reference.md" target="_blank" title="Contribute to this page on GitHub">
+              <i class="fa fa-edit"></i>
             </a>
           </div>
+          
+          <section class="section"><div ws-preserve=""><p>
+
+<h1>virtualize</h1>
+<p>
+  <span>Namespace: Bolero</span><br />
+  <span>Parent Module: <a href="bolero-html-0.html">Html</a></span>
+  </p>
+<div class="xmldoc">
+</div>
+
+<!-- Render nested types and modules, if there are any -->
+
+  <h3>Functions and values</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Function or value</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '599', 599)" onmouseover="showTip(event, '599', 599)">
+            comp attrs items itemContent
+          </code>
+          <div class="tip" id="599">
+            <strong>Signature:</strong> attrs:Attr list -&gt; items:IReadOnlyCollection&lt;&#39;item&gt; -&gt; itemContent:(&#39;item -&gt; Node) -&gt; Node<br />
+                          <strong>Type parameters:</strong> 'item                      </div>
+        </td>
+        <td class="xmldoc">
+                    
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '600', 600)" onmouseover="showTip(event, '600', 600)">
+            compProvider(...)
+          </code>
+          <div class="tip" id="600">
+            <strong>Signature:</strong> attrs:Attr list -&gt; itemsProvider:(ItemsProviderRequest -&gt; ValueTask&lt;ItemsProviderResult&lt;&#39;item&gt;&gt;) -&gt; itemContent:(&#39;item -&gt; Node) -&gt; Node<br />
+                          <strong>Type parameters:</strong> 'item                      </div>
+        </td>
+        <td class="xmldoc">
+                    
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '601', 601)" onmouseover="showTip(event, '601', 601)">
+            itemSize(v)
+          </code>
+          <div class="tip" id="601">
+            <strong>Signature:</strong> v:single -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '602', 602)" onmouseover="showTip(event, '602', 602)">
+            overscanCount(v)
+          </code>
+          <div class="tip" id="602">
+            <strong>Signature:</strong> v:int -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '603', 603)" onmouseover="showTip(event, '603', 603)">
+            placeholder(v)
+          </code>
+          <div class="tip" id="603">
+            <strong>Signature:</strong> v:(PlaceholderContext -&gt; Node) -&gt; Attr<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</p>
+</div></section>
         </div>
-      </section>
-      <section class="hero is-light is-dark">
-    <div class="hero-body">
-      <div class="container">
-        <div class="columns is-desktop is-vcentered-tablet is-variable is-8 is-reversed-tablet">
-          <div class="column home-splash has-text-centered ">
-          <video src="/videos/create-project.mp4" controls="" poster="/videos/create-project.png">
-            <img data-src="/videos/create-project.png" />
-          </video>
-        </div>
-          <div class="column has-text-left-desktop has-text-centered">
-            <h1 class="title is-spaced">Get started easily</h1>
-            
-          <p>with <a class="link" href="https://dotnet.microsoft.com/download">.NET SDK 5.0.100</a></p>
-          <p class="subtitle">Install the project template:</p>
-          <pre class="is-large"><input readonly="" onclick="select()" value="dotnet new -i Bolero.Templates" /></pre>
-          <p class="subtitle">Create a project:</p>
-          <pre class="is-large"><input readonly="" onclick="select()" value="dotnet new bolero-app -o MyApp" /></pre>
-          <p class="subtitle">Build and run:</p>
-          <pre class="is-large"><input readonly="" onclick="select()" value="cd MyApp &amp;&amp; dotnet run -p src/MyApp.Server" /></pre>
-          <p>&nbsp;</p>
-        
-            <div class="level">
-              <div class="level-left">
-                <div class="level-item">
-                  <a class="button is-medium" href="/docs" target="_blank">Learn more...</a>
-                </div>
+          <div class="column is-one-quarter-tablet is-one-fifth-desktop sidebar-column">
+            <section class="section">
+              <div class="menu">
+                <div class="menu-label">Documentation</div>
+                <ul class="menu-list"><li>
+                    <a href="/docs">Getting Started</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Hosting">Hosting models</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/HTML">Writing HTML</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Templating">HTML templates</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Elmish">Using Elmish</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Routing">Routing</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Remoting">Remoting</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Blazor">Using Blazor features</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/JSON">Dealing with JSON</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Upgrade">Upgrade guide</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a class="is-active" href="/docs/reference">API Reference</a>
+                    <ul></ul>
+                  </li></ul>
               </div>
-            </div>
+            </section>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-      <section class="hero is-white ">
-    <div class="hero-body">
-      <div class="container">
-        <div class="columns is-desktop is-vcentered-tablet is-variable is-8">
-          <div class="column has-text-right-desktop has-text-centered">
-            <h1 class="title is-spaced">F# on the client side, no JavaScript</h1>
-            
-          <p class="subtitle">
-            Bolero uses <a href="https://blazor.net">Blazor</a> to bring F# to WebAssembly.
-          </p>
-          <p class="subtitle">
-            Create dynamic HTML content using syntax familiar from WebSharper and Fable, in a full-fledged client-side .NET web framework.
-          </p>
-        
-            <div class="level">
-              <div></div>
-              <div class="level-right">
-                <div class="level-item">
-                  <a class="button is-medium" href="/docs/HTML" target="_blank">Learn more...</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="column home-splash has-text-centered is-narrow"><img alt="DOM code in F#" data-src="/img/fsharp.png" /></div>
-        </div>
-      </div>
-    </div>
-  </section>
-      <section class="hero is-light ">
-    <div class="hero-body">
-      <div class="container">
-        <div class="columns is-desktop is-vcentered-tablet is-variable is-8 is-reversed-tablet">
-          <div class="column home-splash has-text-centered is-narrow"><img alt="" elmish="" model="" and="" update="" data-src="/img/elmish.png" /></div>
-          <div class="column has-text-left-desktop has-text-centered">
-            <h1 class="title is-spaced">Model-View-Update architecture with Elmish</h1>
-            
-          <p class="subtitle">Structure client-side applications with clear separation of concerns between logic and display
-            with the popular Elmish library.</p>
-        
-            <div class="level">
-              <div class="level-left">
-                <div class="level-item">
-                  <a class="button is-medium" href="/docs/Elmish" target="_blank">Learn more...</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-      <section class="hero is-white ">
-    <div class="hero-body">
-      <div class="container">
-        <div class="columns is-desktop is-vcentered-tablet is-variable is-8">
-          <div class="column has-text-right-desktop has-text-centered">
-            <h1 class="title is-spaced">HTML templates with hot reloading</h1>
-            
-          <p class="subtitle">Alternatively, use HTML files with the Template type provider.</p>
-          <p class="subtitle">Bolero provides hot reloading of HTML template files for immediate feedback.</p>
-        
-            <div class="level">
-              <div></div>
-              <div class="level-right">
-                <div class="level-item">
-                  <a class="button is-medium" href="/docs/Templating" target="_blank">Learn more...</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="column home-splash has-text-centered is-narrow"><img alt="HTML template and F# instantiation" data-src="/img/templating.png" /></div>
-        </div>
-      </div>
-    </div>
-  </section>
-      <section class="hero is-light ">
-    <div class="hero-body">
-      <div class="container">
-        <div class="columns is-desktop is-vcentered-tablet is-variable is-8 is-reversed-tablet">
-          <div class="column home-splash has-text-centered is-narrow"><img alt="Defining and calling a remote function" data-src="/img/remoting.png" /></div>
-          <div class="column has-text-left-desktop has-text-centered">
-            <h1 class="title is-spaced">Seamless server remoting</h1>
-            
-          <p class="subtitle">Invoke server-side code hosted on ASP.NET Core as a simple asynchronous function call.</p>
-          <p class="subtitle">Easily integrate such a call in the Elmish update function.</p>
-        
-            <div class="level">
-              <div class="level-left">
-                <div class="level-item">
-                  <a class="button is-medium" href="/docs/Remoting" target="_blank">Learn more...</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-      <section class="hero is-white ">
-    <div class="hero-body">
-      <div class="container">
-        <div class="columns is-desktop is-vcentered-tablet is-variable is-8">
-          <div class="column has-text-right-desktop has-text-centered">
-            <h1 class="title is-spaced">Automated URL routing</h1>
-            
-          <p class="subtitle">Define your application's routes as an F# union, store it in your Elmish model,
-            and Bolero will parse and generate URLs.</p>
-        
-            <div class="level">
-              <div></div>
-              <div class="level-right">
-                <div class="level-item">
-                  <a class="button is-medium" href="/docs/Routing" target="_blank">Learn more...</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="column home-splash has-text-centered is-narrow"><img alt="Defining and using a route" data-src="/img/routing.png" /></div>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
+      
     
   <footer class="section footer first-footer has-text-centered">
     <div class="container">

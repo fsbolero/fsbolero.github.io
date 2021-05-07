@@ -1,6 +1,7 @@
 # If an item has no title, the page's own title is used instead.
 - url: /docs
   title: Getting Started
+- url: /docs/Hosting
 - url: /docs/HTML
 - url: /docs/Templating
 - url: /docs/Elmish

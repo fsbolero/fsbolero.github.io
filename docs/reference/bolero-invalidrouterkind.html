@@ -22,7 +22,7 @@
       <div class="navbar-menu">
         <nav class="navbar-start"><a href="/" class="navbar-item is-hoverable has-text-weight-bold">Home</a><div class="navbar-item is-hoverable has-text-weight-bold has-dropdown">
             <a href="/docs" class="navbar-link is-arrowless">Documentation</a>
-            <div class="navbar-dropdown has-text-weight-normal"><a class="navbar-item" href="/docs">Getting Started</a><a class="navbar-item" href="/docs/HTML">Writing HTML</a><a class="navbar-item" href="/docs/Templating">HTML templates</a><a class="navbar-item" href="/docs/Elmish">Using Elmish</a><a class="navbar-item" href="/docs/Routing">Routing</a><a class="navbar-item" href="/docs/Remoting">Remoting</a><a class="navbar-item" href="/docs/Blazor">Using Blazor features</a><a class="navbar-item" href="/docs/JSON">Dealing with JSON</a><a class="navbar-item" href="/docs/Upgrade">Upgrade guide</a><a class="navbar-item" href="/docs/reference">API Reference</a></div>
+            <div class="navbar-dropdown has-text-weight-normal"><a class="navbar-item" href="/docs">Getting Started</a><a class="navbar-item" href="/docs/Hosting">Hosting models</a><a class="navbar-item" href="/docs/HTML">Writing HTML</a><a class="navbar-item" href="/docs/Templating">HTML templates</a><a class="navbar-item" href="/docs/Elmish">Using Elmish</a><a class="navbar-item" href="/docs/Routing">Routing</a><a class="navbar-item" href="/docs/Remoting">Remoting</a><a class="navbar-item" href="/docs/Blazor">Using Blazor features</a><a class="navbar-item" href="/docs/JSON">Dealing with JSON</a><a class="navbar-item" href="/docs/Upgrade">Upgrade guide</a><a class="navbar-item" href="/docs/reference">API Reference</a></div>
           </div><a href="/blog" class="navbar-item is-hoverable has-text-weight-bold">Blog</a><a href="https://tryfsharp.fsbolero.io" class="navbar-item is-hoverable has-text-weight-bold">Try F#</a></nav>
         <nav class="navbar-end">
           <a target="_blank" title="GitHub" href="https://github.com/fsbolero/bolero" class="navbar-item is-hoverable"><i class="fa fa-github"></i></a>
@@ -41,6 +41,9 @@
             <a href="/docs">Documentation</a>
             <ul><li>
             <a href="/docs">Getting Started</a>
+            
+          </li><li>
+            <a href="/docs/Hosting">Hosting models</a>
             
           </li><li>
             <a href="/docs/HTML">Writing HTML</a>
@@ -115,76 +118,11 @@
     <tbody>
       <tr>
         <td class="member-name">
-          <code onmouseout="hideTip(event, '633', 633)" onmouseover="showTip(event, '633', 633)">
+          <code onmouseout="hideTip(event, '638', 638)" onmouseover="showTip(event, '638', 638)">
             DuplicateField(UnionCaseInfo,string)
           </code>
-          <div class="tip" id="633">
-            <strong>Signature:</strong> UnionCaseInfo * string<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                    
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '634', 634)" onmouseover="showTip(event, '634', 634)">
-            IdenticalPath(...)
-          </code>
-          <div class="tip" id="634">
-            <strong>Signature:</strong> UnionCaseInfo * UnionCaseInfo<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                    
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '635', 635)" onmouseover="showTip(event, '635', 635)">
-            InvalidRestType(UnionCaseInfo)
-          </code>
-          <div class="tip" id="635">
-            <strong>Signature:</strong> UnionCaseInfo<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                    
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '636', 636)" onmouseover="showTip(event, '636', 636)">
-            MissingField(UnionCaseInfo,string)
-          </code>
-          <div class="tip" id="636">
-            <strong>Signature:</strong> UnionCaseInfo * string<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                    
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '637', 637)" onmouseover="showTip(event, '637', 637)">
-            ModifierMismatch(...)
-          </code>
-          <div class="tip" id="637">
-            <strong>Signature:</strong> UnionCaseInfo * string * UnionCaseInfo * string<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                    
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '638', 638)" onmouseover="showTip(event, '638', 638)">
-            MultiplePageModels(UnionCaseInfo)
-          </code>
           <div class="tip" id="638">
-            <strong>Signature:</strong> UnionCaseInfo<br />
+            <strong>Signature:</strong> UnionCaseInfo * string<br />
                                   </div>
         </td>
         <td class="xmldoc">
@@ -194,10 +132,10 @@
       <tr>
         <td class="member-name">
           <code onmouseout="hideTip(event, '639', 639)" onmouseover="showTip(event, '639', 639)">
-            ParameterSyntax(UnionCaseInfo,string)
+            IdenticalPath(...)
           </code>
           <div class="tip" id="639">
-            <strong>Signature:</strong> UnionCaseInfo * string<br />
+            <strong>Signature:</strong> UnionCaseInfo * UnionCaseInfo<br />
                                   </div>
         </td>
         <td class="xmldoc">
@@ -207,22 +145,9 @@
       <tr>
         <td class="member-name">
           <code onmouseout="hideTip(event, '640', 640)" onmouseover="showTip(event, '640', 640)">
-            ParameterTypeMismatch(...)
+            InvalidRestType(UnionCaseInfo)
           </code>
           <div class="tip" id="640">
-            <strong>Signature:</strong> UnionCaseInfo * string * UnionCaseInfo * string<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                    
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '641', 641)" onmouseover="showTip(event, '641', 641)">
-            RestNotLast(UnionCaseInfo)
-          </code>
-          <div class="tip" id="641">
             <strong>Signature:</strong> UnionCaseInfo<br />
                                   </div>
         </td>
@@ -232,10 +157,10 @@
       </tr>
       <tr>
         <td class="member-name">
-          <code onmouseout="hideTip(event, '642', 642)" onmouseover="showTip(event, '642', 642)">
-            UnknownField(UnionCaseInfo,string)
+          <code onmouseout="hideTip(event, '641', 641)" onmouseover="showTip(event, '641', 641)">
+            MissingField(UnionCaseInfo,string)
           </code>
-          <div class="tip" id="642">
+          <div class="tip" id="641">
             <strong>Signature:</strong> UnionCaseInfo * string<br />
                                   </div>
         </td>
@@ -245,10 +170,88 @@
       </tr>
       <tr>
         <td class="member-name">
+          <code onmouseout="hideTip(event, '642', 642)" onmouseover="showTip(event, '642', 642)">
+            ModifierMismatch(...)
+          </code>
+          <div class="tip" id="642">
+            <strong>Signature:</strong> UnionCaseInfo * string * UnionCaseInfo * string<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
           <code onmouseout="hideTip(event, '643', 643)" onmouseover="showTip(event, '643', 643)">
-            UnsupportedType(Type)
+            MultiplePageModels(UnionCaseInfo)
           </code>
           <div class="tip" id="643">
+            <strong>Signature:</strong> UnionCaseInfo<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '644', 644)" onmouseover="showTip(event, '644', 644)">
+            ParameterSyntax(UnionCaseInfo,string)
+          </code>
+          <div class="tip" id="644">
+            <strong>Signature:</strong> UnionCaseInfo * string<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '645', 645)" onmouseover="showTip(event, '645', 645)">
+            ParameterTypeMismatch(...)
+          </code>
+          <div class="tip" id="645">
+            <strong>Signature:</strong> UnionCaseInfo * string * UnionCaseInfo * string<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '646', 646)" onmouseover="showTip(event, '646', 646)">
+            RestNotLast(UnionCaseInfo)
+          </code>
+          <div class="tip" id="646">
+            <strong>Signature:</strong> UnionCaseInfo<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '647', 647)" onmouseover="showTip(event, '647', 647)">
+            UnknownField(UnionCaseInfo,string)
+          </code>
+          <div class="tip" id="647">
+            <strong>Signature:</strong> UnionCaseInfo * string<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '648', 648)" onmouseover="showTip(event, '648', 648)">
+            UnsupportedType(Type)
+          </code>
+          <div class="tip" id="648">
             <strong>Signature:</strong> Type<br />
                                   </div>
         </td>
@@ -267,6 +270,9 @@
                 <div class="menu-label">Documentation</div>
                 <ul class="menu-list"><li>
                     <a href="/docs">Getting Started</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Hosting">Hosting models</a>
                     <ul class="is-hidden"></ul>
                   </li><li>
                     <a href="/docs/HTML">Writing HTML</a>
@@ -344,7 +350,7 @@
         <div class="column">
           <h1 class="title">Documentation</h1>
           <div class="menu">
-            <ul class="menu-list"><li><a href="/docs">Getting Started</a></li><li><a href="/docs/HTML">Writing HTML</a></li><li><a href="/docs/Templating">HTML templates</a></li><li><a href="/docs/Elmish">Using Elmish</a></li><li><a href="/docs/Routing">Routing</a></li><li><a href="/docs/Remoting">Remoting</a></li><li><a href="/docs/Blazor">Using Blazor features</a></li><li><a href="/docs/JSON">Dealing with JSON</a></li><li><a href="/docs/Upgrade">Upgrade guide</a></li><li><a href="/docs/reference">API Reference</a></li></ul>
+            <ul class="menu-list"><li><a href="/docs">Getting Started</a></li><li><a href="/docs/Hosting">Hosting models</a></li><li><a href="/docs/HTML">Writing HTML</a></li><li><a href="/docs/Templating">HTML templates</a></li><li><a href="/docs/Elmish">Using Elmish</a></li><li><a href="/docs/Routing">Routing</a></li><li><a href="/docs/Remoting">Remoting</a></li><li><a href="/docs/Blazor">Using Blazor features</a></li><li><a href="/docs/JSON">Dealing with JSON</a></li><li><a href="/docs/Upgrade">Upgrade guide</a></li><li><a href="/docs/reference">API Reference</a></li></ul>
           </div>
         </div>
         <div class="column">

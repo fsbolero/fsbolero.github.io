@@ -1,0 +1,426 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hosting models | Bolero: F# in WebAssembly</title>
+  <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16" />
+  <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
+  <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[],"$DATA":{"$V":{}}}' />
+
+  <link rel="stylesheet" href="/css/all.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js" type="text/javascript" charset="UTF-8"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/languages/fsharp.min.js" type="text/javascript" charset="UTF-8"></script><link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/vs.min.css"></link>
+
+</head>
+<body>
+  <header class="navbar ">
+    <div class="container">
+      <div class="navbar-brand">
+        <a class="navbar-item is-hoverable" onclick="Website.Client.ToggleDrawer()"><i class="fa fa-bars"></i></a>
+        <span class="navbar-item"><a href="/">Bolero</a></span>
+      </div>
+      <div class="navbar-menu">
+        <nav class="navbar-start"><a href="/" class="navbar-item is-hoverable has-text-weight-bold">Home</a><div class="navbar-item is-hoverable has-text-weight-bold has-dropdown">
+            <a href="/docs" class="navbar-link is-arrowless">Documentation</a>
+            <div class="navbar-dropdown has-text-weight-normal"><a class="navbar-item" href="/docs">Getting Started</a><a class="navbar-item" href="/docs/Hosting">Hosting models</a><a class="navbar-item" href="/docs/HTML">Writing HTML</a><a class="navbar-item" href="/docs/Templating">HTML templates</a><a class="navbar-item" href="/docs/Elmish">Using Elmish</a><a class="navbar-item" href="/docs/Routing">Routing</a><a class="navbar-item" href="/docs/Remoting">Remoting</a><a class="navbar-item" href="/docs/Blazor">Using Blazor features</a><a class="navbar-item" href="/docs/JSON">Dealing with JSON</a><a class="navbar-item" href="/docs/Upgrade">Upgrade guide</a><a class="navbar-item" href="/docs/reference">API Reference</a></div>
+          </div><a href="/blog" class="navbar-item is-hoverable has-text-weight-bold">Blog</a><a href="https://tryfsharp.fsbolero.io" class="navbar-item is-hoverable has-text-weight-bold">Try F#</a></nav>
+        <nav class="navbar-end">
+          <a target="_blank" title="GitHub" href="https://github.com/fsbolero/bolero" class="navbar-item is-hoverable"><i class="fa fa-github"></i></a>
+          <a target="_blank" title="Twitter" href="https://twitter.com/fsbolero" class="navbar-item is-hoverable"><i class="fa fa-twitter"></i></a>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <div class="drawer-backdrop" onclick="Website.Client.ToggleDrawer()">
+    <div id="left-drawer" class="lhs-drawer">
+      <nav class="menu">
+        <ul class="menu-list"><li>
+            <a href="/">Home</a>
+            
+          </li><li>
+            <a href="/docs">Documentation</a>
+            <ul><li>
+            <a href="/docs">Getting Started</a>
+            
+          </li><li>
+            <a href="/docs/Hosting">Hosting models</a>
+            
+          </li><li>
+            <a href="/docs/HTML">Writing HTML</a>
+            
+          </li><li>
+            <a href="/docs/Templating">HTML templates</a>
+            
+          </li><li>
+            <a href="/docs/Elmish">Using Elmish</a>
+            
+          </li><li>
+            <a href="/docs/Routing">Routing</a>
+            
+          </li><li>
+            <a href="/docs/Remoting">Remoting</a>
+            
+          </li><li>
+            <a href="/docs/Blazor">Using Blazor features</a>
+            
+          </li><li>
+            <a href="/docs/JSON">Dealing with JSON</a>
+            
+          </li><li>
+            <a href="/docs/Upgrade">Upgrade guide</a>
+            
+          </li><li>
+            <a href="/docs/reference">API Reference</a>
+            
+          </li></ul>
+          </li><li>
+            <a href="/blog">Blog</a>
+            
+          </li><li>
+            <a href="https://tryfsharp.fsbolero.io">Try F#</a>
+            
+          </li></ul>
+      </nav>
+    </div>
+  </div>
+  
+      <section class="with-sidebar-background">
+      <div class="container">
+        <div class="columns is-gapless">
+          <div class="column content markdown-column">
+          <div class="edit-page-icon">
+            <a href="https://github.com/fsbolero/website/tree/master/src/Website/docs/Hosting.md" target="_blank" title="Contribute to this page on GitHub">
+              <i class="fa fa-edit"></i>
+            </a>
+          </div>
+          <section class="hero">
+              <div class="hero-body">
+                <h1 class="title">Hosting models</h1>
+                <p class="subtitle">
+WebAssembly or server-side</p>
+
+              </div>
+            </section>
+          <section class="section"><div ws-preserve=""><p>Bolero applications can run in two different modes: WebAssembly (also referred to as client-side Bolero) and server-side.</p>
+<p>In WebAssembly mode, dynamic content runs on the client side using <a href="https://webassembly.org/">WebAssembly</a>.
+It is still a full .NET implementation, but running directly in the user's browser.</p>
+<p>In server-side mode, dynamic content runs on the server side and is shared with the user's browser via a <a href="https://dotnet.microsoft.com/apps/aspnet/signalr">SignalR</a> connection.</p>
+<p>You can learn more about these hosting models in <a href="https://docs.microsoft.com/en-us/aspnet/core/blazor/hosting-models?view=aspnetcore-5.0">the official Blazor documentation</a>.</p>
+<h3 id="hosting-models">Hosting models</h3>
+<h4 id="plain-webassembly-mode">Plain WebAssembly mode</h4>
+<p>To create a plain WebAssembly application, use the <a href="index#creating-a-project">dotnet project template</a> with the following arguments:</p>
+<pre><code class="language-sh">dotnet new bolero-app --server=false
+</code></pre>
+<p>In plain WebAssembly mode, the static content of the application is a simple <code>.html</code> file, and the dynamic Bolero content is rendered in a tag of this file.
+This file must contain the following:</p>
+<pre><code class="language-html">&lt;script src=&quot;_framework/blazor.webassembly.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>as well as a container element for the dynamic content, for example <code>&lt;div id=&quot;main&quot;&gt;&lt;/div&gt;</code>.
+This container is selected in <code>Startup.fs</code>:</p>
+<pre><code class="language-fsharp">builder.RootComponents.Add&lt;Main.MyApp&gt;(&quot;#main&quot;)
+</code></pre>
+<p>Note that prerendering is not possible in plain WebAssembly mode.</p>
+<h4 id="hosted-webassembly-mode">Hosted WebAssembly mode</h4>
+<p>Hosted WebAssembly is the default hosting mode created by the <a href="index#creating-a-project">dotnet project template</a>:</p>
+<pre><code class="language-sh">dotnet new bolero-app
+</code></pre>
+<p>In hosted WebAssembly mode, the static content of the application is rendered on the ASP.NET Core server side.
+<a href="#static-content-generation">See below</a> for the different ways it can be generated.</p>
+<p>Like in plain WebAssembly mode, the static content must include a container element matching the selector used in <code>Startup.fs</code>.</p>
+<p>Unlike in plain WebAssembly mode, prerendering is possible based on the <a href="#configuring-hosted-modes">configuration</a>.</p>
+<h4 id="server-side-mode">Server-side mode</h4>
+<p>To create a server-side Bolero app, create a default <a href="index#creating-a-project">dotnet project template</a>:</p>
+<pre><code class="language-sh">dotnet new bolero-app
+</code></pre>
+<p>and in <code>src/AppName.Server/Startup.fs</code>, replace the line:</p>
+<pre><code class="language-fsharp">.AddBoleroHost()
+</code></pre>
+<p>with:</p>
+<!-- TODO: .AddServerSideBlazor()? if we remove it from template -->
+<pre><code class="language-fsharp">.AddBoleroHost(server = true)
+</code></pre>
+<p>The static content is rendered exactly like hosted WebAssembly mode, <a href="#static-content-generation">see below</a>.</p>
+<h3 id="configuring-hosted-modes">Configuring hosted modes</h3>
+<p>Hosted WebAssembly and server-side are known collectively as hosted modes, and they share a lot of configuration and features.</p>
+<h4 id="configuration">Configuration</h4>
+<p>Hosted modes are configured by using <code>AddBoleroHost</code> in the (server-side) dependency injection.</p>
+<pre><code class="language-fsharp">type Startup() =
+
+    member this.ConfigureServices(services: IServiceCollection) =
+        services.AddBoleroHost() |&gt; ignore
+        // ... other dependencies ...
+</code></pre>
+<p>This method takes several optional arguments:</p>
+<ul>
+<li><p><code>server: bool</code> determines whether this is a hosted WebAssembly (<code>server = false</code>) or server-side application (<code>server = true</code>).</p>
+<p>The default is <code>false</code>.</p>
+<p>Note: when setting to <code>true</code>, make sure that <code>services.AddServerSideBlazor() |&gt; ignore</code> is also called.</p>
+</li>
+<li><p><code>prerendered: bool</code> determines whether the dynamic Bolero content is prerendered.</p>
+<p>If true, then the content is rendered on the server side (even in WebAssembly mode) and the resulting HTML is included in the static content served by ASP.NET Core.
+This prevents the &quot;pop-in&quot; effect where the user first sees an empty container, and once the page is ready (ie WebAssembly has started or SignalR has connected), the content suddenly appears.</p>
+<p>The default is <code>true</code>.</p>
+</li>
+<li><p><code>devToggle: bool</code> determines whether the user can choose between hosted WebAssembly and server-side mode by passing <code>?server=false</code> or <code>?server=true</code>, respectively, in the URL.</p>
+<p>This feature is intended for development only.
+For example, when writing a hosted WebAssembly application, it can be convenient to temporarily switch to server-side mode for debugging.</p>
+<p>It should only be used when building in debug mode, and disabled for release builds, with code like the following:</p>
+<pre><code class="language-fsharp">    member this.ConfigureServices(services: IServiceCollection) =
+        services.AddBoleroHost(
+#if DEBUG
+            devToggle = true
+#else
+            devToggle = false
+#endif
+        ) |&gt; ignore
+</code></pre>
+<p>The default is <code>true</code>.</p>
+</li>
+</ul>
+<h4 id="static-content-generation">Static content generation</h4>
+<p>There are multiple ways available to generate the static HTML content that contains a hosted Bolero app.</p>
+<h5 id="bolero-html">Bolero HTML</h5>
+<blockquote>
+<p>Introduced in v0.17.</p>
+</blockquote>
+<p>The recommended way to generate static content for Bolero is to use the same <a href="HTML">HTML functions</a> that are used by dynamic content.
+It is the default method used by the dotnet project template, or can be explicitly used with <code>--hostpage=bolero</code>.</p>
+<p>A few additional functions are available in the module <code>Bolero.Server.Html</code>:</p>
+<ul>
+<li><p><code>doctypeHtml</code> creates a <code>&lt;html&gt;</code> tag preceded by a standard doctype declaration.
+Like other element functions, it takes as arguments a list of attributes and a list of child elements.</p>
+</li>
+<li><p><code>rootComp&lt;T&gt;</code> inserts a component of type <code>T</code> as dynamic content.</p>
+<p>This may include prerendered content, depending on the <code>prerendered</code> value passed to <code>AddBoleroHost</code>.</p>
+<p>In WebAssembly mode, this must be inserted inside a container element matched by the selector used in <code>Startup.fs</code>.</p>
+<p>In WebAssembly mode without prerendering, this actually doesn't insert any content.
+Indeed, in this mode, all that is needed is the container element and the <code>boleroScript</code> (see below).
+So if you know that you will always run your app in WebAssembly mode without prerendering, then you can simply not insert the <code>rootComp</code>.
+This way, you won't need a reference from the server project to the client project.</p>
+<p>Note that this is the only way to insert dynamic content in a static page.
+If you use functions like <code>comp</code> or <code>ecomp</code>, the component's initial HTML will be inserted in the page, but no dynamic behavior will take place.</p>
+</li>
+<li><p><code>boleroScript</code> inserts a <code>&lt;script&gt;</code> tag pointing to the JavaScript file that starts the application.
+It knows which script to insert (either <code>blazor.webassembly.js</code> or <code>blazor.server.js</code>) based on the <code>server</code> and <code>devToggle</code> values passed to <code>AddBoleroHost</code>.</p>
+</li>
+</ul>
+<p>Here is an example page using all of the above:</p>
+<pre><code class="language-fsharp">open Bolero.Html
+open Bolero.Server.Html
+
+let myPage = doctypeHtml [] [
+    head [] [
+        title [text &quot;Hello, world!&quot;]
+    ]
+    body [] [
+        div [] [text &quot;This is the body of the page&quot;]
+        div [attr.id &quot;main&quot;] [
+            rootComp&lt;Client.Main.MyApp&gt;
+        ]
+        boleroScript
+    ]
+]
+</code></pre>
+<p>Such a page can be served as follows in the server-side Startup:</p>
+<pre><code class="language-fsharp">type Startup() =
+
+    member this.Configure(app: IApplicationBuilder) =
+        app.UseStaticFiles()
+            .UseRouting()
+            .UseBlazorFrameworkFiles() // Necessary in hosted WebAssembly mode
+            .UseEndpoints(fun endpoints -&gt;
+                endpoints.MapBlazorHub() |&gt; ignore // Necessary in server-side mode
+                endpoints.MapFallbackToBolero(myPage) |&gt; ignore
+            )
+        |&gt; ignore
+</code></pre>
+<p>Alternatively, it can be used as the content of an ASP.NET Core MVC controller:</p>
+<pre><code class="language-fsharp">open Microsoft.AspNetCore.Mvc
+open Bolero.Server
+
+type MyController() =
+    inherit Controller()
+    
+    member this.Index() =
+        this.BoleroPage(myPage)
+</code></pre>
+<h5 id="razor">Razor</h5>
+<p>Another option is to use a Razor page.
+This is particularly convenient when integrating the application in an ASP.NET Core application written in C#.
+It can also be used with an F# application with <a href="https://docs.microsoft.com/en-us/aspnet/core/mvc/views/view-compilation?view=aspnetcore-5.0&amp;tabs=visual-studio#enable-runtime-compilation-in-an-existing-project">Razor runtime compilation</a>; this was the mode used by the dotnet template until Bolero 0.16.
+Starting with 0.17, it can be used with <code>--hostpage=razor</code>.</p>
+<p>Bolero provides the type <code>IBoleroHostConfig</code> and a few extension methods on Razor's <code>Html</code> to help render components and Blazor JavaScript tags using the configuration from <code>AddBoleroHost</code>:</p>
+<ul>
+<li><p><code>RenderComponentAsync&lt;T&gt;(IBoleroHostConfig)</code> inserts a component of type <code>T</code>.</p>
+<p>This may include prerendered content, depending on the <code>prerendered</code> value passed to <code>AddBoleroHost</code>.</p>
+<p>In WebAssembly mode, this must be inserted inside a container element matched by the selector used in <code>Startup.fs</code>.</p>
+</li>
+<li><p><code>RenderBoleroScript(IBoleroHostConfig)</code> inserts a <code>&lt;script&gt;</code> tag pointing to the JavaScript file that starts the application.
+It knows which script to insert based on the <code>server</code> and <code>devToggle</code> values passed to <code>AddBoleroHost</code>.</p>
+</li>
+</ul>
+<p>Here is an example page using all of the above:</p>
+<pre><code class="language-razor">@page &quot;/&quot;
+@namespace MyApp.Server
+@using Bolero.Server
+@inject IBoleroHostConfig BoleroHostConfig
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Hello, world!&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div&gt;This is the body of the page&lt;/div&gt;
+    &lt;div id=&quot;main&quot;&gt;
+      @(await Html.RenderComponentAsync&lt;MyApp.Client.Main.MyApp&gt;(BoleroHostConfig))
+    &lt;/div&gt;
+    @Html.RenderBoleroScript(BoleroHostConfig)
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>Such a page saved as <code>Page/_Host.cshtml</code> can be served as follows in the server-side Startup:</p>
+<pre><code class="language-fsharp">type Startup() =
+
+    member this.Configure(app: IApplicationBuilder) =
+        app.UseStaticFiles()
+            .UseRouting()
+            .UseBlazorFrameworkFiles() // Necessary in hosted WebAssembly mode
+            .UseEndpoints(fun endpoints -&gt;
+                endpoints.MapBlazorHub() |&gt; ignore // Necessary in server-side mode
+                endpoints.MapFallbackToPage(&quot;/_Host&quot;) |&gt; ignore
+            )
+        |&gt; ignore
+</code></pre>
+</div></section>
+        </div>
+          <div class="column is-one-quarter-tablet is-one-fifth-desktop sidebar-column">
+            <section class="section">
+              <div class="menu">
+                <div class="menu-label">Documentation</div>
+                <ul class="menu-list"><li>
+                    <a href="/docs">Getting Started</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a class="is-active" href="/docs/Hosting">Hosting models</a>
+                    <ul><li>
+                        <a href="#hosting-models">Hosting models</a>
+                      </li><li>
+                        <a href="#configuring-hosted-modes">Configuring hosted modes</a>
+                      </li></ul>
+                  </li><li>
+                    <a href="/docs/HTML">Writing HTML</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Templating">HTML templates</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Elmish">Using Elmish</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Routing">Routing</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Remoting">Remoting</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Blazor">Using Blazor features</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/JSON">Dealing with JSON</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Upgrade">Upgrade guide</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/reference">API Reference</a>
+                    <ul class="is-hidden"></ul>
+                  </li></ul>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </section>
+      
+    
+  <footer class="section footer first-footer has-text-centered">
+    <div class="container">
+      <div class="columns">
+        <div class="column">
+          <a target="_blank" href="https://github.com/fsbolero/template">
+            <img class="box no-padding" data-src="/img/screenshot-template.png" />
+            <h1 class="title">Bolero project template</h1>
+          </a>
+        </div>
+        <div class="column">
+          <a target="_blank" href="https://fsbolero.github.io/TodoMVC">
+            <img class="box no-padding" data-src="/img/screenshot-todomvc.png" />
+            <h1 class="title">TodoMVC</h1>
+          </a>
+        </div>
+        <div class="column">
+          <a target="_blank" href="https://tryfsharp.fsbolero.io">
+            <img class="box no-padding" data-src="/img/screenshot-tryfsharp.png" />
+            <h1 class="title">Try F# in your browser</h1>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <footer class="section footer second-footer">
+    <div class="container">
+      <div class="columns">
+        <div class="column">
+          <h1 class="title"><a href="/">Home</a></h1>
+          <h1 class="title">Made with Bolero</h1>
+          <div class="menu">
+            <ul class="menu-list">
+              <li><a target="_blank" href="https://tryfsharp.fsbolero.io">Try F#</a></li>
+              <li><a target="_blank" href="https://github.com/fsbolero/TodoMVC">TodoMVC</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="column">
+          <h1 class="title">Documentation</h1>
+          <div class="menu">
+            <ul class="menu-list"><li><a href="/docs">Getting Started</a></li><li><a href="/docs/Hosting">Hosting models</a></li><li><a href="/docs/HTML">Writing HTML</a></li><li><a href="/docs/Templating">HTML templates</a></li><li><a href="/docs/Elmish">Using Elmish</a></li><li><a href="/docs/Routing">Routing</a></li><li><a href="/docs/Remoting">Remoting</a></li><li><a href="/docs/Blazor">Using Blazor features</a></li><li><a href="/docs/JSON">Dealing with JSON</a></li><li><a href="/docs/Upgrade">Upgrade guide</a></li><li><a href="/docs/reference">API Reference</a></li></ul>
+          </div>
+        </div>
+        <div class="column">
+          <h1 class="title">We leverage</h1>
+          <div class="menu">
+            <ul class="menu-list">
+              <li><a target="_blank" href="https://fsharp.org">F#</a></li>
+              <li><a target="_blank" href="https://elmish.github.io/elmish/">Elmish</a></li>
+              <li><a target="_blank" href="https://dot.net">.NET Core</a></li>
+              <li><a target="_blank" href="https://blazor.net">Blazor</a></li>
+              <li><a target="_blank" href="https://webassembly.org/">WebAssembly</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="column">
+          <h1 class="title">Find us</h1>
+          <ul>
+            <li>
+              <a class="github-button" href="https://github.com/fsbolero/bolero" data-size="large" aria-label="Star fsbolero/bolero on GitHub">Bolero on GitHub</a>
+            </li>
+            <li>
+              <a href="https://twitter.com/fsbolero?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large" data-dnt="true" data-show-count="false">Follow &commat;fsbolero</a>
+            </li>
+            <li>
+              <a target="_blank" href="https://nuget.org/packages/Bolero"><img alt="NuGet" src="https://img.shields.io/nuget/v/Bolero.svg?label=Bolero%20on%20NuGet&amp;logo=nuget&amp;style=for-the-badge" /></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/8.6.0/lazyload.min.js"></script>
+  <script type="text/javascript">new LazyLoad();</script>
+  <script src="/js/Client.min.js"></script>
+  <script async="" defer="" src="https://buttons.github.io/buttons.js"></script>
+  <script async="" defer="" src="https://platform.twitter.com/widgets.js"></script>
+  
+  
+</body>
+</html>
