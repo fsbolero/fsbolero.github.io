@@ -210,7 +210,7 @@ open Bolero.Server.Html
 
 let myPage = doctypeHtml [] [
     head [] [
-        title [text &quot;Hello, world!&quot;]
+        title [] [text &quot;Hello, world!&quot;]
     ]
     body [] [
         div [] [text &quot;This is the body of the page&quot;]
