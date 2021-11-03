@@ -307,7 +307,7 @@ type MyInputWithFocusButton() = // (1)
             ]
             button [
                 on.task.click (fun _ ->
-                    this.JSRuntime.InvokeVoidAsync("MyJsLib.focus", inputRef.Value) // (4)
+                    this.JSRuntime.InvokeVoidAsync("MyJsLib.focus", inputRef.Value).AsTask() // (4)
                 )
             ] [
                 text "Focus this input box"

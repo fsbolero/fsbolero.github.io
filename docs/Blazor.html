@@ -348,7 +348,7 @@ This is useful for interacting with JavaScript libraries that insert themselves 
             ]
             button [
                 on.task.click (fun _ -&gt;
-                    this.JSRuntime.InvokeVoidAsync(&quot;MyJsLib.focus&quot;, inputRef.Value) // (4)
+                    this.JSRuntime.InvokeVoidAsync(&quot;MyJsLib.focus&quot;, inputRef.Value).AsTask() // (4)
                 )
             ] [
                 text &quot;Focus this input box&quot;
