@@ -3,11 +3,12 @@
   title: Getting Started
 - url: /docs/Hosting
 - url: /docs/HTML
+- url: /docs/HTML-list-functions
 - url: /docs/Templating
 - url: /docs/Elmish
 - url: /docs/Routing
 - url: /docs/Remoting
 - url: /docs/Blazor
-- url: /docs/JSON 
+- url: /docs/JSON
 - url: /docs/Upgrade
 - url: /docs/reference

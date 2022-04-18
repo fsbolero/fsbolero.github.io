@@ -22,7 +22,7 @@
       <div class="navbar-menu">
         <nav class="navbar-start"><a href="/" class="navbar-item is-hoverable has-text-weight-bold">Home</a><div class="navbar-item is-hoverable has-text-weight-bold has-dropdown">
             <a href="/docs" class="navbar-link is-arrowless">Documentation</a>
-            <div class="navbar-dropdown has-text-weight-normal"><a class="navbar-item" href="/docs">Getting Started</a><a class="navbar-item" href="/docs/Hosting">Hosting models</a><a class="navbar-item" href="/docs/HTML">Writing HTML</a><a class="navbar-item" href="/docs/Templating">HTML templates</a><a class="navbar-item" href="/docs/Elmish">Using Elmish</a><a class="navbar-item" href="/docs/Routing">Routing</a><a class="navbar-item" href="/docs/Remoting">Remoting</a><a class="navbar-item" href="/docs/Blazor">Using Blazor features</a><a class="navbar-item" href="/docs/JSON">Dealing with JSON</a><a class="navbar-item" href="/docs/Upgrade">Upgrade guide</a><a class="navbar-item" href="/docs/reference">API Reference</a></div>
+            <div class="navbar-dropdown has-text-weight-normal"><a class="navbar-item" href="/docs">Getting Started</a><a class="navbar-item" href="/docs/Hosting">Hosting models</a><a class="navbar-item" href="/docs/HTML">Writing HTML</a><a class="navbar-item" href="/docs/HTML-list-functions">Writing HTML (Legacy)</a><a class="navbar-item" href="/docs/Templating">HTML templates</a><a class="navbar-item" href="/docs/Elmish">Using Elmish</a><a class="navbar-item" href="/docs/Routing">Routing</a><a class="navbar-item" href="/docs/Remoting">Remoting</a><a class="navbar-item" href="/docs/Blazor">Using Blazor features</a><a class="navbar-item" href="/docs/JSON">Dealing with JSON</a><a class="navbar-item" href="/docs/Upgrade">Upgrade guide</a><a class="navbar-item" href="/docs/reference">API Reference</a></div>
           </div><a href="/blog" class="navbar-item is-hoverable has-text-weight-bold">Blog</a><a href="https://tryfsharp.fsbolero.io" class="navbar-item is-hoverable has-text-weight-bold">Try F#</a></nav>
         <nav class="navbar-end">
           <a target="_blank" title="GitHub" href="https://github.com/fsbolero/bolero" class="navbar-item is-hoverable"><i class="fa fa-github"></i></a>
@@ -47,6 +47,9 @@
             
           </li><li>
             <a href="/docs/HTML">Writing HTML</a>
+            
+          </li><li>
+            <a href="/docs/HTML-list-functions">Writing HTML (Legacy)</a>
             
           </li><li>
             <a href="/docs/Templating">HTML templates</a>
@@ -118,10 +121,10 @@
     <tbody>
       <tr>
         <td class="member-name">
-          <code onmouseout="hideTip(event, '626', 626)" onmouseover="showTip(event, '626', 626)">
+          <code onmouseout="hideTip(event, '632', 632)" onmouseover="showTip(event, '632', 632)">
             new()
           </code>
-          <div class="tip" id="626">
+          <div class="tip" id="632">
             <strong>Signature:</strong> unit -&gt; ElmishComponent&lt;&#39;model,&#39;msg&gt;<br />
                                   </div>
         </td>
@@ -140,10 +143,10 @@
     <tbody>
       <tr>
         <td class="member-name">
-          <code onmouseout="hideTip(event, '627', 627)" onmouseover="showTip(event, '627', 627)">
+          <code onmouseout="hideTip(event, '633', 633)" onmouseover="showTip(event, '633', 633)">
             x.Dispatch()
           </code>
-          <div class="tip" id="627">
+          <div class="tip" id="633">
             <strong>Signature:</strong> unit -&gt; Dispatch&lt;&#39;msg&gt;<br />
                                   </div>
         </td>
@@ -156,10 +159,10 @@
       </tr>
       <tr>
         <td class="member-name">
-          <code onmouseout="hideTip(event, '628', 628)" onmouseover="showTip(event, '628', 628)">
+          <code onmouseout="hideTip(event, '634', 634)" onmouseover="showTip(event, '634', 634)">
             x.Dispatch()
           </code>
-          <div class="tip" id="628">
+          <div class="tip" id="634">
             <strong>Signature:</strong> unit -&gt; unit<br />
                                     <span>
             <strong>Attributes:</strong><br />
@@ -176,10 +179,10 @@
       </tr>
       <tr>
         <td class="member-name">
-          <code onmouseout="hideTip(event, '629', 629)" onmouseover="showTip(event, '629', 629)">
+          <code onmouseout="hideTip(event, '635', 635)" onmouseover="showTip(event, '635', 635)">
             x.Model()
           </code>
-          <div class="tip" id="629">
+          <div class="tip" id="635">
             <strong>Signature:</strong> unit -&gt; &#39;model<br />
                                   </div>
         </td>
@@ -193,10 +196,10 @@ Can be just a part of the full program's model.</p>
       </tr>
       <tr>
         <td class="member-name">
-          <code onmouseout="hideTip(event, '630', 630)" onmouseover="showTip(event, '630', 630)">
+          <code onmouseout="hideTip(event, '636', 636)" onmouseover="showTip(event, '636', 636)">
             x.Model()
           </code>
-          <div class="tip" id="630">
+          <div class="tip" id="636">
             <strong>Signature:</strong> unit -&gt; unit<br />
                                     <span>
             <strong>Attributes:</strong><br />
@@ -214,10 +217,10 @@ Can be just a part of the full program's model.</p>
       </tr>
       <tr>
         <td class="member-name">
-          <code onmouseout="hideTip(event, '631', 631)" onmouseover="showTip(event, '631', 631)">
+          <code onmouseout="hideTip(event, '637', 637)" onmouseover="showTip(event, '637', 637)">
             x.View arg1 arg2
           </code>
-          <div class="tip" id="631">
+          <div class="tip" id="637">
             <strong>Signature:</strong> &#39;model -&gt; Dispatch&lt;&#39;msg&gt; -&gt; Node<br />
               <strong>Modifiers:</strong> abstract<br />
                                   </div>
@@ -245,6 +248,9 @@ Can be just a part of the full program's model.</p>
                     <ul class="is-hidden"></ul>
                   </li><li>
                     <a href="/docs/HTML">Writing HTML</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/HTML-list-functions">Writing HTML (Legacy)</a>
                     <ul class="is-hidden"></ul>
                   </li><li>
                     <a href="/docs/Templating">HTML templates</a>
@@ -319,7 +325,7 @@ Can be just a part of the full program's model.</p>
         <div class="column">
           <h1 class="title">Documentation</h1>
           <div class="menu">
-            <ul class="menu-list"><li><a href="/docs">Getting Started</a></li><li><a href="/docs/Hosting">Hosting models</a></li><li><a href="/docs/HTML">Writing HTML</a></li><li><a href="/docs/Templating">HTML templates</a></li><li><a href="/docs/Elmish">Using Elmish</a></li><li><a href="/docs/Routing">Routing</a></li><li><a href="/docs/Remoting">Remoting</a></li><li><a href="/docs/Blazor">Using Blazor features</a></li><li><a href="/docs/JSON">Dealing with JSON</a></li><li><a href="/docs/Upgrade">Upgrade guide</a></li><li><a href="/docs/reference">API Reference</a></li></ul>
+            <ul class="menu-list"><li><a href="/docs">Getting Started</a></li><li><a href="/docs/Hosting">Hosting models</a></li><li><a href="/docs/HTML">Writing HTML</a></li><li><a href="/docs/HTML-list-functions">Writing HTML (Legacy)</a></li><li><a href="/docs/Templating">HTML templates</a></li><li><a href="/docs/Elmish">Using Elmish</a></li><li><a href="/docs/Routing">Routing</a></li><li><a href="/docs/Remoting">Remoting</a></li><li><a href="/docs/Blazor">Using Blazor features</a></li><li><a href="/docs/JSON">Dealing with JSON</a></li><li><a href="/docs/Upgrade">Upgrade guide</a></li><li><a href="/docs/reference">API Reference</a></li></ul>
           </div>
         </div>
         <div class="column">

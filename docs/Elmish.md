@@ -22,11 +22,11 @@ let update message model =
     | Decrement -> { model with value = model.value - 1 }
 
 let view model dispatch =
-    div [] [
-        button [on.click (fun _ -> dispatch Decrement)] [text "-"]
-        text (string model.value)
-        button [on.click (fun _ -> dispatch Increment)] [text "+"]
-    ]
+    div {
+        button { on.click (fun _ -> dispatch Decrement); "-" }
+        string model.value
+        button { on.click (fun _ -> dispatch Increment); "+" }
+    }
 
 let program =
     Program.mkSimple (fun _ -> initModel) update view
@@ -61,17 +61,17 @@ let update message model =
     | SetLastName n -> { model with lastName = n }
 
 let viewInput model setValue =
-    input [
+    input {
         attr.value model
         on.change (fun e -> setValue (unbox e.Value))
-    ]
+    }
 
 let view model dispatch =
-    div [] [
+    div {
         viewInput model.firstName (fun n -> dispatch (SetFirstName n))
         viewInput model.lastName (fun n -> dispatch (SetLastName n))
-        text (sprintf "Hello, %s %s!" model.firstName model.lastName)
-    ]
+        $"Hello, {model.firstName} {model.lastName}!"
+    }
 ```
 
 This displays two input boxes prompting the user for a first name and a last name. On every change, `view` is called, and therefore `viewInput` is called twice, even though only one field has changed. Of course this is a tiny application so this doesn't cause any noticeable performance issue, but as the app gets bigger, this kind of unnecessary work may become a problem.
@@ -85,21 +85,24 @@ type Input() =
     inherit ElmishComponent<string, string>()
 
     override this.View model dispatch =
-        input [
+        input {
             attr.value model
             on.change (fun e -> dispatch (unbox e.Value))
-        ]
+        }
 ```
 
-Instantiating an `ElmishComponent` is done using the function `ecomp`. This function is parameterized by the component type, and takes three arguments: a list of parameters (see [Components](HTML#components)), a model and a dispatch function.
+Instantiating an `ElmishComponent` is done using the function `ecomp`.
+This function is parameterized by the component type, and takes two arguments: a model and a dispatch function.
+It returns a computation expression builder to pass parameters to the component (see [Components](Blazor#using-a-component)).
+If there are no parameters to pass, use `attr.empty()`.
 
 ```fsharp
 let view model dispatch =
-    div [] [
-        ecomp<Input,_,_> [] model.firstName (fun n -> dispatch (SetFirstName n))
-        ecomp<Input,_,_> [] model.lastName (fun n -> dispatch (SetLastName n))
-        text (sprintf "Hello, %s %s!" model.firstName model.lastName)
-    ]
+    div {
+        ecomp<Input,_,_> model.firstName (fun n -> dispatch (SetFirstName n)) { attr.empty() }
+        ecomp<Input,_,_> model.lastName (fun n -> dispatch (SetLastName n)) { attr.empty() }
+        $"Hello, {model.firstName} {model.lastName}!"
+    }
 ```
 
 #### Customizing the model update check
@@ -126,24 +129,24 @@ type Input() =
         oldModel.value <> newModel.value
 
     override this.View model dispatch =
-        label [] [
-            text model.label
-            input [
+        label {
+            model.label
+            input {
                 attr.value model.value
                 on.change (fun e -> dispatch (unbox e.Value))
-            ]
-        ]
+            }
+        }
 
 let view model dispatch =
-    div [] [
-        ecomp<Input,_,_> [] {
-            label = "First name: "
-            value = model.firstName
-         } (fun n -> dispatch (SetFirstName n))
-        ecomp<Input,_,_> [] {
-            label = "Last name: "
-            value = model.lastName
-         } (fun n -> dispatch (SetLastName n))
+    div {
+        ecomp<Input,_,_>
+            { label = "First name: "; value = model.firstName }
+            (fun n -> dispatch (SetFirstName n))
+            { attr.empty() }
+        ecomp<Input,_,_>
+            { label = "Last name: "; value = model.lastName }
+            (fun n -> dispatch (SetLastName n))
+            { attr.empty() }
         text (sprintf "Hello, %s %s!" model.firstName model.lastName)
-    ]
+    }
 ```

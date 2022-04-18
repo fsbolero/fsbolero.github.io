@@ -112,18 +112,7 @@ This method takes several optional arguments:
     This feature is intended for development only.
     For example, when writing a hosted WebAssembly application, it can be convenient to temporarily switch to server-side mode for debugging.
     
-    It should only be used when building in debug mode, and disabled for release builds, with code like the following:
-    
-    ```fsharp
-        member this.ConfigureServices(services: IServiceCollection) =
-            services.AddBoleroHost(
-    #if DEBUG
-                devToggle = true
-    #else
-                devToggle = false
-    #endif
-            ) |> ignore
-    ```
+    This setting is only active when the ASP.NET Core application runs in the `Development` environment; in any other environment, it has no effect.
 
     The default is `true`.
 
@@ -166,18 +155,19 @@ Here is an example page using all of the above:
 open Bolero.Html
 open Bolero.Server.Html
 
-let myPage = doctypeHtml [] [
-    head [] [
-        title [] [text "Hello, world!"]
-    ]
-    body [] [
-        div [] [text "This is the body of the page"]
-        div [attr.id "main"] [
+let myPage = doctypeHtml {
+    head {
+        title { "Hello, world!" }
+    }
+    body {
+        div { "This is the body of the page" }
+        div {
+            attr.id "main" 
             rootComp<Client.Main.MyApp>
-        ]
+        }
         boleroScript
-    ]
-]
+    }
+}
 ```
 
 Such a page can be served as follows in the server-side Startup:
@@ -249,7 +239,7 @@ Here is an example page using all of the above:
 </html>
 ```
 
-Such a page saved as `Page/_Host.cshtml` can be served as follows in the server-side Startup:
+Such a page saved as `Pages/_Host.cshtml` can be served as follows in the server-side Startup:
 
 ```fsharp
 type Startup() =
@@ -263,4 +253,23 @@ type Startup() =
                 endpoints.MapFallbackToPage("/_Host") |> ignore
             )
         |> ignore
+```
+
+Or in a C# application:
+
+```csharp
+public class Startup
+{
+    public void Configure(IApplicationBuilder app)
+    {
+        app.UseStaticFiles()
+            .UseRouting()
+            .UseBlazorFrameworkFiles() // Necessary in hosted WebAssembly mode
+            .UseEndpoints(endpoints =>
+            {
+                endpoints.MapBlazorHub(); // Necessary in server-side mode
+                endpoints.MapFallbackToPage("/_Host");
+            });
+    }
+}
 ```

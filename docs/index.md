@@ -6,9 +6,10 @@ subtitle: "Welcome to Bolero: F# on WebAssembly!"
 
 ### What is Bolero?
 
-Bolero is a set of free and open-source libraries and tools to write [**WebAssembly**](https://webassembly.org/) applications in [**F#**](https://fsharp.org/). With it, you can write fully dynamic client-side web applications from the comfort of a strongly-typed functional language, all with great performance.
+Bolero is a set of free and open-source libraries and tools to write web applications in [**F#**](https://fsharp.org/). With it, you can write fully dynamic client-side web applications from the comfort of a strongly-typed functional language, all with great performance.
 
-Bolero is built on top of [Blazor](https://blazor.net/) and adds a lot of features designed specifically to work in F#:
+Bolero is built on top of [Blazor](https://blazor.net/), which means it can run in one of two modes: either in [**WebAssembly**](https://webassembly.org/) directly in the browser, or on the server side with [SignalR](https://docs.microsoft.com/en-us/aspnet/core/signalr/introduction).
+It adds a lot of features designed specifically to work in F#:
 
 * [Elmish](Elmish) Model-View-Update architecture for a functional approach to reactive content.
 * [HTML-in-F#](HTML) syntax inspired by WebSharper.UI and Fable.
@@ -19,7 +20,7 @@ Bolero is built on top of [Blazor](https://blazor.net/) and adds a lot of featur
 
 ### Creating a project
 
-You can develop Bolero applications on Windows, OSX or Linux. It only has one prerequisite: the [.NET SDK](https://dotnet.microsoft.com/download/dotnet-core), version 5.0.100 or newer.
+You can develop Bolero applications on Windows, OSX or Linux. It only has one prerequisite: the [.NET SDK](https://dotnet.microsoft.com/download/dotnet-core), version 6.0.101 or newer.
 
 The easiest way to get started is to use Bolero's dotnet template. To install it, run the following command:
 

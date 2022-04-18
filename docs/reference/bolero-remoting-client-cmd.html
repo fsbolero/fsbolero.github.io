@@ -22,7 +22,7 @@
       <div class="navbar-menu">
         <nav class="navbar-start"><a href="/" class="navbar-item is-hoverable has-text-weight-bold">Home</a><div class="navbar-item is-hoverable has-text-weight-bold has-dropdown">
             <a href="/docs" class="navbar-link is-arrowless">Documentation</a>
-            <div class="navbar-dropdown has-text-weight-normal"><a class="navbar-item" href="/docs">Getting Started</a><a class="navbar-item" href="/docs/Hosting">Hosting models</a><a class="navbar-item" href="/docs/HTML">Writing HTML</a><a class="navbar-item" href="/docs/Templating">HTML templates</a><a class="navbar-item" href="/docs/Elmish">Using Elmish</a><a class="navbar-item" href="/docs/Routing">Routing</a><a class="navbar-item" href="/docs/Remoting">Remoting</a><a class="navbar-item" href="/docs/Blazor">Using Blazor features</a><a class="navbar-item" href="/docs/JSON">Dealing with JSON</a><a class="navbar-item" href="/docs/Upgrade">Upgrade guide</a><a class="navbar-item" href="/docs/reference">API Reference</a></div>
+            <div class="navbar-dropdown has-text-weight-normal"><a class="navbar-item" href="/docs">Getting Started</a><a class="navbar-item" href="/docs/Hosting">Hosting models</a><a class="navbar-item" href="/docs/HTML">Writing HTML</a><a class="navbar-item" href="/docs/HTML-list-functions">Writing HTML (Legacy)</a><a class="navbar-item" href="/docs/Templating">HTML templates</a><a class="navbar-item" href="/docs/Elmish">Using Elmish</a><a class="navbar-item" href="/docs/Routing">Routing</a><a class="navbar-item" href="/docs/Remoting">Remoting</a><a class="navbar-item" href="/docs/Blazor">Using Blazor features</a><a class="navbar-item" href="/docs/JSON">Dealing with JSON</a><a class="navbar-item" href="/docs/Upgrade">Upgrade guide</a><a class="navbar-item" href="/docs/reference">API Reference</a></div>
           </div><a href="/blog" class="navbar-item is-hoverable has-text-weight-bold">Blog</a><a href="https://tryfsharp.fsbolero.io" class="navbar-item is-hoverable has-text-weight-bold">Try F#</a></nav>
         <nav class="navbar-end">
           <a target="_blank" title="GitHub" href="https://github.com/fsbolero/bolero" class="navbar-item is-hoverable"><i class="fa fa-github"></i></a>
@@ -47,6 +47,9 @@
             
           </li><li>
             <a href="/docs/HTML">Writing HTML</a>
+            
+          </li><li>
+            <a href="/docs/HTML-list-functions">Writing HTML (Legacy)</a>
             
           </li><li>
             <a href="/docs/Templating">HTML templates</a>
@@ -142,10 +145,10 @@
     <tbody>
       <tr>
         <td class="member-name">
-          <code onmouseout="hideTip(event, '604', 604)" onmouseover="showTip(event, '604', 604)">
+          <code onmouseout="hideTip(event, '609', 609)" onmouseover="showTip(event, '609', 609)">
             either(...)
           </code>
-          <div class="tip" id="604">
+          <div class="tip" id="609">
             <strong>Signature:</strong> js:IJSRuntime -&gt; jsFunctionName:string -&gt; args:obj [] -&gt; ofSuccess:(&#39;?8170 -&gt; &#39;?8171) -&gt; ofError:(exn -&gt; &#39;?8171) -&gt; Cmd&lt;&#39;?8171&gt;<br />
                           <strong>Type parameters:</strong> '?8170, '?8171                        <span>
             <strong>Attributes:</strong><br />
@@ -166,10 +169,10 @@ or error (of exception)</p>
       </tr>
       <tr>
         <td class="member-name">
-          <code onmouseout="hideTip(event, '605', 605)" onmouseover="showTip(event, '605', 605)">
+          <code onmouseout="hideTip(event, '610', 610)" onmouseover="showTip(event, '610', 610)">
             ofAuthorized f arg ofSuccess ofError
           </code>
-          <div class="tip" id="605">
+          <div class="tip" id="610">
             <strong>Signature:</strong> f:(&#39;?8162 -&gt; Async&lt;&#39;?8163&gt;) -&gt; arg:&#39;?8162 -&gt; ofSuccess:(&#39;?8163 option -&gt; &#39;?8164) -&gt; ofError:(exn -&gt; &#39;?8164) -&gt; Cmd&lt;&#39;?8164&gt;<br />
                           <strong>Type parameters:</strong> '?8162, '?8163, '?8164                        <span>
             <strong>Attributes:</strong><br />
@@ -190,10 +193,10 @@ into successful Some if authorized, successful None if not, or error (of excepti
       </tr>
       <tr>
         <td class="member-name">
-          <code onmouseout="hideTip(event, '606', 606)" onmouseover="showTip(event, '606', 606)">
+          <code onmouseout="hideTip(event, '611', 611)" onmouseover="showTip(event, '611', 611)">
             ofRemote f arg ofSuccess ofError
           </code>
-          <div class="tip" id="606">
+          <div class="tip" id="611">
             <strong>Signature:</strong> f:(&#39;req -&gt; Async&lt;&#39;resp&gt;) -&gt; arg:&#39;req -&gt; ofSuccess:(RemoteResponse&lt;&#39;resp&gt; -&gt; &#39;msg) -&gt; ofError:(exn -&gt; &#39;msg) -&gt; Cmd&lt;&#39;msg&gt;<br />
                           <strong>Type parameters:</strong> 'req, 'resp, 'msg                        <span>
             <strong>Attributes:</strong><br />
@@ -214,10 +217,10 @@ into response or error (of exception)</p>
       </tr>
       <tr>
         <td class="member-name">
-          <code onmouseout="hideTip(event, '607', 607)" onmouseover="showTip(event, '607', 607)">
+          <code onmouseout="hideTip(event, '612', 612)" onmouseover="showTip(event, '612', 612)">
             performAuthorized f arg ofSuccess
           </code>
-          <div class="tip" id="607">
+          <div class="tip" id="612">
             <strong>Signature:</strong> f:(&#39;?8166 -&gt; Async&lt;&#39;?8167&gt;) -&gt; arg:&#39;?8166 -&gt; ofSuccess:(&#39;?8167 option -&gt; &#39;?8168) -&gt; Cmd&lt;&#39;?8168&gt;<br />
                           <strong>Type parameters:</strong> '?8166, '?8167, '?8168                        <span>
             <strong>Attributes:</strong><br />
@@ -238,10 +241,10 @@ into Some if authorized, None if not, discarding any possible error</p>
       </tr>
       <tr>
         <td class="member-name">
-          <code onmouseout="hideTip(event, '608', 608)" onmouseover="showTip(event, '608', 608)">
+          <code onmouseout="hideTip(event, '613', 613)" onmouseover="showTip(event, '613', 613)">
             performJS(...)
           </code>
-          <div class="tip" id="608">
+          <div class="tip" id="613">
             <strong>Signature:</strong> js:IJSRuntime -&gt; jsFunctionName:string -&gt; args:obj [] -&gt; ofSuccess:(&#39;?8173 -&gt; &#39;?8174) -&gt; Cmd&lt;&#39;?8174&gt;<br />
                           <strong>Type parameters:</strong> '?8173, '?8174                        <span>
             <strong>Attributes:</strong><br />
@@ -262,10 +265,10 @@ discarding any possible error</p>
       </tr>
       <tr>
         <td class="member-name">
-          <code onmouseout="hideTip(event, '609', 609)" onmouseover="showTip(event, '609', 609)">
+          <code onmouseout="hideTip(event, '614', 614)" onmouseover="showTip(event, '614', 614)">
             performRemote f arg ofSuccess
           </code>
-          <div class="tip" id="609">
+          <div class="tip" id="614">
             <strong>Signature:</strong> f:(&#39;req -&gt; Async&lt;&#39;resp&gt;) -&gt; arg:&#39;req -&gt; ofSuccess:(RemoteResponse&lt;&#39;resp&gt; -&gt; &#39;msg) -&gt; Cmd&lt;&#39;msg&gt;<br />
                           <strong>Type parameters:</strong> 'req, 'resp, 'msg                        <span>
             <strong>Attributes:</strong><br />
@@ -301,6 +304,9 @@ to a message discarding any possible error</p>
                     <ul class="is-hidden"></ul>
                   </li><li>
                     <a href="/docs/HTML">Writing HTML</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/HTML-list-functions">Writing HTML (Legacy)</a>
                     <ul class="is-hidden"></ul>
                   </li><li>
                     <a href="/docs/Templating">HTML templates</a>
@@ -375,7 +381,7 @@ to a message discarding any possible error</p>
         <div class="column">
           <h1 class="title">Documentation</h1>
           <div class="menu">
-            <ul class="menu-list"><li><a href="/docs">Getting Started</a></li><li><a href="/docs/Hosting">Hosting models</a></li><li><a href="/docs/HTML">Writing HTML</a></li><li><a href="/docs/Templating">HTML templates</a></li><li><a href="/docs/Elmish">Using Elmish</a></li><li><a href="/docs/Routing">Routing</a></li><li><a href="/docs/Remoting">Remoting</a></li><li><a href="/docs/Blazor">Using Blazor features</a></li><li><a href="/docs/JSON">Dealing with JSON</a></li><li><a href="/docs/Upgrade">Upgrade guide</a></li><li><a href="/docs/reference">API Reference</a></li></ul>
+            <ul class="menu-list"><li><a href="/docs">Getting Started</a></li><li><a href="/docs/Hosting">Hosting models</a></li><li><a href="/docs/HTML">Writing HTML</a></li><li><a href="/docs/HTML-list-functions">Writing HTML (Legacy)</a></li><li><a href="/docs/Templating">HTML templates</a></li><li><a href="/docs/Elmish">Using Elmish</a></li><li><a href="/docs/Routing">Routing</a></li><li><a href="/docs/Remoting">Remoting</a></li><li><a href="/docs/Blazor">Using Blazor features</a></li><li><a href="/docs/JSON">Dealing with JSON</a></li><li><a href="/docs/Upgrade">Upgrade guide</a></li><li><a href="/docs/reference">API Reference</a></li></ul>
           </div>
         </div>
         <div class="column">

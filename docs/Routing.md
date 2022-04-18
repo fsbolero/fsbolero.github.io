@@ -75,13 +75,13 @@ The router has a few helpful utilities:
 * `router.Link` takes an endpoint value and returns the corresponding URL.
 
     ```fsharp
-    a [attr.href (router.Link Home)] [text "Go to Home"]
+    a { attr.href (router.Link Home); "Go to Home" }
     ```
 
 * `router.HRef` takes an endpoint and returns an `href` attribute pointing to the corresponding URL.
 
     ```fsharp
-    a [router.HRef Home] [text "Go to Home"]
+    a { router.HRef Home; "Go to Home" }
     ```
 
 #### Format

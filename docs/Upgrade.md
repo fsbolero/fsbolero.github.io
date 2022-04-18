@@ -3,6 +3,18 @@ title: Upgrade guide
 subtitle: How to update a project for newer releases
 ---
 
+### From v0.18 to v0.20
+
+Bolero v0.20 upgrades the dependency to .NET 6. Here are the associated upgrade steps:
+
+* Install [the .NET SDK 6.0.101 or newer](https://dotnet.microsoft.com/download).
+
+* If you are using Visual Studio, it is recommended to upgrade to version 2022 (17.x).
+
+* This version completely changes the syntax for HTML.
+    Instead of functions taking a list of attributes and a list of children, HTML elements and Blazor components are defined using computation expressions.
+    See [the documentation on HTML](HTML) for all details on the new syntax.
+
 ### From v0.15 to v0.16
 
 Bolero v0.16 upgrades the dependency to .NET 5. Here are the associated upgrade steps:

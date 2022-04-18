@@ -22,7 +22,7 @@
       <div class="navbar-menu">
         <nav class="navbar-start"><a href="/" class="navbar-item is-hoverable has-text-weight-bold">Home</a><div class="navbar-item is-hoverable has-text-weight-bold has-dropdown">
             <a href="/docs" class="navbar-link is-arrowless">Documentation</a>
-            <div class="navbar-dropdown has-text-weight-normal"><a class="navbar-item" href="/docs">Getting Started</a><a class="navbar-item" href="/docs/Hosting">Hosting models</a><a class="navbar-item" href="/docs/HTML">Writing HTML</a><a class="navbar-item" href="/docs/Templating">HTML templates</a><a class="navbar-item" href="/docs/Elmish">Using Elmish</a><a class="navbar-item" href="/docs/Routing">Routing</a><a class="navbar-item" href="/docs/Remoting">Remoting</a><a class="navbar-item" href="/docs/Blazor">Using Blazor features</a><a class="navbar-item" href="/docs/JSON">Dealing with JSON</a><a class="navbar-item" href="/docs/Upgrade">Upgrade guide</a><a class="navbar-item" href="/docs/reference">API Reference</a></div>
+            <div class="navbar-dropdown has-text-weight-normal"><a class="navbar-item" href="/docs">Getting Started</a><a class="navbar-item" href="/docs/Hosting">Hosting models</a><a class="navbar-item" href="/docs/HTML">Writing HTML</a><a class="navbar-item" href="/docs/HTML-list-functions">Writing HTML (Legacy)</a><a class="navbar-item" href="/docs/Templating">HTML templates</a><a class="navbar-item" href="/docs/Elmish">Using Elmish</a><a class="navbar-item" href="/docs/Routing">Routing</a><a class="navbar-item" href="/docs/Remoting">Remoting</a><a class="navbar-item" href="/docs/Blazor">Using Blazor features</a><a class="navbar-item" href="/docs/JSON">Dealing with JSON</a><a class="navbar-item" href="/docs/Upgrade">Upgrade guide</a><a class="navbar-item" href="/docs/reference">API Reference</a></div>
           </div><a href="/blog" class="navbar-item is-hoverable has-text-weight-bold">Blog</a><a href="https://tryfsharp.fsbolero.io" class="navbar-item is-hoverable has-text-weight-bold">Try F#</a></nav>
         <nav class="navbar-end">
           <a target="_blank" title="GitHub" href="https://github.com/fsbolero/bolero" class="navbar-item is-hoverable"><i class="fa fa-github"></i></a>
@@ -47,6 +47,9 @@
             
           </li><li>
             <a href="/docs/HTML">Writing HTML</a>
+            
+          </li><li>
+            <a href="/docs/HTML-list-functions">Writing HTML (Legacy)</a>
             
           </li><li>
             <a href="/docs/Templating">HTML templates</a>
@@ -117,11 +120,11 @@ let update message model =
     | Decrement -&gt; { model with value = model.value - 1 }
 
 let view model dispatch =
-    div [] [
-        button [on.click (fun _ -&gt; dispatch Decrement)] [text &quot;-&quot;]
-        text (string model.value)
-        button [on.click (fun _ -&gt; dispatch Increment)] [text &quot;+&quot;]
-    ]
+    div {
+        button { on.click (fun _ -&gt; dispatch Decrement); &quot;-&quot; }
+        string model.value
+        button { on.click (fun _ -&gt; dispatch Increment); &quot;+&quot; }
+    }
 
 let program =
     Program.mkSimple (fun _ -&gt; initModel) update view
@@ -148,17 +151,17 @@ let update message model =
     | SetLastName n -&gt; { model with lastName = n }
 
 let viewInput model setValue =
-    input [
+    input {
         attr.value model
         on.change (fun e -&gt; setValue (unbox e.Value))
-    ]
+    }
 
 let view model dispatch =
-    div [] [
+    div {
         viewInput model.firstName (fun n -&gt; dispatch (SetFirstName n))
         viewInput model.lastName (fun n -&gt; dispatch (SetLastName n))
-        text (sprintf &quot;Hello, %s %s!&quot; model.firstName model.lastName)
-    ]
+        $&quot;Hello, {model.firstName} {model.lastName}!&quot;
+    }
 </code></pre>
 <p>This displays two input boxes prompting the user for a first name and a last name. On every change, <code>view</code> is called, and therefore <code>viewInput</code> is called twice, even though only one field has changed. Of course this is a tiny application so this doesn't cause any noticeable performance issue, but as the app gets bigger, this kind of unnecessary work may become a problem.</p>
 <p>This can be improved using <code>ElmishComponent&lt;'model, 'msg&gt;</code>. This component type only calls its view if its model has changed. It is typically used by passing a sub-model, rather than the full model; for example, in our case, we'll just pass the relevant field: either <code>model.firstName</code> or <code>model.lastName</code>.</p>
@@ -168,18 +171,21 @@ let view model dispatch =
     inherit ElmishComponent&lt;string, string&gt;()
 
     override this.View model dispatch =
-        input [
+        input {
             attr.value model
             on.change (fun e -&gt; dispatch (unbox e.Value))
-        ]
+        }
 </code></pre>
-<p>Instantiating an <code>ElmishComponent</code> is done using the function <code>ecomp</code>. This function is parameterized by the component type, and takes three arguments: a list of parameters (see <a href="HTML#components">Components</a>), a model and a dispatch function.</p>
+<p>Instantiating an <code>ElmishComponent</code> is done using the function <code>ecomp</code>.
+This function is parameterized by the component type, and takes two arguments: a model and a dispatch function.
+It returns a computation expression builder to pass parameters to the component (see <a href="Blazor#using-a-component">Components</a>).
+If there are no parameters to pass, use <code>attr.empty()</code>.</p>
 <pre><code class="language-fsharp">let view model dispatch =
-    div [] [
-        ecomp&lt;Input,_,_&gt; [] model.firstName (fun n -&gt; dispatch (SetFirstName n))
-        ecomp&lt;Input,_,_&gt; [] model.lastName (fun n -&gt; dispatch (SetLastName n))
-        text (sprintf &quot;Hello, %s %s!&quot; model.firstName model.lastName)
-    ]
+    div {
+        ecomp&lt;Input,_,_&gt; model.firstName (fun n -&gt; dispatch (SetFirstName n)) { attr.empty() }
+        ecomp&lt;Input,_,_&gt; model.lastName (fun n -&gt; dispatch (SetLastName n)) { attr.empty() }
+        $&quot;Hello, {model.firstName} {model.lastName}!&quot;
+    }
 </code></pre>
 <h4 id="customizing-the-model-update-check">Customizing the model update check</h4>
 <p>Let's improve our <code>Input</code> component by adding a label. We can change the model to a record that contains both the label and the value.</p>
@@ -199,26 +205,26 @@ type Input() =
         oldModel.value &lt;&gt; newModel.value
 
     override this.View model dispatch =
-        label [] [
-            text model.label
-            input [
+        label {
+            model.label
+            input {
                 attr.value model.value
                 on.change (fun e -&gt; dispatch (unbox e.Value))
-            ]
-        ]
+            }
+        }
 
 let view model dispatch =
-    div [] [
-        ecomp&lt;Input,_,_&gt; [] {
-            label = &quot;First name: &quot;
-            value = model.firstName
-         } (fun n -&gt; dispatch (SetFirstName n))
-        ecomp&lt;Input,_,_&gt; [] {
-            label = &quot;Last name: &quot;
-            value = model.lastName
-         } (fun n -&gt; dispatch (SetLastName n))
+    div {
+        ecomp&lt;Input,_,_&gt;
+            { label = &quot;First name: &quot;; value = model.firstName }
+            (fun n -&gt; dispatch (SetFirstName n))
+            { attr.empty() }
+        ecomp&lt;Input,_,_&gt;
+            { label = &quot;Last name: &quot;; value = model.lastName }
+            (fun n -&gt; dispatch (SetLastName n))
+            { attr.empty() }
         text (sprintf &quot;Hello, %s %s!&quot; model.firstName model.lastName)
-    ]
+    }
 </code></pre>
 </div></section>
         </div>
@@ -234,6 +240,9 @@ let view model dispatch =
                     <ul class="is-hidden"></ul>
                   </li><li>
                     <a href="/docs/HTML">Writing HTML</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/HTML-list-functions">Writing HTML (Legacy)</a>
                     <ul class="is-hidden"></ul>
                   </li><li>
                     <a href="/docs/Templating">HTML templates</a>
@@ -312,7 +321,7 @@ let view model dispatch =
         <div class="column">
           <h1 class="title">Documentation</h1>
           <div class="menu">
-            <ul class="menu-list"><li><a href="/docs">Getting Started</a></li><li><a href="/docs/Hosting">Hosting models</a></li><li><a href="/docs/HTML">Writing HTML</a></li><li><a href="/docs/Templating">HTML templates</a></li><li><a href="/docs/Elmish">Using Elmish</a></li><li><a href="/docs/Routing">Routing</a></li><li><a href="/docs/Remoting">Remoting</a></li><li><a href="/docs/Blazor">Using Blazor features</a></li><li><a href="/docs/JSON">Dealing with JSON</a></li><li><a href="/docs/Upgrade">Upgrade guide</a></li><li><a href="/docs/reference">API Reference</a></li></ul>
+            <ul class="menu-list"><li><a href="/docs">Getting Started</a></li><li><a href="/docs/Hosting">Hosting models</a></li><li><a href="/docs/HTML">Writing HTML</a></li><li><a href="/docs/HTML-list-functions">Writing HTML (Legacy)</a></li><li><a href="/docs/Templating">HTML templates</a></li><li><a href="/docs/Elmish">Using Elmish</a></li><li><a href="/docs/Routing">Routing</a></li><li><a href="/docs/Remoting">Remoting</a></li><li><a href="/docs/Blazor">Using Blazor features</a></li><li><a href="/docs/JSON">Dealing with JSON</a></li><li><a href="/docs/Upgrade">Upgrade guide</a></li><li><a href="/docs/reference">API Reference</a></li></ul>
           </div>
         </div>
         <div class="column">

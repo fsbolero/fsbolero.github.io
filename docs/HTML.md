@@ -7,51 +7,50 @@ All of the functions described here are defined in the module `Bolero.Html`.
 
 See also how to create HTML elements using [HTML templates](Templating).
 
+> Note: the syntax for HTML has significantly changed in Bolero 0.20.
+> See [HTML list functions](HTML-list-functions) for the pre-0.20 list-based syntax.
+
 ### Elements
 
-To create an HTML element, just call the function with its name. It takes two arguments: a list of attributes and a list of child elements, and returns a value of type `Node`.
-
-Additionally, the function `text` creates a text node, and `textf` creates a text node using `printf`-style formatting.
-
-```fsharp
-let myElement name =
-    div [] [
-        h1 [] [text "My app"]
-        p [] [textf "Hello %s and welcome to my app!" name]
-    ]
-```
-
-Elements that can't have children, such as `input` or `br`, only take attributes as argument.
+HTML elements are created using [Computation Expressions](https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/computation-expressions).
+The CE builder is the name of the element, and the body of the CE lists child content.
 
 ```fsharp
-let myElement =
-    p [] [
-        text "First line of the paragraph."
-        br []
-        text "Second line of the paragraph."
-    ]
+let myElement (name: string) : Node =
+    div {
+        h1 { "My app" }
+        p { $"Hello {name} and welcome to my app!" }
+    }
 ```
 
-To create a custom element for which there isn't a function, use `elt`.
+To create a custom element for which there isn't a builder, use `elt`.
 
 ```fsharp
-let myElement =
-    elt "data-paragraph" [] [
-        text "This is in a <data-paragraph> element."
-    ]
+let myElement : Node =
+    elt "data-paragraph" {
+        "This is in a <data-paragraph> element."
+    }
 ```
 
-In addition to representing an HTML node, the type `Node` can also represent a (possibly empty) sequence of nodes. This is done using the `concat` function.
+In addition to representing an HTML node, the type `Node` can also represent a (possibly empty) sequence of nodes. This is done using the `concat` builder.
 
 ```fsharp
-let myElements =
-    concat [
-        p [] [text "First paragraph"]
-        p [] [text "Second paragraph"]
-    ]
+let myElements : Node =
+    concat {
+        p { "First paragraph" }
+        p { "Second paragraph" }
+    }
 ```
 
-`empty` represents an empty sequence of nodes: it is equivalent to `concat []`. This doesn't seem very useful at first, but it is actually important for conditional elements.
+The function `text` takes a string and represents a text node without having to wrap it in an HTML element.
+
+```fsharp
+let myTextNode (name: string) : Node =
+    text $"Hello {name}!"
+```
+
+The function `empty()` represents an empty sequence of nodes.
+This doesn't seem very useful at first, but it is actually important for conditional elements.
 
 #### Conditional elements
 
@@ -59,11 +58,11 @@ Due to the way that Blazor compares the rendered DOM when a change is applied, t
 
 ```fsharp
 // May fail at runtime.
-let myButton (label: option<string>) =
-    button [] [
+let myButton (label: option<string>) : Node =
+    button {
         if label.IsSome then
-            yield text label.Value
-    ]
+            label.Value
+    }
 ```
 
 Rendering such conditional content must be done with the `cond` function instead.
@@ -71,24 +70,24 @@ Rendering such conditional content must be done with the `cond` function instead
 * `cond` can take a boolean value, and a function to call on this value returning a Node. For example, the following is correct:
 
     ```fsharp
-    let myButton (label: option<string>) =
-        button [] [
+    let myButton (label: option<string>) : Node =
+        button {
             cond label.IsSome <| function
                 | true -> text label.Value
-                | false -> empty
-        ]
+                | false -> empty()
+        }
     ```
     
-    You can also see here why `empty` is a useful value.
+    You can also see here why `empty` is a useful function.
 
 * `cond` can also take a value whose type is an F# union, and a function that matches over the cases of this union. For example, `option<'T>` is an F# union, so the following is correct:
 
     ```fsharp
-    let myButton (label: option<string>) =
+    let myButton (label: option<string>) : Node =
         button [] [
             cond label <| function
                 | Some l -> text l
-                | None -> empty
+                | None -> empty()
         ]
     ```
 
@@ -105,23 +104,23 @@ Rendering such conditional content must be done with the `cond` function instead
     /// * "*Alice* likes this"
     /// * "*Alice* and *Bob* like this"
     /// * "*Alice*, *Bob* and 12 others like this"
-    let showLikes (users: UserList) =
+    let showLikes (users: UserList) : Node =
         concat [
             cond users <| function
-                | One uname -> b [] [text uname]
+                | One uname -> b { uname }
                 | Two (uname1, uname2) ->
-                    concat [
-                        b [] [text uname1]
-                        text " and "
-                        b [] [text uname2]
-                    ]
+                    concat {
+                        b { uname1 }
+                        " and "
+                        b { uname2 }
+                    }
                 | Many (uname1, uname2, others) ->
-                    concat [
-                        b [] [text uname1]
-                        text ", "
-                        b [] [text uname2]
-                        textf " and %i others" others
-                    ]
+                    concat {
+                        b { uname1 }
+                        ", "
+                        b { uname2 }
+                        $" and {others} others"
+                    }
             cond users <| function
                 | One _ -> text " likes this."
                 | _     -> text " like this."
@@ -133,37 +132,53 @@ Rendering such conditional content must be done with the `cond` function instead
 Similarly, rendering collections using a function such as `List.map` to create a list of nodes can cause runtime errors. Instead, collections of items should be rendered using the function `forEach`.
 
 ```fsharp
-let listUsers (names: string list) =
-    p [] [
-        text "Here are the users:"
-        ul [] [
+let listUsers (names: string list) : Node =
+    p {
+        "Here are the users:"
+        ul {
             forEach names <| fun name ->
-                li [] [text name]
-        ]
-    ]
+                li { name }
+        }
+    }
+```
+
+Alternatively, inside HTML computation expressions, the `for` keyword renders collections safely.
+
+```fsharp
+let listUsers (names: string list) : Node =
+    p {
+        "Here are the users:"
+        ul {
+            for name in names do
+                li { name }
+        }
+    }
 ```
 
 ### Attributes
 
 Attributes are available in the `attr` submodule.
+They are added to an element by listing them inside the computation expression, *before* child nodes.
 
 ```fsharp
-let myElement =
-    p [
+let myElement : Node =
+    p {
         attr.style "color: blue;"
         attr.``class`` "paragraph"
-    ] [
-        text "Hello and welcome to my app!"
-    ]
+
+        "Hello and welcome to my app!"
+    }
 ```
 
 To create a custom attribute for which there isn't a function, use the `=>` operator.
 
 ```fsharp
-let myElement =
-    p ["data-kind" => "paragraph"] [
-        text "Hello and welcome to my app!"
-    ]
+let myElement : Node =
+    p {
+        "data-kind" => "paragraph"
+
+        "Hello and welcome to my app!"
+    }
 ```
 
 #### Conditional attributes
@@ -172,22 +187,24 @@ Like with elements (see [Conditional elements](#conditional-elements)), naively 
 
 ```fsharp
 // May fail at runtime.
-let myElement (isBlue: bool) =
-    p [
+let myElement (isBlue: bool) : Node =
+    p {
         if isBlue then
-            yield attr.style "color: blue;"
-    ] [
-        text "Hello and welcome to my app!"
-    ]
+            attr.style "color: blue;"
+
+        "Hello and welcome to my app!"
+    }
 ```
 
-Instead if an attribute may or may not need to be added depending on a condition, always add the attribute and give it a value of `false` or `null` when it should be omitted.
+Instead, if an attribute may or may not need to be added depending on a condition, always add the attribute and give it a value of `false` or `null` when it should be omitted.
 
 ```fsharp
-let myElement (isBlue: bool) =
-    p [attr.style (if isBlue then "color: blue;" else null)] [
-        text "Hello and welcome to my app!"
-    ]
+let myElement (isBlue: bool) : Node =
+    p {
+        attr.style (if isBlue then "color: blue;" else null)
+
+        "Hello and welcome to my app!"
+    }
 ```
 
 ### Event handlers
@@ -195,45 +212,47 @@ let myElement (isBlue: bool) =
 Event handlers are available in the `on` submodule.
 
 ```fsharp
-let myElement =
-    button [on.click (fun _ -> printfn "Clicked!")] [
-        text "Click me!"
-    ]
+let myElement : Node =
+    button {
+        on.click (fun _ -> printfn "Clicked!")
+
+        "Click me!"
+    }
 ```
 
 The argument passed to the callback has type `UIEventArgs` from Blazor. Specific events have corresponding subtypes of `UIEventArgs`: for example, `on.click` uses `UIMouseEventArgs`.
 
 ```fsharp
-let myElement =
-    button [
+let myElement : Node =
+    button {
        on.click (fun e ->
-            printfn "Clicked at (%i, %i)" e.ClientX e.ClientY)
-    ] [
-        text "Click me!"
-    ]
+            printfn $"Clicked at ({e.ClientX}, {e.ClientY})")
+
+        "Click me!"
+    }
 ```
 
 To create a custom event handler for which there isn't a function, use `on.event`.
 
 ```fsharp
-let myElement =
-    button [
+let myElement : Node =
+    button {
         on.event "customevent" (fun _ -> printfn "Custom event!")
-    ] [
-        text "Click me!"
-    ]
+
+        "Click me!"
+    }
 ```
 
 Asynchronous event handlers are also available in the submodules `on.task` and `on.async`. These modules contain functions that are identical to the ones directly in `on`, except that their callbacks return `Task` and `Async<unit>`, respectively.
 
 ```fsharp
-let myElement (js: IJSRuntime) =
-    button [
+let myElement (js: IJSRuntime) : Node =
+    button {
         on.task.click (fun e ->
             js.InvokeVoidAsync("console.log", e.ClientX).AsTask())
-    ] [
-        text "Click me!"
-    ]
+
+        "Click me!"
+    }
 ```
 
 ### Data bindings
@@ -251,13 +270,13 @@ type Model = { username: string }
 type Message =
     | SetUsername of string
 
-let hello model dispatch =
-    input [
+let hello (model: Model) (dispatch: Dispatch<Message>) : Node =
+    input {
         bind.input.string model.username (fun n -> dispatch (SetUsername n))
 
         // Equivalent but more concise, using the composition operator:
         bind.input.string model.username (dispatch << SetUsername)
-    ]
+    }
 ```
 
 The module `bind` contains the submodules `input` and `change`:
@@ -291,11 +310,11 @@ type Model = { isChecked: bool }
 type Message =
     | SetChecked of bool
 
-let hello model dispatch =
-    input [
+let hello (model: Model) (dispatch: Dispatch<Message>) : Node =
+    input {
         attr.``type`` "checkbox"
         bind.checked model.isChecked (fun c -> dispatch (SetChecked c))
-    ]
+    }
 ```
 
 For radio buttons, you can use `bind.change.*` like so:
@@ -307,9 +326,9 @@ type Model = { color: Color }
 type Message =
     | SetColor of Color
     
-let hello model dispatch =
+let hello (model: Model) (dispatch: Dispatch<Message>) : Node =
     forEach [Red; Green; Blue] <| fun color ->
-        input [
+        input {
             attr.``type`` "radio"
 
             // use the same name for the 3 radio buttons to group them.
@@ -319,5 +338,5 @@ let hello model dispatch =
             // but you don't have to use this string in the event handler
             // if you have a better typed value at hand (here, `color`).
             bind.change.string (string color) (fun _ -> dispatch (SetColor color))
-        ]
+        }
 ```

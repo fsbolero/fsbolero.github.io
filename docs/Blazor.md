@@ -16,7 +16,7 @@ type MyComponent() =
     inherit Component()
 
     override this.Render() =
-        div [] [text "Hello, world!"]
+        div { "Hello, world!" }
 ```
 
 To add parameters to the component, use a property with the `Parameter` attribute from namespace `Microsoft.AspNetCore.Blazor`.
@@ -29,19 +29,23 @@ type MyComponent() =
     member val Who = "" with get, set
 
     override this.Render() =
-        div [] [text (sprintf "Hello, %s!" this.Who)]
+        div { $"Hello, {this.Who}!" }
 ```
 
 #### Using a component
 
 This section documents how to use a Blazor Component, either referenced from a C# Razor project, or created in F# by inheriting from `Component`.
 
-To instantiate a Blazor component, use the `comp` function. It is parameterized by the component type, and takes attributes and child nodes as arguments.
+To instantiate a Blazor component, use the `comp` computation expression builder. It is parameterized by the component type, and takes attributes and child nodes in its CE body.
 To set a parameter, pass it by name as an attribute using the `=>` operator.
+If there are no parameters to pass, use `attr.empty()`.
 
 ```fsharp
-let myElement =
-    comp<MyComponent> ["Who" => "world"] []
+let myElement : Node =
+    comp<MyComponent> { "Who" => "world" }
+
+let myElementWithDefaultWho : Node =
+    comp<MyComponent> { attr.empty() }
 ```
 
 However, some parameter types must be handled specially:
@@ -58,9 +62,10 @@ However, some parameter types must be handled specially:
     open MatBlazor
     
     let myButton model dispatch =
-        comp<MatButton>
-          [ attr.callback "OnClick" (fun _ -> dispatch ButtonClicked) ]
-          [ text "Click me!" ]
+        comp<MatButton> {
+          attr.callback "OnClick" (fun _ -> dispatch ButtonClicked)
+          "Click me!"
+        }
     ```
     
     In Blazor, these parameters would be passed as `Action<T>`.
@@ -81,33 +86,32 @@ However, some parameter types must be handled specially:
       { Cars: Car[] }
     
     let myTable model dispatch =
-        comp<MatTable>
-          [ "Items" => model.Cars
+        comp<MatTable> {
+            "Items" => model.Cars
 
             attr.fragment "MatTableHeader" (
-              concat
-                [ th [] [ text "Name" ]
-                  th [] [ text "Price" ]
-                  th [] [ text "Horsepower"]
-                ]
+                concat {
+                    th { "Name" }
+                    th { "Price" }
+                    th { "Horsepower" }
+                }
             )
 
             attr.fragmentWith "MatTableRow" (fun (car: Car) ->
-              concat
-                [ td [] [ text car.Name ]
-                  td [] [ textf "%.2f" car.Price ]
-                  td [] [ textf "%i" car.Horsepower ]
-                ]
+                concat {
+                    td { car.Name } 
+                    td { $"%.2f{car.Price}" }
+                    td { $"{car.Horsepower}" }
+                }
             )
-          ]
-          []
+        }
     ```
 
 #### Cascading
 You can use [Cascading Values and Cascading Parameters](https://docs.microsoft.com/en-us/aspnet/core/blazor/components/cascading-values-and-parameters) as well
 ```fsharp
 let view state dispatch = 
-   comp<CascadingValue<int>> [ "Value" => 42; "Name" => "MeaningOfLife" ] [ body ]
+   comp<CascadingValue<int>> { "Value" => 42; "Name" => "MeaningOfLife"; body }
 ```
 in this case `body` is the content of your view somewhere down the hierarchy you may have something like this
 ```fsharp
@@ -130,10 +134,10 @@ type FooComponent() =
     member val MeaningOfLife = 0 with get, set
 
     override this.Render() =
-        concat [
-            h1 [] [text "Foo component"]
-            p [] [textf "The meaning of life is %i" this.MeaningOfLife]
-        ]
+        concat {
+            h1 { "Foo component" }
+            p { "The meaning of life is {this.MeaningOfLife}" }
+        }
 ```
 ### NavLink
 
@@ -141,10 +145,10 @@ The function `navLink` is a helper to create a Blazor `NavLink` component. This 
 
 ```fsharp
 let myMenu =
-    ul [] [
-        li [] [navLink NavLinkMatch.All [attr.href "/"] [text "Home"]]
-        li [] [navLink NavLinkMatch.Prefix [attr.href "/blog"] [text "Blog"]]
-    ]
+    ul {
+        li { navLink NavLinkMatch.All { attr.href "/"; "Home" } }
+        li { navLink NavLinkMatch.Prefix { attr.href "/blog"; "Blog" } }
+    }
 ```
 
 This page documents some useful features of Blazor and how to best use them from a Bolero application.
@@ -203,12 +207,12 @@ type MyComponent() =
     member val JSRuntime = Unchecked.defaultof<IJSRuntime> with get, set
 
     override this.View model dispatch =
-        button [
+        button {
             on.task.click (fun _ ->
                 this.JSRuntime.InvokeVoidAsync("console.log", model).AsTask())
-        ] [
-            text model
-        ]
+
+            $"{model}"
+        }
 ```
 
 #### In `ProgramComponent`
@@ -275,7 +279,7 @@ In Bolero, the type `HtmlRef` is a small utility that makes working with `Elemen
 
 1. The element to bind must be inside a Component class.
 2. Create an `HtmlRef` as a field of this class.
-3. To bind it to an element, pass it to the attribute `attr.ref` of this element.
+3. To bind it to an element, list it in the computation expression after attributes and before child nodes.
 4. To use it, use its `.Value` property.
 
 For example, given this small JavaScript function that can focus a DOM element it receives as argument:
@@ -300,19 +304,19 @@ type MyInputWithFocusButton() = // (1)
     member val JSRuntime = Unchecked.defaultof<IJSRuntime> with get, set
 
     override this.View model dispatch =
-        concat [
-            input [
-                attr.ref inputRef // (3)
+        concat {
+            input {
                 bind.input.string model dispatch
-            ]
-            button [
+                inputRef // (3)
+            }
+            button {
                 on.task.click (fun _ ->
                     this.JSRuntime.InvokeVoidAsync("MyJsLib.focus", inputRef.Value).AsTask() // (4)
                 )
-            ] [
-                text "Focus this input box"
-            ]
-        ]
+
+                "Focus this input box"
+            }
+        }
 ```
 
 ### Blazor component references
@@ -328,7 +332,7 @@ type MyComponent() =
     inherit Component()
     
     override this.Render() =
-        div [] [text "This is my component"]
+        div { "This is my component" }
         
     member this.Refresh() =
         Console.WriteLine("Refreshing this component!")
@@ -343,12 +347,12 @@ type MyApplication() =
     let myComponentRef = Ref<MyComponent>()
     
     override this.Render() =
-        div [] [
-            comp<MyComponent> [attr.ref myComponentRef] []
-            button [
+        div {
+            comp<MyComponent> { myComponentRef }
+            button {
                 on.click (fun _ -> myComponentRef.Value.Refresh())
-            ] [
-                text "Refresh my component!"
-            ]
-        ]
+
+                "Refresh my component!"
+            }
+        }
 ```

@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API Reference | Bolero: F# in WebAssembly</title>
+  <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16" />
+  <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
+  <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[],"$DATA":{"$V":{}}}' />
+
+  <link rel="stylesheet" href="/css/all.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js" type="text/javascript" charset="UTF-8"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/languages/fsharp.min.js" type="text/javascript" charset="UTF-8"></script><link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/vs.min.css"></link>
+
+</head>
+<body>
+  <header class="navbar ">
+    <div class="container">
+      <div class="navbar-brand">
+        <a class="navbar-item is-hoverable" onclick="Website.Client.ToggleDrawer()"><i class="fa fa-bars"></i></a>
+        <span class="navbar-item"><a href="/">Bolero</a></span>
+      </div>
+      <div class="navbar-menu">
+        <nav class="navbar-start"><a href="/" class="navbar-item is-hoverable has-text-weight-bold">Home</a><div class="navbar-item is-hoverable has-text-weight-bold has-dropdown">
+            <a href="/docs" class="navbar-link is-arrowless">Documentation</a>
+            <div class="navbar-dropdown has-text-weight-normal"><a class="navbar-item" href="/docs">Getting Started</a><a class="navbar-item" href="/docs/Hosting">Hosting models</a><a class="navbar-item" href="/docs/HTML">Writing HTML</a><a class="navbar-item" href="/docs/HTML-list-functions">Writing HTML (Legacy)</a><a class="navbar-item" href="/docs/Templating">HTML templates</a><a class="navbar-item" href="/docs/Elmish">Using Elmish</a><a class="navbar-item" href="/docs/Routing">Routing</a><a class="navbar-item" href="/docs/Remoting">Remoting</a><a class="navbar-item" href="/docs/Blazor">Using Blazor features</a><a class="navbar-item" href="/docs/JSON">Dealing with JSON</a><a class="navbar-item" href="/docs/Upgrade">Upgrade guide</a><a class="navbar-item" href="/docs/reference">API Reference</a></div>
+          </div><a href="/blog" class="navbar-item is-hoverable has-text-weight-bold">Blog</a><a href="https://tryfsharp.fsbolero.io" class="navbar-item is-hoverable has-text-weight-bold">Try F#</a></nav>
+        <nav class="navbar-end">
+          <a target="_blank" title="GitHub" href="https://github.com/fsbolero/bolero" class="navbar-item is-hoverable"><i class="fa fa-github"></i></a>
+          <a target="_blank" title="Twitter" href="https://twitter.com/fsbolero" class="navbar-item is-hoverable"><i class="fa fa-twitter"></i></a>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <div class="drawer-backdrop" onclick="Website.Client.ToggleDrawer()">
+    <div id="left-drawer" class="lhs-drawer">
+      <nav class="menu">
+        <ul class="menu-list"><li>
+            <a href="/">Home</a>
+            
+          </li><li>
+            <a href="/docs">Documentation</a>
+            <ul><li>
+            <a href="/docs">Getting Started</a>
+            
+          </li><li>
+            <a href="/docs/Hosting">Hosting models</a>
+            
+          </li><li>
+            <a href="/docs/HTML">Writing HTML</a>
+            
+          </li><li>
+            <a href="/docs/HTML-list-functions">Writing HTML (Legacy)</a>
+            
+          </li><li>
+            <a href="/docs/Templating">HTML templates</a>
+            
+          </li><li>
+            <a href="/docs/Elmish">Using Elmish</a>
+            
+          </li><li>
+            <a href="/docs/Routing">Routing</a>
+            
+          </li><li>
+            <a href="/docs/Remoting">Remoting</a>
+            
+          </li><li>
+            <a href="/docs/Blazor">Using Blazor features</a>
+            
+          </li><li>
+            <a href="/docs/JSON">Dealing with JSON</a>
+            
+          </li><li>
+            <a href="/docs/Upgrade">Upgrade guide</a>
+            
+          </li><li>
+            <a href="/docs/reference">API Reference</a>
+            
+          </li></ul>
+          </li><li>
+            <a href="/blog">Blog</a>
+            
+          </li><li>
+            <a href="https://tryfsharp.fsbolero.io">Try F#</a>
+            
+          </li></ul>
+      </nav>
+    </div>
+  </div>
+  
+      <section class="with-sidebar-background">
+      <div class="container">
+        <div class="columns is-gapless">
+          <div class="column content markdown-column">
+          <div class="edit-page-icon" style="display: none">
+            <a href="https://github.com/fsbolero/website/tree/master/src/Website/docs/reference.md" target="_blank" title="Contribute to this page on GitHub">
+              <i class="fa fa-edit"></i>
+            </a>
+          </div>
+          
+          <section class="section"><div ws-preserve=""><p>
+
+<h1>ComponentBuilder</h1>
+<p>
+
+    <span>Namespace: Bolero.Builders</span><br />
+            <span>
+            Attributes: <br />
+[&lt;Struct&gt;]<br />
+[&lt;NoComparison&gt;]<br />
+[&lt;NoEquality&gt;]<br />
+            
+        </span>
+</p>
+<div class="xmldoc">
+</div>
+  <h3>Record Fields</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Record Field</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '712', 712)" onmouseover="showTip(event, '712', 712)">
+            Type
+          </code>
+          <div class="tip" id="712">
+            <strong>Signature:</strong> Type<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>Constructors</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Constructor</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '713', 713)" onmouseover="showTip(event, '713', 713)">
+            new(ty)
+          </code>
+          <div class="tip" id="713">
+            <strong>Signature:</strong> ty:Type -&gt; ComponentBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    
+              <p>CompiledName: <code>.ctor</code></p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>Instance members</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Instance member</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '714', 714)" onmouseover="showTip(event, '714', 714)">
+            x.Combine(x1, x2)
+          </code>
+          <div class="tip" id="714">
+            <strong>Signature:</strong> (x1:RefContent * x2:Node) -&gt; ChildAndRefContent<br />
+              <strong>Modifiers:</strong> inline<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '715', 715)" onmouseover="showTip(event, '715', 715)">
+            x.Combine(x1, x2)
+          </code>
+          <div class="tip" id="715">
+            <strong>Signature:</strong> (x1:Attr * x2:Node) -&gt; Attr<br />
+              <strong>Modifiers:</strong> inline<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '716', 716)" onmouseover="showTip(event, '716', 716)">
+            x.Combine(x1, x2)
+          </code>
+          <div class="tip" id="716">
+            <strong>Signature:</strong> (x1:RefContent * x2:ChildContentAttr) -&gt; ChildAndRefContent<br />
+              <strong>Modifiers:</strong> inline<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '717', 717)" onmouseover="showTip(event, '717', 717)">
+            x.Combine(x1, x2)
+          </code>
+          <div class="tip" id="717">
+            <strong>Signature:</strong> (x1:Attr * x2:ChildContentAttr) -&gt; Attr<br />
+              <strong>Modifiers:</strong> inline<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '718', 718)" onmouseover="showTip(event, '718', 718)">
+            x.Combine(x1, x2)
+          </code>
+          <div class="tip" id="718">
+            <strong>Signature:</strong> (x1:Node * x2:Node) -&gt; Node<br />
+              <strong>Modifiers:</strong> inline<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '719', 719)" onmouseover="showTip(event, '719', 719)">
+            x.Combine(x1, x2)
+          </code>
+          <div class="tip" id="719">
+            <strong>Signature:</strong> (x1:Attr * x2:ChildAndRefContent) -&gt; Attr<br />
+              <strong>Modifiers:</strong> inline<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '720', 720)" onmouseover="showTip(event, '720', 720)">
+            x.Combine(x1, x2)
+          </code>
+          <div class="tip" id="720">
+            <strong>Signature:</strong> (x1:Attr * x2:RefContent) -&gt; Attr<br />
+              <strong>Modifiers:</strong> inline<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '721', 721)" onmouseover="showTip(event, '721', 721)">
+            x.Combine(x1, x2)
+          </code>
+          <div class="tip" id="721">
+            <strong>Signature:</strong> (x1:Attr * x2:Attr) -&gt; Attr<br />
+              <strong>Modifiers:</strong> inline<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '722', 722)" onmouseover="showTip(event, '722', 722)">
+            x.Combine(x1, x2)
+          </code>
+          <div class="tip" id="722">
+            <strong>Signature:</strong> (x1:Key * x2:ChildAndRefContent) -&gt; Key<br />
+              <strong>Modifiers:</strong> inline<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '723', 723)" onmouseover="showTip(event, '723', 723)">
+            x.Combine(x1, x2)
+          </code>
+          <div class="tip" id="723">
+            <strong>Signature:</strong> (x1:Key * x2:RefContent) -&gt; Key<br />
+              <strong>Modifiers:</strong> inline<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '724', 724)" onmouseover="showTip(event, '724', 724)">
+            x.Combine(x1, x2)
+          </code>
+          <div class="tip" id="724">
+            <strong>Signature:</strong> (x1:Key * x2:Attr) -&gt; Key<br />
+              <strong>Modifiers:</strong> inline<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '725', 725)" onmouseover="showTip(event, '725', 725)">
+            x.Delay(a)
+          </code>
+          <div class="tip" id="725">
+            <strong>Signature:</strong> (a:(unit -&gt; ChildContentAttr)) -&gt; ChildContentAttr<br />
+              <strong>Modifiers:</strong> inline<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '726', 726)" onmouseover="showTip(event, '726', 726)">
+            x.Delay(n)
+          </code>
+          <div class="tip" id="726">
+            <strong>Signature:</strong> (n:(unit -&gt; Node)) -&gt; Node<br />
+              <strong>Modifiers:</strong> inline<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '727', 727)" onmouseover="showTip(event, '727', 727)">
+            x.Delay(r)
+          </code>
+          <div class="tip" id="727">
+            <strong>Signature:</strong> (r:(unit -&gt; ChildAndRefContent)) -&gt; ChildAndRefContent<br />
+              <strong>Modifiers:</strong> inline<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '728', 728)" onmouseover="showTip(event, '728', 728)">
+            x.Delay(r)
+          </code>
+          <div class="tip" id="728">
+            <strong>Signature:</strong> (r:(unit -&gt; RefContent)) -&gt; RefContent<br />
+              <strong>Modifiers:</strong> inline<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '729', 729)" onmouseover="showTip(event, '729', 729)">
+            x.Delay(a)
+          </code>
+          <div class="tip" id="729">
+            <strong>Signature:</strong> (a:(unit -&gt; Attr)) -&gt; Attr<br />
+              <strong>Modifiers:</strong> inline<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '730', 730)" onmouseover="showTip(event, '730', 730)">
+            x.Delay(k)
+          </code>
+          <div class="tip" id="730">
+            <strong>Signature:</strong> (k:(unit -&gt; Key)) -&gt; Key<br />
+              <strong>Modifiers:</strong> inline<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '731', 731)" onmouseover="showTip(event, '731', 731)">
+            x.For(s, f)
+          </code>
+          <div class="tip" id="731">
+            <strong>Signature:</strong> (s:seq&lt;&#39;T&gt; * f:(&#39;T -&gt; Node)) -&gt; Node<br />
+              <strong>Modifiers:</strong> inline<br />
+                          <strong>Type parameters:</strong> 'T                      </div>
+        </td>
+        <td class="xmldoc">
+                    
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '732', 732)" onmouseover="showTip(event, '732', 732)">
+            x.Run(x)
+          </code>
+          <div class="tip" id="732">
+            <strong>Signature:</strong> x:Node -&gt; Node<br />
+              <strong>Modifiers:</strong> inline<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '733', 733)" onmouseover="showTip(event, '733', 733)">
+            x.Run(x)
+          </code>
+          <div class="tip" id="733">
+            <strong>Signature:</strong> x:ChildAndRefContent -&gt; Node<br />
+              <strong>Modifiers:</strong> inline<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '734', 734)" onmouseover="showTip(event, '734', 734)">
+            x.Run(x)
+          </code>
+          <div class="tip" id="734">
+            <strong>Signature:</strong> x:RefContent -&gt; Node<br />
+              <strong>Modifiers:</strong> inline<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '735', 735)" onmouseover="showTip(event, '735', 735)">
+            x.Run(x)
+          </code>
+          <div class="tip" id="735">
+            <strong>Signature:</strong> x:Attr -&gt; Node<br />
+              <strong>Modifiers:</strong> inline<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '736', 736)" onmouseover="showTip(event, '736', 736)">
+            x.Run(x)
+          </code>
+          <div class="tip" id="736">
+            <strong>Signature:</strong> x:Key -&gt; Node<br />
+              <strong>Modifiers:</strong> inline<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '737', 737)" onmouseover="showTip(event, '737', 737)">
+            x.Run(x)
+          </code>
+          <div class="tip" id="737">
+            <strong>Signature:</strong> x:ChildContentAttr -&gt; Node<br />
+              <strong>Modifiers:</strong> inline<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '738', 738)" onmouseover="showTip(event, '738', 738)">
+            x.WrapNode(n)
+          </code>
+          <div class="tip" id="738">
+            <strong>Signature:</strong> n:Node -&gt; ChildContentAttr<br />
+              <strong>Modifiers:</strong> inline<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '739', 739)" onmouseover="showTip(event, '739', 739)">
+            x.Yield(ref)
+          </code>
+          <div class="tip" id="739">
+            <strong>Signature:</strong> ref:Ref -&gt; RefContent<br />
+              <strong>Modifiers:</strong> inline<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '740', 740)" onmouseover="showTip(event, '740', 740)">
+            x.Yield(comp)
+          </code>
+          <div class="tip" id="740">
+            <strong>Signature:</strong> comp:ComponentWithAttrsAndNoChildrenBuilder&lt;&#39;T&gt; -&gt; Node<br />
+              <strong>Modifiers:</strong> inline<br />
+                          <strong>Type parameters:</strong> 'T                      </div>
+        </td>
+        <td class="xmldoc">
+                    
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '741', 741)" onmouseover="showTip(event, '741', 741)">
+            x.Yield(comp)
+          </code>
+          <div class="tip" id="741">
+            <strong>Signature:</strong> comp:ComponentWithAttrsBuilder&lt;&#39;T&gt; -&gt; Node<br />
+              <strong>Modifiers:</strong> inline<br />
+                          <strong>Type parameters:</strong> 'T                      </div>
+        </td>
+        <td class="xmldoc">
+                    
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '742', 742)" onmouseover="showTip(event, '742', 742)">
+            x.Yield(comp)
+          </code>
+          <div class="tip" id="742">
+            <strong>Signature:</strong> comp:ComponentBuilder -&gt; Node<br />
+              <strong>Modifiers:</strong> inline<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '743', 743)" onmouseover="showTip(event, '743', 743)">
+            x.Yield(_comp)
+          </code>
+          <div class="tip" id="743">
+            <strong>Signature:</strong> _comp:ComponentBuilder&lt;&#39;T&gt; -&gt; Node<br />
+              <strong>Modifiers:</strong> inline<br />
+                          <strong>Type parameters:</strong> 'T                      </div>
+        </td>
+        <td class="xmldoc">
+                    
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '744', 744)" onmouseover="showTip(event, '744', 744)">
+            x.Yield(eb)
+          </code>
+          <div class="tip" id="744">
+            <strong>Signature:</strong> eb:ElementBuilder -&gt; Node<br />
+              <strong>Modifiers:</strong> inline<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '745', 745)" onmouseover="showTip(event, '745', 745)">
+            x.Yield(fragment)
+          </code>
+          <div class="tip" id="745">
+            <strong>Signature:</strong> fragment:RenderFragment -&gt; Node<br />
+              <strong>Modifiers:</strong> inline<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '746', 746)" onmouseover="showTip(event, '746', 746)">
+            x.Yield(text)
+          </code>
+          <div class="tip" id="746">
+            <strong>Signature:</strong> text:string -&gt; Node<br />
+              <strong>Modifiers:</strong> inline<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '747', 747)" onmouseover="showTip(event, '747', 747)">
+            x.Yield(node)
+          </code>
+          <div class="tip" id="747">
+            <strong>Signature:</strong> node:Node -&gt; Node<br />
+              <strong>Modifiers:</strong> inline<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '748', 748)" onmouseover="showTip(event, '748', 748)">
+            x.Yield(ref)
+          </code>
+          <div class="tip" id="748">
+            <strong>Signature:</strong> ref:RefContent -&gt; RefContent<br />
+              <strong>Modifiers:</strong> inline<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '749', 749)" onmouseover="showTip(event, '749', 749)">
+            x.Yield(attr)
+          </code>
+          <div class="tip" id="749">
+            <strong>Signature:</strong> attr:Attr -&gt; Attr<br />
+              <strong>Modifiers:</strong> inline<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '750', 750)" onmouseover="showTip(event, '750', 750)">
+            x.Yield(key)
+          </code>
+          <div class="tip" id="750">
+            <strong>Signature:</strong> key:Key -&gt; Key<br />
+              <strong>Modifiers:</strong> inline<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</p>
+</div></section>
+        </div>
+          <div class="column is-one-quarter-tablet is-one-fifth-desktop sidebar-column">
+            <section class="section">
+              <div class="menu">
+                <div class="menu-label">Documentation</div>
+                <ul class="menu-list"><li>
+                    <a href="/docs">Getting Started</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Hosting">Hosting models</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/HTML">Writing HTML</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/HTML-list-functions">Writing HTML (Legacy)</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Templating">HTML templates</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Elmish">Using Elmish</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Routing">Routing</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Remoting">Remoting</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Blazor">Using Blazor features</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/JSON">Dealing with JSON</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Upgrade">Upgrade guide</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a class="is-active" href="/docs/reference">API Reference</a>
+                    <ul></ul>
+                  </li></ul>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </section>
+      
+    
+  <footer class="section footer first-footer has-text-centered">
+    <div class="container">
+      <div class="columns">
+        <div class="column">
+          <a target="_blank" href="https://github.com/fsbolero/template">
+            <img class="box no-padding" data-src="/img/screenshot-template.png" />
+            <h1 class="title">Bolero project template</h1>
+          </a>
+        </div>
+        <div class="column">
+          <a target="_blank" href="https://fsbolero.github.io/TodoMVC">
+            <img class="box no-padding" data-src="/img/screenshot-todomvc.png" />
+            <h1 class="title">TodoMVC</h1>
+          </a>
+        </div>
+        <div class="column">
+          <a target="_blank" href="https://tryfsharp.fsbolero.io">
+            <img class="box no-padding" data-src="/img/screenshot-tryfsharp.png" />
+            <h1 class="title">Try F# in your browser</h1>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <footer class="section footer second-footer">
+    <div class="container">
+      <div class="columns">
+        <div class="column">
+          <h1 class="title"><a href="/">Home</a></h1>
+          <h1 class="title">Made with Bolero</h1>
+          <div class="menu">
+            <ul class="menu-list">
+              <li><a target="_blank" href="https://tryfsharp.fsbolero.io">Try F#</a></li>
+              <li><a target="_blank" href="https://github.com/fsbolero/TodoMVC">TodoMVC</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="column">
+          <h1 class="title">Documentation</h1>
+          <div class="menu">
+            <ul class="menu-list"><li><a href="/docs">Getting Started</a></li><li><a href="/docs/Hosting">Hosting models</a></li><li><a href="/docs/HTML">Writing HTML</a></li><li><a href="/docs/HTML-list-functions">Writing HTML (Legacy)</a></li><li><a href="/docs/Templating">HTML templates</a></li><li><a href="/docs/Elmish">Using Elmish</a></li><li><a href="/docs/Routing">Routing</a></li><li><a href="/docs/Remoting">Remoting</a></li><li><a href="/docs/Blazor">Using Blazor features</a></li><li><a href="/docs/JSON">Dealing with JSON</a></li><li><a href="/docs/Upgrade">Upgrade guide</a></li><li><a href="/docs/reference">API Reference</a></li></ul>
+          </div>
+        </div>
+        <div class="column">
+          <h1 class="title">We leverage</h1>
+          <div class="menu">
+            <ul class="menu-list">
+              <li><a target="_blank" href="https://fsharp.org">F#</a></li>
+              <li><a target="_blank" href="https://elmish.github.io/elmish/">Elmish</a></li>
+              <li><a target="_blank" href="https://dot.net">.NET Core</a></li>
+              <li><a target="_blank" href="https://blazor.net">Blazor</a></li>
+              <li><a target="_blank" href="https://webassembly.org/">WebAssembly</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="column">
+          <h1 class="title">Find us</h1>
+          <ul>
+            <li>
+              <a class="github-button" href="https://github.com/fsbolero/bolero" data-size="large" aria-label="Star fsbolero/bolero on GitHub">Bolero on GitHub</a>
+            </li>
+            <li>
+              <a href="https://twitter.com/fsbolero?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large" data-dnt="true" data-show-count="false">Follow &commat;fsbolero</a>
+            </li>
+            <li>
+              <a target="_blank" href="https://nuget.org/packages/Bolero"><img alt="NuGet" src="https://img.shields.io/nuget/v/Bolero.svg?label=Bolero%20on%20NuGet&amp;logo=nuget&amp;style=for-the-badge" /></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/8.6.0/lazyload.min.js"></script>
+  <script type="text/javascript">new LazyLoad();</script>
+  <script src="/js/Client.min.js"></script>
+  <script async="" defer="" src="https://buttons.github.io/buttons.js"></script>
+  <script async="" defer="" src="https://platform.twitter.com/widgets.js"></script>
+  
+  
+</body>
+</html>

@@ -22,7 +22,7 @@
       <div class="navbar-menu">
         <nav class="navbar-start"><a href="/" class="navbar-item is-hoverable has-text-weight-bold">Home</a><div class="navbar-item is-hoverable has-text-weight-bold has-dropdown">
             <a href="/docs" class="navbar-link is-arrowless">Documentation</a>
-            <div class="navbar-dropdown has-text-weight-normal"><a class="navbar-item" href="/docs">Getting Started</a><a class="navbar-item" href="/docs/Hosting">Hosting models</a><a class="navbar-item" href="/docs/HTML">Writing HTML</a><a class="navbar-item" href="/docs/Templating">HTML templates</a><a class="navbar-item" href="/docs/Elmish">Using Elmish</a><a class="navbar-item" href="/docs/Routing">Routing</a><a class="navbar-item" href="/docs/Remoting">Remoting</a><a class="navbar-item" href="/docs/Blazor">Using Blazor features</a><a class="navbar-item" href="/docs/JSON">Dealing with JSON</a><a class="navbar-item" href="/docs/Upgrade">Upgrade guide</a><a class="navbar-item" href="/docs/reference">API Reference</a></div>
+            <div class="navbar-dropdown has-text-weight-normal"><a class="navbar-item" href="/docs">Getting Started</a><a class="navbar-item" href="/docs/Hosting">Hosting models</a><a class="navbar-item" href="/docs/HTML">Writing HTML</a><a class="navbar-item" href="/docs/HTML-list-functions">Writing HTML (Legacy)</a><a class="navbar-item" href="/docs/Templating">HTML templates</a><a class="navbar-item" href="/docs/Elmish">Using Elmish</a><a class="navbar-item" href="/docs/Routing">Routing</a><a class="navbar-item" href="/docs/Remoting">Remoting</a><a class="navbar-item" href="/docs/Blazor">Using Blazor features</a><a class="navbar-item" href="/docs/JSON">Dealing with JSON</a><a class="navbar-item" href="/docs/Upgrade">Upgrade guide</a><a class="navbar-item" href="/docs/reference">API Reference</a></div>
           </div><a href="/blog" class="navbar-item is-hoverable has-text-weight-bold">Blog</a><a href="https://tryfsharp.fsbolero.io" class="navbar-item is-hoverable has-text-weight-bold">Try F#</a></nav>
         <nav class="navbar-end">
           <a target="_blank" title="GitHub" href="https://github.com/fsbolero/bolero" class="navbar-item is-hoverable"><i class="fa fa-github"></i></a>
@@ -47,6 +47,9 @@
             
           </li><li>
             <a href="/docs/HTML">Writing HTML</a>
+            
+          </li><li>
+            <a href="/docs/HTML-list-functions">Writing HTML (Legacy)</a>
             
           </li><li>
             <a href="/docs/Templating">HTML templates</a>
@@ -102,8 +105,9 @@ Welcome to Bolero: F# on WebAssembly!</p>
               </div>
             </section>
           <section class="section"><div ws-preserve=""><h3 id="what-is-bolero">What is Bolero?</h3>
-<p>Bolero is a set of free and open-source libraries and tools to write <a href="https://webassembly.org/"><strong>WebAssembly</strong></a> applications in <a href="https://fsharp.org/"><strong>F#</strong></a>. With it, you can write fully dynamic client-side web applications from the comfort of a strongly-typed functional language, all with great performance.</p>
-<p>Bolero is built on top of <a href="https://blazor.net/">Blazor</a> and adds a lot of features designed specifically to work in F#:</p>
+<p>Bolero is a set of free and open-source libraries and tools to write web applications in <a href="https://fsharp.org/"><strong>F#</strong></a>. With it, you can write fully dynamic client-side web applications from the comfort of a strongly-typed functional language, all with great performance.</p>
+<p>Bolero is built on top of <a href="https://blazor.net/">Blazor</a>, which means it can run in one of two modes: either in <a href="https://webassembly.org/"><strong>WebAssembly</strong></a> directly in the browser, or on the server side with <a href="https://docs.microsoft.com/en-us/aspnet/core/signalr/introduction">SignalR</a>.
+It adds a lot of features designed specifically to work in F#:</p>
 <ul>
 <li><a href="Elmish">Elmish</a> Model-View-Update architecture for a functional approach to reactive content.</li>
 <li><a href="HTML">HTML-in-F#</a> syntax inspired by WebSharper.UI and Fable.</li>
@@ -113,7 +117,7 @@ Welcome to Bolero: F# on WebAssembly!</p>
 <li>F#-specific optimizations: Bolero strips F# metadata from compiled assemblies, reducing the download size of the application.</li>
 </ul>
 <h3 id="creating-a-project">Creating a project</h3>
-<p>You can develop Bolero applications on Windows, OSX or Linux. It only has one prerequisite: the <a href="https://dotnet.microsoft.com/download/dotnet-core">.NET SDK</a>, version 5.0.100 or newer.</p>
+<p>You can develop Bolero applications on Windows, OSX or Linux. It only has one prerequisite: the <a href="https://dotnet.microsoft.com/download/dotnet-core">.NET SDK</a>, version 6.0.101 or newer.</p>
 <p>The easiest way to get started is to use Bolero's dotnet template. To install it, run the following command:</p>
 <pre><code class="language-shell">dotnet new -i Bolero.Templates
 </code></pre>
@@ -172,6 +176,9 @@ dotnet run -p src/HelloWorld.Server
                     <ul class="is-hidden"></ul>
                   </li><li>
                     <a href="/docs/HTML">Writing HTML</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/HTML-list-functions">Writing HTML (Legacy)</a>
                     <ul class="is-hidden"></ul>
                   </li><li>
                     <a href="/docs/Templating">HTML templates</a>
@@ -246,7 +253,7 @@ dotnet run -p src/HelloWorld.Server
         <div class="column">
           <h1 class="title">Documentation</h1>
           <div class="menu">
-            <ul class="menu-list"><li><a href="/docs">Getting Started</a></li><li><a href="/docs/Hosting">Hosting models</a></li><li><a href="/docs/HTML">Writing HTML</a></li><li><a href="/docs/Templating">HTML templates</a></li><li><a href="/docs/Elmish">Using Elmish</a></li><li><a href="/docs/Routing">Routing</a></li><li><a href="/docs/Remoting">Remoting</a></li><li><a href="/docs/Blazor">Using Blazor features</a></li><li><a href="/docs/JSON">Dealing with JSON</a></li><li><a href="/docs/Upgrade">Upgrade guide</a></li><li><a href="/docs/reference">API Reference</a></li></ul>
+            <ul class="menu-list"><li><a href="/docs">Getting Started</a></li><li><a href="/docs/Hosting">Hosting models</a></li><li><a href="/docs/HTML">Writing HTML</a></li><li><a href="/docs/HTML-list-functions">Writing HTML (Legacy)</a></li><li><a href="/docs/Templating">HTML templates</a></li><li><a href="/docs/Elmish">Using Elmish</a></li><li><a href="/docs/Routing">Routing</a></li><li><a href="/docs/Remoting">Remoting</a></li><li><a href="/docs/Blazor">Using Blazor features</a></li><li><a href="/docs/JSON">Dealing with JSON</a></li><li><a href="/docs/Upgrade">Upgrade guide</a></li><li><a href="/docs/reference">API Reference</a></li></ul>
           </div>
         </div>
         <div class="column">

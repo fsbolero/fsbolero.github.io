@@ -22,7 +22,7 @@
       <div class="navbar-menu">
         <nav class="navbar-start"><a href="/" class="navbar-item is-hoverable has-text-weight-bold">Home</a><div class="navbar-item is-hoverable has-text-weight-bold has-dropdown">
             <a href="/docs" class="navbar-link is-arrowless">Documentation</a>
-            <div class="navbar-dropdown has-text-weight-normal"><a class="navbar-item" href="/docs">Getting Started</a><a class="navbar-item" href="/docs/Hosting">Hosting models</a><a class="navbar-item" href="/docs/HTML">Writing HTML</a><a class="navbar-item" href="/docs/Templating">HTML templates</a><a class="navbar-item" href="/docs/Elmish">Using Elmish</a><a class="navbar-item" href="/docs/Routing">Routing</a><a class="navbar-item" href="/docs/Remoting">Remoting</a><a class="navbar-item" href="/docs/Blazor">Using Blazor features</a><a class="navbar-item" href="/docs/JSON">Dealing with JSON</a><a class="navbar-item" href="/docs/Upgrade">Upgrade guide</a><a class="navbar-item" href="/docs/reference">API Reference</a></div>
+            <div class="navbar-dropdown has-text-weight-normal"><a class="navbar-item" href="/docs">Getting Started</a><a class="navbar-item" href="/docs/Hosting">Hosting models</a><a class="navbar-item" href="/docs/HTML">Writing HTML</a><a class="navbar-item" href="/docs/HTML-list-functions">Writing HTML (Legacy)</a><a class="navbar-item" href="/docs/Templating">HTML templates</a><a class="navbar-item" href="/docs/Elmish">Using Elmish</a><a class="navbar-item" href="/docs/Routing">Routing</a><a class="navbar-item" href="/docs/Remoting">Remoting</a><a class="navbar-item" href="/docs/Blazor">Using Blazor features</a><a class="navbar-item" href="/docs/JSON">Dealing with JSON</a><a class="navbar-item" href="/docs/Upgrade">Upgrade guide</a><a class="navbar-item" href="/docs/reference">API Reference</a></div>
           </div><a href="/blog" class="navbar-item is-hoverable has-text-weight-bold">Blog</a><a href="https://tryfsharp.fsbolero.io" class="navbar-item is-hoverable has-text-weight-bold">Try F#</a></nav>
         <nav class="navbar-end">
           <a target="_blank" title="GitHub" href="https://github.com/fsbolero/bolero" class="navbar-item is-hoverable"><i class="fa fa-github"></i></a>
@@ -47,6 +47,9 @@
             
           </li><li>
             <a href="/docs/HTML">Writing HTML</a>
+            
+          </li><li>
+            <a href="/docs/HTML-list-functions">Writing HTML (Legacy)</a>
             
           </li><li>
             <a href="/docs/Templating">HTML templates</a>
@@ -101,10 +104,70 @@
   <span>Namespace: Bolero</span><br />
   </p>
 <div class="xmldoc">
+<p>Create HTML elements, attributes and event handlers.</p>
+
 </div>
+  <!-- If there is more than 1 category in the type, generate TOC -->
+  <h2>Table of contents</h2>
+  <ul>
+      <li><a href="#section0">Components</a></li>            
+      <li><a href="#section1">HTML elements</a></li>            
+      <li><a href="#section2">HTML tag names</a></li>            
+      <li><a href="#section3">Other module members</a></li>            
+  </ul>
 
 <!-- Render nested types and modules, if there are any -->
+  <h2>Nested types and modules</h2>
+  <div>
+      <table class="table table-bordered module-list">
+    <thead>
+      <tr><td>Module</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td class="module-name">
+            <a href="bolero-html-attr.html">attr</a>
+          </td>
+          <td class="xmldoc">
+          <p>HTML attributes.</p>
 
+
+          </td>
+        </tr>
+        <tr>
+          <td class="module-name">
+            <a href="bolero-html-bind.html">bind</a>
+          </td>
+          <td class="xmldoc">
+          <p>Two-way binding for HTML input elements.</p>
+
+
+          </td>
+        </tr>
+        <tr>
+          <td class="module-name">
+            <a href="bolero-html-on.html">on</a>
+          </td>
+          <td class="xmldoc">
+          <p>Event handlers.</p>
+
+
+          </td>
+        </tr>
+        <tr>
+          <td class="module-name">
+            <a href="bolero-html-virtualize.html">virtualize</a>
+          </td>
+          <td class="xmldoc">
+          
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  </div>
+
+    <h2>Components<a name="section0">&#160;</a></h2>    
   <h3>Functions and values</h3>
   <table class="table table-bordered member-list">
     <thead>
@@ -113,15 +176,2329 @@
     <tbody>
       <tr>
         <td class="member-name">
-          <code onmouseout="hideTip(event, '1', 1)" onmouseover="showTip(event, '1', 1)">
-            empty
+          <code onmouseout="hideTip(event, '17', 17)" onmouseover="showTip(event, '17', 17)">
+            comp
           </code>
-          <div class="tip" id="1">
-            <strong>Signature:</strong> Node<br />
+          <div class="tip" id="17">
+            <strong>Signature:</strong> ComponentBuilder&lt;&#39;T&gt;<br />
+              <strong>Modifiers:</strong> inline<br />
+                          <strong>Type parameters:</strong> 'T                      </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create a fragment from a Blazor component.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '18', 18)" onmouseover="showTip(event, '18', 18)">
+            ecomp model dispatch
+          </code>
+          <div class="tip" id="18">
+            <strong>Signature:</strong> model:&#39;model -&gt; dispatch:Dispatch&lt;&#39;msg&gt; -&gt; ComponentWithAttrsAndNoChildrenBuilder&lt;&#39;T&gt;<br />
+              <strong>Modifiers:</strong> inline<br />
+                          <strong>Type parameters:</strong> 'T, 'model, 'msg                      </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create a fragment from an Elmish component.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '19', 19)" onmouseover="showTip(event, '19', 19)">
+            lazyComp2 viewFunction model dispatch
+          </code>
+          <div class="tip" id="19">
+            <strong>Signature:</strong> viewFunction:(&#39;model -&gt; Dispatch&lt;&#39;msg&gt; -&gt; Node) -&gt; model:&#39;model -&gt; dispatch:Dispatch&lt;&#39;msg&gt; -&gt; Node<br />
+              <strong>Modifiers:</strong> inline<br />
+                          <strong>Type parameters:</strong> 'model, 'msg                      </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create a fragment with a lazily rendered view function.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '20', 20)" onmouseover="showTip(event, '20', 20)">
+            lazyComp2By(...)
+          </code>
+          <div class="tip" id="20">
+            <strong>Signature:</strong> equal:(&#39;model -&gt; &#39;a) -&gt; viewFunction:(&#39;model -&gt; Dispatch&lt;&#39;msg&gt; -&gt; Node) -&gt; model:&#39;model -&gt; dispatch:Dispatch&lt;&#39;msg&gt; -&gt; Node<br />
+              <strong>Modifiers:</strong> inline<br />
+                          <strong>Type parameters:</strong> 'model, 'a, 'msg                      </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create a fragment with a lazily rendered view function and custom equality on model field.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '21', 21)" onmouseover="showTip(event, '21', 21)">
+            lazyComp2With(...)
+          </code>
+          <div class="tip" id="21">
+            <strong>Signature:</strong> equal:(&#39;model -&gt; &#39;model -&gt; bool) -&gt; viewFunction:(&#39;model -&gt; Dispatch&lt;&#39;msg&gt; -&gt; Node) -&gt; model:&#39;model -&gt; dispatch:Dispatch&lt;&#39;msg&gt; -&gt; Node<br />
+              <strong>Modifiers:</strong> inline<br />
+                          <strong>Type parameters:</strong> 'model, 'msg                      </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create a fragment with a lazily rendered view function and a custom equality.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '22', 22)" onmouseover="showTip(event, '22', 22)">
+            lazyComp3(...)
+          </code>
+          <div class="tip" id="22">
+            <strong>Signature:</strong> viewFunction:(&#39;model1 * &#39;model2&#39; -&gt; Dispatch&lt;&#39;msg&gt; -&gt; Node) -&gt; model1:&#39;model1 -&gt; model2:&#39;model2 -&gt; dispatch:Dispatch&lt;&#39;msg&gt; -&gt; Node<br />
+              <strong>Modifiers:</strong> inline<br />
+                          <strong>Type parameters:</strong> 'model1, 'model2', 'msg, 'model2                      </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create a fragment with a lazily rendered view function.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '23', 23)" onmouseover="showTip(event, '23', 23)">
+            lazyComp3By(...)
+          </code>
+          <div class="tip" id="23">
+            <strong>Signature:</strong> equal:(&#39;model1 * &#39;model2 -&gt; &#39;a) -&gt; viewFunction:(&#39;model1 * &#39;model2 -&gt; Dispatch&lt;&#39;msg&gt; -&gt; Node) -&gt; model1:&#39;model1 -&gt; model2:&#39;model2 -&gt; dispatch:Dispatch&lt;&#39;msg&gt; -&gt; Node<br />
+              <strong>Modifiers:</strong> inline<br />
+                          <strong>Type parameters:</strong> 'model1, 'model2, 'a, 'msg                      </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create a fragment with a lazily rendered view function and custom equality on model field.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '24', 24)" onmouseover="showTip(event, '24', 24)">
+            lazyComp3With(...)
+          </code>
+          <div class="tip" id="24">
+            <strong>Signature:</strong> equal:(&#39;model1 * &#39;model2 -&gt; &#39;model1 * &#39;model2 -&gt; bool) -&gt; viewFunction:(&#39;model1 * &#39;model2&#39; -&gt; Dispatch&lt;&#39;msg&gt; -&gt; Node) -&gt; model1:&#39;model1 -&gt; model2:&#39;model2 -&gt; dispatch:Dispatch&lt;&#39;msg&gt; -&gt; Node<br />
+              <strong>Modifiers:</strong> inline<br />
+                          <strong>Type parameters:</strong> 'model1, 'model2, 'model2', 'msg                      </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create a fragment with a lazily rendered view function and a custom equality.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '25', 25)" onmouseover="showTip(event, '25', 25)">
+            lazyCompBy equal viewFunction model
+          </code>
+          <div class="tip" id="25">
+            <strong>Signature:</strong> equal:(&#39;model -&gt; &#39;a) -&gt; viewFunction:(&#39;model -&gt; Node) -&gt; model:&#39;model -&gt; Node<br />
+              <strong>Modifiers:</strong> inline<br />
+                          <strong>Type parameters:</strong> 'model, 'a                      </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create a fragment with a lazily rendered view function and custom equality on model field.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '26', 26)" onmouseover="showTip(event, '26', 26)">
+            navLink(match)
+          </code>
+          <div class="tip" id="26">
+            <strong>Signature:</strong> match:NavLinkMatch -&gt; ComponentWithAttrsBuilder&lt;NavLink&gt;<br />
+              <strong>Modifiers:</strong> inline<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create a navigation link which toggles its <code>active</code> class
+based on whether the current URI matches its <code>href</code>.</p>
+
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+    <h2>HTML elements<a name="section1">&#160;</a></h2>    
+  <h3>Functions and values</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Function or value</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '27', 27)" onmouseover="showTip(event, '27', 27)">
+            ( =&gt; ) name value
+          </code>
+          <div class="tip" id="27">
+            <strong>Signature:</strong> name:string -&gt; value:&#39;?8608 -&gt; Attr<br />
+              <strong>Modifiers:</strong> inline<br />
+                          <strong>Type parameters:</strong> '?8608                      </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML attribute.</p>
+
+
+              <p>CompiledName: <code>op_EqualsGreater</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '28', 28)" onmouseover="showTip(event, '28', 28)">
+            cond matching mkNode
+          </code>
+          <div class="tip" id="28">
+            <strong>Signature:</strong> matching:&#39;T -&gt; mkNode:(&#39;T -&gt; Node) -&gt; Node<br />
+              <strong>Modifiers:</strong> inline<br />
+                          <strong>Type parameters:</strong> 'T                      </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create a conditional fragment. <code>matching</code> must be either a boolean or an F# union.
+If it's a union, <code>mkNode</code> must only match on the case.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '29', 29)" onmouseover="showTip(event, '29', 29)">
+            elt(name)
+          </code>
+          <div class="tip" id="29">
+            <strong>Signature:</strong> name:string -&gt; ElementBuilder<br />
+              <strong>Modifiers:</strong> inline<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '30', 30)" onmouseover="showTip(event, '30', 30)">
+            empty()
+          </code>
+          <div class="tip" id="30">
+            <strong>Signature:</strong> unit -&gt; Node<br />
+              <strong>Modifiers:</strong> inline<br />
                                   </div>
         </td>
         <td class="xmldoc">
                     <p>Create an empty HTML fragment.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '31', 31)" onmouseover="showTip(event, '31', 31)">
+            forEach items mkNode
+          </code>
+          <div class="tip" id="31">
+            <strong>Signature:</strong> items:seq&lt;&#39;T&gt; -&gt; mkNode:(&#39;T -&gt; Node) -&gt; Node<br />
+              <strong>Modifiers:</strong> inline<br />
+                          <strong>Type parameters:</strong> 'T                      </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create a fragment that concatenates nodes for each item in a sequence.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '32', 32)" onmouseover="showTip(event, '32', 32)">
+            rawHtml(str)
+          </code>
+          <div class="tip" id="32">
+            <strong>Signature:</strong> str:string -&gt; Node<br />
+              <strong>Modifiers:</strong> inline<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create a raw HTML node.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '33', 33)" onmouseover="showTip(event, '33', 33)">
+            text(str)
+          </code>
+          <div class="tip" id="33">
+            <strong>Signature:</strong> str:string -&gt; Node<br />
+              <strong>Modifiers:</strong> inline<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML text node.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '34', 34)" onmouseover="showTip(event, '34', 34)">
+            textf(format)
+          </code>
+          <div class="tip" id="34">
+            <strong>Signature:</strong> format:StringFormat&lt;&#39;?8605,Node&gt; -&gt; &#39;?8605<br />
+              <strong>Modifiers:</strong> inline<br />
+                          <strong>Type parameters:</strong> '?8605                      </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML text node using formatting.</p>
+
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+    <h2>HTML tag names<a name="section2">&#160;</a></h2>    
+  <h3>Functions and values</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Function or value</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '35', 35)" onmouseover="showTip(event, '35', 35)">
+            a
+          </code>
+          <div class="tip" id="35">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;a&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '36', 36)" onmouseover="showTip(event, '36', 36)">
+            abbr
+          </code>
+          <div class="tip" id="36">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;abbr&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '37', 37)" onmouseover="showTip(event, '37', 37)">
+            acronym
+          </code>
+          <div class="tip" id="37">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;acronym&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '38', 38)" onmouseover="showTip(event, '38', 38)">
+            address
+          </code>
+          <div class="tip" id="38">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;address&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '39', 39)" onmouseover="showTip(event, '39', 39)">
+            applet
+          </code>
+          <div class="tip" id="39">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;applet&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '40', 40)" onmouseover="showTip(event, '40', 40)">
+            area
+          </code>
+          <div class="tip" id="40">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;area&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '41', 41)" onmouseover="showTip(event, '41', 41)">
+            article
+          </code>
+          <div class="tip" id="41">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;article&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '42', 42)" onmouseover="showTip(event, '42', 42)">
+            aside
+          </code>
+          <div class="tip" id="42">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;aside&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '43', 43)" onmouseover="showTip(event, '43', 43)">
+            audio
+          </code>
+          <div class="tip" id="43">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;audio&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '44', 44)" onmouseover="showTip(event, '44', 44)">
+            b
+          </code>
+          <div class="tip" id="44">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;b&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '45', 45)" onmouseover="showTip(event, '45', 45)">
+            base
+          </code>
+          <div class="tip" id="45">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;base&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '46', 46)" onmouseover="showTip(event, '46', 46)">
+            basefont
+          </code>
+          <div class="tip" id="46">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;basefont&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '47', 47)" onmouseover="showTip(event, '47', 47)">
+            bdi
+          </code>
+          <div class="tip" id="47">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;bdi&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '48', 48)" onmouseover="showTip(event, '48', 48)">
+            bdo
+          </code>
+          <div class="tip" id="48">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;bdo&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '49', 49)" onmouseover="showTip(event, '49', 49)">
+            big
+          </code>
+          <div class="tip" id="49">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;big&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '50', 50)" onmouseover="showTip(event, '50', 50)">
+            blockquote
+          </code>
+          <div class="tip" id="50">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;blockquote&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '51', 51)" onmouseover="showTip(event, '51', 51)">
+            body
+          </code>
+          <div class="tip" id="51">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;body&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '52', 52)" onmouseover="showTip(event, '52', 52)">
+            br
+          </code>
+          <div class="tip" id="52">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;br&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '53', 53)" onmouseover="showTip(event, '53', 53)">
+            button
+          </code>
+          <div class="tip" id="53">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;button&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '54', 54)" onmouseover="showTip(event, '54', 54)">
+            canvas
+          </code>
+          <div class="tip" id="54">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;canvas&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '55', 55)" onmouseover="showTip(event, '55', 55)">
+            caption
+          </code>
+          <div class="tip" id="55">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;caption&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '56', 56)" onmouseover="showTip(event, '56', 56)">
+            center
+          </code>
+          <div class="tip" id="56">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;center&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '57', 57)" onmouseover="showTip(event, '57', 57)">
+            cite
+          </code>
+          <div class="tip" id="57">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;cite&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '58', 58)" onmouseover="showTip(event, '58', 58)">
+            code
+          </code>
+          <div class="tip" id="58">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;code&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '59', 59)" onmouseover="showTip(event, '59', 59)">
+            col
+          </code>
+          <div class="tip" id="59">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;col&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '60', 60)" onmouseover="showTip(event, '60', 60)">
+            colgroup
+          </code>
+          <div class="tip" id="60">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;colgroup&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '61', 61)" onmouseover="showTip(event, '61', 61)">
+            content
+          </code>
+          <div class="tip" id="61">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;content&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '62', 62)" onmouseover="showTip(event, '62', 62)">
+            data
+          </code>
+          <div class="tip" id="62">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;data&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '63', 63)" onmouseover="showTip(event, '63', 63)">
+            datalist
+          </code>
+          <div class="tip" id="63">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;datalist&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '64', 64)" onmouseover="showTip(event, '64', 64)">
+            dd
+          </code>
+          <div class="tip" id="64">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;dd&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '65', 65)" onmouseover="showTip(event, '65', 65)">
+            del
+          </code>
+          <div class="tip" id="65">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;del&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '66', 66)" onmouseover="showTip(event, '66', 66)">
+            details
+          </code>
+          <div class="tip" id="66">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;details&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '67', 67)" onmouseover="showTip(event, '67', 67)">
+            dfn
+          </code>
+          <div class="tip" id="67">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;dfn&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '68', 68)" onmouseover="showTip(event, '68', 68)">
+            dialog
+          </code>
+          <div class="tip" id="68">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;dialog&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '69', 69)" onmouseover="showTip(event, '69', 69)">
+            dir
+          </code>
+          <div class="tip" id="69">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;dir&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '70', 70)" onmouseover="showTip(event, '70', 70)">
+            div
+          </code>
+          <div class="tip" id="70">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;div&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '71', 71)" onmouseover="showTip(event, '71', 71)">
+            dl
+          </code>
+          <div class="tip" id="71">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;dl&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '72', 72)" onmouseover="showTip(event, '72', 72)">
+            dt
+          </code>
+          <div class="tip" id="72">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;dt&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '73', 73)" onmouseover="showTip(event, '73', 73)">
+            element
+          </code>
+          <div class="tip" id="73">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;element&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '74', 74)" onmouseover="showTip(event, '74', 74)">
+            em
+          </code>
+          <div class="tip" id="74">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;em&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '75', 75)" onmouseover="showTip(event, '75', 75)">
+            embed
+          </code>
+          <div class="tip" id="75">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;embed&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '76', 76)" onmouseover="showTip(event, '76', 76)">
+            fieldset
+          </code>
+          <div class="tip" id="76">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;fieldset&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '77', 77)" onmouseover="showTip(event, '77', 77)">
+            figcaption
+          </code>
+          <div class="tip" id="77">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;figcaption&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '78', 78)" onmouseover="showTip(event, '78', 78)">
+            figure
+          </code>
+          <div class="tip" id="78">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;figure&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '79', 79)" onmouseover="showTip(event, '79', 79)">
+            font
+          </code>
+          <div class="tip" id="79">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;font&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '80', 80)" onmouseover="showTip(event, '80', 80)">
+            footer
+          </code>
+          <div class="tip" id="80">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;footer&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '81', 81)" onmouseover="showTip(event, '81', 81)">
+            form
+          </code>
+          <div class="tip" id="81">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;form&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '82', 82)" onmouseover="showTip(event, '82', 82)">
+            frame
+          </code>
+          <div class="tip" id="82">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;frame&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '83', 83)" onmouseover="showTip(event, '83', 83)">
+            frameset
+          </code>
+          <div class="tip" id="83">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;frameset&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '84', 84)" onmouseover="showTip(event, '84', 84)">
+            h1
+          </code>
+          <div class="tip" id="84">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;h1&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '85', 85)" onmouseover="showTip(event, '85', 85)">
+            h2
+          </code>
+          <div class="tip" id="85">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;h2&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '86', 86)" onmouseover="showTip(event, '86', 86)">
+            h3
+          </code>
+          <div class="tip" id="86">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;h3&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '87', 87)" onmouseover="showTip(event, '87', 87)">
+            h4
+          </code>
+          <div class="tip" id="87">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;h4&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '88', 88)" onmouseover="showTip(event, '88', 88)">
+            h5
+          </code>
+          <div class="tip" id="88">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;h5&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '89', 89)" onmouseover="showTip(event, '89', 89)">
+            h6
+          </code>
+          <div class="tip" id="89">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;h6&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '90', 90)" onmouseover="showTip(event, '90', 90)">
+            head
+          </code>
+          <div class="tip" id="90">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;head&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '91', 91)" onmouseover="showTip(event, '91', 91)">
+            header
+          </code>
+          <div class="tip" id="91">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;header&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '92', 92)" onmouseover="showTip(event, '92', 92)">
+            hr
+          </code>
+          <div class="tip" id="92">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;hr&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '93', 93)" onmouseover="showTip(event, '93', 93)">
+            html
+          </code>
+          <div class="tip" id="93">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;html&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '94', 94)" onmouseover="showTip(event, '94', 94)">
+            i
+          </code>
+          <div class="tip" id="94">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;i&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '95', 95)" onmouseover="showTip(event, '95', 95)">
+            iframe
+          </code>
+          <div class="tip" id="95">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;iframe&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '96', 96)" onmouseover="showTip(event, '96', 96)">
+            img
+          </code>
+          <div class="tip" id="96">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;img&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '97', 97)" onmouseover="showTip(event, '97', 97)">
+            input
+          </code>
+          <div class="tip" id="97">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;input&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '98', 98)" onmouseover="showTip(event, '98', 98)">
+            ins
+          </code>
+          <div class="tip" id="98">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;ins&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '99', 99)" onmouseover="showTip(event, '99', 99)">
+            kbd
+          </code>
+          <div class="tip" id="99">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;kbd&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '100', 100)" onmouseover="showTip(event, '100', 100)">
+            label
+          </code>
+          <div class="tip" id="100">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;label&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '101', 101)" onmouseover="showTip(event, '101', 101)">
+            legend
+          </code>
+          <div class="tip" id="101">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;legend&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '102', 102)" onmouseover="showTip(event, '102', 102)">
+            li
+          </code>
+          <div class="tip" id="102">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;li&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '103', 103)" onmouseover="showTip(event, '103', 103)">
+            link
+          </code>
+          <div class="tip" id="103">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;link&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '104', 104)" onmouseover="showTip(event, '104', 104)">
+            main
+          </code>
+          <div class="tip" id="104">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;main&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '105', 105)" onmouseover="showTip(event, '105', 105)">
+            map
+          </code>
+          <div class="tip" id="105">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;map&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '106', 106)" onmouseover="showTip(event, '106', 106)">
+            mark
+          </code>
+          <div class="tip" id="106">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;mark&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '107', 107)" onmouseover="showTip(event, '107', 107)">
+            menu
+          </code>
+          <div class="tip" id="107">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;menu&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '108', 108)" onmouseover="showTip(event, '108', 108)">
+            menuitem
+          </code>
+          <div class="tip" id="108">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;menuitem&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '109', 109)" onmouseover="showTip(event, '109', 109)">
+            meta
+          </code>
+          <div class="tip" id="109">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;meta&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '110', 110)" onmouseover="showTip(event, '110', 110)">
+            meter
+          </code>
+          <div class="tip" id="110">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;meter&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '111', 111)" onmouseover="showTip(event, '111', 111)">
+            nav
+          </code>
+          <div class="tip" id="111">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;nav&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '112', 112)" onmouseover="showTip(event, '112', 112)">
+            noembed
+          </code>
+          <div class="tip" id="112">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;noembed&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '113', 113)" onmouseover="showTip(event, '113', 113)">
+            noframes
+          </code>
+          <div class="tip" id="113">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;noframes&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '114', 114)" onmouseover="showTip(event, '114', 114)">
+            noscript
+          </code>
+          <div class="tip" id="114">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;noscript&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '115', 115)" onmouseover="showTip(event, '115', 115)">
+            object
+          </code>
+          <div class="tip" id="115">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;object&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '116', 116)" onmouseover="showTip(event, '116', 116)">
+            ol
+          </code>
+          <div class="tip" id="116">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;ol&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '117', 117)" onmouseover="showTip(event, '117', 117)">
+            optgroup
+          </code>
+          <div class="tip" id="117">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;optgroup&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '118', 118)" onmouseover="showTip(event, '118', 118)">
+            option
+          </code>
+          <div class="tip" id="118">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;option&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '119', 119)" onmouseover="showTip(event, '119', 119)">
+            output
+          </code>
+          <div class="tip" id="119">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;output&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '120', 120)" onmouseover="showTip(event, '120', 120)">
+            p
+          </code>
+          <div class="tip" id="120">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;p&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '121', 121)" onmouseover="showTip(event, '121', 121)">
+            param
+          </code>
+          <div class="tip" id="121">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;param&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '122', 122)" onmouseover="showTip(event, '122', 122)">
+            picture
+          </code>
+          <div class="tip" id="122">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;picture&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '123', 123)" onmouseover="showTip(event, '123', 123)">
+            pre
+          </code>
+          <div class="tip" id="123">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;pre&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '124', 124)" onmouseover="showTip(event, '124', 124)">
+            progress
+          </code>
+          <div class="tip" id="124">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;progress&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '125', 125)" onmouseover="showTip(event, '125', 125)">
+            q
+          </code>
+          <div class="tip" id="125">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;q&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '126', 126)" onmouseover="showTip(event, '126', 126)">
+            rb
+          </code>
+          <div class="tip" id="126">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;rb&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '127', 127)" onmouseover="showTip(event, '127', 127)">
+            rp
+          </code>
+          <div class="tip" id="127">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;rp&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '128', 128)" onmouseover="showTip(event, '128', 128)">
+            rt
+          </code>
+          <div class="tip" id="128">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;rt&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '129', 129)" onmouseover="showTip(event, '129', 129)">
+            rtc
+          </code>
+          <div class="tip" id="129">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;rtc&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '130', 130)" onmouseover="showTip(event, '130', 130)">
+            ruby
+          </code>
+          <div class="tip" id="130">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;ruby&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '131', 131)" onmouseover="showTip(event, '131', 131)">
+            s
+          </code>
+          <div class="tip" id="131">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;s&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '132', 132)" onmouseover="showTip(event, '132', 132)">
+            samp
+          </code>
+          <div class="tip" id="132">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;samp&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '133', 133)" onmouseover="showTip(event, '133', 133)">
+            script
+          </code>
+          <div class="tip" id="133">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;script&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '134', 134)" onmouseover="showTip(event, '134', 134)">
+            section
+          </code>
+          <div class="tip" id="134">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;section&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '135', 135)" onmouseover="showTip(event, '135', 135)">
+            select
+          </code>
+          <div class="tip" id="135">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;select&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '136', 136)" onmouseover="showTip(event, '136', 136)">
+            shadow
+          </code>
+          <div class="tip" id="136">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;shadow&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '137', 137)" onmouseover="showTip(event, '137', 137)">
+            slot
+          </code>
+          <div class="tip" id="137">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;slot&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '138', 138)" onmouseover="showTip(event, '138', 138)">
+            small
+          </code>
+          <div class="tip" id="138">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;small&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '139', 139)" onmouseover="showTip(event, '139', 139)">
+            source
+          </code>
+          <div class="tip" id="139">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;source&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '140', 140)" onmouseover="showTip(event, '140', 140)">
+            span
+          </code>
+          <div class="tip" id="140">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;span&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '141', 141)" onmouseover="showTip(event, '141', 141)">
+            strike
+          </code>
+          <div class="tip" id="141">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;strike&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '142', 142)" onmouseover="showTip(event, '142', 142)">
+            strong
+          </code>
+          <div class="tip" id="142">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;strong&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '143', 143)" onmouseover="showTip(event, '143', 143)">
+            style
+          </code>
+          <div class="tip" id="143">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;style&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '144', 144)" onmouseover="showTip(event, '144', 144)">
+            sub
+          </code>
+          <div class="tip" id="144">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;sub&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '145', 145)" onmouseover="showTip(event, '145', 145)">
+            summary
+          </code>
+          <div class="tip" id="145">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;summary&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '146', 146)" onmouseover="showTip(event, '146', 146)">
+            sup
+          </code>
+          <div class="tip" id="146">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;sup&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '147', 147)" onmouseover="showTip(event, '147', 147)">
+            svg
+          </code>
+          <div class="tip" id="147">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;svg&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '148', 148)" onmouseover="showTip(event, '148', 148)">
+            table
+          </code>
+          <div class="tip" id="148">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;table&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '149', 149)" onmouseover="showTip(event, '149', 149)">
+            tbody
+          </code>
+          <div class="tip" id="149">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;tbody&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '150', 150)" onmouseover="showTip(event, '150', 150)">
+            td
+          </code>
+          <div class="tip" id="150">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;td&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '151', 151)" onmouseover="showTip(event, '151', 151)">
+            template
+          </code>
+          <div class="tip" id="151">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;template&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '152', 152)" onmouseover="showTip(event, '152', 152)">
+            textarea
+          </code>
+          <div class="tip" id="152">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;textarea&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '153', 153)" onmouseover="showTip(event, '153', 153)">
+            tfoot
+          </code>
+          <div class="tip" id="153">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;tfoot&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '154', 154)" onmouseover="showTip(event, '154', 154)">
+            th
+          </code>
+          <div class="tip" id="154">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;th&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '155', 155)" onmouseover="showTip(event, '155', 155)">
+            thead
+          </code>
+          <div class="tip" id="155">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;thead&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '156', 156)" onmouseover="showTip(event, '156', 156)">
+            time
+          </code>
+          <div class="tip" id="156">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;time&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '157', 157)" onmouseover="showTip(event, '157', 157)">
+            title
+          </code>
+          <div class="tip" id="157">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;title&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '158', 158)" onmouseover="showTip(event, '158', 158)">
+            tr
+          </code>
+          <div class="tip" id="158">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;tr&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '159', 159)" onmouseover="showTip(event, '159', 159)">
+            track
+          </code>
+          <div class="tip" id="159">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;track&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '160', 160)" onmouseover="showTip(event, '160', 160)">
+            tt
+          </code>
+          <div class="tip" id="160">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;tt&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '161', 161)" onmouseover="showTip(event, '161', 161)">
+            u
+          </code>
+          <div class="tip" id="161">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;u&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '162', 162)" onmouseover="showTip(event, '162', 162)">
+            ul
+          </code>
+          <div class="tip" id="162">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;ul&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '163', 163)" onmouseover="showTip(event, '163', 163)">
+            var
+          </code>
+          <div class="tip" id="163">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;var&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '164', 164)" onmouseover="showTip(event, '164', 164)">
+            video
+          </code>
+          <div class="tip" id="164">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;video&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '165', 165)" onmouseover="showTip(event, '165', 165)">
+            wbr
+          </code>
+          <div class="tip" id="165">
+            <strong>Signature:</strong> ElementBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create an HTML <code>&lt;wbr&gt;</code> element.</p>
+
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+    <h2>Other module members<a name="section3">&#160;</a></h2>    
+  <h3>Functions and values</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Function or value</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '166', 166)" onmouseover="showTip(event, '166', 166)">
+            attrs
+          </code>
+          <div class="tip" id="166">
+            <strong>Signature:</strong> AttrBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Computation expression to create an Attr that is the concatenation of multiple attributes.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '167', 167)" onmouseover="showTip(event, '167', 167)">
+            concat
+          </code>
+          <div class="tip" id="167">
+            <strong>Signature:</strong> ConcatBuilder<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Computation expression to create a Node that is the concatenation of multiple elements and components.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '168', 168)" onmouseover="showTip(event, '168', 168)">
+            fragment(frag)
+          </code>
+          <div class="tip" id="168">
+            <strong>Signature:</strong> frag:RenderFragment -&gt; Node<br />
+              <strong>Modifiers:</strong> inline<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                    <p>Create a node from a Blazor RenderFragment.</p>
 
 
         </td>
@@ -143,6 +2520,9 @@
                     <ul class="is-hidden"></ul>
                   </li><li>
                     <a href="/docs/HTML">Writing HTML</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/HTML-list-functions">Writing HTML (Legacy)</a>
                     <ul class="is-hidden"></ul>
                   </li><li>
                     <a href="/docs/Templating">HTML templates</a>
@@ -217,7 +2597,7 @@
         <div class="column">
           <h1 class="title">Documentation</h1>
           <div class="menu">
-            <ul class="menu-list"><li><a href="/docs">Getting Started</a></li><li><a href="/docs/Hosting">Hosting models</a></li><li><a href="/docs/HTML">Writing HTML</a></li><li><a href="/docs/Templating">HTML templates</a></li><li><a href="/docs/Elmish">Using Elmish</a></li><li><a href="/docs/Routing">Routing</a></li><li><a href="/docs/Remoting">Remoting</a></li><li><a href="/docs/Blazor">Using Blazor features</a></li><li><a href="/docs/JSON">Dealing with JSON</a></li><li><a href="/docs/Upgrade">Upgrade guide</a></li><li><a href="/docs/reference">API Reference</a></li></ul>
+            <ul class="menu-list"><li><a href="/docs">Getting Started</a></li><li><a href="/docs/Hosting">Hosting models</a></li><li><a href="/docs/HTML">Writing HTML</a></li><li><a href="/docs/HTML-list-functions">Writing HTML (Legacy)</a></li><li><a href="/docs/Templating">HTML templates</a></li><li><a href="/docs/Elmish">Using Elmish</a></li><li><a href="/docs/Routing">Routing</a></li><li><a href="/docs/Remoting">Remoting</a></li><li><a href="/docs/Blazor">Using Blazor features</a></li><li><a href="/docs/JSON">Dealing with JSON</a></li><li><a href="/docs/Upgrade">Upgrade guide</a></li><li><a href="/docs/reference">API Reference</a></li></ul>
           </div>
         </div>
         <div class="column">

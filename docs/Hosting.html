@@ -22,7 +22,7 @@
       <div class="navbar-menu">
         <nav class="navbar-start"><a href="/" class="navbar-item is-hoverable has-text-weight-bold">Home</a><div class="navbar-item is-hoverable has-text-weight-bold has-dropdown">
             <a href="/docs" class="navbar-link is-arrowless">Documentation</a>
-            <div class="navbar-dropdown has-text-weight-normal"><a class="navbar-item" href="/docs">Getting Started</a><a class="navbar-item" href="/docs/Hosting">Hosting models</a><a class="navbar-item" href="/docs/HTML">Writing HTML</a><a class="navbar-item" href="/docs/Templating">HTML templates</a><a class="navbar-item" href="/docs/Elmish">Using Elmish</a><a class="navbar-item" href="/docs/Routing">Routing</a><a class="navbar-item" href="/docs/Remoting">Remoting</a><a class="navbar-item" href="/docs/Blazor">Using Blazor features</a><a class="navbar-item" href="/docs/JSON">Dealing with JSON</a><a class="navbar-item" href="/docs/Upgrade">Upgrade guide</a><a class="navbar-item" href="/docs/reference">API Reference</a></div>
+            <div class="navbar-dropdown has-text-weight-normal"><a class="navbar-item" href="/docs">Getting Started</a><a class="navbar-item" href="/docs/Hosting">Hosting models</a><a class="navbar-item" href="/docs/HTML">Writing HTML</a><a class="navbar-item" href="/docs/HTML-list-functions">Writing HTML (Legacy)</a><a class="navbar-item" href="/docs/Templating">HTML templates</a><a class="navbar-item" href="/docs/Elmish">Using Elmish</a><a class="navbar-item" href="/docs/Routing">Routing</a><a class="navbar-item" href="/docs/Remoting">Remoting</a><a class="navbar-item" href="/docs/Blazor">Using Blazor features</a><a class="navbar-item" href="/docs/JSON">Dealing with JSON</a><a class="navbar-item" href="/docs/Upgrade">Upgrade guide</a><a class="navbar-item" href="/docs/reference">API Reference</a></div>
           </div><a href="/blog" class="navbar-item is-hoverable has-text-weight-bold">Blog</a><a href="https://tryfsharp.fsbolero.io" class="navbar-item is-hoverable has-text-weight-bold">Try F#</a></nav>
         <nav class="navbar-end">
           <a target="_blank" title="GitHub" href="https://github.com/fsbolero/bolero" class="navbar-item is-hoverable"><i class="fa fa-github"></i></a>
@@ -47,6 +47,9 @@
             
           </li><li>
             <a href="/docs/HTML">Writing HTML</a>
+            
+          </li><li>
+            <a href="/docs/HTML-list-functions">Writing HTML (Legacy)</a>
             
           </li><li>
             <a href="/docs/Templating">HTML templates</a>
@@ -164,16 +167,7 @@ This prevents the &quot;pop-in&quot; effect where the user first sees an empty c
 <li><p><code>devToggle: bool</code> determines whether the user can choose between hosted WebAssembly and server-side mode by passing <code>?server=false</code> or <code>?server=true</code>, respectively, in the URL.</p>
 <p>This feature is intended for development only.
 For example, when writing a hosted WebAssembly application, it can be convenient to temporarily switch to server-side mode for debugging.</p>
-<p>It should only be used when building in debug mode, and disabled for release builds, with code like the following:</p>
-<pre><code class="language-fsharp">    member this.ConfigureServices(services: IServiceCollection) =
-        services.AddBoleroHost(
-#if DEBUG
-            devToggle = true
-#else
-            devToggle = false
-#endif
-        ) |&gt; ignore
-</code></pre>
+<p>This setting is only active when the ASP.NET Core application runs in the <code>Development</code> environment; in any other environment, it has no effect.</p>
 <p>The default is <code>true</code>.</p>
 </li>
 </ul>
@@ -208,18 +202,19 @@ It knows which script to insert (either <code>blazor.webassembly.js</code> or <c
 <pre><code class="language-fsharp">open Bolero.Html
 open Bolero.Server.Html
 
-let myPage = doctypeHtml [] [
-    head [] [
-        title [] [text &quot;Hello, world!&quot;]
-    ]
-    body [] [
-        div [] [text &quot;This is the body of the page&quot;]
-        div [attr.id &quot;main&quot;] [
+let myPage = doctypeHtml {
+    head {
+        title { &quot;Hello, world!&quot; }
+    }
+    body {
+        div { &quot;This is the body of the page&quot; }
+        div {
+            attr.id &quot;main&quot; 
             rootComp&lt;Client.Main.MyApp&gt;
-        ]
+        }
         boleroScript
-    ]
-]
+    }
+}
 </code></pre>
 <p>Such a page can be served as follows in the server-side Startup:</p>
 <pre><code class="language-fsharp">type Startup() =
@@ -278,7 +273,7 @@ It knows which script to insert based on the <code>server</code> and <code>devTo
   &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
-<p>Such a page saved as <code>Page/_Host.cshtml</code> can be served as follows in the server-side Startup:</p>
+<p>Such a page saved as <code>Pages/_Host.cshtml</code> can be served as follows in the server-side Startup:</p>
 <pre><code class="language-fsharp">type Startup() =
 
     member this.Configure(app: IApplicationBuilder) =
@@ -290,6 +285,22 @@ It knows which script to insert based on the <code>server</code> and <code>devTo
                 endpoints.MapFallbackToPage(&quot;/_Host&quot;) |&gt; ignore
             )
         |&gt; ignore
+</code></pre>
+<p>Or in a C# application:</p>
+<pre><code class="language-csharp">public class Startup
+{
+    public void Configure(IApplicationBuilder app)
+    {
+        app.UseStaticFiles()
+            .UseRouting()
+            .UseBlazorFrameworkFiles() // Necessary in hosted WebAssembly mode
+            .UseEndpoints(endpoints =&gt;
+            {
+                endpoints.MapBlazorHub(); // Necessary in server-side mode
+                endpoints.MapFallbackToPage(&quot;/_Host&quot;);
+            });
+    }
+}
 </code></pre>
 </div></section>
         </div>
@@ -309,6 +320,9 @@ It knows which script to insert based on the <code>server</code> and <code>devTo
                       </li></ul>
                   </li><li>
                     <a href="/docs/HTML">Writing HTML</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/HTML-list-functions">Writing HTML (Legacy)</a>
                     <ul class="is-hidden"></ul>
                   </li><li>
                     <a href="/docs/Templating">HTML templates</a>
@@ -383,7 +397,7 @@ It knows which script to insert based on the <code>server</code> and <code>devTo
         <div class="column">
           <h1 class="title">Documentation</h1>
           <div class="menu">
-            <ul class="menu-list"><li><a href="/docs">Getting Started</a></li><li><a href="/docs/Hosting">Hosting models</a></li><li><a href="/docs/HTML">Writing HTML</a></li><li><a href="/docs/Templating">HTML templates</a></li><li><a href="/docs/Elmish">Using Elmish</a></li><li><a href="/docs/Routing">Routing</a></li><li><a href="/docs/Remoting">Remoting</a></li><li><a href="/docs/Blazor">Using Blazor features</a></li><li><a href="/docs/JSON">Dealing with JSON</a></li><li><a href="/docs/Upgrade">Upgrade guide</a></li><li><a href="/docs/reference">API Reference</a></li></ul>
+            <ul class="menu-list"><li><a href="/docs">Getting Started</a></li><li><a href="/docs/Hosting">Hosting models</a></li><li><a href="/docs/HTML">Writing HTML</a></li><li><a href="/docs/HTML-list-functions">Writing HTML (Legacy)</a></li><li><a href="/docs/Templating">HTML templates</a></li><li><a href="/docs/Elmish">Using Elmish</a></li><li><a href="/docs/Routing">Routing</a></li><li><a href="/docs/Remoting">Remoting</a></li><li><a href="/docs/Blazor">Using Blazor features</a></li><li><a href="/docs/JSON">Dealing with JSON</a></li><li><a href="/docs/Upgrade">Upgrade guide</a></li><li><a href="/docs/reference">API Reference</a></li></ul>
           </div>
         </div>
         <div class="column">

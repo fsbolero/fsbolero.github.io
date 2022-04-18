@@ -22,7 +22,7 @@
       <div class="navbar-menu">
         <nav class="navbar-start"><a href="/" class="navbar-item is-hoverable has-text-weight-bold">Home</a><div class="navbar-item is-hoverable has-text-weight-bold has-dropdown">
             <a href="/docs" class="navbar-link is-arrowless">Documentation</a>
-            <div class="navbar-dropdown has-text-weight-normal"><a class="navbar-item" href="/docs">Getting Started</a><a class="navbar-item" href="/docs/Hosting">Hosting models</a><a class="navbar-item" href="/docs/HTML">Writing HTML</a><a class="navbar-item" href="/docs/Templating">HTML templates</a><a class="navbar-item" href="/docs/Elmish">Using Elmish</a><a class="navbar-item" href="/docs/Routing">Routing</a><a class="navbar-item" href="/docs/Remoting">Remoting</a><a class="navbar-item" href="/docs/Blazor">Using Blazor features</a><a class="navbar-item" href="/docs/JSON">Dealing with JSON</a><a class="navbar-item" href="/docs/Upgrade">Upgrade guide</a><a class="navbar-item" href="/docs/reference">API Reference</a></div>
+            <div class="navbar-dropdown has-text-weight-normal"><a class="navbar-item" href="/docs">Getting Started</a><a class="navbar-item" href="/docs/Hosting">Hosting models</a><a class="navbar-item" href="/docs/HTML">Writing HTML</a><a class="navbar-item" href="/docs/HTML-list-functions">Writing HTML (Legacy)</a><a class="navbar-item" href="/docs/Templating">HTML templates</a><a class="navbar-item" href="/docs/Elmish">Using Elmish</a><a class="navbar-item" href="/docs/Routing">Routing</a><a class="navbar-item" href="/docs/Remoting">Remoting</a><a class="navbar-item" href="/docs/Blazor">Using Blazor features</a><a class="navbar-item" href="/docs/JSON">Dealing with JSON</a><a class="navbar-item" href="/docs/Upgrade">Upgrade guide</a><a class="navbar-item" href="/docs/reference">API Reference</a></div>
           </div><a href="/blog" class="navbar-item is-hoverable has-text-weight-bold">Blog</a><a href="https://tryfsharp.fsbolero.io" class="navbar-item is-hoverable has-text-weight-bold">Try F#</a></nav>
         <nav class="navbar-end">
           <a target="_blank" title="GitHub" href="https://github.com/fsbolero/bolero" class="navbar-item is-hoverable"><i class="fa fa-github"></i></a>
@@ -47,6 +47,9 @@
             
           </li><li>
             <a href="/docs/HTML">Writing HTML</a>
+            
+          </li><li>
+            <a href="/docs/HTML-list-functions">Writing HTML (Legacy)</a>
             
           </li><li>
             <a href="/docs/Templating">HTML templates</a>
@@ -111,7 +114,7 @@ Blazor Components and their interoperability</p>
     inherit Component()
 
     override this.Render() =
-        div [] [text &quot;Hello, world!&quot;]
+        div { &quot;Hello, world!&quot; }
 </code></pre>
 <p>To add parameters to the component, use a property with the <code>Parameter</code> attribute from namespace <code>Microsoft.AspNetCore.Blazor</code>.</p>
 <pre><code class="language-fsharp">type MyComponent() =
@@ -121,14 +124,18 @@ Blazor Components and their interoperability</p>
     member val Who = &quot;&quot; with get, set
 
     override this.Render() =
-        div [] [text (sprintf &quot;Hello, %s!&quot; this.Who)]
+        div { $&quot;Hello, {this.Who}!&quot; }
 </code></pre>
 <h4 id="using-a-component">Using a component</h4>
 <p>This section documents how to use a Blazor Component, either referenced from a C# Razor project, or created in F# by inheriting from <code>Component</code>.</p>
-<p>To instantiate a Blazor component, use the <code>comp</code> function. It is parameterized by the component type, and takes attributes and child nodes as arguments.
-To set a parameter, pass it by name as an attribute using the <code>=&gt;</code> operator.</p>
-<pre><code class="language-fsharp">let myElement =
-    comp&lt;MyComponent&gt; [&quot;Who&quot; =&gt; &quot;world&quot;] []
+<p>To instantiate a Blazor component, use the <code>comp</code> computation expression builder. It is parameterized by the component type, and takes attributes and child nodes in its CE body.
+To set a parameter, pass it by name as an attribute using the <code>=&gt;</code> operator.
+If there are no parameters to pass, use <code>attr.empty()</code>.</p>
+<pre><code class="language-fsharp">let myElement : Node =
+    comp&lt;MyComponent&gt; { &quot;Who&quot; =&gt; &quot;world&quot; }
+
+let myElementWithDefaultWho : Node =
+    comp&lt;MyComponent&gt; { attr.empty() }
 </code></pre>
 <p>However, some parameter types must be handled specially:</p>
 <ul>
@@ -142,9 +149,10 @@ To set a parameter, pass it by name as an attribute using the <code>=&gt;</code>
 <pre><code class="language-fsharp">open MatBlazor
 
 let myButton model dispatch =
-    comp&lt;MatButton&gt;
-      [ attr.callback &quot;OnClick&quot; (fun _ -&gt; dispatch ButtonClicked) ]
-      [ text &quot;Click me!&quot; ]
+    comp&lt;MatButton&gt; {
+      attr.callback &quot;OnClick&quot; (fun _ -&gt; dispatch ButtonClicked)
+      &quot;Click me!&quot;
+    }
 </code></pre>
 <p>In Blazor, these parameters would be passed as <code>Action&lt;T&gt;</code>.</p>
 </li>
@@ -161,33 +169,32 @@ type Model =
   { Cars: Car[] }
 
 let myTable model dispatch =
-    comp&lt;MatTable&gt;
-      [ &quot;Items&quot; =&gt; model.Cars
+    comp&lt;MatTable&gt; {
+        &quot;Items&quot; =&gt; model.Cars
 
         attr.fragment &quot;MatTableHeader&quot; (
-          concat
-            [ th [] [ text &quot;Name&quot; ]
-              th [] [ text &quot;Price&quot; ]
-              th [] [ text &quot;Horsepower&quot;]
-            ]
+            concat {
+                th { &quot;Name&quot; }
+                th { &quot;Price&quot; }
+                th { &quot;Horsepower&quot; }
+            }
         )
 
         attr.fragmentWith &quot;MatTableRow&quot; (fun (car: Car) -&gt;
-          concat
-            [ td [] [ text car.Name ]
-              td [] [ textf &quot;%.2f&quot; car.Price ]
-              td [] [ textf &quot;%i&quot; car.Horsepower ]
-            ]
+            concat {
+                td { car.Name } 
+                td { $&quot;%.2f{car.Price}&quot; }
+                td { $&quot;{car.Horsepower}&quot; }
+            }
         )
-      ]
-      []
+    }
 </code></pre>
 </li>
 </ul>
 <h4 id="cascading">Cascading</h4>
 <p>You can use <a href="https://docs.microsoft.com/en-us/aspnet/core/blazor/components/cascading-values-and-parameters">Cascading Values and Cascading Parameters</a> as well</p>
 <pre><code class="language-fsharp">let view state dispatch = 
-   comp&lt;CascadingValue&lt;int&gt;&gt; [ &quot;Value&quot; =&gt; 42; &quot;Name&quot; =&gt; &quot;MeaningOfLife&quot; ] [ body ]
+   comp&lt;CascadingValue&lt;int&gt;&gt; { &quot;Value&quot; =&gt; 42; &quot;Name&quot; =&gt; &quot;MeaningOfLife&quot;; body }
 </code></pre>
 <p>in this case <code>body</code> is the content of your view somewhere down the hierarchy you may have something like this</p>
 <pre><code class="language-fsharp">type MyProgramComponent() =
@@ -208,18 +215,18 @@ let myTable model dispatch =
     member val MeaningOfLife = 0 with get, set
 
     override this.Render() =
-        concat [
-            h1 [] [text &quot;Foo component&quot;]
-            p [] [textf &quot;The meaning of life is %i&quot; this.MeaningOfLife]
-        ]
+        concat {
+            h1 { &quot;Foo component&quot; }
+            p { &quot;The meaning of life is {this.MeaningOfLife}&quot; }
+        }
 </code></pre>
 <h3 id="navlink">NavLink</h3>
 <p>The function <code>navLink</code> is a helper to create a Blazor <code>NavLink</code> component. This component creates an <code>&lt;a&gt;</code> tag which dynamically receives the <code>&quot;active&quot;</code> CSS class whenever the current page URL matches its own <code>href</code>. The match is customized by passing <code>NavLinkMatch.All</code> (to only match the full URL path) or <code>NavLinkMatch.Prefix</code> (to match any URL that starts with the <code>navLink</code>'s <code>href</code>).</p>
 <pre><code class="language-fsharp">let myMenu =
-    ul [] [
-        li [] [navLink NavLinkMatch.All [attr.href &quot;/&quot;] [text &quot;Home&quot;]]
-        li [] [navLink NavLinkMatch.Prefix [attr.href &quot;/blog&quot;] [text &quot;Blog&quot;]]
-    ]
+    ul {
+        li { navLink NavLinkMatch.All { attr.href &quot;/&quot;; &quot;Home&quot; } }
+        li { navLink NavLinkMatch.Prefix { attr.href &quot;/blog&quot;; &quot;Blog&quot; } }
+    }
 </code></pre>
 <p>This page documents some useful features of Blazor and how to best use them from a Bolero application.</p>
 <h3 id="dependency-injection">Dependency injection</h3>
@@ -263,12 +270,12 @@ type MyComponent() =
     member val JSRuntime = Unchecked.defaultof&lt;IJSRuntime&gt; with get, set
 
     override this.View model dispatch =
-        button [
+        button {
             on.task.click (fun _ -&gt;
                 this.JSRuntime.InvokeVoidAsync(&quot;console.log&quot;, model).AsTask())
-        ] [
-            text model
-        ]
+
+            $&quot;{model}&quot;
+        }
 </code></pre>
 <h4 id="in-programcomponent">In <code>ProgramComponent</code></h4>
 <p>It is already injected in <code>ProgramComponent</code>, so you can use it directly without injecting it beforehand.</p>
@@ -321,7 +328,7 @@ This is useful for interacting with JavaScript libraries that insert themselves 
 <ol>
 <li>The element to bind must be inside a Component class.</li>
 <li>Create an <code>HtmlRef</code> as a field of this class.</li>
-<li>To bind it to an element, pass it to the attribute <code>attr.ref</code> of this element.</li>
+<li>To bind it to an element, list it in the computation expression after attributes and before child nodes.</li>
 <li>To use it, use its <code>.Value</code> property.</li>
 </ol>
 <p>For example, given this small JavaScript function that can focus a DOM element it receives as argument:</p>
@@ -341,19 +348,19 @@ This is useful for interacting with JavaScript libraries that insert themselves 
     member val JSRuntime = Unchecked.defaultof&lt;IJSRuntime&gt; with get, set
 
     override this.View model dispatch =
-        concat [
-            input [
-                attr.ref inputRef // (3)
+        concat {
+            input {
                 bind.input.string model dispatch
-            ]
-            button [
+                inputRef // (3)
+            }
+            button {
                 on.task.click (fun _ -&gt;
                     this.JSRuntime.InvokeVoidAsync(&quot;MyJsLib.focus&quot;, inputRef.Value).AsTask() // (4)
                 )
-            ] [
-                text &quot;Focus this input box&quot;
-            ]
-        ]
+
+                &quot;Focus this input box&quot;
+            }
+        }
 </code></pre>
 <h3 id="blazor-component-references">Blazor component references</h3>
 <p>Just like with HTML elements, it is possible to capture a reference to an instantiated Blazor component.
@@ -364,7 +371,7 @@ For example, given the following component:</p>
     inherit Component()
     
     override this.Render() =
-        div [] [text &quot;This is my component&quot;]
+        div { &quot;This is my component&quot; }
         
     member this.Refresh() =
         Console.WriteLine(&quot;Refreshing this component!&quot;)
@@ -376,14 +383,14 @@ For example, given the following component:</p>
     let myComponentRef = Ref&lt;MyComponent&gt;()
     
     override this.Render() =
-        div [] [
-            comp&lt;MyComponent&gt; [attr.ref myComponentRef] []
-            button [
+        div {
+            comp&lt;MyComponent&gt; { myComponentRef }
+            button {
                 on.click (fun _ -&gt; myComponentRef.Value.Refresh())
-            ] [
-                text &quot;Refresh my component!&quot;
-            ]
-        ]
+
+                &quot;Refresh my component!&quot;
+            }
+        }
 </code></pre>
 </div></section>
         </div>
@@ -399,6 +406,9 @@ For example, given the following component:</p>
                     <ul class="is-hidden"></ul>
                   </li><li>
                     <a href="/docs/HTML">Writing HTML</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/HTML-list-functions">Writing HTML (Legacy)</a>
                     <ul class="is-hidden"></ul>
                   </li><li>
                     <a href="/docs/Templating">HTML templates</a>
@@ -483,7 +493,7 @@ For example, given the following component:</p>
         <div class="column">
           <h1 class="title">Documentation</h1>
           <div class="menu">
-            <ul class="menu-list"><li><a href="/docs">Getting Started</a></li><li><a href="/docs/Hosting">Hosting models</a></li><li><a href="/docs/HTML">Writing HTML</a></li><li><a href="/docs/Templating">HTML templates</a></li><li><a href="/docs/Elmish">Using Elmish</a></li><li><a href="/docs/Routing">Routing</a></li><li><a href="/docs/Remoting">Remoting</a></li><li><a href="/docs/Blazor">Using Blazor features</a></li><li><a href="/docs/JSON">Dealing with JSON</a></li><li><a href="/docs/Upgrade">Upgrade guide</a></li><li><a href="/docs/reference">API Reference</a></li></ul>
+            <ul class="menu-list"><li><a href="/docs">Getting Started</a></li><li><a href="/docs/Hosting">Hosting models</a></li><li><a href="/docs/HTML">Writing HTML</a></li><li><a href="/docs/HTML-list-functions">Writing HTML (Legacy)</a></li><li><a href="/docs/Templating">HTML templates</a></li><li><a href="/docs/Elmish">Using Elmish</a></li><li><a href="/docs/Routing">Routing</a></li><li><a href="/docs/Remoting">Remoting</a></li><li><a href="/docs/Blazor">Using Blazor features</a></li><li><a href="/docs/JSON">Dealing with JSON</a></li><li><a href="/docs/Upgrade">Upgrade guide</a></li><li><a href="/docs/reference">API Reference</a></li></ul>
           </div>
         </div>
         <div class="column">

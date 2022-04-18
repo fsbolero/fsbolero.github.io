@@ -64,7 +64,7 @@ type Hello = Template<"hello.html">
 let hello = Hello().Who("world").Elt()
 
 // Fill with a Node
-let hello = Hello().Who(b [] [text "world"]).Elt()
+let hello = Hello().Who(b { "world" }).Elt()
 ```
 
 Such a hole can be defined multiple times, and the content will be duplicated accordingly.
@@ -136,7 +136,7 @@ type Hello = Template<"hello.html">
 
 let hello =
     Hello()
-        .Greet(fun e -> printfn "Clicked at (%i, %i)" e.ClientX e.ClientY)
+        .Greet(fun e -> printfn $"Clicked at ({e.ClientX}, {e.ClientY})")
         .Elt()
 ```
 

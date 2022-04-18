@@ -22,7 +22,7 @@
       <div class="navbar-menu">
         <nav class="navbar-start"><a href="/" class="navbar-item is-hoverable has-text-weight-bold">Home</a><div class="navbar-item is-hoverable has-text-weight-bold has-dropdown">
             <a href="/docs" class="navbar-link is-arrowless">Documentation</a>
-            <div class="navbar-dropdown has-text-weight-normal"><a class="navbar-item" href="/docs">Getting Started</a><a class="navbar-item" href="/docs/Hosting">Hosting models</a><a class="navbar-item" href="/docs/HTML">Writing HTML</a><a class="navbar-item" href="/docs/Templating">HTML templates</a><a class="navbar-item" href="/docs/Elmish">Using Elmish</a><a class="navbar-item" href="/docs/Routing">Routing</a><a class="navbar-item" href="/docs/Remoting">Remoting</a><a class="navbar-item" href="/docs/Blazor">Using Blazor features</a><a class="navbar-item" href="/docs/JSON">Dealing with JSON</a><a class="navbar-item" href="/docs/Upgrade">Upgrade guide</a><a class="navbar-item" href="/docs/reference">API Reference</a></div>
+            <div class="navbar-dropdown has-text-weight-normal"><a class="navbar-item" href="/docs">Getting Started</a><a class="navbar-item" href="/docs/Hosting">Hosting models</a><a class="navbar-item" href="/docs/HTML">Writing HTML</a><a class="navbar-item" href="/docs/HTML-list-functions">Writing HTML (Legacy)</a><a class="navbar-item" href="/docs/Templating">HTML templates</a><a class="navbar-item" href="/docs/Elmish">Using Elmish</a><a class="navbar-item" href="/docs/Routing">Routing</a><a class="navbar-item" href="/docs/Remoting">Remoting</a><a class="navbar-item" href="/docs/Blazor">Using Blazor features</a><a class="navbar-item" href="/docs/JSON">Dealing with JSON</a><a class="navbar-item" href="/docs/Upgrade">Upgrade guide</a><a class="navbar-item" href="/docs/reference">API Reference</a></div>
           </div><a href="/blog" class="navbar-item is-hoverable has-text-weight-bold">Blog</a><a href="https://tryfsharp.fsbolero.io" class="navbar-item is-hoverable has-text-weight-bold">Try F#</a></nav>
         <nav class="navbar-end">
           <a target="_blank" title="GitHub" href="https://github.com/fsbolero/bolero" class="navbar-item is-hoverable"><i class="fa fa-github"></i></a>
@@ -47,6 +47,9 @@
             
           </li><li>
             <a href="/docs/HTML">Writing HTML</a>
+            
+          </li><li>
+            <a href="/docs/HTML-list-functions">Writing HTML (Legacy)</a>
             
           </li><li>
             <a href="/docs/Templating">HTML templates</a>
@@ -115,10 +118,10 @@
     <tbody>
       <tr>
         <td class="member-name">
-          <code onmouseout="hideTip(event, '4', 4)" onmouseover="showTip(event, '4', 4)">
+          <code onmouseout="hideTip(event, '13', 13)" onmouseover="showTip(event, '13', 13)">
             definePageModel pageModel value
           </code>
-          <div class="tip" id="4">
+          <div class="tip" id="13">
             <strong>Signature:</strong> pageModel:PageModel&lt;&#39;T&gt; -&gt; value:&#39;T -&gt; unit<br />
                           <strong>Type parameters:</strong> 'T                      </div>
         </td>
@@ -128,10 +131,10 @@
       </tr>
       <tr>
         <td class="member-name">
-          <code onmouseout="hideTip(event, '5', 5)" onmouseover="showTip(event, '5', 5)">
+          <code onmouseout="hideTip(event, '14', 14)" onmouseover="showTip(event, '14', 14)">
             infer makeMessage getEndPoint
           </code>
-          <div class="tip" id="5">
+          <div class="tip" id="14">
             <strong>Signature:</strong> makeMessage:(&#39;ep -&gt; &#39;msg) -&gt; getEndPoint:(&#39;model -&gt; &#39;ep) -&gt; Router&lt;&#39;ep,&#39;model,&#39;msg&gt;<br />
                           <strong>Type parameters:</strong> 'ep, 'model, 'msg                      </div>
         </td>
@@ -145,10 +148,10 @@ to declare how they match to a URI.</p>
       </tr>
       <tr>
         <td class="member-name">
-          <code onmouseout="hideTip(event, '6', 6)" onmouseover="showTip(event, '6', 6)">
+          <code onmouseout="hideTip(event, '15', 15)" onmouseover="showTip(event, '15', 15)">
             inferWithModel(...)
           </code>
-          <div class="tip" id="6">
+          <div class="tip" id="15">
             <strong>Signature:</strong> makeMessage:(&#39;ep -&gt; &#39;msg) -&gt; getEndPoint:(&#39;model -&gt; &#39;ep) -&gt; defaultPageModel:(&#39;ep -&gt; unit) -&gt; Router&lt;&#39;ep,&#39;model,&#39;msg&gt;<br />
                           <strong>Type parameters:</strong> 'ep, 'model, 'msg                      </div>
         </td>
@@ -164,10 +167,10 @@ when switching to a new page.</p>
       </tr>
       <tr>
         <td class="member-name">
-          <code onmouseout="hideTip(event, '7', 7)" onmouseover="showTip(event, '7', 7)">
+          <code onmouseout="hideTip(event, '16', 16)" onmouseover="showTip(event, '16', 16)">
             noModel
           </code>
-          <div class="tip" id="7">
+          <div class="tip" id="16">
             <strong>Signature:</strong> PageModel&lt;&#39;T&gt;<br />
                           <strong>Type parameters:</strong> 'T                      </div>
         </td>
@@ -192,6 +195,9 @@ when switching to a new page.</p>
                     <ul class="is-hidden"></ul>
                   </li><li>
                     <a href="/docs/HTML">Writing HTML</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/HTML-list-functions">Writing HTML (Legacy)</a>
                     <ul class="is-hidden"></ul>
                   </li><li>
                     <a href="/docs/Templating">HTML templates</a>
@@ -266,7 +272,7 @@ when switching to a new page.</p>
         <div class="column">
           <h1 class="title">Documentation</h1>
           <div class="menu">
-            <ul class="menu-list"><li><a href="/docs">Getting Started</a></li><li><a href="/docs/Hosting">Hosting models</a></li><li><a href="/docs/HTML">Writing HTML</a></li><li><a href="/docs/Templating">HTML templates</a></li><li><a href="/docs/Elmish">Using Elmish</a></li><li><a href="/docs/Routing">Routing</a></li><li><a href="/docs/Remoting">Remoting</a></li><li><a href="/docs/Blazor">Using Blazor features</a></li><li><a href="/docs/JSON">Dealing with JSON</a></li><li><a href="/docs/Upgrade">Upgrade guide</a></li><li><a href="/docs/reference">API Reference</a></li></ul>
+            <ul class="menu-list"><li><a href="/docs">Getting Started</a></li><li><a href="/docs/Hosting">Hosting models</a></li><li><a href="/docs/HTML">Writing HTML</a></li><li><a href="/docs/HTML-list-functions">Writing HTML (Legacy)</a></li><li><a href="/docs/Templating">HTML templates</a></li><li><a href="/docs/Elmish">Using Elmish</a></li><li><a href="/docs/Routing">Routing</a></li><li><a href="/docs/Remoting">Remoting</a></li><li><a href="/docs/Blazor">Using Blazor features</a></li><li><a href="/docs/JSON">Dealing with JSON</a></li><li><a href="/docs/Upgrade">Upgrade guide</a></li><li><a href="/docs/reference">API Reference</a></li></ul>
           </div>
         </div>
         <div class="column">
