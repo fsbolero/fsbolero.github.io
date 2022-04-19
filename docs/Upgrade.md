@@ -3,7 +3,7 @@ title: Upgrade guide
 subtitle: How to update a project for newer releases
 ---
 
-### From v0.18 to v0.20
+## From v0.18 to v0.20
 
 Bolero v0.20 upgrades the dependency to .NET 6. Here are the associated upgrade steps:
 
@@ -15,7 +15,7 @@ Bolero v0.20 upgrades the dependency to .NET 6. Here are the associated upgrade 
     Instead of functions taking a list of attributes and a list of children, HTML elements and Blazor components are defined using computation expressions.
     See [the documentation on HTML](HTML) for all details on the new syntax.
 
-### From v0.15 to v0.16
+## From v0.15 to v0.16
 
 Bolero v0.16 upgrades the dependency to .NET 5. Here are the associated upgrade steps:
 
@@ -45,7 +45,7 @@ Bolero v0.16 upgrades the dependency to .NET 5. Here are the associated upgrade 
     
     * Update the dependency version on all `Microsoft.AspNetCore.*` packages to `5.0.*` (for NuGet) or `~> 5.0.0` (for Paket).
 
-### From v0.14 to v0.15
+## From v0.14 to v0.15
 
 Bolero v0.15 doesn't change the SDK requirements. Here are the upgrade steps:
 
@@ -59,7 +59,7 @@ Bolero v0.15 doesn't change the SDK requirements. Here are the upgrade steps:
     * The function `attr.bindRef` was renamed to `attr.ref`;
     * The function `attr.ref` taking a function as argument has been removed.
 
-### From v0.13 to v0.14
+## From v0.13 to v0.14
 
 Bolero 0.14 doesn't change the SDK requirements. Here are the upgrade steps:
 
@@ -68,7 +68,7 @@ Bolero 0.14 doesn't change the SDK requirements. Here are the upgrade steps:
     If you had JSON format customization based on Bolero.Json attributes, you must replace them with System.Text.Json-based customization.
     Otherwise, there is nothing to do.
 
-### From v0.12 to v0.13
+## From v0.12 to v0.13
 
 Bolero 0.13 upgrades the dependency on .NET Core SDK 3.1.300 or newer and on Blazor to 3.2.0. Here are the associated upgrade steps:
 
@@ -133,7 +133,7 @@ Bolero 0.13 upgrades the dependency on .NET Core SDK 3.1.300 or newer and on Bla
 
         This method takes optional arguments that configure the hosting of the application (server vs client, prerendered or not, etc).
 
-### From v0.11 to v0.12
+## From v0.11 to v0.12
 
 Bolero 0.12 upgrades the dependency on .NET Core SDK 3.1.102 or newer and on Blazor to 3.2-preview2. Here are the associated upgrade steps:
 
@@ -238,7 +238,7 @@ Bolero 0.12 upgrades the dependency on .NET Core SDK 3.1.102 or newer and on Bla
 
     See [the Blazor 3.2-preview2 announcement](https://devblogs.microsoft.com/aspnet/blazor-webassembly-3-2-0-preview-2-release-now-available/) for more details.
 
-### From v0.10 to v0.11
+## From v0.10 to v0.11
 
 Bolero 0.11 upgrades the dependency on .NET Core to 3.1 and on Blazor to 3.1-preview4. Here are the associated upgrade steps:
 
@@ -272,13 +272,13 @@ Bolero 0.11 upgrades the dependency on .NET Core to 3.1 and on Blazor to 3.1-pre
   ]
   ```
 
-### From v0.9 to v0.10
+## From v0.9 to v0.10
 
 Bolero 0.10 doesn't change the dependencies from 0.9. It has one breaking change:
 
 * The function `ecomp` now takes an additional list of attributes as first argument.
 
-### From v0.8 to v0.9
+## From v0.8 to v0.9
 
 Bolero 0.9 upgrades the dependency on .NET Core to 3.0 RTM and on Blazor to 3.0-preview9. It doesn't include any breaking changes. Here are the associated upgrade steps:
 
@@ -286,7 +286,7 @@ Bolero 0.9 upgrades the dependency on .NET Core to 3.0 RTM and on Blazor to 3.0-
 
 * If you are using Visual Studio, upgrade to version 16.3.
 
-### From v0.7 to v0.8
+## From v0.7 to v0.8
 
 Bolero 0.8 upgrades the dependency on Blazor and .NET Core to 3.0-preview8. Here are the associated upgrade steps:
 
@@ -320,7 +320,7 @@ Bolero 0.8 upgrades the dependency on Blazor and .NET Core to 3.0-preview8. Here
 
     In all three cases, use `ctx.HttpContext` instead of `http` in the function.
 
-### From v0.6 to v0.7
+## From v0.6 to v0.7
 
 Bolero 0.7 updates the dependency on Blazor and .NET Core to 3.0-preview7. Here are the associated upgrade steps:
 
@@ -332,7 +332,7 @@ Bolero 0.7 updates the dependency on Blazor and .NET Core to 3.0-preview7. Here 
     
     * If the remote call is to an authorized function, then replace `RemoteResponse<'T>` with `option<'T>`, `Cmd.ofRemote` with `Cmd.ofAuthorized` and `Cmd.performRemote` with `Cmd.performAuthorized`.
 
-### From v0.5 to v0.6
+## From v0.5 to v0.6
 
 Bolero 0.6 updates the dependency on Blazor and .NET Core to 3.0-preview6. Here are the associated upgrade steps:
 
@@ -369,7 +369,7 @@ HTML hot reloading also received changes.
             endpoints.MapFallbackToClientSideBlazor<Client.Startup>("index.html") |> ignore)
     ```
 
-### From v0.4 to v0.5
+## From v0.4 to v0.5
 
 ![Blazor 3.0](../img/blazor-icon.png)
 

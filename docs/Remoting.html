@@ -104,7 +104,7 @@ Easily call server-side functions from the client side.</p>
 
               </div>
             </section>
-          <section class="section"><div ws-preserve=""><h3 id="defining-the-service">Defining the service</h3>
+          <section class="section"><div ws-preserve=""><h2 id="defining-the-service">Defining the service</h2>
 <p>A set of server-side functions is defined as a record called a <em>remote service</em>. Each function is a field in this record, and must take one argument and return <code>Async&lt;_&gt;</code>. If you need to pass several arguments to a server-side function, use a tuple.</p>
 <p>The record should implement <code>IRemoteService</code> to define the URL for its functions. Each function is served at the path <code>{service.BasePath}/{fieldName}</code>.</p>
 <p>For example, here is the definition of a service for a simple key-value pair storage:</p>
@@ -121,7 +121,7 @@ type MyService =
         member this.BasePath = &quot;/myService&quot;
 </code></pre>
 <p>Remote calls are <code>POST</code> requests to the function's URL. Arguments and return values are automatically serialized to JSON.</p>
-<h3 id="calling-on-the-client-side">Calling on the client side</h3>
+<h2 id="calling-on-the-client-side">Calling on the client side</h2>
 <p>On the client side, you will typically want to call these functions in the <code>update</code> of the Elmish app. See <a href="https://elmish.github.io/elmish/basics.html">the Elmish documentation</a> to learn how to run commands in <code>update</code>.</p>
 <ol>
 <li><p>In your Blazor startup (<code>Client/Startup.fs</code>), add support for remoting:</p>
@@ -176,9 +176,9 @@ let update myService message model =
 </code></pre>
 </li>
 </ol>
-<h3 id="defining-on-the-server-side">Defining on the server side</h3>
+<h2 id="defining-on-the-server-side">Defining on the server side</h2>
 <p>On the server side, Bolero.Remoting is registered as a service and added as ASP.NET Core middleware. There are several ways to do so.</p>
-<h4 id="a-simple-service">A simple service</h4>
+<h3 id="a-simple-service">A simple service</h3>
 <p>Here is how to implement a remote service without any dependencies.</p>
 <ol>
 <li><p>Implement the service as a value:</p>
@@ -221,7 +221,7 @@ type Startup() =
 <p>Note that <code>UseRemoting</code> (and any other middleware) should be called <em>before</em> <code>UseRouting</code> to make sure that it catches the requests to its endpoints.</p>
 </li>
 </ol>
-<h4 id="using-dependency-injection">Using dependency injection</h4>
+<h3 id="using-dependency-injection">Using dependency injection</h3>
 <p>You might need to use injected dependencies in a remote service: a logger, a database connection, etc. For this, you need a different approach.</p>
 <ol>
 <li><p>Implement the service as a class inheriting from <code>RemoteHandler</code>. Dependencies can be injected from the constructor.</p>
@@ -258,7 +258,7 @@ type Startup() =
 <li><p>In your ASP.NET Core startup, start the remoting middleware, just like for a simple service.</p>
 </li>
 </ol>
-<h4 id="iremotecontext">IRemoteContext</h4>
+<h3 id="iremotecontext">IRemoteContext</h3>
 <blockquote>
 <p>Introduced in v0.8.</p>
 </blockquote>
@@ -273,9 +273,9 @@ type Startup() =
 <li><p>If you are not using dependency injection, you can replace your handler record value with a function taking <code>IRemoteContext</code> as argument and returning a record.</p>
 </li>
 </ul>
-<h4 id="using-several-services">Using several services</h4>
+<h3 id="using-several-services">Using several services</h3>
 <p>You can of course define several remote services in the same application. Each of them needs to be registered by a separate call to <code>AddRemoting</code> in <code>ConfigureServices</code>. A single call to <code>UseRemoting</code> is enough in <code>Configure</code>.</p>
-<h3 id="authentication-and-authorization">Authentication and authorization</h3>
+<h2 id="authentication-and-authorization">Authentication and authorization</h2>
 <blockquote>
 <p>Introduced in v0.4.</p>
 <p>This has changed significantly in v0.8; <a href="https://github.com/fsbolero/website/blob/7a4e957/src/Website/docs/Remoting.md#authentication-and-authorization">see the old documentation</a> for authentication and authorization in versions 0.4 through 0.7.</p>
@@ -285,7 +285,7 @@ type Startup() =
 <li><strong>Authentication</strong> means signing in, signing out and identifying the current user in remote functions.</li>
 <li><strong>Authorization</strong> means specifying that a given remote function can only be used by authenticated users, optionally with additional criteria such as &quot;is admin&quot;.</li>
 </ul>
-<h4 id="authentication">Authentication</h4>
+<h3 id="authentication">Authentication</h3>
 <p>Authentication is done using standard ASP.NET Core authentication features. Enabling it is therefore done like a usual ASP.NET Core application. Here is an example setup for the server-side <code>Startup.fs</code> using cookie authentication:</p>
 <ul>
 <li><p>In <code>ConfigureServices</code>, use the following:</p>
@@ -343,7 +343,7 @@ let loginService (ctx: IRemoteContext) =
         }
     }
 </code></pre>
-<h4 id="authorization">Authorization</h4>
+<h3 id="authorization">Authorization</h3>
 <p>Authorization also uses standard ASP.NET Core features. It is enabled in the startup class's <code>ConfigureServices</code> method:</p>
 <pre><code class="language-fsharp">member this.ConfigureServices(services: IServiceCollection) =
     services
@@ -390,7 +390,7 @@ let userDataService (ctx: IRemoteContext) =
         }
     }
 </code></pre>
-<h4 id="from-the-client-side">From the client side</h4>
+<h3 id="from-the-client-side">From the client side</h3>
 <p>You can call an authorized function from the client side with the standard <code>Cmd.ofAsync</code>. If the user is not authorized, then the call will return an error with the exception <code>RemoteUnauthorizedException</code>.</p>
 <pre><code class="language-fsharp">type Model =
   { secretData : string option

@@ -107,11 +107,11 @@ Use the inbuilt <a href="https://github.com/Tarmil/FSharp.SystemTextJson">extens
           <section class="section"><div ws-preserve=""><blockquote>
 <p>Bolero uses <a href="https://docs.microsoft.com/en-us/dotnet/standard/serialization/system-text-json-overview">System.Text.Json</a> and <a href="https://github.com/Tarmil/FSharp.SystemTextJson">FSharp.SystemTextJson</a> for JSON handling. You are free to use any other JSON library of your choosing if you so wish.</p>
 </blockquote>
-<h3 id="configuration">Configuration</h3>
+<h2 id="configuration">Configuration</h2>
 <p>For <em>hosted Blazor WebAssembly</em> &amp; <em>Blazor server</em> apps, Bolero is already configured to use <code>JsonFSharpConverter</code> for remoting by default.</p>
 <p>For <em>standalone Blazor WebAssembly</em> app, use either <code>JsonSerializerOptions</code> with  <code>JsonFSharpConverter</code> or add <code>JsonFSharpConverterAttribute</code>.</p>
 <p>Learn more about the <a href="https://docs.microsoft.com/en-us/aspnet/core/blazor/hosting-models?view=aspnetcore-3.1">Blazor hosting models</a>.</p>
-<h4 id="using-options">Using options</h4>
+<h3 id="using-options">Using options</h3>
 <p>Add <code>JsonFSharpConverter</code> to the converters in <code>JsonSerializerOptions</code>, and the format will be applied to all F# types.</p>
 <pre><code class="language-fsharp">open System.Text.Json
 open System.Text.Json.Serialization
@@ -120,7 +120,7 @@ let options = JsonSerializerOptions()
 options.Converters.Add(JsonFSharpConverter())
 JsonSerializer.Serialize({| x = &quot;Bolero&quot; |}, options)
 </code></pre>
-<h4 id="using-attributes">Using attributes</h4>
+<h3 id="using-attributes">Using attributes</h3>
 <p>Add <code>JsonFSharpConverterAttribute</code> to the type that needs to be serialized.</p>
 <pre><code class="language-fsharp">open System.Text.Json
 open System.Text.Json.Serialization
@@ -129,7 +129,7 @@ open System.Text.Json.Serialization
 type Example = { x: string }
 JsonSerializer.Serialize({x = &quot;Bolero&quot; })
 </code></pre>
-<h4 id="advantages-and-disadvantages">Advantages and disadvantages</h4>
+<h3 id="advantages-and-disadvantages">Advantages and disadvantages</h3>
 <p>The options way is generally recommended because it applies the format to all F# types. In addition to your defined types, this also includes:</p>
 <ul>
 <li>Types defined in referenced libraries that you can't modify to add an attribute. This includes standard library types such as <code>option</code> and <code>Result</code>.</li>
@@ -137,7 +137,7 @@ JsonSerializer.Serialize({x = &quot;Bolero&quot; })
 </ul>
 <p>The attribute way cannot handle the above cases.</p>
 <p>The advantage of the attribute way is that it allows calling <code>Serialize</code> and <code>Deserialize</code> without having to pass options every time. This is particularly useful if you are passing your own data to a library that calls these functions itself and doesn't take options.</p>
-<h3 id="named-records">Named records</h3>
+<h2 id="named-records">Named records</h2>
 <p>Named record fields are serialized in the order in which they were declared in the type declaration.</p>
 <pre><code class="language-fsharp">type Example = { x: string; y: string }
 
@@ -146,7 +146,7 @@ JsonSerializer.Serialize({ x = &quot;Hello&quot;; y = &quot;world!&quot; })
 JsonSerializer.Deserialize(&quot;&quot;&quot;{&quot;x&quot;:&quot;Hello&quot;,&quot;y&quot;:&quot;World!&quot;}&quot;&quot;&quot;)
 // --&gt; { x = &quot;Hello&quot;; y = &quot;world!&quot; }
 </code></pre>
-<h3 id="anonymous-records">Anonymous records</h3>
+<h2 id="anonymous-records">Anonymous records</h2>
 <p>Anonymous record fields are serialized in alphabetical order.</p>
 <pre><code class="language-fsharp">JsonSerializer.Serialize({| x = &quot;Hello&quot;; y = &quot;world!&quot; |}, options)
 // --&gt; {&quot;x&quot;:&quot;Hello&quot;,&quot;y&quot;:&quot;world!&quot;}
@@ -154,7 +154,7 @@ JsonSerializer.Deserialize(&quot;&quot;&quot;{&quot;x&quot;:&quot;Hello&quot;,&q
 JsonSerializer.Deserialize&lt;{| x : string ; y : string |}&gt;(&quot;&quot;&quot;{&quot;x&quot;:&quot;Hello&quot;,&quot;y&quot;:&quot;World!&quot;}&quot;&quot;&quot;, options)
 // --&gt; {| x = &quot;Hello&quot;; y = &quot;world!&quot; |}
 </code></pre>
-<h3 id="more-info">More info</h3>
+<h2 id="more-info">More info</h2>
 <p>For examples using standard library types such as unions, tuples, <code>option</code>, <code>Map</code>, <code>list</code> &amp; <code>Set</code>, more information is on the <a href="https://github.com/Tarmil/FSharp.SystemTextJson">FSharp.SystemTextJson</a> project site.</p>
 </div></section>
         </div>

@@ -3,9 +3,9 @@ title: Using Blazor features
 subtitle: Blazor Components and their interoperability
 ---
 
-### Components
+## Components
 
-#### Creating a component
+### Creating a component
 
 > Note: this section describes how to create and use plain Blazor components. It is recommended to use Elmish components whenever possible; see [Using Elmish](Elmish).
 
@@ -32,7 +32,7 @@ type MyComponent() =
         div { $"Hello, {this.Who}!" }
 ```
 
-#### Using a component
+### Using a component
 
 This section documents how to use a Blazor Component, either referenced from a C# Razor project, or created in F# by inheriting from `Component`.
 
@@ -117,7 +117,7 @@ Additionally, some parameter types must be handled specially:
         }
     ```
 
-#### Cascading
+### Cascading
 You can use [Cascading Values and Cascading Parameters](https://docs.microsoft.com/en-us/aspnet/core/blazor/components/cascading-values-and-parameters) as well
 ```fsharp
 let view state dispatch = 
@@ -149,7 +149,7 @@ type FooComponent() =
             p { "The meaning of life is {this.MeaningOfLife}" }
         }
 ```
-### NavLink
+## NavLink
 
 The function `navLink` is a helper to create a Blazor `NavLink` component. This component creates an `<a>` tag which dynamically receives the `"active"` CSS class whenever the current page URL matches its own `href`. The match is customized by passing `NavLinkMatch.All` (to only match the full URL path) or `NavLinkMatch.Prefix` (to match any URL that starts with the `navLink`'s `href`).
 
@@ -163,11 +163,11 @@ let myMenu =
 
 This page documents some useful features of Blazor and how to best use them from a Bolero application.
 
-### Dependency injection
+## Dependency injection
 
 Blazor provides the ability to work with the dependency injection mechanism introduced by ASP.NET Core. [Learn more about it on the official documentation](https://docs.microsoft.com/en-us/aspnet/core/blazor/dependency-injection).
 
-#### Requiring a dependency
+### Requiring a dependency
 
 Any Blazor component can require a dependency. This includes the Bolero `ProgramComponent`, as well as any `Component` class you create. This is done by creating a mutable property with the attribute `Microsoft.AspNetCore.Components.Inject`:
 
@@ -185,7 +185,7 @@ type MyApp() =
         doSomethingWith this.MyDependency
 ```
 
-#### Providing a dependency
+### Providing a dependency
 
 Dependencies are injected in the client-side host builder:
 
@@ -203,7 +203,7 @@ module Program =
         0
 ```
 
-### JavaScript interoperability
+## JavaScript interoperability
 
 It is possible to use Blazor's JavaScript interoperability interface `IJSRuntime` in Bolero using dependency injection. [Learn more about it on the official documentation](https://docs.microsoft.com/en-us/aspnet/core/blazor/call-javascript-from-dotnet).
 
@@ -225,7 +225,7 @@ type MyComponent() =
         }
 ```
 
-#### In `ProgramComponent`
+### In `ProgramComponent`
 
 It is already injected in `ProgramComponent`, so you can use it directly without injecting it beforehand.
 
@@ -241,7 +241,7 @@ type MyApp() =
             this.JSRuntime.InvokeVoidAsync("console.log", msg, model) |> ignore)
 ```
 
-#### In Elmish update commands
+### In Elmish update commands
 
 It is common to need JavaScript interoperation in the `update` function to call external functionality. The `IJSRuntime` can be passed to it from the `ProgramComponent`.
 Inside `update`, the commands located in the module `Cmd.OfJS` do a JavaScript call and transform its return value into a message.
@@ -280,7 +280,7 @@ let cmd =
         [| data |] CalledMyJSFunc Error
 ```
 
-#### HTML element references
+### HTML element references
 
 [Blazor's type `ElementReference`](https://docs.microsoft.com/en-us/aspnet/core/blazor/call-javascript-from-dotnet?view=aspnetcore-3.1#capture-references-to-elements) allows passing a reference to a rendered HTML element to JavaScript.
 This is useful for interacting with JavaScript libraries that insert themselves in a given element, creating for example a map or a rich text editor; or libraries that interact with more fundamental JavaScript APIs, like focusing an element.
@@ -329,7 +329,7 @@ type MyInputWithFocusButton() = // (1)
         }
 ```
 
-### Blazor component references
+## Blazor component references
 
 Just like with HTML elements, it is possible to capture a reference to an instantiated Blazor component.
 Whereas HTML element references are mostly useful with JavaScript interop, Blazor component references are used directly in F# to eg. call methods on the component itself.

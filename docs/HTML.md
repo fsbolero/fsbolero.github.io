@@ -10,7 +10,7 @@ See also how to create HTML elements using [HTML templates](Templating).
 > Note: the syntax for HTML has significantly changed in Bolero 0.20.
 > See [HTML list functions](HTML-list-functions) for the pre-0.20 list-based syntax.
 
-### Elements
+## Elements
 
 HTML elements are created using [Computation Expressions](https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/computation-expressions).
 The CE builder is the name of the element, and the body of the CE lists child content.
@@ -52,7 +52,7 @@ let myTextNode (name: string) : Node =
 The function `empty()` represents an empty sequence of nodes.
 This doesn't seem very useful at first, but it is actually important for conditional elements.
 
-#### Conditional elements
+### Conditional elements
 
 Due to the way that Blazor compares the rendered DOM when a change is applied, the returned HTML must always have the same structure: conditional elements can't be simply added. For example, the following may cause runtime errors:
 
@@ -127,7 +127,7 @@ Rendering such conditional content must be done with the `cond` function instead
         ]
     ```
 
-#### Collection elements
+### Collection elements
 
 Similarly, rendering collections using a function such as `List.map` to create a list of nodes can cause runtime errors. Instead, collections of items should be rendered using the function `forEach`.
 
@@ -155,7 +155,7 @@ let listUsers (names: string list) : Node =
     }
 ```
 
-### Attributes
+## Attributes
 
 Attributes are available in the `attr` submodule.
 They are added to an element by listing them inside the computation expression, *before* child nodes.
@@ -181,7 +181,7 @@ let myElement : Node =
     }
 ```
 
-#### Conditional attributes
+### Conditional attributes
 
 Like with elements (see [Conditional elements](#conditional-elements)), naively adding conditional attributes can lead to runtime errors.
 
@@ -207,7 +207,7 @@ let myElement (isBlue: bool) : Node =
     }
 ```
 
-### Event handlers
+## Event handlers
 
 Event handlers are available in the `on` submodule.
 
@@ -255,7 +255,7 @@ let myElement (js: IJSRuntime) : Node =
     }
 ```
 
-### Data bindings
+## Data bindings
 
 Attributes defined in the `bind` module define two-way binding with the element's value. These functions take two arguments:
 

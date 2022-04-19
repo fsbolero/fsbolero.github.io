@@ -12,9 +12,9 @@ In server-side mode, dynamic content runs on the server side and is shared with 
 
 You can learn more about these hosting models in [the official Blazor documentation](https://docs.microsoft.com/en-us/aspnet/core/blazor/hosting-models?view=aspnetcore-5.0).
 
-### Hosting models
+## Hosting models
 
-#### Plain WebAssembly mode
+### Plain WebAssembly mode
 
 To create a plain WebAssembly application, use the [dotnet project template](index#creating-a-project) with the following arguments:
 
@@ -38,7 +38,7 @@ builder.RootComponents.Add<Main.MyApp>("#main")
 
 Note that prerendering is not possible in plain WebAssembly mode.
 
-#### Hosted WebAssembly mode
+### Hosted WebAssembly mode
 
 Hosted WebAssembly is the default hosting mode created by the [dotnet project template](index#creating-a-project):
 
@@ -53,7 +53,7 @@ Like in plain WebAssembly mode, the static content must include a container elem
 
 Unlike in plain WebAssembly mode, prerendering is possible based on the [configuration](#configuring-hosted-modes).
 
-#### Server-side mode
+### Server-side mode
 
 To create a server-side Bolero app, create a default [dotnet project template](index#creating-a-project):
 
@@ -76,11 +76,11 @@ with:
 
 The static content is rendered exactly like hosted WebAssembly mode, [see below](#static-content-generation).
 
-### Configuring hosted modes
+## Configuring hosted modes
 
 Hosted WebAssembly and server-side are known collectively as hosted modes, and they share a lot of configuration and features.
 
-#### Configuration
+### Configuration
 
 Hosted modes are configured by using `AddBoleroHost` in the (server-side) dependency injection.
 
@@ -116,11 +116,11 @@ This method takes several optional arguments:
 
     The default is `true`.
 
-#### Static content generation
+### Static content generation
 
 There are multiple ways available to generate the static HTML content that contains a hosted Bolero app.
 
-##### Bolero HTML
+#### Bolero HTML
 
 > Introduced in v0.17.
 
@@ -199,7 +199,7 @@ type MyController() =
         this.BoleroPage(myPage)
 ```
 
-##### Razor
+#### Razor
 
 Another option is to use a Razor page.
 This is particularly convenient when integrating the application in an ASP.NET Core application written in C#.

@@ -109,8 +109,8 @@ WebAssembly or server-side</p>
 It is still a full .NET implementation, but running directly in the user's browser.</p>
 <p>In server-side mode, dynamic content runs on the server side and is shared with the user's browser via a <a href="https://dotnet.microsoft.com/apps/aspnet/signalr">SignalR</a> connection.</p>
 <p>You can learn more about these hosting models in <a href="https://docs.microsoft.com/en-us/aspnet/core/blazor/hosting-models?view=aspnetcore-5.0">the official Blazor documentation</a>.</p>
-<h3 id="hosting-models">Hosting models</h3>
-<h4 id="plain-webassembly-mode">Plain WebAssembly mode</h4>
+<h2 id="hosting-models">Hosting models</h2>
+<h3 id="plain-webassembly-mode">Plain WebAssembly mode</h3>
 <p>To create a plain WebAssembly application, use the <a href="index#creating-a-project">dotnet project template</a> with the following arguments:</p>
 <pre><code class="language-sh">dotnet new bolero-app --server=false
 </code></pre>
@@ -123,7 +123,7 @@ This container is selected in <code>Startup.fs</code>:</p>
 <pre><code class="language-fsharp">builder.RootComponents.Add&lt;Main.MyApp&gt;(&quot;#main&quot;)
 </code></pre>
 <p>Note that prerendering is not possible in plain WebAssembly mode.</p>
-<h4 id="hosted-webassembly-mode">Hosted WebAssembly mode</h4>
+<h3 id="hosted-webassembly-mode">Hosted WebAssembly mode</h3>
 <p>Hosted WebAssembly is the default hosting mode created by the <a href="index#creating-a-project">dotnet project template</a>:</p>
 <pre><code class="language-sh">dotnet new bolero-app
 </code></pre>
@@ -131,7 +131,7 @@ This container is selected in <code>Startup.fs</code>:</p>
 <a href="#static-content-generation">See below</a> for the different ways it can be generated.</p>
 <p>Like in plain WebAssembly mode, the static content must include a container element matching the selector used in <code>Startup.fs</code>.</p>
 <p>Unlike in plain WebAssembly mode, prerendering is possible based on the <a href="#configuring-hosted-modes">configuration</a>.</p>
-<h4 id="server-side-mode">Server-side mode</h4>
+<h3 id="server-side-mode">Server-side mode</h3>
 <p>To create a server-side Bolero app, create a default <a href="index#creating-a-project">dotnet project template</a>:</p>
 <pre><code class="language-sh">dotnet new bolero-app
 </code></pre>
@@ -143,9 +143,9 @@ This container is selected in <code>Startup.fs</code>:</p>
 <pre><code class="language-fsharp">.AddBoleroHost(server = true)
 </code></pre>
 <p>The static content is rendered exactly like hosted WebAssembly mode, <a href="#static-content-generation">see below</a>.</p>
-<h3 id="configuring-hosted-modes">Configuring hosted modes</h3>
+<h2 id="configuring-hosted-modes">Configuring hosted modes</h2>
 <p>Hosted WebAssembly and server-side are known collectively as hosted modes, and they share a lot of configuration and features.</p>
-<h4 id="configuration">Configuration</h4>
+<h3 id="configuration">Configuration</h3>
 <p>Hosted modes are configured by using <code>AddBoleroHost</code> in the (server-side) dependency injection.</p>
 <pre><code class="language-fsharp">type Startup() =
 
@@ -171,9 +171,9 @@ For example, when writing a hosted WebAssembly application, it can be convenient
 <p>The default is <code>true</code>.</p>
 </li>
 </ul>
-<h4 id="static-content-generation">Static content generation</h4>
+<h3 id="static-content-generation">Static content generation</h3>
 <p>There are multiple ways available to generate the static HTML content that contains a hosted Bolero app.</p>
-<h5 id="bolero-html">Bolero HTML</h5>
+<h4 id="bolero-html">Bolero HTML</h4>
 <blockquote>
 <p>Introduced in v0.17.</p>
 </blockquote>
@@ -239,7 +239,7 @@ type MyController() =
     member this.Index() =
         this.BoleroPage(myPage)
 </code></pre>
-<h5 id="razor">Razor</h5>
+<h4 id="razor">Razor</h4>
 <p>Another option is to use a Razor page.
 This is particularly convenient when integrating the application in an ASP.NET Core application written in C#.
 It can also be used with an F# application with <a href="https://docs.microsoft.com/en-us/aspnet/core/mvc/views/view-compilation?view=aspnetcore-5.0&amp;tabs=visual-studio#enable-runtime-compilation-in-an-existing-project">Razor runtime compilation</a>; this was the mode used by the dotnet template until Bolero 0.16.

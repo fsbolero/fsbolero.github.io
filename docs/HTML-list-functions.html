@@ -110,7 +110,7 @@ Create elements, attributes and event handlers in plain F#</p>
 <p>Note: the syntax for HTML has significantly changed in Bolero 0.20.
 This page describes the pre-0.20 syntax; see <a href="HTML">HTML</a> for the 0.20 computation expression-based syntax.</p>
 </blockquote>
-<h3 id="elements">Elements</h3>
+<h2 id="elements">Elements</h2>
 <p>To create an HTML element, just call the function with its name. It takes two arguments: a list of attributes and a list of child elements, and returns a value of type <code>Node</code>.</p>
 <p>Additionally, the function <code>text</code> creates a text node, and <code>textf</code> creates a text node using <code>printf</code>-style formatting.</p>
 <pre><code class="language-fsharp">let myElement name =
@@ -141,7 +141,7 @@ This page describes the pre-0.20 syntax; see <a href="HTML">HTML</a> for the 0.2
     ]
 </code></pre>
 <p><code>empty</code> represents an empty sequence of nodes: it is equivalent to <code>concat []</code>. This doesn't seem very useful at first, but it is actually important for conditional elements.</p>
-<h4 id="conditional-elements">Conditional elements</h4>
+<h3 id="conditional-elements">Conditional elements</h3>
 <p>Due to the way that Blazor compares the rendered DOM when a change is applied, the returned HTML must always have the same structure: conditional elements can't be simply added. For example, the following may cause runtime errors:</p>
 <pre><code class="language-fsharp">// May fail at runtime.
 let myButton (label: option&lt;string&gt;) =
@@ -205,7 +205,7 @@ let showLikes (users: UserList) =
 </code></pre>
 </li>
 </ul>
-<h4 id="collection-elements">Collection elements</h4>
+<h3 id="collection-elements">Collection elements</h3>
 <p>Similarly, rendering collections using a function such as <code>List.map</code> to create a list of nodes can cause runtime errors. Instead, collections of items should be rendered using the function <code>forEach</code>.</p>
 <pre><code class="language-fsharp">let listUsers (names: string list) =
     p [] [
@@ -216,7 +216,7 @@ let showLikes (users: UserList) =
         ]
     ]
 </code></pre>
-<h3 id="attributes">Attributes</h3>
+<h2 id="attributes">Attributes</h2>
 <p>Attributes are available in the <code>attr</code> submodule.</p>
 <pre><code class="language-fsharp">let myElement =
     p [
@@ -232,7 +232,7 @@ let showLikes (users: UserList) =
         text &quot;Hello and welcome to my app!&quot;
     ]
 </code></pre>
-<h4 id="conditional-attributes">Conditional attributes</h4>
+<h3 id="conditional-attributes">Conditional attributes</h3>
 <p>Like with elements (see <a href="#conditional-elements">Conditional elements</a>), naively adding conditional attributes can lead to runtime errors.</p>
 <pre><code class="language-fsharp">// May fail at runtime.
 let myElement (isBlue: bool) =
@@ -249,7 +249,7 @@ let myElement (isBlue: bool) =
         text &quot;Hello and welcome to my app!&quot;
     ]
 </code></pre>
-<h3 id="event-handlers">Event handlers</h3>
+<h2 id="event-handlers">Event handlers</h2>
 <p>Event handlers are available in the <code>on</code> submodule.</p>
 <pre><code class="language-fsharp">let myElement =
     button [on.click (fun _ -&gt; printfn &quot;Clicked!&quot;)] [
@@ -282,7 +282,7 @@ let myElement (isBlue: bool) =
         text &quot;Click me!&quot;
     ]
 </code></pre>
-<h3 id="data-bindings">Data bindings</h3>
+<h2 id="data-bindings">Data bindings</h2>
 <p>Attributes defined in the <code>bind</code> module define two-way binding with the element's value. These functions take two arguments:</p>
 <ol>
 <li>The current value, which generally comes from the <a href="Elmish">Elmish</a> model.</li>

@@ -10,7 +10,7 @@ See also how to create HTML elements using [HTML templates](Templating).
 > Note: the syntax for HTML has significantly changed in Bolero 0.20.
 > This page describes the pre-0.20 syntax; see [HTML](HTML) for the 0.20 computation expression-based syntax.
 
-### Elements
+## Elements
 
 To create an HTML element, just call the function with its name. It takes two arguments: a list of attributes and a list of child elements, and returns a value of type `Node`.
 
@@ -56,7 +56,7 @@ let myElements =
 
 `empty` represents an empty sequence of nodes: it is equivalent to `concat []`. This doesn't seem very useful at first, but it is actually important for conditional elements.
 
-#### Conditional elements
+### Conditional elements
 
 Due to the way that Blazor compares the rendered DOM when a change is applied, the returned HTML must always have the same structure: conditional elements can't be simply added. For example, the following may cause runtime errors:
 
@@ -131,7 +131,7 @@ Rendering such conditional content must be done with the `cond` function instead
         ]
     ```
 
-#### Collection elements
+### Collection elements
 
 Similarly, rendering collections using a function such as `List.map` to create a list of nodes can cause runtime errors. Instead, collections of items should be rendered using the function `forEach`.
 
@@ -146,7 +146,7 @@ let listUsers (names: string list) =
     ]
 ```
 
-### Attributes
+## Attributes
 
 Attributes are available in the `attr` submodule.
 
@@ -169,7 +169,7 @@ let myElement =
     ]
 ```
 
-#### Conditional attributes
+### Conditional attributes
 
 Like with elements (see [Conditional elements](#conditional-elements)), naively adding conditional attributes can lead to runtime errors.
 
@@ -193,7 +193,7 @@ let myElement (isBlue: bool) =
     ]
 ```
 
-### Event handlers
+## Event handlers
 
 Event handlers are available in the `on` submodule.
 
@@ -239,7 +239,7 @@ let myElement (js: IJSRuntime) =
     ]
 ```
 
-### Data bindings
+## Data bindings
 
 Attributes defined in the `bind` module define two-way binding with the element's value. These functions take two arguments:
 

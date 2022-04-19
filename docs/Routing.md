@@ -3,7 +3,7 @@ title: Routing
 subtitle: Bind the page's URL to the Elmish model.
 ---
 
-### Prerequisites
+## Prerequisites
 
 In order to use routing, you need to make sure that the page's base URL is set correctly. In most cases, you simply need to add the following inside the `<head>` of your page (`Pages/_Host.cshtml` for hosted apps, `wwwroot/index.html` for client-only apps):
 
@@ -17,7 +17,7 @@ If the root of your application is a subpath, then you need to set that subpath 
 <base href="/myrepo/">
 ```
 
-### Inferred router
+## Inferred router
 
 The easiest way to create a router is by using an inferred router. In this mode of operation, you create an endpoint type which has a 1-to-1 correspondence with your supported URLs, and store it in the Elmish model.
 
@@ -84,7 +84,7 @@ The router has a few helpful utilities:
     a { router.HRef Home; "Go to Home" }
     ```
 
-#### Format
+### Format
 
 `Router.infer` supports the following types:
 
@@ -187,7 +187,7 @@ The router has a few helpful utilities:
         }
     ```
 
-### Custom router
+## Custom router
 
 To have more control over the exact shape of your URLs, you can create a custom router like follows.
 
@@ -236,7 +236,7 @@ let customRouter2 : Router<Model, Message> =
     }
 ```
 
-### Page Models
+## Page Models
 
 It is common to have a part of the application's model that is specific to a page. For example, a login page has the username and password that the user is typing. A "list of items" page has the items, which may have been downloaded from a [remote function](Remoting). And so on.
 

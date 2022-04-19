@@ -107,7 +107,7 @@ Leverage the Model-View-Update architecture using the <a href="https://elmish.gi
           <section class="section"><div ws-preserve=""><blockquote>
 <p>Note: this page documents how to integrate Elmish in a Bolero application. It does not aim at explaining the Elmish architecture; you can learn about it <a href="https://elmish.github.io/elmish/">on Elmish's website</a>.</p>
 </blockquote>
-<h3 id="program-component">Program component</h3>
+<h2 id="program-component">Program component</h2>
 <p>The main component for a Bolero application is <code>ProgramComponent&lt;'model, 'msg&gt;</code>. This is a Blazor component whose content is defined by an Elmish program.</p>
 <p>For example, given the following simple Elmish counter program:</p>
 <pre><code class="language-fsharp">type Model = { value: int }
@@ -138,7 +138,7 @@ type MyApp() =
 
     override this.Program = program
 </code></pre>
-<h3 id="view-components">View components</h3>
+<h2 id="view-components">View components</h2>
 <p>Bolero works by calling the <code>view</code> on every <code>update</code>, and then diffing the returned node against the previously rendered page. This means that a part of the page that doesn't change after a given update still takes some computation to realize that it hasn't changed.</p>
 <p>Take the following example:</p>
 <pre><code class="language-fsharp">type Model = { firstName: string; lastName: string }
@@ -187,7 +187,7 @@ If there are no parameters to pass, use <code>attr.empty()</code>.</p>
         $&quot;Hello, {model.firstName} {model.lastName}!&quot;
     }
 </code></pre>
-<h4 id="customizing-the-model-update-check">Customizing the model update check</h4>
+<h3 id="customizing-the-model-update-check">Customizing the model update check</h3>
 <p>Let's improve our <code>Input</code> component by adding a label. We can change the model to a record that contains both the label and the value.</p>
 <pre><code class="language-fsharp">type InputModel = { label: string; value: string }
 

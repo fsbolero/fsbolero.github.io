@@ -3,7 +3,7 @@ title: Remoting
 subtitle: Easily call server-side functions from the client side.
 ---
 
-### Defining the service
+## Defining the service
 
 A set of server-side functions is defined as a record called a *remote service*. Each function is a field in this record, and must take one argument and return `Async<_>`. If you need to pass several arguments to a server-side function, use a tuple.
 
@@ -27,7 +27,7 @@ type MyService =
 
 Remote calls are `POST` requests to the function's URL. Arguments and return values are automatically serialized to JSON.
 
-### Calling on the client side
+## Calling on the client side
 
 On the client side, you will typically want to call these functions in the `update` of the Elmish app. See [the Elmish documentation](https://elmish.github.io/elmish/basics.html) to learn how to run commands in `update`.
 
@@ -88,11 +88,11 @@ On the client side, you will typically want to call these functions in the `upda
 
     ```
 
-### Defining on the server side
+## Defining on the server side
 
 On the server side, Bolero.Remoting is registered as a service and added as ASP.NET Core middleware. There are several ways to do so.
 
-#### A simple service
+### A simple service
 
 Here is how to implement a remote service without any dependencies.
 
@@ -142,7 +142,7 @@ Here is how to implement a remote service without any dependencies.
 
     Note that `UseRemoting` (and any other middleware) should be called *before* `UseRouting` to make sure that it catches the requests to its endpoints.
 
-#### Using dependency injection
+### Using dependency injection
 
 You might need to use injected dependencies in a remote service: a logger, a database connection, etc. For this, you need a different approach.
 
@@ -183,7 +183,7 @@ You might need to use injected dependencies in a remote service: a logger, a dat
 
 3. In your ASP.NET Core startup, start the remoting middleware, just like for a simple service.
 
-#### IRemoteContext
+### IRemoteContext
 
 > Introduced in v0.8.
 
@@ -200,11 +200,11 @@ Here is how to obtain an `IRemoteContext`:
 
 * If you are not using dependency injection, you can replace your handler record value with a function taking `IRemoteContext` as argument and returning a record.
 
-#### Using several services
+### Using several services
 
 You can of course define several remote services in the same application. Each of them needs to be registered by a separate call to `AddRemoting` in `ConfigureServices`. A single call to `UseRemoting` is enough in `Configure`.
 
-### Authentication and authorization
+## Authentication and authorization
 
 > Introduced in v0.4.
 >
@@ -215,7 +215,7 @@ Bolero includes facilities for remote function authentication and authorization.
 * **Authentication** means signing in, signing out and identifying the current user in remote functions.
 * **Authorization** means specifying that a given remote function can only be used by authenticated users, optionally with additional criteria such as "is admin".
 
-#### Authentication
+### Authentication
 
 Authentication is done using standard ASP.NET Core authentication features. Enabling it is therefore done like a usual ASP.NET Core application. Here is an example setup for the server-side `Startup.fs` using cookie authentication:
 
@@ -279,7 +279,7 @@ let loginService (ctx: IRemoteContext) =
     }
 ```
 
-#### Authorization
+### Authorization
 
 Authorization also uses standard ASP.NET Core features. It is enabled in the startup class's `ConfigureServices` method:
 
@@ -336,7 +336,7 @@ let userDataService (ctx: IRemoteContext) =
     }
 ```
 
-#### From the client side
+### From the client side
 
 You can call an authorized function from the client side with the standard `Cmd.ofAsync`. If the user is not authorized, then the call will return an error with the exception `RemoteUnauthorizedException`.
 
