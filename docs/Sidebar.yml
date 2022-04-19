@@ -4,6 +4,7 @@
 - url: /docs/Hosting
 - url: /docs/HTML
 - url: /docs/HTML-list-functions
+  hideIfNotCurrent: true
 - url: /docs/Templating
 - url: /docs/Elmish
 - url: /docs/Routing
