@@ -48,7 +48,17 @@ let myElementWithDefaultWho : Node =
     comp<MyComponent> { attr.empty() }
 ```
 
-However, some parameter types must be handled specially:
+When inserting a component without parameters inside a parent element, `{ attr.empty() }` can be omitted:
+
+```fsharp
+let myComponentInAnElement : Node =
+    div {
+        attr.id "greeting"
+        comp<MyComponent>
+    }
+```
+
+Additionally, some parameter types must be handled specially:
 
 * Parameters of type `EventCallback<T>` can be passed using one of these functions:
 

@@ -137,7 +137,14 @@ If there are no parameters to pass, use <code>attr.empty()</code>.</p>
 let myElementWithDefaultWho : Node =
     comp&lt;MyComponent&gt; { attr.empty() }
 </code></pre>
-<p>However, some parameter types must be handled specially:</p>
+<p>When inserting a component without parameters inside a parent element, <code>{ attr.empty() }</code> can be omitted:</p>
+<pre><code class="language-fsharp">let myComponentInAnElement : Node =
+    div {
+        attr.id &quot;greeting&quot;
+        comp&lt;MyComponent&gt;
+    }
+</code></pre>
+<p>Additionally, some parameter types must be handled specially:</p>
 <ul>
 <li><p>Parameters of type <code>EventCallback&lt;T&gt;</code> can be passed using one of these functions:</p>
 <ul>
