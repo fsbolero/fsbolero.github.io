@@ -84,11 +84,11 @@ Rendering such conditional content must be done with the `cond` function instead
 
     ```fsharp
     let myButton (label: option<string>) : Node =
-        button [] [
+        button {
             cond label <| function
                 | Some l -> text l
                 | None -> empty()
-        ]
+        }
     ```
 
     Here's an example with a union defined in your code:

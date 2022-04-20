@@ -161,11 +161,11 @@ let myButton (label: option&lt;string&gt;) : Node =
 </li>
 <li><p><code>cond</code> can also take a value whose type is an F# union, and a function that matches over the cases of this union. For example, <code>option&lt;'T&gt;</code> is an F# union, so the following is correct:</p>
 <pre><code class="language-fsharp">let myButton (label: option&lt;string&gt;) : Node =
-    button [] [
+    button {
         cond label &lt;| function
             | Some l -&gt; text l
             | None -&gt; empty()
-    ]
+    }
 </code></pre>
 <p>Here's an example with a union defined in your code:</p>
 <pre><code class="language-fsharp">/// A list of usernames, truncated to two + number of others
