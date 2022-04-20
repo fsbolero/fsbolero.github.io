@@ -105,7 +105,7 @@ Rendering such conditional content must be done with the `cond` function instead
     /// * "*Alice* and *Bob* like this"
     /// * "*Alice*, *Bob* and 12 others like this"
     let showLikes (users: UserList) : Node =
-        concat [
+        concat {
             cond users <| function
                 | One uname -> b { uname }
                 | Two (uname1, uname2) ->
@@ -124,7 +124,7 @@ Rendering such conditional content must be done with the `cond` function instead
             cond users <| function
                 | One _ -> text " likes this."
                 | _     -> text " like this."
-        ]
+        }
     ```
 
 ### Collection elements

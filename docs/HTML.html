@@ -179,7 +179,7 @@ type UserList =
 /// * &quot;*Alice* and *Bob* like this&quot;
 /// * &quot;*Alice*, *Bob* and 12 others like this&quot;
 let showLikes (users: UserList) : Node =
-    concat [
+    concat {
         cond users &lt;| function
             | One uname -&gt; b { uname }
             | Two (uname1, uname2) -&gt;
@@ -198,7 +198,7 @@ let showLikes (users: UserList) : Node =
         cond users &lt;| function
             | One _ -&gt; text &quot; likes this.&quot;
             | _     -&gt; text &quot; like this.&quot;
-    ]
+    }
 </code></pre>
 </li>
 </ul>
