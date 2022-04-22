@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bolero 0.17 released | Bolero: F# in WebAssembly</title>
+  <title>Bolero 0.20 released | Bolero: F# in WebAssembly</title>
   <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16" />
   <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
   <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[],"$DATA":{"$V":{}}}' />
@@ -93,83 +93,67 @@
           <div class="column content markdown-column">
           <section class="hero">
             <div class="hero-body">
-              <h1 class="title">Bolero 0.17 released</h1>
+              <h1 class="title">Bolero 0.20 released</h1>
               <p class="subtitle">
-Define static content using Bolero.Html</p>
+A new HTML syntax on .NET 6</p>
 
             </div>
           </section>
-          <section class="section"><div ws-preserve=""><p>We are happy to announce the release of <a href="https://fsbolero.io">Bolero</a> version 0.17.
+          <section class="section"><div ws-preserve=""><p>We are happy to announce the release of <a href="https://fsbolero.io">Bolero</a> version 0.20.
 Bolero is a library that enables writing full-stack applications in F#, whose client side runs in WebAssembly using Blazor.</p>
-<p>The main highlight of this release is the capability to use Bolero.Html functions to generate the static server-side HTML.
-This comes as a replacement for the dynamically-compiled Razor page that was previously necessary for ASP.NET Core hosted applications.</p>
+<p>The main highlight of this release is a new syntax for writing HTML in F# that is both visually lighter and more efficient at runtime.</p>
 <p>Install the latest project template with:</p>
-<pre><code>dotnet new -i Bolero.Templates::0.17.10
+<pre><code>dotnet new -i Bolero.Templates::0.20.4
 </code></pre>
 <h2 id="changes">Changes</h2>
 <ul>
-<li><p><a href="https://github.com/fsbolero/Bolero/issues/202">#202</a> Add the ability to generate static HTML content using Bolero.Html functions.</p>
-<p>For example, a simple page may look like this:</p>
-<pre><code class="language-fsharp">let index = doctypeHtml [] [
-    head [] [
-        title [] [text &quot;Hello, world!&quot;]
-    ]
-    body [] [
-        div [attr.id &quot;main&quot;] [
-            rootComp&lt;Client.MyApp&gt;
-        ]
-        boleroScript
-    ]
-]
-</code></pre>
-<p>In this sample, the call to <code>rootComp</code> inserts the Bolero (or Blazor) component <code>Client.MyApp</code> in the page.
-The call to <code>boleroScript</code> inserts the script tag required by Blazor.</p>
-<p>These tags use the configuration passed to <code>AddBoleroHost</code> to determine whether the component is server-side or WebAssembly, and whether it is prerendered or not.</p>
-<p>This new feature is now used by default by the dotnet template instead of a dynamically-compiled Razor page.
-A new argument to <code>dotnet new</code> determines how the static HTML is generated:</p>
-<ul>
-<li><p><code>--hostpage=bolero</code> is the default and uses Bolero.Html functions.</p>
+<li><p>Bolero now requires .NET 6.</p>
 </li>
-<li><p><code>--hostpage=razor</code> uses a dynamically-compiled Razor page.</p>
-</li>
-<li><p><code>--hostpage=html</code> uses a plain index.html file.</p>
-</li>
-</ul>
-<p>Learn more in <a href="https://fsbolero.io/docs/Hosting#static-content-generation">the documentation</a>.</p>
-</li>
-<li><p><a href="https://github.com/fsbolero/Bolero/issues/216">#216</a> Add helpers to create <a href="https://docs.microsoft.com/en-us/aspnet/core/blazor/components/virtualization?view=aspnetcore-5.0">virtualized components</a>.
-This is a Blazor feature that allows rendering only the visible items in a collection.</p>
-<pre><code class="language-fsharp">// Display a virtualized list of 100 items.
-let items = [1..100]
-
-virtualize.comp [] items &lt;| fun item -&gt;
-    div [] [textf &quot;%i&quot; item]
-</code></pre>
-<p>The helpers provide all the features of Blazor's <code>Virtualize</code> component, such as loading from a function rather than a collection, and placeholders while items are loading:</p>
-<pre><code class="language-fsharp">// Display a virtualized list of items retrieved from a remote function.
-
-let getItems (r: ItemsProviderRequest) : ValueTask&lt;ItemProviderResult&gt; =
-    async {
-        let! items, totalCount = remote.GetItems(r.StartIndex, r.Count)
-        return ItemsProviderResult(items, totalCount)
+<li><p><a href="https://github.com/fsbolero/Bolero/issues/249">#249</a> Use computation expressions for the HTML syntax.
+Instead of functions taking lists of attributes and children, HTML now looks like this:</p>
+<pre><code class="language-fsharp">concat {
+    &quot;Welcome to &quot;
+    a {
+        attr.href &quot;https://fsbolero.io&quot;
+        attr.id &quot;link&quot;
+        &quot;Bolero&quot;
     }
-    |&gt; Async.StartAsTask
-    |&gt; ValueTask
-
-// Displayed while an item is being loaded.
-let placeholder = div [attr.classes [&quot;my-placeholder&quot;]] []
-
-virtualize.compProvider
-    [ virtualize.placeholder (fun _ -&gt; placeholder) ]
-    getItems
-    &lt;| fun item -&gt;
-        div [] [textf &quot;%i&quot; item]
+    &quot;!&quot;
+}
 </code></pre>
+<p>This new syntax also applies to Blazor components.
+For example, to use a <a href="https://www.matblazor.com/">MatBlazor</a> button:</p>
+<pre><code class="language-fsharp">comp&lt;MatButton&gt; {
+    attr.callback &quot;OnClick&quot; (fun _ -&gt; dispatch ButtonClicked)
+    &quot;Link&quot; =&gt; &quot;https://fsbolero.io&quot;
+    &quot;Target&quot; =&gt; &quot;_blank&quot;
+
+    &quot;Click me!&quot;
+}
+</code></pre>
+<p>The <a href="20210417-bolero-0-17-released"><code>virtualize</code></a> component uses <code>let!</code> to bind the current item:</p>
+<pre><code class="language-fsharp">let numbers = [ 1 .. 100 ]
+
+ul {
+    virtualize.comp {
+        virtualize.itemSize 20f
+
+        let! item = virtualize.items numbers
+        li {
+            $&quot;Item #{item}&quot;
+        }
+    }
+}
+</code></pre>
+<p>In addition to being slightly more concise, this syntax is more efficient performance-wise; see the linked issue for more details.</p>
 </li>
-<li><p><a href="https://github.com/fsbolero/Bolero/issues/205">#205</a> <strong>Breaking change</strong>: the <code>Value</code> property of of <code>Ref&lt;'T&gt;</code> and <code>HtmlRef</code> now has type <code>'T option</code> rather than <code>'T</code>.
-It is <code>None</code> if the reference hasn't been set using <code>attr.ref</code>.</p>
+<li><p>The values <code>empty</code> and <code>attr.empty</code> are now functions: <code>empty()</code> / <code>attr.empty()</code>.</p>
 </li>
-<li><p><a href="https://github.com/fsbolero/Bolero/issues/214">#214</a> Fix stripping F# metadata from assemblies when building in non-trimmed mode.</p>
+<li><p>CSS classes from multiple calls to <code>attr.classes</code> and/or <code>attr.``class``</code> are no longer combined together into a single <code>class</code> attribute.
+This feature was incompatible with the code inlining that makes the new syntax performant.</p>
+<p>To combine CSS classes, combine them with <code>String.concat &quot; &quot;</code> and pass the result to <code>attr.``class``</code>.</p>
+</li>
+<li><p>Bolero's assemblies are now trimmed during publish in WebAssembly mode, for a smaller download size.</p>
 </li>
 </ul>
 <p>Happy coding!</p>
@@ -180,7 +164,10 @@ It is <code>None</code> if the reference hasn't been set using <code>attr.ref</c
               <div class="menu">
                 <div class="menu-label">Articles</div>
                 <ul class="menu-list"><li>
-                    <a class="is-active" href="/blog/20210417-bolero-0-17-released">Bolero 0.17 released</a>
+                    <a class="is-active" href="/blog/20220419-bolero-0-20-released">Bolero 0.20 released</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/blog/20210417-bolero-0-17-released">Bolero 0.17 released</a>
                     <ul class="is-hidden"></ul>
                   </li><li>
                     <a href="/blog/20201127-bolero-0-16-released">Bolero 0.16 released for .NET 5</a>
