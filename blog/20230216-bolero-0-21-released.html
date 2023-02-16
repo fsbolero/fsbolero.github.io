@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>API Reference | Bolero: F# in WebAssembly</title>
+  <title>Bolero 0.21 released | Bolero: F# in WebAssembly</title>
   <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16" />
   <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
   <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[],"$DATA":{"$V":{}}}' />
@@ -91,99 +91,71 @@
       <div class="container">
         <div class="columns is-gapless">
           <div class="column content markdown-column">
-          <div class="edit-page-icon" style="display: none">
-            <a href="https://github.com/fsbolero/website/tree/master/src/Website/docs/reference.md" target="_blank" title="Contribute to this page on GitHub">
-              <i class="fa fa-edit"></i>
-            </a>
-          </div>
-          
-          <section class="section"><div ws-preserve=""><p>
+          <section class="hero">
+            <div class="hero-body">
+              <h1 class="title">Bolero 0.21 released</h1>
+              <p class="subtitle">
+Revamped server-side rendering</p>
 
-<h1>IBoleroHostBaseConfig</h1>
-<p>
-
-    <span>Namespace: Bolero.Server</span><br />
-    </p>
-<div class="xmldoc">
-</div>
-  <h3>Instance members</h3>
-  <table class="table table-bordered member-list">
-    <thead>
-      <tr><td>Instance member</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '907', 907)" onmouseover="showTip(event, '907', 907)">
-            x.IsPrerendered
-          </code>
-          <div class="tip" id="907">
-            <strong>Signature:</strong> bool<br />
-              <strong>Modifiers:</strong> abstract<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                    
-              <p>CompiledName: <code>get_IsPrerendered</code></p>
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-          <code onmouseout="hideTip(event, '908', 908)" onmouseover="showTip(event, '908', 908)">
-            x.IsServer
-          </code>
-          <div class="tip" id="908">
-            <strong>Signature:</strong> bool<br />
-              <strong>Modifiers:</strong> abstract<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                    
-              <p>CompiledName: <code>get_IsServer</code></p>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</p>
+            </div>
+          </section>
+          <section class="section"><div ws-preserve=""><p>We are happy to announce the release of <a href="https://fsbolero.io">Bolero</a> version 0.20.
+Bolero is a library that enables writing full-stack applications in F#, whose client side runs in WebAssembly using Blazor.</p>
+<p>The main highlight of this release is a revamp of server-side rendering that fixes prerendering and provides new functions to convert Bolero HTML directly to string.</p>
+<p>Install the latest project template with:</p>
+<pre><code>dotnet new -i Bolero.Templates::0.21.24
+</code></pre>
+<h2 id="changes">Changes</h2>
+<ul>
+<li><p><a href="https://github.com/fsbolero/Bolero/issues/261">#261</a> Fix prerendering of components inside server-side Bolero.Html.</p>
+</li>
+<li><p>To instantiate a client-side component inside server-side Bolero.Html, the standard <code>comp&lt;T&gt;</code> can now be used instead of the dedicated <code>rootComp&lt;T&gt;</code>.</p>
+</li>
+<li><p><a href="https://github.com/fsbolero/Bolero/issues/275">#275</a> Add new module <code>Bolero.Server.Components.Rendering</code> with functions:</p>
+<ul>
+<li><p><code>renderPlain : Node -&gt; string</code> renders a node to raw HTML. Blazor components are ignored.</p>
+</li>
+<li><p><code>renderPage : Node -&gt; HttpContext -&gt; IHtmlHelper -&gt; IBoleroHostConfig -&gt; string</code> also renders a node to raw HTML. Blazor components are rendered according to the given host config.</p>
+</li>
+</ul>
+</li>
+<li><p><a href="https://github.com/fsbolero/Bolero/issues/279">#279</a> Bolero.Build: Disable the production of a reference assembly.
+This fixes occurrences of error FS2030 that happen on Bolero client projects in .NET 7.</p>
+</li>
+<li><p><a href="https://github.com/fsbolero/Bolero/issues/285">#285</a> Fix typed component builders so that nested components aren't forced to have the same type.</p>
+</li>
+</ul>
+<p>Happy coding!</p>
 </div></section>
         </div>
           <div class="column is-one-quarter-tablet is-one-fifth-desktop sidebar-column">
             <section class="section">
               <div class="menu">
-                <div class="menu-label">Documentation</div>
+                <div class="menu-label">Articles</div>
                 <ul class="menu-list"><li>
-                    <a href="/docs">Getting Started</a>
+                    <a class="is-active" href="/blog/20230216-bolero-0-21-released">Bolero 0.21 released</a>
                     <ul class="is-hidden"></ul>
                   </li><li>
-                    <a href="/docs/Hosting">Hosting models</a>
+                    <a href="/blog/20220419-bolero-0-20-released">Bolero 0.20 released</a>
                     <ul class="is-hidden"></ul>
                   </li><li>
-                    <a href="/docs/HTML">Writing HTML</a>
+                    <a href="/blog/20210417-bolero-0-17-released">Bolero 0.17 released</a>
                     <ul class="is-hidden"></ul>
                   </li><li>
-                    <a href="/docs/Templating">HTML templates</a>
+                    <a href="/blog/20201127-bolero-0-16-released">Bolero 0.16 released for .NET 5</a>
                     <ul class="is-hidden"></ul>
                   </li><li>
-                    <a href="/docs/Elmish">Using Elmish</a>
+                    <a href="/blog/20200915-bolero-0-15-released">Bolero 0.15 released</a>
                     <ul class="is-hidden"></ul>
                   </li><li>
-                    <a href="/docs/Routing">Routing</a>
+                    <a href="/blog/20200807-bolero-0-14-released">Bolero 0.14 released</a>
                     <ul class="is-hidden"></ul>
                   </li><li>
-                    <a href="/docs/Remoting">Remoting</a>
+                    <a href="/blog/20200523-bolero-0-13-released">Bolero 0.13 released</a>
                     <ul class="is-hidden"></ul>
                   </li><li>
-                    <a href="/docs/Blazor">Using Blazor features</a>
+                    <a href="/blog/20200323-bolero-0-12-released">Bolero 0.12 released</a>
                     <ul class="is-hidden"></ul>
-                  </li><li>
-                    <a href="/docs/JSON">Dealing with JSON</a>
-                    <ul class="is-hidden"></ul>
-                  </li><li>
-                    <a href="/docs/Upgrade">Upgrade guide</a>
-                    <ul class="is-hidden"></ul>
-                  </li><li>
-                    <a class="is-active" href="/docs/reference">API Reference</a>
-                    <ul></ul>
                   </li></ul>
               </div>
             </section>
@@ -191,7 +163,6 @@
         </div>
       </div>
     </section>
-      
     
   <footer class="section footer first-footer has-text-centered">
     <div class="container">

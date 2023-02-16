@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bolero 0.20 released | Bolero: F# in WebAssembly</title>
+  <title>Bolero 0.21 released | Bolero: F# in WebAssembly</title>
   <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16" />
   <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
   <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[],"$DATA":{"$V":{}}}' />
@@ -93,67 +93,36 @@
           <div class="column content markdown-column">
           <section class="hero">
             <div class="hero-body">
-              <h1 class="title">Bolero 0.20 released</h1>
+              <h1 class="title">Bolero 0.21 released</h1>
               <p class="subtitle">
-A new HTML syntax on .NET 6</p>
+Revamped server-side rendering</p>
 
             </div>
           </section>
           <section class="section"><div ws-preserve=""><p>We are happy to announce the release of <a href="https://fsbolero.io">Bolero</a> version 0.20.
 Bolero is a library that enables writing full-stack applications in F#, whose client side runs in WebAssembly using Blazor.</p>
-<p>The main highlight of this release is a new syntax for writing HTML in F# that is both visually lighter and more efficient at runtime.</p>
+<p>The main highlight of this release is a revamp of server-side rendering that fixes prerendering and provides new functions to convert Bolero HTML directly to string.</p>
 <p>Install the latest project template with:</p>
-<pre><code>dotnet new -i Bolero.Templates::0.20.4
+<pre><code>dotnet new -i Bolero.Templates::0.21.24
 </code></pre>
 <h2 id="changes">Changes</h2>
 <ul>
-<li><p>Bolero now requires .NET 6.</p>
+<li><p><a href="https://github.com/fsbolero/Bolero/issues/261">#261</a> Fix prerendering of components inside server-side Bolero.Html.</p>
 </li>
-<li><p><a href="https://github.com/fsbolero/Bolero/issues/249">#249</a> Use computation expressions for the HTML syntax.
-Instead of functions taking lists of attributes and children, HTML now looks like this:</p>
-<pre><code class="language-fsharp">concat {
-    &quot;Welcome to &quot;
-    a {
-        attr.href &quot;https://fsbolero.io&quot;
-        attr.id &quot;link&quot;
-        &quot;Bolero&quot;
-    }
-    &quot;!&quot;
-}
-</code></pre>
-<p>This new syntax also applies to Blazor components.
-For example, to use a <a href="https://www.matblazor.com/">MatBlazor</a> button:</p>
-<pre><code class="language-fsharp">comp&lt;MatButton&gt; {
-    attr.callback &quot;OnClick&quot; (fun _ -&gt; dispatch ButtonClicked)
-    &quot;Link&quot; =&gt; &quot;https://fsbolero.io&quot;
-    &quot;Target&quot; =&gt; &quot;_blank&quot;
-
-    &quot;Click me!&quot;
-}
-</code></pre>
-<p>The <a href="20210417-bolero-0-17-released"><code>virtualize</code></a> component uses <code>let!</code> to bind the current item:</p>
-<pre><code class="language-fsharp">let numbers = [ 1 .. 100 ]
-
-ul {
-    virtualize.comp {
-        virtualize.itemSize 20f
-
-        let! item = virtualize.items numbers
-        li {
-            $&quot;Item #{item}&quot;
-        }
-    }
-}
-</code></pre>
-<p>In addition to being slightly more concise, this syntax is more efficient performance-wise; see the linked issue for more details.</p>
+<li><p>To instantiate a client-side component inside server-side Bolero.Html, the standard <code>comp&lt;T&gt;</code> can now be used instead of the dedicated <code>rootComp&lt;T&gt;</code>.</p>
 </li>
-<li><p>The values <code>empty</code> and <code>attr.empty</code> are now functions: <code>empty()</code> / <code>attr.empty()</code>.</p>
+<li><p><a href="https://github.com/fsbolero/Bolero/issues/275">#275</a> Add new module <code>Bolero.Server.Components.Rendering</code> with functions:</p>
+<ul>
+<li><p><code>renderPlain : Node -&gt; string</code> renders a node to raw HTML. Blazor components are ignored.</p>
 </li>
-<li><p>CSS classes from multiple calls to <code>attr.classes</code> and/or <code>attr.``class``</code> are no longer combined together into a single <code>class</code> attribute.
-This feature was incompatible with the code inlining that makes the new syntax performant.</p>
-<p>To combine CSS classes, combine them with <code>String.concat &quot; &quot;</code> and pass the result to <code>attr.``class``</code>.</p>
+<li><p><code>renderPage : Node -&gt; HttpContext -&gt; IHtmlHelper -&gt; IBoleroHostConfig -&gt; string</code> also renders a node to raw HTML. Blazor components are rendered according to the given host config.</p>
 </li>
-<li><p>Bolero's assemblies are now trimmed during publish in WebAssembly mode, for a smaller download size.</p>
+</ul>
+</li>
+<li><p><a href="https://github.com/fsbolero/Bolero/issues/279">#279</a> Bolero.Build: Disable the production of a reference assembly.
+This fixes occurrences of error FS2030 that happen on Bolero client projects in .NET 7.</p>
+</li>
+<li><p><a href="https://github.com/fsbolero/Bolero/issues/285">#285</a> Fix typed component builders so that nested components aren't forced to have the same type.</p>
 </li>
 </ul>
 <p>Happy coding!</p>
@@ -164,7 +133,10 @@ This feature was incompatible with the code inlining that makes the new syntax p
               <div class="menu">
                 <div class="menu-label">Articles</div>
                 <ul class="menu-list"><li>
-                    <a class="is-active" href="/blog/20220419-bolero-0-20-released">Bolero 0.20 released</a>
+                    <a class="is-active" href="/blog/20230216-bolero-0-21-released">Bolero 0.21 released</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/blog/20220419-bolero-0-20-released">Bolero 0.20 released</a>
                     <ul class="is-hidden"></ul>
                   </li><li>
                     <a href="/blog/20210417-bolero-0-17-released">Bolero 0.17 released</a>

@@ -184,15 +184,14 @@ It is the default method used by the dotnet project template, or can be explicit
 <li><p><code>doctypeHtml</code> creates a <code>&lt;html&gt;</code> tag preceded by a standard doctype declaration.
 Like other element functions, it takes as arguments a list of attributes and a list of child elements.</p>
 </li>
-<li><p><code>rootComp&lt;T&gt;</code> inserts a component of type <code>T</code> as dynamic content.</p>
+<li><p><code>comp&lt;T&gt;</code> inserts a component of type <code>T</code> as dynamic content.</p>
 <p>This may include prerendered content, depending on the <code>prerendered</code> value passed to <code>AddBoleroHost</code>.</p>
 <p>In WebAssembly mode, this must be inserted inside a container element matched by the selector used in <code>Startup.fs</code>.</p>
 <p>In WebAssembly mode without prerendering, this actually doesn't insert any content.
 Indeed, in this mode, all that is needed is the container element and the <code>boleroScript</code> (see below).
-So if you know that you will always run your app in WebAssembly mode without prerendering, then you can simply not insert the <code>rootComp</code>.
+So if you know that you will always run your app in WebAssembly mode without prerendering, then you can simply not insert the <code>comp</code>.
 This way, you won't need a reference from the server project to the client project.</p>
-<p>Note that this is the only way to insert dynamic content in a static page.
-If you use functions like <code>comp</code> or <code>ecomp</code>, the component's initial HTML will be inserted in the page, but no dynamic behavior will take place.</p>
+<p>Note that other functions in the <code>comp</code> family, such a <code>ecomp</code> and <code>lazyComp</code>, will not work correctly here.</p>
 </li>
 <li><p><code>boleroScript</code> inserts a <code>&lt;script&gt;</code> tag pointing to the JavaScript file that starts the application.
 It knows which script to insert (either <code>blazor.webassembly.js</code> or <code>blazor.server.js</code>) based on the <code>server</code> and <code>devToggle</code> values passed to <code>AddBoleroHost</code>.</p>
@@ -209,8 +208,8 @@ let myPage = doctypeHtml {
     body {
         div { &quot;This is the body of the page&quot; }
         div {
-            attr.id &quot;main&quot; 
-            rootComp&lt;Client.Main.MyApp&gt;
+            attr.id &quot;main&quot;
+            comp&lt;Client.Main.MyApp&gt;
         }
         boleroScript
     }
@@ -235,7 +234,7 @@ open Bolero.Server
 
 type MyController() =
     inherit Controller()
-    
+
     member this.Index() =
         this.BoleroPage(myPage)
 </code></pre>
