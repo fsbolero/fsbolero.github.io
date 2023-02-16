@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API Reference | Bolero: F# in WebAssembly</title>
+  <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16" />
+  <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
+  <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[],"$DATA":{"$V":{}}}' />
+
+  <link rel="stylesheet" href="/css/all.min.css" />
+  <link rel="stylesheet" href="/docs/content/fsdocs-default.css" />
+  <link rel="stylesheet" href="/docs/content/fsdocs-custom.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js" type="text/javascript" charset="UTF-8"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/languages/fsharp.min.js" type="text/javascript" charset="UTF-8"></script><link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/vs.min.css"></link>
+
+</head>
+<body>
+  <header class="navbar ">
+    <div class="container">
+      <div class="navbar-brand">
+        <a class="navbar-item is-hoverable" onclick="Website.Client.ToggleDrawer()"><i class="fa fa-bars"></i></a>
+        <span class="navbar-item"><a href="/">Bolero</a></span>
+      </div>
+      <div class="navbar-menu">
+        <nav class="navbar-start"><a href="/" class="navbar-item is-hoverable has-text-weight-bold">Home</a><div class="navbar-item is-hoverable has-text-weight-bold has-dropdown">
+            <a href="/docs" class="navbar-link is-arrowless">Documentation</a>
+            <div class="navbar-dropdown has-text-weight-normal"><a class="navbar-item" href="/docs">Getting Started</a><a class="navbar-item" href="/docs/Hosting">Hosting models</a><a class="navbar-item" href="/docs/HTML">Writing HTML</a><a class="navbar-item" href="/docs/HTML-list-functions">Writing HTML (Legacy)</a><a class="navbar-item" href="/docs/Templating">HTML templates</a><a class="navbar-item" href="/docs/Elmish">Using Elmish</a><a class="navbar-item" href="/docs/Routing">Routing</a><a class="navbar-item" href="/docs/Remoting">Remoting</a><a class="navbar-item" href="/docs/Blazor">Using Blazor features</a><a class="navbar-item" href="/docs/JSON">Dealing with JSON</a><a class="navbar-item" href="/docs/Upgrade">Upgrade guide</a><a class="navbar-item" href="/docs/reference">API Reference</a></div>
+          </div><a href="/blog" class="navbar-item is-hoverable has-text-weight-bold">Blog</a><a href="https://tryfsharp.fsbolero.io" class="navbar-item is-hoverable has-text-weight-bold">Try F#</a></nav>
+        <nav class="navbar-end">
+          <a target="_blank" title="GitHub" href="https://github.com/fsbolero/bolero" class="navbar-item is-hoverable"><i class="fa fa-github"></i></a>
+          <a target="_blank" title="Twitter" href="https://twitter.com/fsbolero" class="navbar-item is-hoverable"><i class="fa fa-twitter"></i></a>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <div class="drawer-backdrop" onclick="Website.Client.ToggleDrawer()">
+    <div id="left-drawer" class="lhs-drawer">
+      <nav class="menu">
+        <ul class="menu-list"><li>
+            <a href="/">Home</a>
+            
+          </li><li>
+            <a href="/docs">Documentation</a>
+            <ul><li>
+            <a href="/docs">Getting Started</a>
+            
+          </li><li>
+            <a href="/docs/Hosting">Hosting models</a>
+            
+          </li><li>
+            <a href="/docs/HTML">Writing HTML</a>
+            
+          </li><li>
+            <a href="/docs/HTML-list-functions">Writing HTML (Legacy)</a>
+            
+          </li><li>
+            <a href="/docs/Templating">HTML templates</a>
+            
+          </li><li>
+            <a href="/docs/Elmish">Using Elmish</a>
+            
+          </li><li>
+            <a href="/docs/Routing">Routing</a>
+            
+          </li><li>
+            <a href="/docs/Remoting">Remoting</a>
+            
+          </li><li>
+            <a href="/docs/Blazor">Using Blazor features</a>
+            
+          </li><li>
+            <a href="/docs/JSON">Dealing with JSON</a>
+            
+          </li><li>
+            <a href="/docs/Upgrade">Upgrade guide</a>
+            
+          </li><li>
+            <a href="/docs/reference">API Reference</a>
+            
+          </li></ul>
+          </li><li>
+            <a href="/blog">Blog</a>
+            
+          </li><li>
+            <a href="https://tryfsharp.fsbolero.io">Try F#</a>
+            
+          </li></ul>
+      </nav>
+    </div>
+  </div>
+  
+      <section class="with-sidebar-background">
+      <div class="container">
+        <div class="columns is-gapless">
+          <div class="column content markdown-column">
+          <div class="edit-page-icon" style="display: none">
+            <a href="https://github.com/fsbolero/website/tree/master/src/Website/docs/reference.md" target="_blank" title="Contribute to this page on GitHub">
+              <i class="fa fa-edit"></i>
+            </a>
+          </div>
+          
+          <section class="section"><div ws-preserve=""><p><div>
+  <h2 id="bolero">
+    Bolero Namespace
+  </h2>
+  <div class="fsdocs-xmldoc"></div>
+  <h3>
+    Contents
+  </h3>
+  <ul>
+    <li>
+      <a href="#category-0_0">
+        Other namespace members
+      </a>
+    </li>
+    <li>
+      <a href="#category-0_1">
+        Components
+      </a>
+    </li>
+    <li>
+      <a href="#category-0_2">
+        Elmish
+      </a>
+    </li>
+    <li>
+      <a href="#category-0_3">
+        HTML
+      </a>
+    </li>
+    <li>
+      <a href="#category-0_4">
+        Routing
+      </a>
+    </li>
+  </ul>
+  <h3>
+    <a class="anchor" name="category-0_0" href="#category-0_0">
+      Other namespace members
+    </a>
+  </h3>
+  <table class="table outer-list fsdocs-entity-list">
+    <thead>
+      <tr>
+        <td>
+          Type/Module
+        </td>
+        <td>
+          Description
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Attr">
+              <a href="/docs/reference/bolero-attrmodule.html">
+                Attr
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Bolero.AttrModule`')">
+              <img src="/docs/content/img/copy-md.png" class="normal"/>
+              <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Bolero.AttrModule\'/>')">
+              <img src="/docs/content/img/copy-xml.png" class="normal"/>
+              <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Attr.fs#L33-33" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/docs/content/img/github.png" class="normal"/>
+              <img src="/docs/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Node">
+              <a href="/docs/reference/bolero-nodemodule.html">
+                Node
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Bolero.NodeModule`')">
+              <img src="/docs/content/img/copy-md.png" class="normal"/>
+              <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Bolero.NodeModule\'/>')">
+              <img src="/docs/content/img/copy-xml.png" class="normal"/>
+              <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Node.fs#L54-54" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/docs/content/img/github.png" class="normal"/>
+              <img src="/docs/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Ref">
+              <a href="/docs/reference/bolero-ref.html">
+                Ref
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Bolero.Ref`')">
+              <img src="/docs/content/img/copy-md.png" class="normal"/>
+              <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Bolero.Ref\'/>')">
+              <img src="/docs/content/img/copy-xml.png" class="normal"/>
+              <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Ref.fs#L26-26" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/docs/content/img/github.png" class="normal"/>
+              <img src="/docs/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>
+    <a class="anchor" name="category-0_1" href="#category-0_1">
+      Components
+    </a>
+  </h3>
+  <table class="table outer-list fsdocs-entity-list">
+    <thead>
+      <tr>
+        <td>
+          Type
+        </td>
+        <td>
+          Description
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Component">
+              <a href="/docs/reference/bolero-component.html">
+                Component
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Bolero.Component`')">
+              <img src="/docs/content/img/copy-md.png" class="normal"/>
+              <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Bolero.Component\'/>')">
+              <img src="/docs/content/img/copy-xml.png" class="normal"/>
+              <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Components.fs#L34-34" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/docs/content/img/github.png" class="normal"/>
+              <img src="/docs/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              Base class for components built from <a href="/docs/reference/bolero-node.html">Node</a>s.
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Component<'model>">
+              <a href="/docs/reference/bolero-component-1.html">
+                Component<'model>
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:T:Bolero.Component`1``')">
+              <img src="/docs/content/img/copy-md.png" class="normal"/>
+              <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Bolero.Component`1\'/>')">
+              <img src="/docs/content/img/copy-xml.png" class="normal"/>
+              <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Components.fs#L47-47" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/docs/content/img/github.png" class="normal"/>
+              <img src="/docs/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              Base class for components with a typed model.
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="ElmishComponent<'model, 'msg>">
+              <a href="/docs/reference/bolero-elmishcomponent-2.html">
+                ElmishComponent<'model, 'msg>
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:T:Bolero.ElmishComponent`2``')">
+              <img src="/docs/content/img/copy-md.png" class="normal"/>
+              <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Bolero.ElmishComponent`2\'/>')">
+              <img src="/docs/content/img/copy-xml.png" class="normal"/>
+              <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Components.fs#L67-67" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/docs/content/img/github.png" class="normal"/>
+              <img src="/docs/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              Base class for components that are part of an Elmish view.
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="ProgramComponent<'model, 'msg>">
+              <a href="/docs/reference/bolero-programcomponent-2.html">
+                ProgramComponent<'model, 'msg>
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:T:Bolero.ProgramComponent`2``')">
+              <img src="/docs/content/img/copy-md.png" class="normal"/>
+              <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Bolero.ProgramComponent`2\'/>')">
+              <img src="/docs/content/img/copy-xml.png" class="normal"/>
+              <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Components.fs#L113-113" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/docs/content/img/github.png" class="normal"/>
+              <img src="/docs/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              Base class for components that run an Elmish program.
+            </p>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>
+    <a class="anchor" name="category-0_2" href="#category-0_2">
+      Elmish
+    </a>
+  </h3>
+  <table class="table outer-list fsdocs-entity-list">
+    <thead>
+      <tr>
+        <td>
+          Modules
+        </td>
+        <td>
+          Description
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Program">
+              <a href="/docs/reference/bolero-program.html">
+                Program
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Bolero.Program`')">
+              <img src="/docs/content/img/copy-md.png" class="normal"/>
+              <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Bolero.Program\'/>')">
+              <img src="/docs/content/img/copy-xml.png" class="normal"/>
+              <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Program.fs#L23-23" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/docs/content/img/github.png" class="normal"/>
+              <img src="/docs/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              Functions to enable the router in an Elmish program.
+            </p>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>
+    <a class="anchor" name="category-0_3" href="#category-0_3">
+      HTML
+    </a>
+  </h3>
+  <table class="table outer-list fsdocs-entity-list">
+    <thead>
+      <tr>
+        <td>
+          Type/Module
+        </td>
+        <td>
+          Description
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Attr">
+              <a href="/docs/reference/bolero-attr.html">
+                Attr
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Bolero.Attr`')">
+              <img src="/docs/content/img/copy-md.png" class="normal"/>
+              <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Bolero.Attr\'/>')">
+              <img src="/docs/content/img/copy-xml.png" class="normal"/>
+              <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Attr.fs#L31-31" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/docs/content/img/github.png" class="normal"/>
+              <img src="/docs/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ HTML attribute or Blazor component parameter.
+ Use <a href="/docs/reference/bolero-html-attr.html">attr</a> or <a href="/docs/reference/bolero-html.html">Html.op_EqualsGreater</a> to create attributes.
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Html">
+              <a href="/docs/reference/bolero-html.html">
+                Html
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Bolero.Html`')">
+              <img src="/docs/content/img/copy-md.png" class="normal"/>
+              <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Bolero.Html\'/>')">
+              <img src="/docs/content/img/copy-xml.png" class="normal"/>
+              <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Html.fs#L23-23" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/docs/content/img/github.png" class="normal"/>
+              <img src="/docs/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Create HTML elements, attributes and event handlers.
+ [category: HTML]
+
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="HtmlRef">
+              <a href="/docs/reference/bolero-htmlref.html">
+                HtmlRef
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Bolero.HtmlRef`')">
+              <img src="/docs/content/img/copy-md.png" class="normal"/>
+              <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Bolero.HtmlRef\'/>')">
+              <img src="/docs/content/img/copy-xml.png" class="normal"/>
+              <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Ref.fs#L49-49" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/docs/content/img/github.png" class="normal"/>
+              <img src="/docs/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              A utility to bind a reference to a rendered HTML element.
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Node">
+              <a href="/docs/reference/bolero-node.html">
+                Node
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Bolero.Node`')">
+              <img src="/docs/content/img/copy-md.png" class="normal"/>
+              <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Bolero.Node\'/>')">
+              <img src="/docs/content/img/copy-xml.png" class="normal"/>
+              <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Node.fs#L31-31" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/docs/content/img/github.png" class="normal"/>
+              <img src="/docs/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              An HTML fragment.
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Ref<'T>">
+              <a href="/docs/reference/bolero-ref-1.html">
+                Ref<'T>
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:T:Bolero.Ref`1``')">
+              <img src="/docs/content/img/copy-md.png" class="normal"/>
+              <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Bolero.Ref`1\'/>')">
+              <img src="/docs/content/img/copy-xml.png" class="normal"/>
+              <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Ref.fs#L33-33" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/docs/content/img/github.png" class="normal"/>
+              <img src="/docs/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              A utility to bind a reference to a rendered component.
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Template">
+              <a href="/docs/reference/bolero-template.html">
+                Template
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Bolero.Template`')">
+              <img src="/docs/content/img/copy-md.png" class="normal"/>
+              <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Bolero.Template\'/>')">
+              <img src="/docs/content/img/copy-xml.png" class="normal"/>
+              <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/docs/content/img/github.png" class="normal"/>
+              <img src="/docs/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              Provide content from a template HTML file.
+[category: HTML]
+            </p>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>
+    <a class="anchor" name="category-0_4" href="#category-0_4">
+      Routing
+    </a>
+  </h3>
+  <table class="table outer-list fsdocs-entity-list">
+    <thead>
+      <tr>
+        <td>
+          Type/Module
+        </td>
+        <td>
+          Description
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="EndPointAttribute">
+              <a href="/docs/reference/bolero-endpointattribute.html">
+                EndPointAttribute
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Bolero.EndPointAttribute`')">
+              <img src="/docs/content/img/copy-md.png" class="normal"/>
+              <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Bolero.EndPointAttribute\'/>')">
+              <img src="/docs/content/img/copy-xml.png" class="normal"/>
+              <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Router.fs#L85-85" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/docs/content/img/github.png" class="normal"/>
+              <img src="/docs/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              Declare how an F# union case matches to a URI.
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="InvalidRouter">
+              <a href="/docs/reference/bolero-invalidrouter.html">
+                InvalidRouter
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Bolero.InvalidRouter`')">
+              <img src="/docs/content/img/copy-md.png" class="normal"/>
+              <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Bolero.InvalidRouter\'/>')">
+              <img src="/docs/content/img/copy-xml.png" class="normal"/>
+              <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Router.fs#L130-130" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/docs/content/img/github.png" class="normal"/>
+              <img src="/docs/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              Exception thrown when a router is incorrectly defined.
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="InvalidRouterKind">
+              <a href="/docs/reference/bolero-invalidrouterkind.html">
+                InvalidRouterKind
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Bolero.InvalidRouterKind`')">
+              <img src="/docs/content/img/copy-md.png" class="normal"/>
+              <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Bolero.InvalidRouterKind\'/>')">
+              <img src="/docs/content/img/copy-xml.png" class="normal"/>
+              <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Router.fs#L115-115" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/docs/content/img/github.png" class="normal"/>
+              <img src="/docs/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              The kinds of invalid router.
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="IRouter<'model, 'msg>">
+              <a href="/docs/reference/bolero-irouter-2.html">
+                IRouter<'model, 'msg>
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:T:Bolero.IRouter`2``')">
+              <img src="/docs/content/img/copy-md.png" class="normal"/>
+              <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Bolero.IRouter`2\'/>')">
+              <img src="/docs/content/img/copy-xml.png" class="normal"/>
+              <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Router.fs#L37-37" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/docs/content/img/github.png" class="normal"/>
+              <img src="/docs/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              A router that binds page navigation with Elmish.
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="PageModel<'T>">
+              <a href="/docs/reference/bolero-pagemodel-1.html">
+                PageModel<'T>
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:T:Bolero.PageModel`1``')">
+              <img src="/docs/content/img/copy-md.png" class="normal"/>
+              <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Bolero.PageModel`1\'/>')">
+              <img src="/docs/content/img/copy-xml.png" class="normal"/>
+              <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Router.fs#L162-162" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/docs/content/img/github.png" class="normal"/>
+              <img src="/docs/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              A wrapper type to include a model in a router page type.
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Router">
+              <a href="/docs/reference/bolero-router.html">
+                Router
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Bolero.Router`')">
+              <img src="/docs/content/img/copy-md.png" class="normal"/>
+              <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Bolero.Router\'/>')">
+              <img src="/docs/content/img/copy-xml.png" class="normal"/>
+              <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Router.fs#L688-688" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/docs/content/img/github.png" class="normal"/>
+              <img src="/docs/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              Functions for building Routers that bind page navigation with Elmish.
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Router<'model, 'msg>">
+              <a href="/docs/reference/bolero-router-2.html">
+                Router<'model, 'msg>
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:T:Bolero.Router`2``')">
+              <img src="/docs/content/img/copy-md.png" class="normal"/>
+              <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Bolero.Router`2\'/>')">
+              <img src="/docs/content/img/copy-xml.png" class="normal"/>
+              <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Router.fs#L48-48" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/docs/content/img/github.png" class="normal"/>
+              <img src="/docs/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              A simple hand-written router.
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="Router<'ep, 'model, 'msg>">
+              <a href="/docs/reference/bolero-router-3.html">
+                Router<'ep, 'model, 'msg>
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:T:Bolero.Router`3``')">
+              <img src="/docs/content/img/copy-md.png" class="normal"/>
+              <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Bolero.Router`3\'/>')">
+              <img src="/docs/content/img/copy-xml.png" class="normal"/>
+              <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Router.fs#L65-65" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/docs/content/img/github.png" class="normal"/>
+              <img src="/docs/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              A simple router where the endpoint corresponds to a value easily gettable from the model.
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="RouterExtensions">
+              <a href="/docs/reference/bolero-routerextensions.html">
+                RouterExtensions
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Bolero.RouterExtensions`')">
+              <img src="/docs/content/img/copy-md.png" class="normal"/>
+              <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Bolero.RouterExtensions\'/>')">
+              <img src="/docs/content/img/copy-xml.png" class="normal"/>
+              <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Router.fs#L753-753" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/docs/content/img/github.png" class="normal"/>
+              <img src="/docs/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+            </p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fsdocs-entity-name">
+          <p>
+            <a name="WildcardAttribute">
+              <a href="/docs/reference/bolero-wildcardattribute.html">
+                WildcardAttribute
+              </a>
+            </a>
+          </p>
+        </td>
+        <td class="fsdocs-entity-xmldoc">
+          <div>
+            <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:Bolero.WildcardAttribute`')">
+              <img src="/docs/content/img/copy-md.png" class="normal"/>
+              <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+            </div>
+            <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:Bolero.WildcardAttribute\'/>')">
+              <img src="/docs/content/img/copy-xml.png" class="normal"/>
+              <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+            </div>
+            <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Router.fs#L101-101" class="fsdocs-source-link" title="Source on GitHub">
+              <img src="/docs/content/img/github.png" class="normal"/>
+              <img src="/docs/content/img/github-hover.png" class="hover"/>
+            </a>
+            <p class="fsdocs-summary">
+              
+ Declare that the given field of an F# union case matches the entire remainder of the URL path.
+ 
+            </p>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div></p>
+</div></section>
+        </div>
+          <div class="column is-one-quarter-tablet is-one-fifth-desktop sidebar-column">
+            <section class="section">
+              <div class="menu">
+                <div class="menu-label">Documentation</div>
+                <ul class="menu-list"><li>
+                    <a href="/docs">Getting Started</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Hosting">Hosting models</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/HTML">Writing HTML</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Templating">HTML templates</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Elmish">Using Elmish</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Routing">Routing</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Remoting">Remoting</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Blazor">Using Blazor features</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/JSON">Dealing with JSON</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Upgrade">Upgrade guide</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a class="is-active" href="/docs/reference">API Reference</a>
+                    <ul></ul>
+                  </li></ul>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </section>
+      
+    
+  <footer class="section footer first-footer has-text-centered">
+    <div class="container">
+      <div class="columns">
+        <div class="column">
+          <a target="_blank" href="https://github.com/fsbolero/template">
+            <img class="box no-padding" data-src="/img/screenshot-template.png" />
+            <h1 class="title">Bolero project template</h1>
+          </a>
+        </div>
+        <div class="column">
+          <a target="_blank" href="https://fsbolero.github.io/TodoMVC">
+            <img class="box no-padding" data-src="/img/screenshot-todomvc.png" />
+            <h1 class="title">TodoMVC</h1>
+          </a>
+        </div>
+        <div class="column">
+          <a target="_blank" href="https://tryfsharp.fsbolero.io">
+            <img class="box no-padding" data-src="/img/screenshot-tryfsharp.png" />
+            <h1 class="title">Try F# in your browser</h1>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <footer class="section footer second-footer">
+    <div class="container">
+      <div class="columns">
+        <div class="column">
+          <h1 class="title"><a href="/">Home</a></h1>
+          <h1 class="title">Made with Bolero</h1>
+          <div class="menu">
+            <ul class="menu-list">
+              <li><a target="_blank" href="https://tryfsharp.fsbolero.io">Try F#</a></li>
+              <li><a target="_blank" href="https://github.com/fsbolero/TodoMVC">TodoMVC</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="column">
+          <h1 class="title">Documentation</h1>
+          <div class="menu">
+            <ul class="menu-list"><li><a href="/docs">Getting Started</a></li><li><a href="/docs/Hosting">Hosting models</a></li><li><a href="/docs/HTML">Writing HTML</a></li><li><a href="/docs/HTML-list-functions">Writing HTML (Legacy)</a></li><li><a href="/docs/Templating">HTML templates</a></li><li><a href="/docs/Elmish">Using Elmish</a></li><li><a href="/docs/Routing">Routing</a></li><li><a href="/docs/Remoting">Remoting</a></li><li><a href="/docs/Blazor">Using Blazor features</a></li><li><a href="/docs/JSON">Dealing with JSON</a></li><li><a href="/docs/Upgrade">Upgrade guide</a></li><li><a href="/docs/reference">API Reference</a></li></ul>
+          </div>
+        </div>
+        <div class="column">
+          <h1 class="title">We leverage</h1>
+          <div class="menu">
+            <ul class="menu-list">
+              <li><a target="_blank" href="https://fsharp.org">F#</a></li>
+              <li><a target="_blank" href="https://elmish.github.io/elmish/">Elmish</a></li>
+              <li><a target="_blank" href="https://dot.net">.NET Core</a></li>
+              <li><a target="_blank" href="https://blazor.net">Blazor</a></li>
+              <li><a target="_blank" href="https://webassembly.org/">WebAssembly</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="column">
+          <h1 class="title">Find us</h1>
+          <ul>
+            <li>
+              <a class="github-button" href="https://github.com/fsbolero/bolero" data-size="large" aria-label="Star fsbolero/bolero on GitHub">Bolero on GitHub</a>
+            </li>
+            <li>
+              <a href="https://twitter.com/fsbolero?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large" data-dnt="true" data-show-count="false">Follow &commat;fsbolero</a>
+            </li>
+            <li>
+              <a target="_blank" href="https://nuget.org/packages/Bolero"><img alt="NuGet" src="https://img.shields.io/nuget/v/Bolero.svg?label=Bolero%20on%20NuGet&amp;logo=nuget&amp;style=for-the-badge" /></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/8.6.0/lazyload.min.js"></script>
+  <script type="text/javascript">new LazyLoad();</script>
+  <script src="/js/Client.min.js"></script>
+  <script async="" defer="" src="https://buttons.github.io/buttons.js"></script>
+  <script async="" defer="" src="https://platform.twitter.com/widgets.js"></script>
+  
+  
+  <script lang="javascript" src="/docs/content/fsdocs-search.js"></script>
+  <script lang="javascript" src="/docs/content/fsdocs-tips.js"></script>
+</body>
+</html>
