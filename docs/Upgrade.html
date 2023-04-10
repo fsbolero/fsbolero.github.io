@@ -106,7 +106,56 @@ How to update a project for newer releases</p>
 
               </div>
             </section>
-          <section class="section"><div ws-preserve=""><h2 id="from-v0.18-to-v0.20">From v0.18 to v0.20</h2>
+          <section class="section"><div ws-preserve=""><h2 id="from-v0.21-to-v0.22">From v0.21 to v0.22</h2>
+<p><a href="https://fsbolero.io/blog/20230410-bolero-0-22-released">See the 0.22 announcement.</a></p>
+<ul>
+<li><p>Bolero v0.22 introduces endpoint routing for remote services.
+While the existing middleware is still supported, it is obsolete, and it is advised to switch to endpoint routing.</p>
+<p>Here are the migration steps.
+In the server project's <code>Startup.fs</code>:</p>
+<ul>
+<li><p>In <code>ConfigureServices</code>, replace <code>AddRemoting</code>:</p>
+<pre><code class="language-fsharp">services.AddRemoting&lt;MyApiService&gt;()
+</code></pre>
+<p>with <code>AddBoleroRemoting</code>:</p>
+<pre><code class="language-fsharp">services.AddBoleroRemoting&lt;MyApiService&gt;()
+</code></pre>
+</li>
+<li><p>In <code>Configure</code>, remove <code>app.UseRemoting</code> and add <code>endpoints.MapBoleroRemoting</code>:</p>
+<pre><code class="language-fsharp">app
+    .UseAuthentication()
+    //.UseRemoting() // Remove this
+    .UseStaticFiles()
+    .UseRouting()
+    .UseBlazorFrameworkFiles()
+    .UseEndpoints(fun endpoints -&gt;
+        endpoints.UseHotReload()
+        endpoints.MapBoleroRemoting() |&gt; ignore // Add this
+        endpoints.MapBlazorHub() |&gt; ignore
+        endpoints.MapFallbackToBolero(Index.page) |&gt; ignore)
+</code></pre>
+</li>
+<li><p>If you use authorization with <code>IRemoteContext.Authorize</code> or <code>AuthorizeWith</code>, then also add <code>app.UseAuthorization</code>.
+It must be located after <code>app.UseRouting</code> and before <code>app.UseEndpoints</code>:</p>
+<pre><code class="language-fsharp">app
+    .UseAuthentication()
+    .UseStaticFiles()
+    .UseRouting()
+    .UseAuthorization() // Add this
+    .UseBlazorFrameworkFiles()
+    .UseEndpoints(fun endpoints -&gt;
+        // ...
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>Elmish has been updated to version 4.
+This release significantly revamps subscriptions.
+See <a href="https://elmish.github.io/elmish/docs/subscription.html#migrating-from-v3">the Elmish documentation</a> for a guide to convert Elmish subscriptions from v3 to v4.</p>
+</li>
+</ul>
+<h2 id="from-v0.18-to-v0.20">From v0.18 to v0.20</h2>
+<p><a href="https://fsbolero.io/blog/20220419-bolero-0-20-released">See the 0.20 announcement.</a></p>
 <p>Bolero v0.20 upgrades the dependency to .NET 6. Here are the associated upgrade steps:</p>
 <ul>
 <li><p>Install <a href="https://dotnet.microsoft.com/download">the .NET SDK 6.0.101 or newer</a>.</p>
@@ -119,6 +168,7 @@ See <a href="HTML">the documentation on HTML</a> for all details on the new synt
 </li>
 </ul>
 <h2 id="from-v0.15-to-v0.16">From v0.15 to v0.16</h2>
+<p><a href="https://fsbolero.io/blog/20201127-bolero-0-16-released">See the 0.16 announcement.</a></p>
 <p>Bolero v0.16 upgrades the dependency to .NET 5. Here are the associated upgrade steps:</p>
 <ul>
 <li><p>Install <a href="https://dotnet.microsoft.com/download">the .NET SDK 5.0.100 or newer</a>.</p>
@@ -148,6 +198,7 @@ See <a href="HTML">the documentation on HTML</a> for all details on the new synt
 </li>
 </ul>
 <h2 id="from-v0.14-to-v0.15">From v0.14 to v0.15</h2>
+<p><a href="https://fsbolero.io/blog/20200915-bolero-0-15-released">See the 0.15 announcement.</a></p>
 <p>Bolero v0.15 doesn't change the SDK requirements. Here are the upgrade steps:</p>
 <ul>
 <li><p>Elmish has been updated to v3.0. As a consequence, some functions are now obsolete.
@@ -164,6 +215,7 @@ It is a simple renaming, you can simply follow the compiler warnings.</p>
 </li>
 </ul>
 <h2 id="from-v0.13-to-v0.14">From v0.13 to v0.14</h2>
+<p><a href="https://fsbolero.io/blog/20200807-bolero-0-14-released">See the 0.14 announcement.</a></p>
 <p>Bolero 0.14 doesn't change the SDK requirements. Here are the upgrade steps:</p>
 <ul>
 <li>The module <code>Bolero.Json</code> has been removed.
@@ -172,6 +224,7 @@ If you had JSON format customization based on Bolero.Json attributes, you must r
 Otherwise, there is nothing to do.</li>
 </ul>
 <h2 id="from-v0.12-to-v0.13">From v0.12 to v0.13</h2>
+<p><a href="https://fsbolero.io/blog/20200523-bolero-0-13-released">See the 0.13 announcement.</a></p>
 <p>Bolero 0.13 upgrades the dependency on .NET Core SDK 3.1.300 or newer and on Blazor to 3.2.0. Here are the associated upgrade steps:</p>
 <ul>
 <li><p>Install <a href="https://dotnet.microsoft.com/download/dotnet-core">the .NET Core 3.1.300 SDK or newer</a>.</p>
@@ -226,6 +279,7 @@ While the <code>_Host.cshtml</code> and <code>HostModel.fs</code> that were incl
 </li>
 </ul>
 <h2 id="from-v0.11-to-v0.12">From v0.11 to v0.12</h2>
+<p><a href="https://fsbolero.io/blog/20200323-bolero-0-12-released">See the 0.12 announcement.</a></p>
 <p>Bolero 0.12 upgrades the dependency on .NET Core SDK 3.1.102 or newer and on Blazor to 3.2-preview2. Here are the associated upgrade steps:</p>
 <ul>
 <li><p>Install <a href="https://dotnet.microsoft.com/download/dotnet-core">the .NET Core 3.1.102 SDK or newer</a>.</p>
@@ -520,6 +574,8 @@ If your code uses Blazor APIs directly, please check the Blazor <a href="https:/
                   </li><li>
                     <a class="is-active" href="/docs/Upgrade">Upgrade guide</a>
                     <ul><li>
+                        <a href="#from-v021-to-v022">From v0.21 to v0.22</a>
+                      </li><li>
                         <a href="#from-v018-to-v020">From v0.18 to v0.20</a>
                       </li><li>
                         <a href="#from-v015-to-v016">From v0.15 to v0.16</a>

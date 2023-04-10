@@ -101,17 +101,17 @@
           
           <section class="section"><div ws-preserve=""><p><div>
   <h2>
-    Router<'ep, 'model, 'msg> Type
+    IRemoteMethodMetadata Type
   </h2>
   <dl class="fsdocs-metadata">
     <dt>
       Namespace: 
-      <a href="/docs/reference/bolero.html">
-        Bolero
+      <a href="/docs/reference/bolero-remoting-server.html">
+        Bolero.Remoting.Server
       </a>
     </dt>
     <dt>
-      Assembly: Bolero.dll
+      Assembly: Bolero.Server.dll
     </dt>
     <dt>
       Base Type: 
@@ -119,13 +119,15 @@
     </dt>
     <dt>
       All Interfaces: 
-      <code><span><a href="/docs/reference/bolero-irouter-2.html">IRouter</a>&lt;<span>'model,&#32;'msg</span>&gt;</span></code>
+      <code><a href="/docs/reference/bolero-remoting-server-iremotemethodmetadata.html">IRemoteMethodMetadata</a></code>
     </dt>
   </dl>
   <div class="fsdocs-xmldoc">
     <div>
       <p class="fsdocs-summary">
-        A simple router where the endpoint corresponds to a value easily gettable from the model.
+        
+ Information about a remote method.
+ 
       </p>
     </div>
   </div>
@@ -133,169 +135,7 @@
   <div></div>
   <div></div>
   <div></div>
-  <div>
-    <h3>
-      Record fields
-    </h3>
-    <table class="table outer-list fsdocs-member-list">
-      <thead>
-        <tr>
-          <td class="fsdocs-member-list-header">
-            Record Field
-          </td>
-          <td class="fsdocs-member-list-header">
-            Description
-          </td>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '680', 680)" onmouseover="showTip(event, '680', 680)">
-                <p>
-                  <a id="getEndPoint">
-                    <a href="#getEndPoint">
-                      <code>getEndPoint</code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="680">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code>getEndPoint</code>
-                  <br/>
-                  <br/>
-                  <span>
-                    Field type: 
-                    <code><span>'model&#32;->&#32;'ep</span></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Router.fs#L68-68" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="/docs/content/img/github.png" class="normal"/>
-                <img src="/docs/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                Extract the current endpoint from the model.
-              </p>
-            </div>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Field type: 
-                </span>
-                <code><span>'model&#32;->&#32;'ep</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '681', 681)" onmouseover="showTip(event, '681', 681)">
-                <p>
-                  <a id="getRoute">
-                    <a href="#getRoute">
-                      <code>getRoute</code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="681">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code>getRoute</code>
-                  <br/>
-                  <br/>
-                  <span>
-                    Field type: 
-                    <code><span>'ep&#32;->&#32;string</span></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Router.fs#L70-70" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="/docs/content/img/github.png" class="normal"/>
-                <img src="/docs/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                Get the uri corresponding to an endpoint.
-              </p>
-            </div>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Field type: 
-                </span>
-                <code><span>'ep&#32;->&#32;string</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-        <tr>
-          <td class="fsdocs-member-usage">
-            <div>
-              <code onmouseout="hideTip(event, '682', 682)" onmouseover="showTip(event, '682', 682)">
-                <p>
-                  <a id="setRoute">
-                    <a href="#setRoute">
-                      <code>setRoute</code>
-                    </a>
-                  </a>
-                </p>
-              </code>
-              <div class="fsdocs-tip" id="682">
-                <div class="member-tooltip">
-                  Full Usage: 
-                  <code>setRoute</code>
-                  <br/>
-                  <br/>
-                  <span>
-                    Field type: 
-                    <code><span>string&#32;->&#32;<span>'msg&#32;option</span></span></code>
-                  </span>
-                  <br/>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Router.fs#L72-72" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="/docs/content/img/github.png" class="normal"/>
-                <img src="/docs/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                Get the message to send when the page navigates to an uri.
-              </p>
-            </div>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Field type: 
-                </span>
-                <code><span>string&#32;->&#32;<span>'msg&#32;option</span></span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <div></div>
   <div></div>
   <div></div>
   <div>
@@ -317,37 +157,28 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '683', 683)" onmouseover="showTip(event, '683', 683)">
+              <code onmouseout="hideTip(event, '921', 921)" onmouseover="showTip(event, '921', 921)">
                 <p>
-                  <a id="Link">
-                    <a href="#Link">
-                      <code><span>this.Link</span></code>
+                  <a id="ArgumentType">
+                    <a href="#ArgumentType">
+                      <code><span>this.ArgumentType</span></code>
                     </a>
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="683">
+              <div class="fsdocs-tip" id="921">
                 <div class="member-tooltip">
                   Full Usage: 
-                  <code><span>this.Link</span></code>
+                  <code><span>this.ArgumentType</span></code>
                   <br/>
-                  <br/>
-                  Parameters: 
-                  <ul>
-                    <span>
-                      <b>
-                        endpoint
-                      </b>
-                      :
-                      <code>'ep</code>
-                    </span>
-                    <br/>
-                  </ul>
                   <br/>
                   <span>
                     Returns: 
-                    <code>string</code>
+                    <code><a href="https://docs.microsoft.com/dotnet/api/system.type">Type</a></code>
                   </span>
+                  <br/>
+                  Modifiers: 
+                  abstract
                   <br/>
                 </div>
               </div>
@@ -355,38 +186,323 @@
           </td>
           <td class="fsdocs-member-xmldoc">
             <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:M:Bolero.Router`3.Link``')">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Bolero.Remoting.Server.IRemoteMethodMetadata.ArgumentType`')">
                 <img src="/docs/content/img/copy-md.png" class="normal"/>
                 <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
               </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Router`3.Link\'/>')">
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Bolero.Remoting.Server.IRemoteMethodMetadata.ArgumentType\'/>')">
                 <img src="/docs/content/img/copy-xml.png" class="normal"/>
                 <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
               </div>
-              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Router.fs#L76-76" class="fsdocs-source-link" title="Source on GitHub">
+              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Server/Remoting/Common.fs#L55-55" class="fsdocs-source-link" title="Source on GitHub">
                 <img src="/docs/content/img/github.png" class="normal"/>
                 <img src="/docs/content/img/github-hover.png" class="hover"/>
               </a>
               <p class="fsdocs-summary">
-                Get the uri for the given <span class="fsdocs-param-name">endpoint</span>.
+                
               </p>
             </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  endpoint
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
                 </span>
-                :
-                <code>'ep</code>
+                <code><a href="https://docs.microsoft.com/dotnet/api/system.type">Type</a></code>
               </dt>
-              <dd class="fsdocs-param-docs"></dd>
+              <dd class="fsdocs-return-docs"></dd>
             </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '922', 922)" onmouseover="showTip(event, '922', 922)">
+                <p>
+                  <a id="Function">
+                    <a href="#Function">
+                      <code><span>this.Function</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="922">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.Function</span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>obj</code>
+                  </span>
+                  <br/>
+                  Modifiers: 
+                  abstract
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Bolero.Remoting.Server.IRemoteMethodMetadata.Function`')">
+                <img src="/docs/content/img/copy-md.png" class="normal"/>
+                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Bolero.Remoting.Server.IRemoteMethodMetadata.Function\'/>')">
+                <img src="/docs/content/img/copy-xml.png" class="normal"/>
+                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Server/Remoting/Common.fs#L58-58" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="/docs/content/img/github.png" class="normal"/>
+                <img src="/docs/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code>obj</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '923', 923)" onmouseover="showTip(event, '923', 923)">
+                <p>
+                  <a id="Handler">
+                    <a href="#Handler">
+                      <code><span>this.Handler</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="923">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.Handler</span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.http.requestdelegate">RequestDelegate</a></code>
+                  </span>
+                  <br/>
+                  Modifiers: 
+                  abstract
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Bolero.Remoting.Server.IRemoteMethodMetadata.Handler`')">
+                <img src="/docs/content/img/copy-md.png" class="normal"/>
+                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Bolero.Remoting.Server.IRemoteMethodMetadata.Handler\'/>')">
+                <img src="/docs/content/img/copy-xml.png" class="normal"/>
+                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Server/Remoting/Common.fs#L57-57" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="/docs/content/img/github.png" class="normal"/>
+                <img src="/docs/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.http.requestdelegate">RequestDelegate</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '924', 924)" onmouseover="showTip(event, '924', 924)">
+                <p>
+                  <a id="Name">
+                    <a href="#Name">
+                      <code><span>this.Name</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="924">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.Name</span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code>string</code>
+                  </span>
+                  <br/>
+                  Modifiers: 
+                  abstract
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Bolero.Remoting.Server.IRemoteMethodMetadata.Name`')">
+                <img src="/docs/content/img/copy-md.png" class="normal"/>
+                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Bolero.Remoting.Server.IRemoteMethodMetadata.Name\'/>')">
+                <img src="/docs/content/img/copy-xml.png" class="normal"/>
+                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Server/Remoting/Common.fs#L54-54" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="/docs/content/img/github.png" class="normal"/>
+                <img src="/docs/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
             <dl class="fsdocs-returns">
               <dt>
                 <span class="fsdocs-return-name">
                   Returns: 
                 </span>
                 <code>string</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '925', 925)" onmouseover="showTip(event, '925', 925)">
+                <p>
+                  <a id="ReturnType">
+                    <a href="#ReturnType">
+                      <code><span>this.ReturnType</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="925">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.ReturnType</span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://docs.microsoft.com/dotnet/api/system.type">Type</a></code>
+                  </span>
+                  <br/>
+                  Modifiers: 
+                  abstract
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Bolero.Remoting.Server.IRemoteMethodMetadata.ReturnType`')">
+                <img src="/docs/content/img/copy-md.png" class="normal"/>
+                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Bolero.Remoting.Server.IRemoteMethodMetadata.ReturnType\'/>')">
+                <img src="/docs/content/img/copy-xml.png" class="normal"/>
+                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Server/Remoting/Common.fs#L56-56" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="/docs/content/img/github.png" class="normal"/>
+                <img src="/docs/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="https://docs.microsoft.com/dotnet/api/system.type">Type</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '926', 926)" onmouseover="showTip(event, '926', 926)">
+                <p>
+                  <a id="Service">
+                    <a href="#Service">
+                      <code><span>this.Service</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="926">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.Service</span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="/docs/reference/bolero-remoting-server-iremoteservicemetadata.html">IRemoteServiceMetadata</a></code>
+                  </span>
+                  <br/>
+                  Modifiers: 
+                  abstract
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:P:Bolero.Remoting.Server.IRemoteMethodMetadata.Service`')">
+                <img src="/docs/content/img/copy-md.png" class="normal"/>
+                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'P:Bolero.Remoting.Server.IRemoteMethodMetadata.Service\'/>')">
+                <img src="/docs/content/img/copy-xml.png" class="normal"/>
+                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Server/Remoting/Common.fs#L53-53" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="/docs/content/img/github.png" class="normal"/>
+                <img src="/docs/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="/docs/reference/bolero-remoting-server-iremoteservicemetadata.html">IRemoteServiceMetadata</a></code>
               </dt>
               <dd class="fsdocs-return-docs"></dd>
             </dl>
