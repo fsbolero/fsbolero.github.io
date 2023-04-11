@@ -217,9 +217,9 @@ It is done by default in the <code>bolero-app</code> project template since vers
 See <a href="https://elmish.github.io/elmish/docs/subscription.html#migrating-from-v3">the Elmish documentation</a> for a guide to convert Elmish subscriptions from v3 to v4.</p>
 <h2 id="html-element-references-in-templates">HTML Element References in Templates</h2>
 <p>It is now possible to bind an <code>HtmlRef</code> to an element from an HTML template. <a href="https://github.com/fsbolero/Bolero/issues/290">#290</a></p>
-<p>The attribute <code>ref=&quot;MyRef&quot;</code> will generate a method <code>.MyRef()</code> on the provided type, which takes the <code>HtmlRef</code> as argument.</p>
+<p>The attribute <code>ref=&quot;${MyRef}&quot;</code> will generate a method <code>.MyRef()</code> on the provided type, which takes the <code>HtmlRef</code> as argument.</p>
 <pre><code class="language-html">&lt;button onclick=&quot;FocusBtn&quot;&gt;Focus the input box&lt;/button&gt;
-&lt;input ref=&quot;InputRef&quot; type=&quot;text&quot; /&gt;
+&lt;input ref=&quot;${InputRef}&quot; type=&quot;text&quot; /&gt;
 </code></pre>
 <pre><code class="language-fsharp">type MyComponentTemplate = Template&lt;&quot;MyComponent.html&quot;&gt;
 
