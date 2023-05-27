@@ -1,0 +1,3100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API Reference | Bolero: F# in WebAssembly</title>
+  <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16" />
+  <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
+  <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[],"$DATA":{"$V":{}}}' />
+
+  <link rel="stylesheet" href="/css/all.min.css" />
+  <link rel="stylesheet" href="/docs/content/fsdocs-default.css" />
+  <link rel="stylesheet" href="/docs/content/fsdocs-custom.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js" type="text/javascript" charset="UTF-8"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/languages/fsharp.min.js" type="text/javascript" charset="UTF-8"></script><link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/vs.min.css"></link>
+
+</head>
+<body>
+  <header class="navbar ">
+    <div class="container">
+      <div class="navbar-brand">
+        <a class="navbar-item is-hoverable" onclick="Website.Client.ToggleDrawer()"><i class="fa fa-bars"></i></a>
+        <span class="navbar-item"><a href="/">Bolero</a></span>
+      </div>
+      <div class="navbar-menu">
+        <nav class="navbar-start"><a href="/" class="navbar-item is-hoverable has-text-weight-bold">Home</a><div class="navbar-item is-hoverable has-text-weight-bold has-dropdown">
+            <a href="/docs" class="navbar-link is-arrowless">Documentation</a>
+            <div class="navbar-dropdown has-text-weight-normal"><a class="navbar-item" href="/docs">Getting Started</a><a class="navbar-item" href="/docs/Hosting">Hosting models</a><a class="navbar-item" href="/docs/HTML">Writing HTML</a><a class="navbar-item" href="/docs/HTML-list-functions">Writing HTML (Legacy)</a><a class="navbar-item" href="/docs/Templating">HTML templates</a><a class="navbar-item" href="/docs/Elmish">Using Elmish</a><a class="navbar-item" href="/docs/Routing">Routing</a><a class="navbar-item" href="/docs/Remoting">Remoting</a><a class="navbar-item" href="/docs/Blazor">Using Blazor features</a><a class="navbar-item" href="/docs/JSON">Dealing with JSON</a><a class="navbar-item" href="/docs/Upgrade">Upgrade guide</a><a class="navbar-item" href="/docs/reference">API Reference</a></div>
+          </div><a href="/blog" class="navbar-item is-hoverable has-text-weight-bold">Blog</a><a href="https://tryfsharp.fsbolero.io" class="navbar-item is-hoverable has-text-weight-bold">Try F#</a></nav>
+        <nav class="navbar-end">
+          <a target="_blank" title="GitHub" href="https://github.com/fsbolero/bolero" class="navbar-item is-hoverable"><i class="fa fa-github"></i></a>
+          <a target="_blank" title="Twitter" href="https://twitter.com/fsbolero" class="navbar-item is-hoverable"><i class="fa fa-twitter"></i></a>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <div class="drawer-backdrop" onclick="Website.Client.ToggleDrawer()">
+    <div id="left-drawer" class="lhs-drawer">
+      <nav class="menu">
+        <ul class="menu-list"><li>
+            <a href="/">Home</a>
+            
+          </li><li>
+            <a href="/docs">Documentation</a>
+            <ul><li>
+            <a href="/docs">Getting Started</a>
+            
+          </li><li>
+            <a href="/docs/Hosting">Hosting models</a>
+            
+          </li><li>
+            <a href="/docs/HTML">Writing HTML</a>
+            
+          </li><li>
+            <a href="/docs/HTML-list-functions">Writing HTML (Legacy)</a>
+            
+          </li><li>
+            <a href="/docs/Templating">HTML templates</a>
+            
+          </li><li>
+            <a href="/docs/Elmish">Using Elmish</a>
+            
+          </li><li>
+            <a href="/docs/Routing">Routing</a>
+            
+          </li><li>
+            <a href="/docs/Remoting">Remoting</a>
+            
+          </li><li>
+            <a href="/docs/Blazor">Using Blazor features</a>
+            
+          </li><li>
+            <a href="/docs/JSON">Dealing with JSON</a>
+            
+          </li><li>
+            <a href="/docs/Upgrade">Upgrade guide</a>
+            
+          </li><li>
+            <a href="/docs/reference">API Reference</a>
+            
+          </li></ul>
+          </li><li>
+            <a href="/blog">Blog</a>
+            
+          </li><li>
+            <a href="https://tryfsharp.fsbolero.io">Try F#</a>
+            
+          </li></ul>
+      </nav>
+    </div>
+  </div>
+  
+      <section class="with-sidebar-background">
+      <div class="container">
+        <div class="columns is-gapless">
+          <div class="column content markdown-column">
+          <div class="edit-page-icon" style="display: none">
+            <a href="https://github.com/fsbolero/website/tree/master/src/Website/docs/reference.md" target="_blank" title="Contribute to this page on GitHub">
+              <i class="fa fa-edit"></i>
+            </a>
+          </div>
+          
+          <section class="section"><div ws-preserve=""><p><div>
+  <h2>
+    VirtualizeBuilder<'Item> Type
+  </h2>
+  <dl class="fsdocs-metadata">
+    <dt>
+      Namespace: 
+      <a href="/docs/reference/bolero-builders.html">
+        Bolero.Builders
+      </a>
+    </dt>
+    <dt>
+      Assembly: Bolero.Html.dll
+    </dt>
+    <dt>
+      Base Type: 
+      <code><a href="https://docs.microsoft.com/dotnet/api/system.valuetype">ValueType</a></code>
+    </dt>
+    <dt>
+      Kind: Struct
+    </dt>
+  </dl>
+  <div class="fsdocs-xmldoc">
+    <div>
+      <p class="fsdocs-summary">
+        
+      </p>
+    </div>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div>
+    <h3>
+      Instance members
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Instance member
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '860', 860)" onmouseover="showTip(event, '860', 860)">
+                <p>
+                  <a id="Bind">
+                    <a href="#Bind">
+                      <code><span>this.Bind</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="860">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.Bind</span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        items
+                      </b>
+                      :
+                      <code><span><a href="/docs/reference/bolero-builders-virtualizeitemsdeclaration-1.html">VirtualizeItemsDeclaration</a>&lt;'Item&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        cont
+                      </b>
+                      :
+                      <code><span>'Item&#32;->&#32;<a href="/docs/reference/bolero-node.html">Node</a></span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="/docs/reference/bolero-builders-childcontentattr.html">ChildContentAttr</a></code>
+                  </span>
+                  <br/>
+                  Modifiers: 
+                  inline
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:M:Bolero.Builders.VirtualizeBuilder`1.Bind``')">
+                <img src="/docs/content/img/copy-md.png" class="normal"/>
+                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Builders.VirtualizeBuilder`1.Bind\'/>')">
+                <img src="/docs/content/img/copy-xml.png" class="normal"/>
+                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Builders.fs#L866-866" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="/docs/content/img/github.png" class="normal"/>
+                <img src="/docs/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  items
+                </span>
+                :
+                <code><span><a href="/docs/reference/bolero-builders-virtualizeitemsdeclaration-1.html">VirtualizeItemsDeclaration</a>&lt;'Item&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  cont
+                </span>
+                :
+                <code><span>'Item&#32;->&#32;<a href="/docs/reference/bolero-node.html">Node</a></span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="/docs/reference/bolero-builders-childcontentattr.html">ChildContentAttr</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '861', 861)" onmouseover="showTip(event, '861', 861)">
+                <p>
+                  <a id="Combine">
+                    <a href="#Combine">
+                      <code><span>this.Combine</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="861">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.Combine</span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        x1
+                      </b>
+                      :
+                      <code><a href="/docs/reference/bolero-builders-refcontent.html">RefContent</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        x2
+                      </b>
+                      :
+                      <code><a href="/docs/reference/bolero-node.html">Node</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="/docs/reference/bolero-builders-childandrefcontent.html">ChildAndRefContent</a></code>
+                  </span>
+                  <br/>
+                  Modifiers: 
+                  inline
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:M:Bolero.Builders.VirtualizeBuilder`1.Combine``')">
+                <img src="/docs/content/img/copy-md.png" class="normal"/>
+                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Builders.VirtualizeBuilder`1.Combine\'/>')">
+                <img src="/docs/content/img/copy-xml.png" class="normal"/>
+                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Builders.fs#L829-829" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="/docs/content/img/github.png" class="normal"/>
+                <img src="/docs/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  x1
+                </span>
+                :
+                <code><a href="/docs/reference/bolero-builders-refcontent.html">RefContent</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  x2
+                </span>
+                :
+                <code><a href="/docs/reference/bolero-node.html">Node</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="/docs/reference/bolero-builders-childandrefcontent.html">ChildAndRefContent</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '862', 862)" onmouseover="showTip(event, '862', 862)">
+                <p>
+                  <a id="Combine">
+                    <a href="#Combine">
+                      <code><span>this.Combine</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="862">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.Combine</span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        x1
+                      </b>
+                      :
+                      <code><a href="/docs/reference/bolero-attr.html">Attr</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        x2
+                      </b>
+                      :
+                      <code><a href="/docs/reference/bolero-node.html">Node</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="/docs/reference/bolero-attr.html">Attr</a></code>
+                  </span>
+                  <br/>
+                  Modifiers: 
+                  inline
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:M:Bolero.Builders.VirtualizeBuilder`1.Combine``')">
+                <img src="/docs/content/img/copy-md.png" class="normal"/>
+                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Builders.VirtualizeBuilder`1.Combine\'/>')">
+                <img src="/docs/content/img/copy-xml.png" class="normal"/>
+                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Builders.fs#L827-827" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="/docs/content/img/github.png" class="normal"/>
+                <img src="/docs/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  x1
+                </span>
+                :
+                <code><a href="/docs/reference/bolero-attr.html">Attr</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  x2
+                </span>
+                :
+                <code><a href="/docs/reference/bolero-node.html">Node</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="/docs/reference/bolero-attr.html">Attr</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '863', 863)" onmouseover="showTip(event, '863', 863)">
+                <p>
+                  <a id="Combine">
+                    <a href="#Combine">
+                      <code><span>this.Combine</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="863">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.Combine</span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        x1
+                      </b>
+                      :
+                      <code><a href="/docs/reference/bolero-builders-refcontent.html">RefContent</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        x2
+                      </b>
+                      :
+                      <code><a href="/docs/reference/bolero-builders-childcontentattr.html">ChildContentAttr</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="/docs/reference/bolero-builders-childandrefcontent.html">ChildAndRefContent</a></code>
+                  </span>
+                  <br/>
+                  Modifiers: 
+                  inline
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:M:Bolero.Builders.VirtualizeBuilder`1.Combine``')">
+                <img src="/docs/content/img/copy-md.png" class="normal"/>
+                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Builders.VirtualizeBuilder`1.Combine\'/>')">
+                <img src="/docs/content/img/copy-xml.png" class="normal"/>
+                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Builders.fs#L821-821" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="/docs/content/img/github.png" class="normal"/>
+                <img src="/docs/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  x1
+                </span>
+                :
+                <code><a href="/docs/reference/bolero-builders-refcontent.html">RefContent</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  x2
+                </span>
+                :
+                <code><a href="/docs/reference/bolero-builders-childcontentattr.html">ChildContentAttr</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="/docs/reference/bolero-builders-childandrefcontent.html">ChildAndRefContent</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '864', 864)" onmouseover="showTip(event, '864', 864)">
+                <p>
+                  <a id="Combine">
+                    <a href="#Combine">
+                      <code><span>this.Combine</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="864">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.Combine</span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        x1
+                      </b>
+                      :
+                      <code><a href="/docs/reference/bolero-attr.html">Attr</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        x2
+                      </b>
+                      :
+                      <code><a href="/docs/reference/bolero-builders-childcontentattr.html">ChildContentAttr</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="/docs/reference/bolero-attr.html">Attr</a></code>
+                  </span>
+                  <br/>
+                  Modifiers: 
+                  inline
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:M:Bolero.Builders.VirtualizeBuilder`1.Combine``')">
+                <img src="/docs/content/img/copy-md.png" class="normal"/>
+                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Builders.VirtualizeBuilder`1.Combine\'/>')">
+                <img src="/docs/content/img/copy-xml.png" class="normal"/>
+                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Builders.fs#L817-817" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="/docs/content/img/github.png" class="normal"/>
+                <img src="/docs/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  x1
+                </span>
+                :
+                <code><a href="/docs/reference/bolero-attr.html">Attr</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  x2
+                </span>
+                :
+                <code><a href="/docs/reference/bolero-builders-childcontentattr.html">ChildContentAttr</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="/docs/reference/bolero-attr.html">Attr</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '865', 865)" onmouseover="showTip(event, '865', 865)">
+                <p>
+                  <a id="Combine">
+                    <a href="#Combine">
+                      <code><span>this.Combine</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="865">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.Combine</span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        x1
+                      </b>
+                      :
+                      <code><a href="/docs/reference/bolero-node.html">Node</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        x2
+                      </b>
+                      :
+                      <code><a href="/docs/reference/bolero-node.html">Node</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="/docs/reference/bolero-node.html">Node</a></code>
+                  </span>
+                  <br/>
+                  Modifiers: 
+                  inline
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:M:Bolero.Builders.VirtualizeBuilder`1.Combine``')">
+                <img src="/docs/content/img/copy-md.png" class="normal"/>
+                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Builders.VirtualizeBuilder`1.Combine\'/>')">
+                <img src="/docs/content/img/copy-xml.png" class="normal"/>
+                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Builders.fs#L801-801" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="/docs/content/img/github.png" class="normal"/>
+                <img src="/docs/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  x1
+                </span>
+                :
+                <code><a href="/docs/reference/bolero-node.html">Node</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  x2
+                </span>
+                :
+                <code><a href="/docs/reference/bolero-node.html">Node</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="/docs/reference/bolero-node.html">Node</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '866', 866)" onmouseover="showTip(event, '866', 866)">
+                <p>
+                  <a id="Combine">
+                    <a href="#Combine">
+                      <code><span>this.Combine</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="866">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.Combine</span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        x1
+                      </b>
+                      :
+                      <code><a href="/docs/reference/bolero-attr.html">Attr</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        x2
+                      </b>
+                      :
+                      <code><a href="/docs/reference/bolero-builders-childandrefcontent.html">ChildAndRefContent</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="/docs/reference/bolero-attr.html">Attr</a></code>
+                  </span>
+                  <br/>
+                  Modifiers: 
+                  inline
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:M:Bolero.Builders.VirtualizeBuilder`1.Combine``')">
+                <img src="/docs/content/img/copy-md.png" class="normal"/>
+                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Builders.VirtualizeBuilder`1.Combine\'/>')">
+                <img src="/docs/content/img/copy-xml.png" class="normal"/>
+                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Builders.fs#L795-795" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="/docs/content/img/github.png" class="normal"/>
+                <img src="/docs/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  x1
+                </span>
+                :
+                <code><a href="/docs/reference/bolero-attr.html">Attr</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  x2
+                </span>
+                :
+                <code><a href="/docs/reference/bolero-builders-childandrefcontent.html">ChildAndRefContent</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="/docs/reference/bolero-attr.html">Attr</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '867', 867)" onmouseover="showTip(event, '867', 867)">
+                <p>
+                  <a id="Combine">
+                    <a href="#Combine">
+                      <code><span>this.Combine</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="867">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.Combine</span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        x1
+                      </b>
+                      :
+                      <code><a href="/docs/reference/bolero-attr.html">Attr</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        x2
+                      </b>
+                      :
+                      <code><a href="/docs/reference/bolero-builders-refcontent.html">RefContent</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="/docs/reference/bolero-attr.html">Attr</a></code>
+                  </span>
+                  <br/>
+                  Modifiers: 
+                  inline
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:M:Bolero.Builders.VirtualizeBuilder`1.Combine``')">
+                <img src="/docs/content/img/copy-md.png" class="normal"/>
+                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Builders.VirtualizeBuilder`1.Combine\'/>')">
+                <img src="/docs/content/img/copy-xml.png" class="normal"/>
+                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Builders.fs#L791-791" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="/docs/content/img/github.png" class="normal"/>
+                <img src="/docs/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  x1
+                </span>
+                :
+                <code><a href="/docs/reference/bolero-attr.html">Attr</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  x2
+                </span>
+                :
+                <code><a href="/docs/reference/bolero-builders-refcontent.html">RefContent</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="/docs/reference/bolero-attr.html">Attr</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '868', 868)" onmouseover="showTip(event, '868', 868)">
+                <p>
+                  <a id="Combine">
+                    <a href="#Combine">
+                      <code><span>this.Combine</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="868">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.Combine</span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        x1
+                      </b>
+                      :
+                      <code><a href="/docs/reference/bolero-attr.html">Attr</a></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        x2
+                      </b>
+                      :
+                      <code><a href="/docs/reference/bolero-attr.html">Attr</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="/docs/reference/bolero-attr.html">Attr</a></code>
+                  </span>
+                  <br/>
+                  Modifiers: 
+                  inline
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:M:Bolero.Builders.VirtualizeBuilder`1.Combine``')">
+                <img src="/docs/content/img/copy-md.png" class="normal"/>
+                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Builders.VirtualizeBuilder`1.Combine\'/>')">
+                <img src="/docs/content/img/copy-xml.png" class="normal"/>
+                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Builders.fs#L787-787" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="/docs/content/img/github.png" class="normal"/>
+                <img src="/docs/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  x1
+                </span>
+                :
+                <code><a href="/docs/reference/bolero-attr.html">Attr</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  x2
+                </span>
+                :
+                <code><a href="/docs/reference/bolero-attr.html">Attr</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="/docs/reference/bolero-attr.html">Attr</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '869', 869)" onmouseover="showTip(event, '869', 869)">
+                <p>
+                  <a id="Delay">
+                    <a href="#Delay">
+                      <code><span>this.Delay</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="869">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.Delay</span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        a
+                      </b>
+                      :
+                      <code><span>unit&#32;->&#32;<a href="/docs/reference/bolero-builders-childcontentattr.html">ChildContentAttr</a></span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="/docs/reference/bolero-builders-childcontentattr.html">ChildContentAttr</a></code>
+                  </span>
+                  <br/>
+                  Modifiers: 
+                  inline
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:M:Bolero.Builders.VirtualizeBuilder`1.Delay``')">
+                <img src="/docs/content/img/copy-md.png" class="normal"/>
+                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Builders.VirtualizeBuilder`1.Delay\'/>')">
+                <img src="/docs/content/img/copy-xml.png" class="normal"/>
+                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Builders.fs#L815-815" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="/docs/content/img/github.png" class="normal"/>
+                <img src="/docs/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  a
+                </span>
+                :
+                <code><span>unit&#32;->&#32;<a href="/docs/reference/bolero-builders-childcontentattr.html">ChildContentAttr</a></span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="/docs/reference/bolero-builders-childcontentattr.html">ChildContentAttr</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '870', 870)" onmouseover="showTip(event, '870', 870)">
+                <p>
+                  <a id="Delay">
+                    <a href="#Delay">
+                      <code><span>this.Delay</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="870">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.Delay</span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        n
+                      </b>
+                      :
+                      <code><span>unit&#32;->&#32;<a href="/docs/reference/bolero-node.html">Node</a></span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="/docs/reference/bolero-node.html">Node</a></code>
+                  </span>
+                  <br/>
+                  Modifiers: 
+                  inline
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:M:Bolero.Builders.VirtualizeBuilder`1.Delay``')">
+                <img src="/docs/content/img/copy-md.png" class="normal"/>
+                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Builders.VirtualizeBuilder`1.Delay\'/>')">
+                <img src="/docs/content/img/copy-xml.png" class="normal"/>
+                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Builders.fs#L784-784" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="/docs/content/img/github.png" class="normal"/>
+                <img src="/docs/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  n
+                </span>
+                :
+                <code><span>unit&#32;->&#32;<a href="/docs/reference/bolero-node.html">Node</a></span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="/docs/reference/bolero-node.html">Node</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '871', 871)" onmouseover="showTip(event, '871', 871)">
+                <p>
+                  <a id="Delay">
+                    <a href="#Delay">
+                      <code><span>this.Delay</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="871">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.Delay</span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        r
+                      </b>
+                      :
+                      <code><span>unit&#32;->&#32;<a href="/docs/reference/bolero-builders-childandrefcontent.html">ChildAndRefContent</a></span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="/docs/reference/bolero-builders-childandrefcontent.html">ChildAndRefContent</a></code>
+                  </span>
+                  <br/>
+                  Modifiers: 
+                  inline
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:M:Bolero.Builders.VirtualizeBuilder`1.Delay``')">
+                <img src="/docs/content/img/copy-md.png" class="normal"/>
+                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Builders.VirtualizeBuilder`1.Delay\'/>')">
+                <img src="/docs/content/img/copy-xml.png" class="normal"/>
+                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Builders.fs#L783-783" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="/docs/content/img/github.png" class="normal"/>
+                <img src="/docs/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  r
+                </span>
+                :
+                <code><span>unit&#32;->&#32;<a href="/docs/reference/bolero-builders-childandrefcontent.html">ChildAndRefContent</a></span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="/docs/reference/bolero-builders-childandrefcontent.html">ChildAndRefContent</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '872', 872)" onmouseover="showTip(event, '872', 872)">
+                <p>
+                  <a id="Delay">
+                    <a href="#Delay">
+                      <code><span>this.Delay</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="872">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.Delay</span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        r
+                      </b>
+                      :
+                      <code><span>unit&#32;->&#32;<a href="/docs/reference/bolero-builders-refcontent.html">RefContent</a></span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="/docs/reference/bolero-builders-refcontent.html">RefContent</a></code>
+                  </span>
+                  <br/>
+                  Modifiers: 
+                  inline
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:M:Bolero.Builders.VirtualizeBuilder`1.Delay``')">
+                <img src="/docs/content/img/copy-md.png" class="normal"/>
+                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Builders.VirtualizeBuilder`1.Delay\'/>')">
+                <img src="/docs/content/img/copy-xml.png" class="normal"/>
+                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Builders.fs#L782-782" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="/docs/content/img/github.png" class="normal"/>
+                <img src="/docs/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  r
+                </span>
+                :
+                <code><span>unit&#32;->&#32;<a href="/docs/reference/bolero-builders-refcontent.html">RefContent</a></span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="/docs/reference/bolero-builders-refcontent.html">RefContent</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '873', 873)" onmouseover="showTip(event, '873', 873)">
+                <p>
+                  <a id="Delay">
+                    <a href="#Delay">
+                      <code><span>this.Delay</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="873">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.Delay</span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        a
+                      </b>
+                      :
+                      <code><span>unit&#32;->&#32;<a href="/docs/reference/bolero-attr.html">Attr</a></span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="/docs/reference/bolero-attr.html">Attr</a></code>
+                  </span>
+                  <br/>
+                  Modifiers: 
+                  inline
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:M:Bolero.Builders.VirtualizeBuilder`1.Delay``')">
+                <img src="/docs/content/img/copy-md.png" class="normal"/>
+                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Builders.VirtualizeBuilder`1.Delay\'/>')">
+                <img src="/docs/content/img/copy-xml.png" class="normal"/>
+                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Builders.fs#L781-781" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="/docs/content/img/github.png" class="normal"/>
+                <img src="/docs/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  a
+                </span>
+                :
+                <code><span>unit&#32;->&#32;<a href="/docs/reference/bolero-attr.html">Attr</a></span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="/docs/reference/bolero-attr.html">Attr</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '874', 874)" onmouseover="showTip(event, '874', 874)">
+                <p>
+                  <a id="For">
+                    <a href="#For">
+                      <code><span>this.For</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="874">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.For</span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        s
+                      </b>
+                      :
+                      <code><span>seq&lt;'T&gt;</span></code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        f
+                      </b>
+                      :
+                      <code><span>'T&#32;->&#32;<a href="/docs/reference/bolero-node.html">Node</a></span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="/docs/reference/bolero-node.html">Node</a></code>
+                  </span>
+                  <br/>
+                  Modifiers: 
+                  inline
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Bolero.Builders.VirtualizeBuilder`1.For``1```')">
+                <img src="/docs/content/img/copy-md.png" class="normal"/>
+                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Builders.VirtualizeBuilder`1.For``1\'/>')">
+                <img src="/docs/content/img/copy-xml.png" class="normal"/>
+                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Builders.fs#L806-806" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="/docs/content/img/github.png" class="normal"/>
+                <img src="/docs/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  s
+                </span>
+                :
+                <code><span>seq&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  f
+                </span>
+                :
+                <code><span>'T&#32;->&#32;<a href="/docs/reference/bolero-node.html">Node</a></span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="/docs/reference/bolero-node.html">Node</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '875', 875)" onmouseover="showTip(event, '875', 875)">
+                <p>
+                  <a id="Run">
+                    <a href="#Run">
+                      <code><span>this.Run</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="875">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.Run</span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        x
+                      </b>
+                      :
+                      <code><a href="/docs/reference/bolero-node.html">Node</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="/docs/reference/bolero-node.html">Node</a></code>
+                  </span>
+                  <br/>
+                  Modifiers: 
+                  inline
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:M:Bolero.Builders.VirtualizeBuilder`1.Run``')">
+                <img src="/docs/content/img/copy-md.png" class="normal"/>
+                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Builders.VirtualizeBuilder`1.Run\'/>')">
+                <img src="/docs/content/img/copy-xml.png" class="normal"/>
+                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Builders.fs#L863-863" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="/docs/content/img/github.png" class="normal"/>
+                <img src="/docs/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  x
+                </span>
+                :
+                <code><a href="/docs/reference/bolero-node.html">Node</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="/docs/reference/bolero-node.html">Node</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '876', 876)" onmouseover="showTip(event, '876', 876)">
+                <p>
+                  <a id="Run">
+                    <a href="#Run">
+                      <code><span>this.Run</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="876">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.Run</span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        x
+                      </b>
+                      :
+                      <code><a href="/docs/reference/bolero-builders-childandrefcontent.html">ChildAndRefContent</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="/docs/reference/bolero-node.html">Node</a></code>
+                  </span>
+                  <br/>
+                  Modifiers: 
+                  inline
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:M:Bolero.Builders.VirtualizeBuilder`1.Run``')">
+                <img src="/docs/content/img/copy-md.png" class="normal"/>
+                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Builders.VirtualizeBuilder`1.Run\'/>')">
+                <img src="/docs/content/img/copy-xml.png" class="normal"/>
+                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Builders.fs#L856-856" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="/docs/content/img/github.png" class="normal"/>
+                <img src="/docs/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  x
+                </span>
+                :
+                <code><a href="/docs/reference/bolero-builders-childandrefcontent.html">ChildAndRefContent</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="/docs/reference/bolero-node.html">Node</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '877', 877)" onmouseover="showTip(event, '877', 877)">
+                <p>
+                  <a id="Run">
+                    <a href="#Run">
+                      <code><span>this.Run</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="877">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.Run</span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        x
+                      </b>
+                      :
+                      <code><a href="/docs/reference/bolero-builders-refcontent.html">RefContent</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="/docs/reference/bolero-node.html">Node</a></code>
+                  </span>
+                  <br/>
+                  Modifiers: 
+                  inline
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:M:Bolero.Builders.VirtualizeBuilder`1.Run``')">
+                <img src="/docs/content/img/copy-md.png" class="normal"/>
+                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Builders.VirtualizeBuilder`1.Run\'/>')">
+                <img src="/docs/content/img/copy-xml.png" class="normal"/>
+                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Builders.fs#L849-849" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="/docs/content/img/github.png" class="normal"/>
+                <img src="/docs/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  x
+                </span>
+                :
+                <code><a href="/docs/reference/bolero-builders-refcontent.html">RefContent</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="/docs/reference/bolero-node.html">Node</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '878', 878)" onmouseover="showTip(event, '878', 878)">
+                <p>
+                  <a id="Run">
+                    <a href="#Run">
+                      <code><span>this.Run</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="878">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.Run</span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        x
+                      </b>
+                      :
+                      <code><a href="/docs/reference/bolero-attr.html">Attr</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="/docs/reference/bolero-node.html">Node</a></code>
+                  </span>
+                  <br/>
+                  Modifiers: 
+                  inline
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:M:Bolero.Builders.VirtualizeBuilder`1.Run``')">
+                <img src="/docs/content/img/copy-md.png" class="normal"/>
+                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Builders.VirtualizeBuilder`1.Run\'/>')">
+                <img src="/docs/content/img/copy-xml.png" class="normal"/>
+                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Builders.fs#L842-842" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="/docs/content/img/github.png" class="normal"/>
+                <img src="/docs/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  x
+                </span>
+                :
+                <code><a href="/docs/reference/bolero-attr.html">Attr</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="/docs/reference/bolero-node.html">Node</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '879', 879)" onmouseover="showTip(event, '879', 879)">
+                <p>
+                  <a id="Run">
+                    <a href="#Run">
+                      <code><span>this.Run</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="879">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.Run</span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        x
+                      </b>
+                      :
+                      <code><a href="/docs/reference/bolero-builders-childcontentattr.html">ChildContentAttr</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="/docs/reference/bolero-node.html">Node</a></code>
+                  </span>
+                  <br/>
+                  Modifiers: 
+                  inline
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:M:Bolero.Builders.VirtualizeBuilder`1.Run``')">
+                <img src="/docs/content/img/copy-md.png" class="normal"/>
+                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Builders.VirtualizeBuilder`1.Run\'/>')">
+                <img src="/docs/content/img/copy-xml.png" class="normal"/>
+                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Builders.fs#L835-835" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="/docs/content/img/github.png" class="normal"/>
+                <img src="/docs/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  x
+                </span>
+                :
+                <code><a href="/docs/reference/bolero-builders-childcontentattr.html">ChildContentAttr</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="/docs/reference/bolero-node.html">Node</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '880', 880)" onmouseover="showTip(event, '880', 880)">
+                <p>
+                  <a id="WrapNode">
+                    <a href="#WrapNode">
+                      <code><span>this.WrapNode</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="880">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.WrapNode</span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        n
+                      </b>
+                      :
+                      <code><a href="/docs/reference/bolero-node.html">Node</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="/docs/reference/bolero-builders-childcontentattr.html">ChildContentAttr</a></code>
+                  </span>
+                  <br/>
+                  Modifiers: 
+                  inline
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:M:Bolero.Builders.VirtualizeBuilder`1.WrapNode``')">
+                <img src="/docs/content/img/copy-md.png" class="normal"/>
+                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Builders.VirtualizeBuilder`1.WrapNode\'/>')">
+                <img src="/docs/content/img/copy-xml.png" class="normal"/>
+                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Builders.fs#L809-809" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="/docs/content/img/github.png" class="normal"/>
+                <img src="/docs/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  n
+                </span>
+                :
+                <code><a href="/docs/reference/bolero-node.html">Node</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="/docs/reference/bolero-builders-childcontentattr.html">ChildContentAttr</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '881', 881)" onmouseover="showTip(event, '881', 881)">
+                <p>
+                  <a id="Yield">
+                    <a href="#Yield">
+                      <code><span>this.Yield</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="881">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.Yield</span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        ref
+                      </b>
+                      :
+                      <code><span><a href="/docs/reference/bolero-ref-1.html">Ref</a>&lt;<span><a href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.components.web.virtualization.virtualize-1">Virtualize</a>&lt;'Item&gt;</span>&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="/docs/reference/bolero-builders-refcontent.html">RefContent</a></code>
+                  </span>
+                  <br/>
+                  Modifiers: 
+                  inline
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:M:Bolero.Builders.VirtualizeBuilder`1.Yield``')">
+                <img src="/docs/content/img/copy-md.png" class="normal"/>
+                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Builders.VirtualizeBuilder`1.Yield\'/>')">
+                <img src="/docs/content/img/copy-xml.png" class="normal"/>
+                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Builders.fs#L832-832" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="/docs/content/img/github.png" class="normal"/>
+                <img src="/docs/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ref
+                </span>
+                :
+                <code><span><a href="/docs/reference/bolero-ref-1.html">Ref</a>&lt;<span><a href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.components.web.virtualization.virtualize-1">Virtualize</a>&lt;'Item&gt;</span>&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="/docs/reference/bolero-builders-refcontent.html">RefContent</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '882', 882)" onmouseover="showTip(event, '882', 882)">
+                <p>
+                  <a id="Yield">
+                    <a href="#Yield">
+                      <code><span>this.Yield</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="882">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.Yield</span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        comp
+                      </b>
+                      :
+                      <code><span><a href="/docs/reference/bolero-builders-componentwithattrsandnochildrenbuilder-1.html">ComponentWithAttrsAndNoChildrenBuilder</a>&lt;'T&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="/docs/reference/bolero-node.html">Node</a></code>
+                  </span>
+                  <br/>
+                  Modifiers: 
+                  inline
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Bolero.Builders.VirtualizeBuilder`1.Yield``1```')">
+                <img src="/docs/content/img/copy-md.png" class="normal"/>
+                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Builders.VirtualizeBuilder`1.Yield``1\'/>')">
+                <img src="/docs/content/img/copy-xml.png" class="normal"/>
+                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Builders.fs#L772-772" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="/docs/content/img/github.png" class="normal"/>
+                <img src="/docs/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  comp
+                </span>
+                :
+                <code><span><a href="/docs/reference/bolero-builders-componentwithattrsandnochildrenbuilder-1.html">ComponentWithAttrsAndNoChildrenBuilder</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="/docs/reference/bolero-node.html">Node</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '883', 883)" onmouseover="showTip(event, '883', 883)">
+                <p>
+                  <a id="Yield">
+                    <a href="#Yield">
+                      <code><span>this.Yield</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="883">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.Yield</span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        comp
+                      </b>
+                      :
+                      <code><span><a href="/docs/reference/bolero-builders-componentwithattrsbuilder-1.html">ComponentWithAttrsBuilder</a>&lt;'T&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="/docs/reference/bolero-node.html">Node</a></code>
+                  </span>
+                  <br/>
+                  Modifiers: 
+                  inline
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Bolero.Builders.VirtualizeBuilder`1.Yield``1```')">
+                <img src="/docs/content/img/copy-md.png" class="normal"/>
+                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Builders.VirtualizeBuilder`1.Yield``1\'/>')">
+                <img src="/docs/content/img/copy-xml.png" class="normal"/>
+                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Builders.fs#L765-765" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="/docs/content/img/github.png" class="normal"/>
+                <img src="/docs/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  comp
+                </span>
+                :
+                <code><span><a href="/docs/reference/bolero-builders-componentwithattrsbuilder-1.html">ComponentWithAttrsBuilder</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="/docs/reference/bolero-node.html">Node</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '884', 884)" onmouseover="showTip(event, '884', 884)">
+                <p>
+                  <a id="Yield">
+                    <a href="#Yield">
+                      <code><span>this.Yield</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="884">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.Yield</span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        comp
+                      </b>
+                      :
+                      <code><a href="/docs/reference/bolero-builders-componentbuilder.html">ComponentBuilder</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="/docs/reference/bolero-node.html">Node</a></code>
+                  </span>
+                  <br/>
+                  Modifiers: 
+                  inline
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:M:Bolero.Builders.VirtualizeBuilder`1.Yield``')">
+                <img src="/docs/content/img/copy-md.png" class="normal"/>
+                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Builders.VirtualizeBuilder`1.Yield\'/>')">
+                <img src="/docs/content/img/copy-xml.png" class="normal"/>
+                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Builders.fs#L760-760" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="/docs/content/img/github.png" class="normal"/>
+                <img src="/docs/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  comp
+                </span>
+                :
+                <code><a href="/docs/reference/bolero-builders-componentbuilder.html">ComponentBuilder</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="/docs/reference/bolero-node.html">Node</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '885', 885)" onmouseover="showTip(event, '885', 885)">
+                <p>
+                  <a id="Yield">
+                    <a href="#Yield">
+                      <code><span>this.Yield</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="885">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.Yield</span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        _comp
+                      </b>
+                      :
+                      <code><span><a href="/docs/reference/bolero-builders-componentbuilder-1.html">ComponentBuilder</a>&lt;'T&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="/docs/reference/bolero-node.html">Node</a></code>
+                  </span>
+                  <br/>
+                  Modifiers: 
+                  inline
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Bolero.Builders.VirtualizeBuilder`1.Yield``1```')">
+                <img src="/docs/content/img/copy-md.png" class="normal"/>
+                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Builders.VirtualizeBuilder`1.Yield``1\'/>')">
+                <img src="/docs/content/img/copy-xml.png" class="normal"/>
+                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Builders.fs#L755-755" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="/docs/content/img/github.png" class="normal"/>
+                <img src="/docs/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  _comp
+                </span>
+                :
+                <code><span><a href="/docs/reference/bolero-builders-componentbuilder-1.html">ComponentBuilder</a>&lt;'T&gt;</span></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="/docs/reference/bolero-node.html">Node</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '886', 886)" onmouseover="showTip(event, '886', 886)">
+                <p>
+                  <a id="Yield">
+                    <a href="#Yield">
+                      <code><span>this.Yield</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="886">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.Yield</span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        eb
+                      </b>
+                      :
+                      <code><a href="/docs/reference/bolero-builders-elementbuilder.html">ElementBuilder</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="/docs/reference/bolero-node.html">Node</a></code>
+                  </span>
+                  <br/>
+                  Modifiers: 
+                  inline
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:M:Bolero.Builders.VirtualizeBuilder`1.Yield``')">
+                <img src="/docs/content/img/copy-md.png" class="normal"/>
+                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Builders.VirtualizeBuilder`1.Yield\'/>')">
+                <img src="/docs/content/img/copy-xml.png" class="normal"/>
+                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Builders.fs#L750-750" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="/docs/content/img/github.png" class="normal"/>
+                <img src="/docs/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  eb
+                </span>
+                :
+                <code><a href="/docs/reference/bolero-builders-elementbuilder.html">ElementBuilder</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="/docs/reference/bolero-node.html">Node</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '887', 887)" onmouseover="showTip(event, '887', 887)">
+                <p>
+                  <a id="Yield">
+                    <a href="#Yield">
+                      <code><span>this.Yield</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="887">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.Yield</span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        fragment
+                      </b>
+                      :
+                      <code><a href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.components.renderfragment">RenderFragment</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="/docs/reference/bolero-node.html">Node</a></code>
+                  </span>
+                  <br/>
+                  Modifiers: 
+                  inline
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:M:Bolero.Builders.VirtualizeBuilder`1.Yield``')">
+                <img src="/docs/content/img/copy-md.png" class="normal"/>
+                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Builders.VirtualizeBuilder`1.Yield\'/>')">
+                <img src="/docs/content/img/copy-xml.png" class="normal"/>
+                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Builders.fs#L746-746" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="/docs/content/img/github.png" class="normal"/>
+                <img src="/docs/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  fragment
+                </span>
+                :
+                <code><a href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.components.renderfragment">RenderFragment</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="/docs/reference/bolero-node.html">Node</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '888', 888)" onmouseover="showTip(event, '888', 888)">
+                <p>
+                  <a id="Yield">
+                    <a href="#Yield">
+                      <code><span>this.Yield</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="888">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.Yield</span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        text
+                      </b>
+                      :
+                      <code>string</code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="/docs/reference/bolero-node.html">Node</a></code>
+                  </span>
+                  <br/>
+                  Modifiers: 
+                  inline
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:M:Bolero.Builders.VirtualizeBuilder`1.Yield``')">
+                <img src="/docs/content/img/copy-md.png" class="normal"/>
+                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Builders.VirtualizeBuilder`1.Yield\'/>')">
+                <img src="/docs/content/img/copy-xml.png" class="normal"/>
+                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Builders.fs#L742-742" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="/docs/content/img/github.png" class="normal"/>
+                <img src="/docs/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  text
+                </span>
+                :
+                <code>string</code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="/docs/reference/bolero-node.html">Node</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '889', 889)" onmouseover="showTip(event, '889', 889)">
+                <p>
+                  <a id="Yield">
+                    <a href="#Yield">
+                      <code><span>this.Yield</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="889">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.Yield</span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        node
+                      </b>
+                      :
+                      <code><a href="/docs/reference/bolero-node.html">Node</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="/docs/reference/bolero-node.html">Node</a></code>
+                  </span>
+                  <br/>
+                  Modifiers: 
+                  inline
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:M:Bolero.Builders.VirtualizeBuilder`1.Yield``')">
+                <img src="/docs/content/img/copy-md.png" class="normal"/>
+                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Builders.VirtualizeBuilder`1.Yield\'/>')">
+                <img src="/docs/content/img/copy-xml.png" class="normal"/>
+                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Builders.fs#L741-741" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="/docs/content/img/github.png" class="normal"/>
+                <img src="/docs/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  node
+                </span>
+                :
+                <code><a href="/docs/reference/bolero-node.html">Node</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="/docs/reference/bolero-node.html">Node</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '890', 890)" onmouseover="showTip(event, '890', 890)">
+                <p>
+                  <a id="Yield">
+                    <a href="#Yield">
+                      <code><span>this.Yield</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="890">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.Yield</span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        ref
+                      </b>
+                      :
+                      <code><a href="/docs/reference/bolero-builders-refcontent.html">RefContent</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="/docs/reference/bolero-builders-refcontent.html">RefContent</a></code>
+                  </span>
+                  <br/>
+                  Modifiers: 
+                  inline
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:M:Bolero.Builders.VirtualizeBuilder`1.Yield``')">
+                <img src="/docs/content/img/copy-md.png" class="normal"/>
+                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Builders.VirtualizeBuilder`1.Yield\'/>')">
+                <img src="/docs/content/img/copy-xml.png" class="normal"/>
+                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Builders.fs#L740-740" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="/docs/content/img/github.png" class="normal"/>
+                <img src="/docs/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  ref
+                </span>
+                :
+                <code><a href="/docs/reference/bolero-builders-refcontent.html">RefContent</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="/docs/reference/bolero-builders-refcontent.html">RefContent</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '891', 891)" onmouseover="showTip(event, '891', 891)">
+                <p>
+                  <a id="Yield">
+                    <a href="#Yield">
+                      <code><span>this.Yield</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="891">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.Yield</span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        attr
+                      </b>
+                      :
+                      <code><a href="/docs/reference/bolero-attr.html">Attr</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="/docs/reference/bolero-attr.html">Attr</a></code>
+                  </span>
+                  <br/>
+                  Modifiers: 
+                  inline
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:M:Bolero.Builders.VirtualizeBuilder`1.Yield``')">
+                <img src="/docs/content/img/copy-md.png" class="normal"/>
+                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Builders.VirtualizeBuilder`1.Yield\'/>')">
+                <img src="/docs/content/img/copy-xml.png" class="normal"/>
+                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Builders.fs#L739-739" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="/docs/content/img/github.png" class="normal"/>
+                <img src="/docs/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+            <dl class="fsdocs-params">
+              <dt class="fsdocs-param">
+                <span class="fsdocs-param-name">
+                  attr
+                </span>
+                :
+                <code><a href="/docs/reference/bolero-attr.html">Attr</a></code>
+              </dt>
+              <dd class="fsdocs-param-docs"></dd>
+            </dl>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="/docs/reference/bolero-attr.html">Attr</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '892', 892)" onmouseover="showTip(event, '892', 892)">
+                <p>
+                  <a id="Zero">
+                    <a href="#Zero">
+                      <code><span>this.Zero</span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="892">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>this.Zero</span></code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="/docs/reference/bolero-node.html">Node</a></code>
+                  </span>
+                  <br/>
+                  Modifiers: 
+                  inline
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <div class="fsdocs-summary">
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('``cref:M:Bolero.Builders.VirtualizeBuilder`1.Zero``')">
+                <img src="/docs/content/img/copy-md.png" class="normal"/>
+                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Builders.VirtualizeBuilder`1.Zero\'/>')">
+                <img src="/docs/content/img/copy-xml.png" class="normal"/>
+                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
+              </div>
+              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Builders.fs#L873-873" class="fsdocs-source-link" title="Source on GitHub">
+                <img src="/docs/content/img/github.png" class="normal"/>
+                <img src="/docs/content/img/github-hover.png" class="hover"/>
+              </a>
+              <p class="fsdocs-summary">
+                
+              </p>
+            </div>
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Returns: 
+                </span>
+                <code><a href="/docs/reference/bolero-node.html">Node</a></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+</div></p>
+</div></section>
+        </div>
+          <div class="column is-one-quarter-tablet is-one-fifth-desktop sidebar-column">
+            <section class="section">
+              <div class="menu">
+                <div class="menu-label">Documentation</div>
+                <ul class="menu-list"><li>
+                    <a href="/docs">Getting Started</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Hosting">Hosting models</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/HTML">Writing HTML</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Templating">HTML templates</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Elmish">Using Elmish</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Routing">Routing</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Remoting">Remoting</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Blazor">Using Blazor features</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/JSON">Dealing with JSON</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Upgrade">Upgrade guide</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a class="is-active" href="/docs/reference">API Reference</a>
+                    <ul></ul>
+                  </li></ul>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </section>
+      
+    
+  <footer class="section footer first-footer has-text-centered">
+    <div class="container">
+      <div class="columns">
+        <div class="column">
+          <a target="_blank" href="https://github.com/fsbolero/template">
+            <img class="box no-padding" data-src="/img/screenshot-template.png" />
+            <h1 class="title">Bolero project template</h1>
+          </a>
+        </div>
+        <div class="column">
+          <a target="_blank" href="https://fsbolero.github.io/TodoMVC">
+            <img class="box no-padding" data-src="/img/screenshot-todomvc.png" />
+            <h1 class="title">TodoMVC</h1>
+          </a>
+        </div>
+        <div class="column">
+          <a target="_blank" href="https://tryfsharp.fsbolero.io">
+            <img class="box no-padding" data-src="/img/screenshot-tryfsharp.png" />
+            <h1 class="title">Try F# in your browser</h1>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <footer class="section footer second-footer">
+    <div class="container">
+      <div class="columns">
+        <div class="column">
+          <h1 class="title"><a href="/">Home</a></h1>
+          <h1 class="title">Made with Bolero</h1>
+          <div class="menu">
+            <ul class="menu-list">
+              <li><a target="_blank" href="https://tryfsharp.fsbolero.io">Try F#</a></li>
+              <li><a target="_blank" href="https://github.com/fsbolero/TodoMVC">TodoMVC</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="column">
+          <h1 class="title">Documentation</h1>
+          <div class="menu">
+            <ul class="menu-list"><li><a href="/docs">Getting Started</a></li><li><a href="/docs/Hosting">Hosting models</a></li><li><a href="/docs/HTML">Writing HTML</a></li><li><a href="/docs/HTML-list-functions">Writing HTML (Legacy)</a></li><li><a href="/docs/Templating">HTML templates</a></li><li><a href="/docs/Elmish">Using Elmish</a></li><li><a href="/docs/Routing">Routing</a></li><li><a href="/docs/Remoting">Remoting</a></li><li><a href="/docs/Blazor">Using Blazor features</a></li><li><a href="/docs/JSON">Dealing with JSON</a></li><li><a href="/docs/Upgrade">Upgrade guide</a></li><li><a href="/docs/reference">API Reference</a></li></ul>
+          </div>
+        </div>
+        <div class="column">
+          <h1 class="title">We leverage</h1>
+          <div class="menu">
+            <ul class="menu-list">
+              <li><a target="_blank" href="https://fsharp.org">F#</a></li>
+              <li><a target="_blank" href="https://elmish.github.io/elmish/">Elmish</a></li>
+              <li><a target="_blank" href="https://dot.net">.NET Core</a></li>
+              <li><a target="_blank" href="https://blazor.net">Blazor</a></li>
+              <li><a target="_blank" href="https://webassembly.org/">WebAssembly</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="column">
+          <h1 class="title">Find us</h1>
+          <ul>
+            <li>
+              <a class="github-button" href="https://github.com/fsbolero/bolero" data-size="large" aria-label="Star fsbolero/bolero on GitHub">Bolero on GitHub</a>
+            </li>
+            <li>
+              <a href="https://twitter.com/fsbolero?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large" data-dnt="true" data-show-count="false">Follow &commat;fsbolero</a>
+            </li>
+            <li>
+              <a target="_blank" href="https://nuget.org/packages/Bolero"><img alt="NuGet" src="https://img.shields.io/nuget/v/Bolero.svg?label=Bolero%20on%20NuGet&amp;logo=nuget&amp;style=for-the-badge" /></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/8.6.0/lazyload.min.js"></script>
+  <script type="text/javascript">new LazyLoad();</script>
+  <script src="/js/Client.min.js"></script>
+  <script async="" defer="" src="https://buttons.github.io/buttons.js"></script>
+  <script async="" defer="" src="https://platform.twitter.com/widgets.js"></script>
+  
+  
+  <script lang="javascript" src="/docs/content/fsdocs-search.js"></script>
+  <script lang="javascript" src="/docs/content/fsdocs-tips.js"></script>
+</body>
+</html>

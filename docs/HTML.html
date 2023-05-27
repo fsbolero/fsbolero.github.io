@@ -1,0 +1,513 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Writing HTML | Bolero: F# in WebAssembly</title>
+  <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16" />
+  <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
+  <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[],"$DATA":{"$V":{}}}' />
+
+  <link rel="stylesheet" href="/css/all.min.css" />
+  <link rel="stylesheet" href="/docs/content/fsdocs-default.css" />
+  <link rel="stylesheet" href="/docs/content/fsdocs-custom.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js" type="text/javascript" charset="UTF-8"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/languages/fsharp.min.js" type="text/javascript" charset="UTF-8"></script><link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/vs.min.css"></link>
+
+</head>
+<body>
+  <header class="navbar ">
+    <div class="container">
+      <div class="navbar-brand">
+        <a class="navbar-item is-hoverable" onclick="Website.Client.ToggleDrawer()"><i class="fa fa-bars"></i></a>
+        <span class="navbar-item"><a href="/">Bolero</a></span>
+      </div>
+      <div class="navbar-menu">
+        <nav class="navbar-start"><a href="/" class="navbar-item is-hoverable has-text-weight-bold">Home</a><div class="navbar-item is-hoverable has-text-weight-bold has-dropdown">
+            <a href="/docs" class="navbar-link is-arrowless">Documentation</a>
+            <div class="navbar-dropdown has-text-weight-normal"><a class="navbar-item" href="/docs">Getting Started</a><a class="navbar-item" href="/docs/Hosting">Hosting models</a><a class="navbar-item" href="/docs/HTML">Writing HTML</a><a class="navbar-item" href="/docs/HTML-list-functions">Writing HTML (Legacy)</a><a class="navbar-item" href="/docs/Templating">HTML templates</a><a class="navbar-item" href="/docs/Elmish">Using Elmish</a><a class="navbar-item" href="/docs/Routing">Routing</a><a class="navbar-item" href="/docs/Remoting">Remoting</a><a class="navbar-item" href="/docs/Blazor">Using Blazor features</a><a class="navbar-item" href="/docs/JSON">Dealing with JSON</a><a class="navbar-item" href="/docs/Upgrade">Upgrade guide</a><a class="navbar-item" href="/docs/reference">API Reference</a></div>
+          </div><a href="/blog" class="navbar-item is-hoverable has-text-weight-bold">Blog</a><a href="https://tryfsharp.fsbolero.io" class="navbar-item is-hoverable has-text-weight-bold">Try F#</a></nav>
+        <nav class="navbar-end">
+          <a target="_blank" title="GitHub" href="https://github.com/fsbolero/bolero" class="navbar-item is-hoverable"><i class="fa fa-github"></i></a>
+          <a target="_blank" title="Twitter" href="https://twitter.com/fsbolero" class="navbar-item is-hoverable"><i class="fa fa-twitter"></i></a>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <div class="drawer-backdrop" onclick="Website.Client.ToggleDrawer()">
+    <div id="left-drawer" class="lhs-drawer">
+      <nav class="menu">
+        <ul class="menu-list"><li>
+            <a href="/">Home</a>
+            
+          </li><li>
+            <a href="/docs">Documentation</a>
+            <ul><li>
+            <a href="/docs">Getting Started</a>
+            
+          </li><li>
+            <a href="/docs/Hosting">Hosting models</a>
+            
+          </li><li>
+            <a href="/docs/HTML">Writing HTML</a>
+            
+          </li><li>
+            <a href="/docs/HTML-list-functions">Writing HTML (Legacy)</a>
+            
+          </li><li>
+            <a href="/docs/Templating">HTML templates</a>
+            
+          </li><li>
+            <a href="/docs/Elmish">Using Elmish</a>
+            
+          </li><li>
+            <a href="/docs/Routing">Routing</a>
+            
+          </li><li>
+            <a href="/docs/Remoting">Remoting</a>
+            
+          </li><li>
+            <a href="/docs/Blazor">Using Blazor features</a>
+            
+          </li><li>
+            <a href="/docs/JSON">Dealing with JSON</a>
+            
+          </li><li>
+            <a href="/docs/Upgrade">Upgrade guide</a>
+            
+          </li><li>
+            <a href="/docs/reference">API Reference</a>
+            
+          </li></ul>
+          </li><li>
+            <a href="/blog">Blog</a>
+            
+          </li><li>
+            <a href="https://tryfsharp.fsbolero.io">Try F#</a>
+            
+          </li></ul>
+      </nav>
+    </div>
+  </div>
+  
+      <section class="with-sidebar-background">
+      <div class="container">
+        <div class="columns is-gapless">
+          <div class="column content markdown-column">
+          <div class="edit-page-icon">
+            <a href="https://github.com/fsbolero/website/tree/master/src/Website/docs/HTML.md" target="_blank" title="Contribute to this page on GitHub">
+              <i class="fa fa-edit"></i>
+            </a>
+          </div>
+          <section class="hero">
+              <div class="hero-body">
+                <h1 class="title">Writing HTML</h1>
+                <p class="subtitle">
+Create elements, attributes and event handlers in plain F#</p>
+
+              </div>
+            </section>
+          <section class="section"><div ws-preserve=""><p>All of the functions described here are defined in the module <code>Bolero.Html</code>.</p>
+<p>See also how to create HTML elements using <a href="Templating">HTML templates</a>.</p>
+<blockquote>
+<p>Note: the syntax for HTML has significantly changed in Bolero 0.20.
+See <a href="HTML-list-functions">HTML list functions</a> for the pre-0.20 list-based syntax.</p>
+</blockquote>
+<h2 id="elements">Elements</h2>
+<p>HTML elements are created using <a href="https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/computation-expressions">Computation Expressions</a>.
+The CE builder is the name of the element, and the body of the CE lists child content.</p>
+<pre><code class="language-fsharp">let myElement (name: string) : Node =
+    div {
+        h1 { &quot;My app&quot; }
+        p { $&quot;Hello {name} and welcome to my app!&quot; }
+    }
+</code></pre>
+<p>To create a custom element for which there isn't a builder, use <code>elt</code>.</p>
+<pre><code class="language-fsharp">let myElement : Node =
+    elt &quot;data-paragraph&quot; {
+        &quot;This is in a &lt;data-paragraph&gt; element.&quot;
+    }
+</code></pre>
+<p>In addition to representing an HTML node, the type <code>Node</code> can also represent a (possibly empty) sequence of nodes. This is done using the <code>concat</code> builder.</p>
+<pre><code class="language-fsharp">let myElements : Node =
+    concat {
+        p { &quot;First paragraph&quot; }
+        p { &quot;Second paragraph&quot; }
+    }
+</code></pre>
+<p>The function <code>text</code> takes a string and represents a text node without having to wrap it in an HTML element.</p>
+<pre><code class="language-fsharp">let myTextNode (name: string) : Node =
+    text $&quot;Hello {name}!&quot;
+</code></pre>
+<p>The function <code>empty()</code> represents an empty sequence of nodes.
+This doesn't seem very useful at first, but it is actually important for conditional elements.</p>
+<h3 id="conditional-elements">Conditional elements</h3>
+<p>Due to the way that Blazor compares the rendered DOM when a change is applied, the returned HTML must always have the same structure: conditional elements can't be simply added. For example, the following may cause runtime errors:</p>
+<pre><code class="language-fsharp">// May fail at runtime.
+let myButton (label: option&lt;string&gt;) : Node =
+    button {
+        if label.IsSome then
+            label.Value
+    }
+</code></pre>
+<p>Rendering such conditional content must be done with the <code>cond</code> function instead.</p>
+<ul>
+<li><p><code>cond</code> can take a boolean value, and a function to call on this value returning a Node. For example, the following is correct:</p>
+<pre><code class="language-fsharp">let myButton (label: option&lt;string&gt;) : Node =
+    button {
+        cond label.IsSome &lt;| function
+            | true -&gt; text label.Value
+            | false -&gt; empty()
+    }
+</code></pre>
+<p>You can also see here why <code>empty</code> is a useful function.</p>
+</li>
+<li><p><code>cond</code> can also take a value whose type is an F# union, and a function that matches over the cases of this union. For example, <code>option&lt;'T&gt;</code> is an F# union, so the following is correct:</p>
+<pre><code class="language-fsharp">let myButton (label: option&lt;string&gt;) : Node =
+    button {
+        cond label &lt;| function
+            | Some l -&gt; text l
+            | None -&gt; empty()
+    }
+</code></pre>
+<p>Here's an example with a union defined in your code:</p>
+<pre><code class="language-fsharp">/// A list of usernames, truncated to two + number of others
+type UserList =
+    | One of string
+    | Two of string * string
+    | Many of string * string * int
+
+/// Shows one of the following, depending on the number of users:
+/// * &quot;*Alice* likes this&quot;
+/// * &quot;*Alice* and *Bob* like this&quot;
+/// * &quot;*Alice*, *Bob* and 12 others like this&quot;
+let showLikes (users: UserList) : Node =
+    concat {
+        cond users &lt;| function
+            | One uname -&gt; b { uname }
+            | Two (uname1, uname2) -&gt;
+                concat {
+                    b { uname1 }
+                    &quot; and &quot;
+                    b { uname2 }
+                }
+            | Many (uname1, uname2, others) -&gt;
+                concat {
+                    b { uname1 }
+                    &quot;, &quot;
+                    b { uname2 }
+                    $&quot; and {others} others&quot;
+                }
+        cond users &lt;| function
+            | One _ -&gt; text &quot; likes this.&quot;
+            | _     -&gt; text &quot; like this.&quot;
+    }
+</code></pre>
+</li>
+</ul>
+<h3 id="collection-elements">Collection elements</h3>
+<p>Similarly, rendering collections using a function such as <code>List.map</code> to create a list of nodes can cause runtime errors. Instead, collections of items should be rendered using the function <code>forEach</code>.</p>
+<pre><code class="language-fsharp">let listUsers (names: string list) : Node =
+    p {
+        &quot;Here are the users:&quot;
+        ul {
+            forEach names &lt;| fun name -&gt;
+                li { name }
+        }
+    }
+</code></pre>
+<p>Alternatively, inside HTML computation expressions, the <code>for</code> keyword renders collections safely.</p>
+<pre><code class="language-fsharp">let listUsers (names: string list) : Node =
+    p {
+        &quot;Here are the users:&quot;
+        ul {
+            for name in names do
+                li { name }
+        }
+    }
+</code></pre>
+<h2 id="attributes">Attributes</h2>
+<p>Attributes are available in the <code>attr</code> submodule.
+They are added to an element by listing them inside the computation expression, <em>before</em> child nodes.</p>
+<pre><code class="language-fsharp">let myElement : Node =
+    p {
+        attr.style &quot;color: blue;&quot;
+        attr.``class`` &quot;paragraph&quot;
+
+        &quot;Hello and welcome to my app!&quot;
+    }
+</code></pre>
+<p>To create a custom attribute for which there isn't a function, use the <code>=&gt;</code> operator.</p>
+<pre><code class="language-fsharp">let myElement : Node =
+    p {
+        &quot;data-kind&quot; =&gt; &quot;paragraph&quot;
+
+        &quot;Hello and welcome to my app!&quot;
+    }
+</code></pre>
+<h3 id="conditional-attributes">Conditional attributes</h3>
+<p>Like with elements (see <a href="#conditional-elements">Conditional elements</a>), naively adding conditional attributes can lead to runtime errors.</p>
+<pre><code class="language-fsharp">// May fail at runtime.
+let myElement (isBlue: bool) : Node =
+    p {
+        if isBlue then
+            attr.style &quot;color: blue;&quot;
+
+        &quot;Hello and welcome to my app!&quot;
+    }
+</code></pre>
+<p>Instead, if an attribute may or may not need to be added depending on a condition, always add the attribute and give it a value of <code>false</code> or <code>null</code> when it should be omitted.</p>
+<pre><code class="language-fsharp">let myElement (isBlue: bool) : Node =
+    p {
+        attr.style (if isBlue then &quot;color: blue;&quot; else null)
+
+        &quot;Hello and welcome to my app!&quot;
+    }
+</code></pre>
+<h2 id="event-handlers">Event handlers</h2>
+<p>Event handlers are available in the <code>on</code> submodule.</p>
+<pre><code class="language-fsharp">let myElement : Node =
+    button {
+        on.click (fun _ -&gt; printfn &quot;Clicked!&quot;)
+
+        &quot;Click me!&quot;
+    }
+</code></pre>
+<p>The argument passed to the callback has type <code>UIEventArgs</code> from Blazor. Specific events have corresponding subtypes of <code>UIEventArgs</code>: for example, <code>on.click</code> uses <code>UIMouseEventArgs</code>.</p>
+<pre><code class="language-fsharp">let myElement : Node =
+    button {
+       on.click (fun e -&gt;
+            printfn $&quot;Clicked at ({e.ClientX}, {e.ClientY})&quot;)
+
+        &quot;Click me!&quot;
+    }
+</code></pre>
+<p>To create a custom event handler for which there isn't a function, use <code>on.event</code>.</p>
+<pre><code class="language-fsharp">let myElement : Node =
+    button {
+        on.event &quot;customevent&quot; (fun _ -&gt; printfn &quot;Custom event!&quot;)
+
+        &quot;Click me!&quot;
+    }
+</code></pre>
+<p>Asynchronous event handlers are also available in the submodules <code>on.task</code> and <code>on.async</code>. These modules contain functions that are identical to the ones directly in <code>on</code>, except that their callbacks return <code>Task</code> and <code>Async&lt;unit&gt;</code>, respectively.</p>
+<pre><code class="language-fsharp">let myElement (js: IJSRuntime) : Node =
+    button {
+        on.task.click (fun e -&gt;
+            js.InvokeVoidAsync(&quot;console.log&quot;, e.ClientX).AsTask())
+
+        &quot;Click me!&quot;
+    }
+</code></pre>
+<h2 id="data-bindings">Data bindings</h2>
+<p>Attributes defined in the <code>bind</code> module define two-way binding with the element's value. These functions take two arguments:</p>
+<ol>
+<li>The current value, which generally comes from the <a href="Elmish">Elmish</a> model.</li>
+<li>A setter function, which generally calls the Elmish dispatch function.</li>
+</ol>
+<p>Here is an example using <code>bind.input.string</code>:</p>
+<pre><code class="language-fsharp">type Model = { username: string }
+
+type Message =
+    | SetUsername of string
+
+let hello (model: Model) (dispatch: Dispatch&lt;Message&gt;) : Node =
+    input {
+        bind.input.string model.username (fun n -&gt; dispatch (SetUsername n))
+
+        // Equivalent but more concise, using the composition operator:
+        bind.input.string model.username (dispatch &lt;&lt; SetUsername)
+    }
+</code></pre>
+<p>The module <code>bind</code> contains the submodules <code>input</code> and <code>change</code>:</p>
+<ul>
+<li><p>Functions in <code>bind.input</code> bind to the <code>value</code> property of an element by listening to the <code>oninput</code> event. This means that the callback is called on every user interaction on the element that changes its value. For example, on a text input, it is triggered on every keystroke.</p>
+<p>They are suitable for <code>input</code> and <code>textarea</code> elements.</p>
+</li>
+<li><p>Functions in <code>bind.change</code> are identical except that they listen to the <code>onchange</code> event. This means that the callback is called when a change is &quot;committed&quot; by the user. For example, on a text input, it is triggered when the user presses Enter or unfocuses the element after changing its value.</p>
+<p>They are suitable for <code>input</code>, <code>textarea</code> and <code>select</code> elements.</p>
+</li>
+</ul>
+<p>These submodules contain functions that bind to a value with the corresponding type:</p>
+<ul>
+<li><code>string</code></li>
+<li><code>int</code></li>
+<li><code>int64</code></li>
+<li><code>float</code></li>
+<li><code>float32</code></li>
+<li><code>decimal</code></li>
+<li><code>dateTime</code></li>
+<li><code>dateTimeOffset</code></li>
+</ul>
+<p>The number-typed functions are particularly suitable with an input that has <code>attr.``type`` &quot;number&quot;</code>.</p>
+<p>Additionally, the module <code>bind</code> directly contains a function <code>checked</code> which binds to the <code>checked</code> property of a checkbox input. Note that you also need to add <code>attr.``type`` &quot;checkbox&quot;</code> to the input.</p>
+<pre><code class="language-fsharp">type Model = { isChecked: bool }
+
+type Message =
+    | SetChecked of bool
+
+let hello (model: Model) (dispatch: Dispatch&lt;Message&gt;) : Node =
+    input {
+        attr.``type`` &quot;checkbox&quot;
+        bind.checked model.isChecked (fun c -&gt; dispatch (SetChecked c))
+    }
+</code></pre>
+<p>For radio buttons, you can use <code>bind.change.*</code> like so:</p>
+<pre><code class="language-fsharp">type Color = Red | Green | Blue
+type Model = { color: Color }
+
+type Message =
+    | SetColor of Color
+    
+let hello (model: Model) (dispatch: Dispatch&lt;Message&gt;) : Node =
+    forEach [Red; Green; Blue] &lt;| fun color -&gt;
+        input {
+            attr.``type`` &quot;radio&quot;
+
+            // use the same name for the 3 radio buttons to group them.
+            attr.name &quot;select-color&quot;
+
+            // HTML requires each button to have a different string value,
+            // but you don't have to use this string in the event handler
+            // if you have a better typed value at hand (here, `color`).
+            bind.change.string (string color) (fun _ -&gt; dispatch (SetColor color))
+        }
+</code></pre>
+</div></section>
+        </div>
+          <div class="column is-one-quarter-tablet is-one-fifth-desktop sidebar-column">
+            <section class="section">
+              <div class="menu">
+                <div class="menu-label">Documentation</div>
+                <ul class="menu-list"><li>
+                    <a href="/docs">Getting Started</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Hosting">Hosting models</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a class="is-active" href="/docs/HTML">Writing HTML</a>
+                    <ul><li>
+                        <a href="#elements">Elements</a>
+                      </li><li>
+                        <a href="#attributes">Attributes</a>
+                      </li><li>
+                        <a href="#event-handlers">Event handlers</a>
+                      </li><li>
+                        <a href="#data-bindings">Data bindings</a>
+                      </li></ul>
+                  </li><li>
+                    <a href="/docs/Templating">HTML templates</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Elmish">Using Elmish</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Routing">Routing</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Remoting">Remoting</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Blazor">Using Blazor features</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/JSON">Dealing with JSON</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Upgrade">Upgrade guide</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/reference">API Reference</a>
+                    <ul class="is-hidden"></ul>
+                  </li></ul>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </section>
+      
+    
+  <footer class="section footer first-footer has-text-centered">
+    <div class="container">
+      <div class="columns">
+        <div class="column">
+          <a target="_blank" href="https://github.com/fsbolero/template">
+            <img class="box no-padding" data-src="/img/screenshot-template.png" />
+            <h1 class="title">Bolero project template</h1>
+          </a>
+        </div>
+        <div class="column">
+          <a target="_blank" href="https://fsbolero.github.io/TodoMVC">
+            <img class="box no-padding" data-src="/img/screenshot-todomvc.png" />
+            <h1 class="title">TodoMVC</h1>
+          </a>
+        </div>
+        <div class="column">
+          <a target="_blank" href="https://tryfsharp.fsbolero.io">
+            <img class="box no-padding" data-src="/img/screenshot-tryfsharp.png" />
+            <h1 class="title">Try F# in your browser</h1>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <footer class="section footer second-footer">
+    <div class="container">
+      <div class="columns">
+        <div class="column">
+          <h1 class="title"><a href="/">Home</a></h1>
+          <h1 class="title">Made with Bolero</h1>
+          <div class="menu">
+            <ul class="menu-list">
+              <li><a target="_blank" href="https://tryfsharp.fsbolero.io">Try F#</a></li>
+              <li><a target="_blank" href="https://github.com/fsbolero/TodoMVC">TodoMVC</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="column">
+          <h1 class="title">Documentation</h1>
+          <div class="menu">
+            <ul class="menu-list"><li><a href="/docs">Getting Started</a></li><li><a href="/docs/Hosting">Hosting models</a></li><li><a href="/docs/HTML">Writing HTML</a></li><li><a href="/docs/HTML-list-functions">Writing HTML (Legacy)</a></li><li><a href="/docs/Templating">HTML templates</a></li><li><a href="/docs/Elmish">Using Elmish</a></li><li><a href="/docs/Routing">Routing</a></li><li><a href="/docs/Remoting">Remoting</a></li><li><a href="/docs/Blazor">Using Blazor features</a></li><li><a href="/docs/JSON">Dealing with JSON</a></li><li><a href="/docs/Upgrade">Upgrade guide</a></li><li><a href="/docs/reference">API Reference</a></li></ul>
+          </div>
+        </div>
+        <div class="column">
+          <h1 class="title">We leverage</h1>
+          <div class="menu">
+            <ul class="menu-list">
+              <li><a target="_blank" href="https://fsharp.org">F#</a></li>
+              <li><a target="_blank" href="https://elmish.github.io/elmish/">Elmish</a></li>
+              <li><a target="_blank" href="https://dot.net">.NET Core</a></li>
+              <li><a target="_blank" href="https://blazor.net">Blazor</a></li>
+              <li><a target="_blank" href="https://webassembly.org/">WebAssembly</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="column">
+          <h1 class="title">Find us</h1>
+          <ul>
+            <li>
+              <a class="github-button" href="https://github.com/fsbolero/bolero" data-size="large" aria-label="Star fsbolero/bolero on GitHub">Bolero on GitHub</a>
+            </li>
+            <li>
+              <a href="https://twitter.com/fsbolero?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large" data-dnt="true" data-show-count="false">Follow &commat;fsbolero</a>
+            </li>
+            <li>
+              <a target="_blank" href="https://nuget.org/packages/Bolero"><img alt="NuGet" src="https://img.shields.io/nuget/v/Bolero.svg?label=Bolero%20on%20NuGet&amp;logo=nuget&amp;style=for-the-badge" /></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/8.6.0/lazyload.min.js"></script>
+  <script type="text/javascript">new LazyLoad();</script>
+  <script src="/js/Client.min.js"></script>
+  <script async="" defer="" src="https://buttons.github.io/buttons.js"></script>
+  <script async="" defer="" src="https://platform.twitter.com/widgets.js"></script>
+  
+  
+  <script lang="javascript" src="/docs/content/fsdocs-search.js"></script>
+  <script lang="javascript" src="/docs/content/fsdocs-tips.js"></script>
+</body>
+</html>

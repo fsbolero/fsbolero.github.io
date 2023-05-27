@@ -1,0 +1,535 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HTML templates | Bolero: F# in WebAssembly</title>
+  <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16" />
+  <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
+  <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[],"$DATA":{"$V":{}}}' />
+
+  <link rel="stylesheet" href="/css/all.min.css" />
+  <link rel="stylesheet" href="/docs/content/fsdocs-default.css" />
+  <link rel="stylesheet" href="/docs/content/fsdocs-custom.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js" type="text/javascript" charset="UTF-8"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/languages/fsharp.min.js" type="text/javascript" charset="UTF-8"></script><link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/vs.min.css"></link>
+
+</head>
+<body>
+  <header class="navbar ">
+    <div class="container">
+      <div class="navbar-brand">
+        <a class="navbar-item is-hoverable" onclick="Website.Client.ToggleDrawer()"><i class="fa fa-bars"></i></a>
+        <span class="navbar-item"><a href="/">Bolero</a></span>
+      </div>
+      <div class="navbar-menu">
+        <nav class="navbar-start"><a href="/" class="navbar-item is-hoverable has-text-weight-bold">Home</a><div class="navbar-item is-hoverable has-text-weight-bold has-dropdown">
+            <a href="/docs" class="navbar-link is-arrowless">Documentation</a>
+            <div class="navbar-dropdown has-text-weight-normal"><a class="navbar-item" href="/docs">Getting Started</a><a class="navbar-item" href="/docs/Hosting">Hosting models</a><a class="navbar-item" href="/docs/HTML">Writing HTML</a><a class="navbar-item" href="/docs/HTML-list-functions">Writing HTML (Legacy)</a><a class="navbar-item" href="/docs/Templating">HTML templates</a><a class="navbar-item" href="/docs/Elmish">Using Elmish</a><a class="navbar-item" href="/docs/Routing">Routing</a><a class="navbar-item" href="/docs/Remoting">Remoting</a><a class="navbar-item" href="/docs/Blazor">Using Blazor features</a><a class="navbar-item" href="/docs/JSON">Dealing with JSON</a><a class="navbar-item" href="/docs/Upgrade">Upgrade guide</a><a class="navbar-item" href="/docs/reference">API Reference</a></div>
+          </div><a href="/blog" class="navbar-item is-hoverable has-text-weight-bold">Blog</a><a href="https://tryfsharp.fsbolero.io" class="navbar-item is-hoverable has-text-weight-bold">Try F#</a></nav>
+        <nav class="navbar-end">
+          <a target="_blank" title="GitHub" href="https://github.com/fsbolero/bolero" class="navbar-item is-hoverable"><i class="fa fa-github"></i></a>
+          <a target="_blank" title="Twitter" href="https://twitter.com/fsbolero" class="navbar-item is-hoverable"><i class="fa fa-twitter"></i></a>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <div class="drawer-backdrop" onclick="Website.Client.ToggleDrawer()">
+    <div id="left-drawer" class="lhs-drawer">
+      <nav class="menu">
+        <ul class="menu-list"><li>
+            <a href="/">Home</a>
+            
+          </li><li>
+            <a href="/docs">Documentation</a>
+            <ul><li>
+            <a href="/docs">Getting Started</a>
+            
+          </li><li>
+            <a href="/docs/Hosting">Hosting models</a>
+            
+          </li><li>
+            <a href="/docs/HTML">Writing HTML</a>
+            
+          </li><li>
+            <a href="/docs/HTML-list-functions">Writing HTML (Legacy)</a>
+            
+          </li><li>
+            <a href="/docs/Templating">HTML templates</a>
+            
+          </li><li>
+            <a href="/docs/Elmish">Using Elmish</a>
+            
+          </li><li>
+            <a href="/docs/Routing">Routing</a>
+            
+          </li><li>
+            <a href="/docs/Remoting">Remoting</a>
+            
+          </li><li>
+            <a href="/docs/Blazor">Using Blazor features</a>
+            
+          </li><li>
+            <a href="/docs/JSON">Dealing with JSON</a>
+            
+          </li><li>
+            <a href="/docs/Upgrade">Upgrade guide</a>
+            
+          </li><li>
+            <a href="/docs/reference">API Reference</a>
+            
+          </li></ul>
+          </li><li>
+            <a href="/blog">Blog</a>
+            
+          </li><li>
+            <a href="https://tryfsharp.fsbolero.io">Try F#</a>
+            
+          </li></ul>
+      </nav>
+    </div>
+  </div>
+  
+      <section class="with-sidebar-background">
+      <div class="container">
+        <div class="columns is-gapless">
+          <div class="column content markdown-column">
+          <div class="edit-page-icon">
+            <a href="https://github.com/fsbolero/website/tree/master/src/Website/docs/Templating.md" target="_blank" title="Contribute to this page on GitHub">
+              <i class="fa fa-edit"></i>
+            </a>
+          </div>
+          <section class="hero">
+              <div class="hero-body">
+                <h1 class="title">HTML templates</h1>
+                <p class="subtitle">
+Use plain HTML files as templates with a type provider</p>
+
+              </div>
+            </section>
+          <section class="section"><div ws-preserve=""><h2 id="invoking-the-type-provider">Invoking the type provider</h2>
+<p>The type provider <code>Bolero.Template</code> takes one static parameter, which is a string and can be either:</p>
+<ul>
+<li><p>A plain HTML string. It is recommended to use triple-quotes to avoid escaping issues:</p>
+<pre><code class="language-fsharp">type Hello = Template&lt;&quot;&quot;&quot;&lt;div id=&quot;hello&quot;&gt;Hello, world!&lt;/div&gt;&quot;&quot;&quot;&gt;
+</code></pre>
+</li>
+<li><p>A path to an HTML file, relative to the project root.</p>
+<pre><code class="language-fsharp">type Hello = Template&lt;&quot;hello.html&quot;&gt;
+</code></pre>
+</li>
+</ul>
+<blockquote>
+<p>The difference between the two is based on a simple heuristic: if the string contains the character <code>'&lt;'</code>, it is read as plain HTML, otherwise it is read as a file path.</p>
+</blockquote>
+<p>To instantiate a template, call its constructor and then the <code>.Elt()</code> method.</p>
+<pre><code class="language-fsharp">let hello = Hello().Elt()
+</code></pre>
+<h2 id="holes">Holes</h2>
+<p>Templates can also define &quot;holes&quot; to be filled by content defined in F#.</p>
+<p>Holes are defined in the HTML template with the following syntax: <code>${HoleName}</code>. Such a hole defines a method with the same name, which you can call before <code>.Elt()</code> to fill its value.</p>
+<pre><code class="language-html">&lt;div id=&quot;${Id}&quot;&gt;Hello, ${Who}!&lt;/div&gt;
+</code></pre>
+<pre><code class="language-fsharp">type Hello = Template&lt;&quot;hello.html&quot;&gt;
+
+let hello =
+    Hello()
+        .Id(&quot;hello&quot;)
+        .Who(&quot;world&quot;)
+        .Elt()
+</code></pre>
+<p>Here are the types of holes available.</p>
+<h3 id="node-holes">Node holes</h3>
+<p>A hole defined inside normal HTML content is a Node hole. It can be filled by either a string or a Node.</p>
+<pre><code class="language-html">&lt;div&gt;Hello, ${Who}!&lt;/div&gt;
+</code></pre>
+<pre><code class="language-fsharp">type Hello = Template&lt;&quot;hello.html&quot;&gt;
+
+// Fill with a string
+let hello = Hello().Who(&quot;world&quot;).Elt()
+
+// Fill with a Node
+let hello = Hello().Who(b { &quot;world&quot; }).Elt()
+</code></pre>
+<p>Such a hole can be defined multiple times, and the content will be duplicated accordingly.</p>
+<pre><code class="language-html">&lt;p&gt;
+    &lt;i&gt;Computer, to ${Who}:&lt;/i&gt;
+    Hello, ${Who}!
+&lt;/p&gt;
+</code></pre>
+<pre><code class="language-fsharp">type Hello = Template&lt;&quot;hello.html&quot;&gt;
+
+let hello = Hello().Who(&quot;world&quot;).Elt()
+</code></pre>
+<h3 id="attribute-holes">Attribute holes</h3>
+<p>A hole defined inside an HTML attribute can only be filled by a string.</p>
+<pre><code class="language-html">&lt;div class=&quot;greeting ${Class}&quot;&gt;Hello, world!&lt;/div&gt;
+</code></pre>
+<pre><code class="language-fsharp">type Hello = Template&lt;&quot;hello.html&quot;&gt;
+
+let hello = Hello().Class(&quot;heading&quot;).Elt()
+</code></pre>
+<p>A hole can be defined both inside an HTML attribute and in normal HTML content; in this case it can still only be filled by a string.</p>
+<pre><code class="language-html">&lt;label&gt;
+    ${Label}:
+    &lt;input placeholder=&quot;${Label}&quot; /&gt;
+&lt;/label&gt;
+</code></pre>
+<pre><code class="language-fsharp">type Hello = Template&lt;&quot;hello.html&quot;&gt;
+
+let hello = Hello().Label(&quot;First name&quot;).Elt()
+</code></pre>
+<h3 id="event-holes">Event holes</h3>
+<p>Holes defined as the value of an event attribute, eg. an attribute whose name starts with <code>on</code>, are treated as event handlers. They are filled by passing an anonymous function of type <code>UIEventArgs -&gt; unit</code>.</p>
+<pre><code class="language-html">&lt;button onclick=&quot;${Greet}&quot;&gt;Hello!&lt;/button&gt;
+</code></pre>
+<pre><code class="language-fsharp">type Hello = Template&lt;&quot;hello.html&quot;&gt;
+
+let hello = Hello().Greet(fun _ -&gt; printfn &quot;Hello, world!&quot;).Elt()
+</code></pre>
+<p>Specific events have corresponding subtypes of <code>UIEventArgs</code>: for example, <code>onclick</code> uses <code>UIMouseEventArgs</code>.</p>
+<pre><code class="language-html">&lt;button onclick=&quot;${Greet}&quot;&gt;Hello!&lt;/button&gt;
+</code></pre>
+<pre><code class="language-fsharp">type Hello = Template&lt;&quot;hello.html&quot;&gt;
+
+let hello =
+    Hello()
+        .Greet(fun e -&gt; printfn $&quot;Clicked at ({e.ClientX}, {e.ClientY})&quot;)
+        .Elt()
+</code></pre>
+<h3 id="data-binding-holes">Data binding holes</h3>
+<p>Holes defined as the value of a <code>bind</code> attribute define two-way binding with the element's value. The filling method for such a hole takes two arguments:</p>
+<ol>
+<li>The current value, which generally comes from the <a href="Elmish">Elmish</a> model.</li>
+<li>A setter function, which generally calls the Elmish dispatch function.</li>
+</ol>
+<pre><code class="language-html">&lt;input bind=&quot;${Username}&quot;&gt;
+</code></pre>
+<pre><code class="language-fsharp">type Model = { username: string }
+
+type Message =
+    | SetUsername of string
+
+type Hello = Template&lt;&quot;hello.html&quot;&gt;
+
+let hello model dispatch =
+    Hello()
+        .Username(model.username, fun n -&gt; dispatch (SetUsername n))
+        .Elt()
+</code></pre>
+<p>The type of the binding value depends on the element on which the <code>bind</code> attribute is set:</p>
+<ul>
+<li><code>&lt;input type=&quot;number&quot;&gt;</code> has a number value, and can be filled either by an <code>int</code> or a <code>float</code>.</li>
+<li><code>&lt;input type=&quot;checkbox&quot;&gt;</code> has a boolean value, and can be filled by a <code>bool</code>.</li>
+<li><code>&lt;input&gt;</code> with other types or no type, <code>&lt;textarea&gt;</code> and <code>&lt;select&gt;</code> have an arbitrary value, and can be filled by a <code>string</code>.</li>
+</ul>
+<blockquote>
+<p>Note: Radio buttons (<code>&lt;input type=&quot;radio&quot;&gt;</code>) are not yet supported by Blazor, and therefore by Bolero; see <a href="https://github.com/aspnet/Blazor/issues/1322">the issue on Blazor's tracker</a>.</p>
+</blockquote>
+<pre><code class="language-html">&lt;input type=&quot;checkbox&quot; bind=&quot;${IsChecked}&quot;&gt;
+</code></pre>
+<pre><code class="language-fsharp">type Model = { isChecked: bool }
+
+type Message =
+    | SetChecked of bool
+
+type Hello = Template&lt;&quot;hello.html&quot;&gt;
+
+let hello model dispatch =
+    Hello()
+        .IsChecked(model.isChecked, fun c -&gt; dispatch (SetChecked c))
+        .Elt()
+</code></pre>
+<p>The same hole name can be reused anywhere a string hole can be used, and it will be updated accordingly.</p>
+<pre><code class="language-html">&lt;div&gt;
+    &lt;input bind=&quot;${Name}&quot;&gt;
+    &lt;p&gt;Hello, ${Name}!&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-fsharp">type Model = { name: string }
+
+type Message =
+    | SetName of string
+
+type Hello = Template&lt;&quot;hello.html&quot;&gt;
+
+let hello model dispatch =
+    Hello()
+        .Name(model.name, fun n -&gt; dispatch (SetName n))
+        .Elt()
+</code></pre>
+<h4 id="event-handlers-for-data-binding">Event handlers for data binding</h4>
+<p>The binding can listen to changes on the input element using one of two different event handlers: <code>onchange</code> or <code>oninput</code>.</p>
+<ul>
+<li><code>onchange</code> is triggered when a change is &quot;committed&quot; by the user. For example, on a text input, it is triggered when the user presses Enter or unfocuses the element after changing the value.</li>
+<li><code>oninput</code> is triggered on every user interaction on the element that changes its value. For example, on a text input, it is triggered on every keystroke.</li>
+</ul>
+<p>By default, <code>bind</code> uses the following event handler:</p>
+<ul>
+<li>On <code>&lt;select&gt;</code> and <code>&lt;input type=&quot;checkbox&quot;&gt;</code>, <code>onchange</code> is used.</li>
+<li>On <code>&lt;textarea&gt;</code> and other types of <code>&lt;input&gt;</code>, <code>oninput</code> is used.</li>
+</ul>
+<p>You can override this behavior by using the attribute <code>bind-onchange</code> or <code>bind-oninput</code> instead of <code>bind</code>.</p>
+<pre><code class="language-html">&lt;div&gt;
+    &lt;input bind-onchange=&quot;${Name}&quot;&gt;
+    &lt;!-- Changes when the user commits the above input,
+         rather than on every keystroke: --&gt;
+    &lt;p&gt;Hello, ${Name}!&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-fsharp">type Model = { name: string }
+
+type Message =
+    | SetName of string
+
+type Hello = Template&lt;&quot;hello.html&quot;&gt;
+
+let hello model dispatch =
+    Hello()
+        .Name(model.name, fun n -&gt; dispatch (SetName n))
+        .Elt()
+</code></pre>
+<p>The same hole can be bound to two inputs using two different handlers. For example:</p>
+<pre><code class="language-html">&lt;p&gt;
+    When you type here, the second input's content is updated immediately:
+    &lt;input bind=&quot;${Name}&quot;&gt;
+&lt;/p&gt;
+&lt;p&gt;
+    When you type here, the first input's content is only updated
+    when you exit the input box or press Enter:
+    &lt;input bind-onchange=&quot;${Name}&quot;&gt;
+&lt;/p&gt;
+</code></pre>
+<h2 id="nested-templates">Nested templates</h2>
+<p>It is sometimes convenient to define a set of templates together in the same file. For example, a set of related widgets. Or the template for a list together with the template for an item in this list.</p>
+<p>This can be done using the <code>&lt;template&gt;</code> HTML tag. Such a template is identified by the <code>id</code> attribute on the tag, and its contents is the HTML contents of the <code>&lt;template&gt;</code> tag.</p>
+<p>On the F# side, nested templates are available as a nested class under the file's own template class. For example:</p>
+<pre><code class="language-html">&lt;p&gt;Here are my best friends:&lt;/p&gt;
+&lt;ul&gt;
+    ${Friends}
+    &lt;template id=&quot;Friend&quot;&gt;
+        &lt;li&gt;${Name}&lt;/li&gt;
+    &lt;/template&gt;
+&lt;/ul&gt;
+</code></pre>
+<pre><code class="language-fsharp">type FriendList = Template&lt;&quot;friendList.html&quot;&gt;
+
+// Use the nested template `Friend`.
+let showFriend (name: string) =
+    FriendList.Friend()
+        .Name(name)
+        .Elt()
+
+// Use the main template (full HTML file minus the &lt;template&gt; tag).
+let listFriends (names: list&lt;string&gt;) =
+    FriendList()
+        .Friends(forEach names showFriend)
+        .Elt()
+
+listFriends [&quot;Alice&quot;; &quot;Bob&quot;; &quot;Chloe&quot;]
+</code></pre>
+<p>The above code renders the following HTML:</p>
+<pre><code class="language-html">&lt;p&gt;Here are my best friends:&lt;/p&gt;
+&lt;ul&gt;
+    &lt;li&gt;Alice&lt;/li&gt;
+    &lt;li&gt;Bob&lt;/li&gt;
+    &lt;li&gt;Chloe&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+<h2 id="hot-reloading">Hot reloading</h2>
+<p>Starting with version 0.3, Bolero can reload the contents of HTML template files and update running applications automatically. This enables a smooth experience when designing the page: run the application, edit the HTML file, save, and the changes are reflected immediately in the browser.</p>
+<p><img src="hotreload.gif" alt="Hot reload in action" /></p>
+<p>Hot reloading requires a server side ASP.NET Core project: it watches for file changes, and sends the updated template to the client via SignalR.</p>
+<p>Hot reloading is enabled by default in the <a href="https://github.com/intellifactory/Bolero.Template">project template</a>.</p>
+<p>Here is how to enable it in an existing project with a server side:</p>
+<ul>
+<li><p>On the server side:</p>
+<ul>
+<li><p>Reference the NuGet package <code>Bolero.HotReload.Server</code>.</p>
+<pre><code>paket add Bolero.HotReload.Server -p src/MyServer/MyServer.fsproj
+</code></pre>
+</li>
+<li><p>Configure hot reload in the startup class's <code>ConfigureServices</code> with the directory that contains your HTML files:</p>
+<pre><code class="language-fsharp">member this.ConfigureServices(services: IServiceCollection) =
+    services
+        #if DEBUG
+        .AddHotReload(templateDir = &quot;../MyClient/wwwroot&quot;)
+        #endif
+    |&gt; ignore
+</code></pre>
+</li>
+<li><p>Enable hot reload in the startup class's <code>Configure</code>, within the call to <code>UseEndpoints</code>:</p>
+<pre><code class="language-fsharp">member this.Configure(app: IApplicationBuilder, env: IHostingEnvironment) =
+    app
+        .UseRouting()
+        // ...
+        .UseEndpoints(fun endpoints -&gt;
+            #if DEBUG
+            endpoints.UseHotReload()
+            #endif
+            // ...
+        )
+    |&gt; ignore
+</code></pre>
+</li>
+</ul>
+<p>Note the use of <code>#if DEBUG</code> ... <code>#endif</code> to ensure that hot reload is only enabled when compiling in debug mode, and not in release mode.</p>
+</li>
+<li><p>On the client side:</p>
+<ul>
+<li><p>Reference the NuGet package <code>Bolero.HotReload</code>.</p>
+<pre><code>paket add Bolero.HotReload -p src/MyClient/MyClient.fsproj
+</code></pre>
+</li>
+<li><p>Configure hot reload in the Elmish program:</p>
+<pre><code class="language-fsharp">type MyApp() =
+    inherit ProgramComponent&lt;Model, Message&gt;()
+
+    override this.Program =
+        Program.mkSimple (fun _ -&gt; initModel) update view
+        #if DEBUG
+        |&gt; Program.withHotReload
+        #endif
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</div></section>
+        </div>
+          <div class="column is-one-quarter-tablet is-one-fifth-desktop sidebar-column">
+            <section class="section">
+              <div class="menu">
+                <div class="menu-label">Documentation</div>
+                <ul class="menu-list"><li>
+                    <a href="/docs">Getting Started</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Hosting">Hosting models</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/HTML">Writing HTML</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a class="is-active" href="/docs/Templating">HTML templates</a>
+                    <ul><li>
+                        <a href="#invoking-the-type-provider">Invoking the type provider</a>
+                      </li><li>
+                        <a href="#holes">Holes</a>
+                      </li><li>
+                        <a href="#nested-templates">Nested templates</a>
+                      </li><li>
+                        <a href="#hot-reloading">Hot reloading</a>
+                      </li></ul>
+                  </li><li>
+                    <a href="/docs/Elmish">Using Elmish</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Routing">Routing</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Remoting">Remoting</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Blazor">Using Blazor features</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/JSON">Dealing with JSON</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Upgrade">Upgrade guide</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/reference">API Reference</a>
+                    <ul class="is-hidden"></ul>
+                  </li></ul>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </section>
+      
+    
+  <footer class="section footer first-footer has-text-centered">
+    <div class="container">
+      <div class="columns">
+        <div class="column">
+          <a target="_blank" href="https://github.com/fsbolero/template">
+            <img class="box no-padding" data-src="/img/screenshot-template.png" />
+            <h1 class="title">Bolero project template</h1>
+          </a>
+        </div>
+        <div class="column">
+          <a target="_blank" href="https://fsbolero.github.io/TodoMVC">
+            <img class="box no-padding" data-src="/img/screenshot-todomvc.png" />
+            <h1 class="title">TodoMVC</h1>
+          </a>
+        </div>
+        <div class="column">
+          <a target="_blank" href="https://tryfsharp.fsbolero.io">
+            <img class="box no-padding" data-src="/img/screenshot-tryfsharp.png" />
+            <h1 class="title">Try F# in your browser</h1>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <footer class="section footer second-footer">
+    <div class="container">
+      <div class="columns">
+        <div class="column">
+          <h1 class="title"><a href="/">Home</a></h1>
+          <h1 class="title">Made with Bolero</h1>
+          <div class="menu">
+            <ul class="menu-list">
+              <li><a target="_blank" href="https://tryfsharp.fsbolero.io">Try F#</a></li>
+              <li><a target="_blank" href="https://github.com/fsbolero/TodoMVC">TodoMVC</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="column">
+          <h1 class="title">Documentation</h1>
+          <div class="menu">
+            <ul class="menu-list"><li><a href="/docs">Getting Started</a></li><li><a href="/docs/Hosting">Hosting models</a></li><li><a href="/docs/HTML">Writing HTML</a></li><li><a href="/docs/HTML-list-functions">Writing HTML (Legacy)</a></li><li><a href="/docs/Templating">HTML templates</a></li><li><a href="/docs/Elmish">Using Elmish</a></li><li><a href="/docs/Routing">Routing</a></li><li><a href="/docs/Remoting">Remoting</a></li><li><a href="/docs/Blazor">Using Blazor features</a></li><li><a href="/docs/JSON">Dealing with JSON</a></li><li><a href="/docs/Upgrade">Upgrade guide</a></li><li><a href="/docs/reference">API Reference</a></li></ul>
+          </div>
+        </div>
+        <div class="column">
+          <h1 class="title">We leverage</h1>
+          <div class="menu">
+            <ul class="menu-list">
+              <li><a target="_blank" href="https://fsharp.org">F#</a></li>
+              <li><a target="_blank" href="https://elmish.github.io/elmish/">Elmish</a></li>
+              <li><a target="_blank" href="https://dot.net">.NET Core</a></li>
+              <li><a target="_blank" href="https://blazor.net">Blazor</a></li>
+              <li><a target="_blank" href="https://webassembly.org/">WebAssembly</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="column">
+          <h1 class="title">Find us</h1>
+          <ul>
+            <li>
+              <a class="github-button" href="https://github.com/fsbolero/bolero" data-size="large" aria-label="Star fsbolero/bolero on GitHub">Bolero on GitHub</a>
+            </li>
+            <li>
+              <a href="https://twitter.com/fsbolero?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large" data-dnt="true" data-show-count="false">Follow &commat;fsbolero</a>
+            </li>
+            <li>
+              <a target="_blank" href="https://nuget.org/packages/Bolero"><img alt="NuGet" src="https://img.shields.io/nuget/v/Bolero.svg?label=Bolero%20on%20NuGet&amp;logo=nuget&amp;style=for-the-badge" /></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/8.6.0/lazyload.min.js"></script>
+  <script type="text/javascript">new LazyLoad();</script>
+  <script src="/js/Client.min.js"></script>
+  <script async="" defer="" src="https://buttons.github.io/buttons.js"></script>
+  <script async="" defer="" src="https://platform.twitter.com/widgets.js"></script>
+  
+  
+  <script lang="javascript" src="/docs/content/fsdocs-search.js"></script>
+  <script lang="javascript" src="/docs/content/fsdocs-tips.js"></script>
+</body>
+</html>
