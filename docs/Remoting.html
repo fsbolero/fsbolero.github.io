@@ -1,0 +1,605 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Remoting | Bolero: F# in WebAssembly</title>
+  <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16" />
+  <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
+  <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[],"$DATA":{"$V":{}}}' />
+
+  <link rel="stylesheet" href="/css/all.min.css" />
+  <link rel="stylesheet" href="/docs/content/fsdocs-default.css" />
+  <link rel="stylesheet" href="/docs/content/fsdocs-custom.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js" type="text/javascript" charset="UTF-8"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/languages/fsharp.min.js" type="text/javascript" charset="UTF-8"></script><link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/vs.min.css"></link>
+
+</head>
+<body>
+  <header class="navbar ">
+    <div class="container">
+      <div class="navbar-brand">
+        <a class="navbar-item is-hoverable" onclick="Website.Client.ToggleDrawer()"><i class="fa fa-bars"></i></a>
+        <span class="navbar-item"><a href="/">Bolero</a></span>
+      </div>
+      <div class="navbar-menu">
+        <nav class="navbar-start"><a href="/" class="navbar-item is-hoverable has-text-weight-bold">Home</a><div class="navbar-item is-hoverable has-text-weight-bold has-dropdown">
+            <a href="/docs" class="navbar-link is-arrowless">Documentation</a>
+            <div class="navbar-dropdown has-text-weight-normal"><a class="navbar-item" href="/docs">Getting Started</a><a class="navbar-item" href="/docs/Hosting">Hosting models</a><a class="navbar-item" href="/docs/HTML">Writing HTML</a><a class="navbar-item" href="/docs/HTML-list-functions">Writing HTML (Legacy)</a><a class="navbar-item" href="/docs/Templating">HTML templates</a><a class="navbar-item" href="/docs/Elmish">Using Elmish</a><a class="navbar-item" href="/docs/Routing">Routing</a><a class="navbar-item" href="/docs/Remoting">Remoting</a><a class="navbar-item" href="/docs/Blazor">Using Blazor features</a><a class="navbar-item" href="/docs/JSON">Dealing with JSON</a><a class="navbar-item" href="/docs/Upgrade">Upgrade guide</a><a class="navbar-item" href="/docs/reference">API Reference</a></div>
+          </div><a href="/blog" class="navbar-item is-hoverable has-text-weight-bold">Blog</a><a href="https://tryfsharp.fsbolero.io" class="navbar-item is-hoverable has-text-weight-bold">Try F#</a></nav>
+        <nav class="navbar-end">
+          <a target="_blank" title="GitHub" href="https://github.com/fsbolero/bolero" class="navbar-item is-hoverable"><i class="fa fa-github"></i></a>
+          <a target="_blank" title="Twitter" href="https://twitter.com/fsbolero" class="navbar-item is-hoverable"><i class="fa fa-twitter"></i></a>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <div class="drawer-backdrop" onclick="Website.Client.ToggleDrawer()">
+    <div id="left-drawer" class="lhs-drawer">
+      <nav class="menu">
+        <ul class="menu-list"><li>
+            <a href="/">Home</a>
+            
+          </li><li>
+            <a href="/docs">Documentation</a>
+            <ul><li>
+            <a href="/docs">Getting Started</a>
+            
+          </li><li>
+            <a href="/docs/Hosting">Hosting models</a>
+            
+          </li><li>
+            <a href="/docs/HTML">Writing HTML</a>
+            
+          </li><li>
+            <a href="/docs/HTML-list-functions">Writing HTML (Legacy)</a>
+            
+          </li><li>
+            <a href="/docs/Templating">HTML templates</a>
+            
+          </li><li>
+            <a href="/docs/Elmish">Using Elmish</a>
+            
+          </li><li>
+            <a href="/docs/Routing">Routing</a>
+            
+          </li><li>
+            <a href="/docs/Remoting">Remoting</a>
+            
+          </li><li>
+            <a href="/docs/Blazor">Using Blazor features</a>
+            
+          </li><li>
+            <a href="/docs/JSON">Dealing with JSON</a>
+            
+          </li><li>
+            <a href="/docs/Upgrade">Upgrade guide</a>
+            
+          </li><li>
+            <a href="/docs/reference">API Reference</a>
+            
+          </li></ul>
+          </li><li>
+            <a href="/blog">Blog</a>
+            
+          </li><li>
+            <a href="https://tryfsharp.fsbolero.io">Try F#</a>
+            
+          </li></ul>
+      </nav>
+    </div>
+  </div>
+  
+      <section class="with-sidebar-background">
+      <div class="container">
+        <div class="columns is-gapless">
+          <div class="column content markdown-column">
+          <div class="edit-page-icon">
+            <a href="https://github.com/fsbolero/website/tree/master/src/Website/docs/Remoting.md" target="_blank" title="Contribute to this page on GitHub">
+              <i class="fa fa-edit"></i>
+            </a>
+          </div>
+          <section class="hero">
+              <div class="hero-body">
+                <h1 class="title">Remoting</h1>
+                <p class="subtitle">
+Easily call server-side functions from the client side.</p>
+
+              </div>
+            </section>
+          <section class="section"><div ws-preserve=""><h2 id="defining-the-service">Defining the service</h2>
+<p>A set of server-side functions is defined as a record called a <em>remote service</em>. Each function is a field in this record, and must take one argument and return <code>Async&lt;_&gt;</code>. If you need to pass several arguments to a server-side function, use a tuple.</p>
+<p>The record should implement <code>IRemoteService</code> to define the URL for its functions. Each function is served at the path <code>{service.BasePath}/{fieldName}</code>.</p>
+<p>For example, here is the definition of a service for a simple key-value pair storage:</p>
+<pre><code class="language-fsharp">open Bolero.Remoting
+
+type MyService =
+    {
+        getEntry : string -&gt; Async&lt;string option&gt;   // Served at /myService/getEntry
+        setEntry : string * string -&gt; Async&lt;unit&gt;   // Served at /myService/setEntry
+        deleteEntry : string -&gt; Async&lt;unit&gt;         // Served at /myService/deleteEntry
+    }
+
+    interface IRemoteService with
+        member this.BasePath = &quot;/myService&quot;
+</code></pre>
+<p>Remote calls are <code>POST</code> requests to the function's URL. Arguments and return values are automatically serialized to JSON.</p>
+<h2 id="calling-on-the-client-side">Calling on the client side</h2>
+<p>On the client side, you will typically want to call these functions in the <code>update</code> of the Elmish app. See <a href="https://elmish.github.io/elmish/basics.html">the Elmish documentation</a> to learn how to run commands in <code>update</code>.</p>
+<ol>
+<li><p>In your Blazor startup (<code>Client/Startup.fs</code>), add support for remoting:</p>
+<pre><code class="language-fsharp">open Bolero.Remoting.Client
+
+type Startup() =
+
+    member __.ConfigureServices(services: IServiceCollection) =
+        services.AddBoleroRemoting()
+        |&gt; ignore
+</code></pre>
+</li>
+<li><p>Retrieve the client-side service in the <code>ProgramComponent</code> by using <code>this.Remote</code>:</p>
+<pre><code class="language-fsharp">open Bolero.Remoting
+
+type App() =
+    inherit ProgramComponent&lt;Model, Message&gt;()
+
+    override this.Program =
+        // Retrieve the service
+        let myService = this.Remote&lt;MyService&gt;()
+        // Pass it to `update`
+        Program.mkProgram (fun _ -&gt; initModel, []) (update myService) view
+</code></pre>
+</li>
+<li><p>In <code>update</code>, use the service in <code>Cmd</code>s:</p>
+<pre><code class="language-fsharp">type Model =
+  { latestRetrievedEntry : string * string
+    latestError : exn option }
+
+type Message =
+    // Trigger a `getEntry` request
+    | GetEntry of key: string
+    // Received response of a `getEntry` request
+    | GotEntry of key: string * value: string
+    // A request threw an error
+    | Error of exn
+
+let update myService message model =
+    match message with
+    | GetEntry key -&gt;
+        model,
+        Cmd.ofAsync
+            myService.getEntry key              // async call and argument
+            (fun value -&gt; GotEntry(key, value)) // message to dispatch on response
+            Error                               // message to dispatch on error
+    | GotEntry(key, value) -&gt;
+        { model with latestRetrievedEntry = (key, value) }, []
+    | Error exn -&gt;
+        { model with latestError = Some exn }, []
+
+</code></pre>
+</li>
+</ol>
+<h2 id="defining-on-the-server-side">Defining on the server side</h2>
+<p>On the server side, Bolero.Remoting is registered as a service and added as ASP.NET Core routing endpoint. There are several ways to do so.</p>
+<blockquote>
+<p>Note: Until version 0.21, Bolero.Remoting was registered as an ASP.NET Core middleware.
+That usage still works, but it is considered obsolete, and it is advised to switch to endpoint routing as explained <a href="https://fsbolero.io/docs/Upgrade#from-v0.21-to-v0.22">in the upgrade guide</a>.</p>
+</blockquote>
+<h3 id="a-simple-service">A simple service</h3>
+<p>Here is how to implement a remote service without any dependencies.</p>
+<ol>
+<li><p>Implement the service as a value:</p>
+<pre><code class="language-fsharp">// A simple global map as storage.
+// A real-world app would probably use a database instead.
+let mutable storage = Map.empty
+
+let myService =
+    {
+        getEntry = fun key -&gt; async {
+            return Map.tryFind key
+        }
+        setEntry = fun (key, value) -&gt; async {
+            storage &lt;- Map.add key value storage
+        }
+        deleteEntry = fun key -&gt; async {
+            storage &lt;- Map.remove key storage
+        }
+    }
+</code></pre>
+</li>
+<li><p>In your ASP.NET Core startup (<code>Server/Startup.fs</code>), register the service:</p>
+<pre><code class="language-fsharp">open Bolero.Remoting.Server
+
+type Startup() =
+
+    member this.ConfigureServices(services: IServiceCollection) =
+        services.AddBoleroRemoting(myService)
+        |&gt; ignore
+</code></pre>
+</li>
+<li><p>In your ASP.NET Core startup, register the remoting endpoint:</p>
+<pre><code class="language-fsharp">type Startup() =
+
+    member this.Configure(app: IApplicationBuilder) =
+        app.UseRouting()
+            // .OtherMethods()...
+            .UseEndpoints(fun endpoints -&gt;
+                endpoints.MapBoleroRemoting() |&gt; ignore
+                // other endpoints...
+            )
+        |&gt; ignore
+</code></pre>
+</li>
+</ol>
+<h3 id="using-dependency-injection">Using dependency injection</h3>
+<p>You might need to use injected dependencies in a remote service: a logger, a database connection, etc. For this, you need a different approach.</p>
+<ol>
+<li><p>Implement the service as a class inheriting from <code>RemoteHandler</code>. Dependencies can be injected from the constructor.</p>
+<pre><code class="language-fsharp">type MyServiceHandler(log: ILogger&lt;MyServiceHandler&gt;) =
+    inherit RemoteHandler&lt;MyService&gt;()
+
+    let mutable storage = Map.empty
+
+    override this.Handler =
+        {
+            getEntry = fun key -&gt; async {
+                log.LogInformation(&quot;Retrieving {0}&quot;, key)
+                return Map.tryFind key
+            }
+            setEntry = fun (key, value) -&gt; async {
+                log.LogInformation(&quot;Setting {0} to {1}&quot;, key, value)
+                storage &lt;- Map.add key value storage
+            }
+            deleteEntry = fun key -&gt; async {
+                log.LogInformation(&quot;Deleting {0}&quot;, key)
+                storage &lt;- Map.remove key storage
+            }
+        }
+</code></pre>
+</li>
+<li><p>In your ASP.NET Core startup, register the service by type rather than by instance:</p>
+<pre><code class="language-fsharp">type Startup() =
+
+    member this.ConfigureServices(services: IServiceCollection) =
+        services.AddBoleroRemoting&lt;MyServiceHandler&gt;()
+        |&gt; ignore
+</code></pre>
+</li>
+<li><p>In your ASP.NET Core startup, register the remoting endpoint, just like for a simple service.</p>
+</li>
+</ol>
+<h3 id="iremotecontext">IRemoteContext</h3>
+<blockquote>
+<p>Introduced in v0.8.</p>
+</blockquote>
+<p>Bolero remoting provides a value of type <code>IRemoteContext</code> for multiple purposes. For example, its <code>HttpContext</code> property gives access to the ASP.NET Core <code>Microsoft.AspNetCore.Http.HttpContext</code> of the request.</p>
+<p>Here is how to obtain an <code>IRemoteContext</code>:</p>
+<ul>
+<li><p>If you use <a href="#using-dependency-injection">dependency injection</a>, then simply inject <code>IRemoteContext</code> into the constructor:</p>
+<pre><code class="language-fsharp">type MyServiceHandler(ctx: IRemoteContext) =
+    // ...
+</code></pre>
+</li>
+<li><p>If you are not using dependency injection, you can replace your handler record value with a function taking <code>IRemoteContext</code> as argument and returning a record.</p>
+</li>
+</ul>
+<h3 id="using-several-services">Using several services</h3>
+<p>You can of course define several remote services in the same application. Each of them needs to be registered by a separate call to <code>AddBoleroRemoting</code> in <code>ConfigureServices</code>. A single call to <code>MapBoleroRemoting</code> is enough in <code>Configure</code>.</p>
+<h2 id="authentication-and-authorization">Authentication and authorization</h2>
+<blockquote>
+<p>Introduced in v0.4.</p>
+<p>This has changed significantly in v0.8; <a href="https://github.com/fsbolero/website/blob/7a4e957/src/Website/docs/Remoting.md#authentication-and-authorization">see the old documentation</a> for authentication and authorization in versions 0.4 through 0.7.</p>
+</blockquote>
+<p>Bolero includes facilities for remote function authentication and authorization. They are based on standard ASP.NET Core functionality.</p>
+<ul>
+<li><strong>Authentication</strong> means signing in, signing out and identifying the current user in remote functions.</li>
+<li><strong>Authorization</strong> means specifying that a given remote function can only be used by authenticated users, optionally with additional criteria such as &quot;is admin&quot;.</li>
+</ul>
+<h3 id="authentication">Authentication</h3>
+<p>Authentication is done using standard ASP.NET Core authentication features. Enabling it is therefore done like a usual ASP.NET Core application. Here is an example setup for the server-side <code>Startup.fs</code> using cookie authentication:</p>
+<ul>
+<li><p>In <code>ConfigureServices</code>, use the following:</p>
+<pre><code class="language-fsharp">services
+    .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+        .AddCookie()
+        .Services
+    //.OtherMethods()...
+|&gt; ignore
+</code></pre>
+</li>
+<li><p>In <code>Configure</code>, call <code>UseAuthentication</code> before other methods:</p>
+<pre><code class="language-fsharp">app.UseAuthentication()
+    .UseRouting()
+    .UseEndpoints(...)
+|&gt; ignore
+</code></pre>
+</li>
+</ul>
+<p>To learn more about ASP.NET Core authentication, you can check the official documentation <a href="https://docs.microsoft.com/en-us/aspnet/core/security/authentication/cookie?view=aspnetcore-2.2">here</a>.</p>
+<p>Authentication in a remote function uses the <code>Microsoft.AspNetCore.Http.HttpContext</code> provided by <code>IRemoteContext</code> (<a href="#iremotecontext">see above</a>).</p>
+<p><code>HttpContext</code> has a lot of methods and properties. The extension methods added by Bolero and relevant for authentication are:</p>
+<ul>
+<li><code>AsyncSignIn()</code> is used to sign the user in. It takes a <code>username: string</code> argument, and a number of optional arguments:
+<ul>
+<li><code>persistFor: TimeSpan</code> decides for how long the signin lasts. If unset, the signin lasts for the duration of the user's browser session.</li>
+<li><code>claims: seq&lt;Claim&gt;</code> adds identity claims to the user, in addition to the <code>Name</code> claim that is created automatically for the username. Learn more about identity claims <a href="https://docs.microsoft.com/en-us/aspnet/core/security/authorization/claims?view=aspnetcore-2.2">here</a>. You can see it in used below when discussing <code>Remote.authorizeWith</code>.</li>
+<li><code>properties: AuthenticationProperties</code> adds authentication properties. <code>IsPersistent</code> and <code>ExpiresUTC</code> are overridden by <code>persistsFor</code> if that is used.</li>
+<li><code>authenticationType: string</code> sets the authentication type for the identity principal. The default is <code>&quot;Bolero.Remoting&quot;</code>.</li>
+</ul>
+</li>
+<li><code>AsyncSignOut()</code> is used to sign the user out. It takes a single optional argument, <code>properties: AuthenticationProperties</code>.</li>
+<li><code>TryUsername()</code> retrieves the current user's username, as a <code>string option</code>.</li>
+<li><code>TryIdentity()</code> retrieves the current user's ASP.Net Core identity, as a <code>ClaimsIdentity option</code>.</li>
+</ul>
+<p>For example, the following remote service implements simple login, logout and username retrieval:</p>
+<pre><code class="language-fsharp">type LoginService =
+    {
+        signIn : string -&gt; Async&lt;unit&gt;
+        signOut : unit -&gt; Async&lt;unit&gt;
+        getUsername : unit -&gt; Async&lt;string option&gt;
+    }
+
+let loginService (ctx: IRemoteContext) =
+    {
+        signIn = fun username -&gt; async {
+            if password = &quot;password&quot; then // Replace this with a proper check!
+                return! ctx.HttpContext.AsyncSignIn(username)
+        }
+        signOut = fun () -&gt; async {
+            return! ctx.HttpContext.AsyncSignOut()
+        }
+        getUsername = fun () -&gt; async {
+            return! ctx.HttpContext.TryUsername()
+        }
+    }
+</code></pre>
+<h3 id="authorization">Authorization</h3>
+<p>Authorization also uses standard ASP.NET Core features. It is enabled by calling <code>AddAuthorization</code> in the startup class's <code>ConfigureServices</code> method:</p>
+<pre><code class="language-fsharp">member this.ConfigureServices(services: IServiceCollection) =
+    services
+        .AddAuthorization()
+        //.OtherMethods()...
+    |&gt; ignore
+</code></pre>
+<p>and <code>UseAuthorization</code> in <code>Configure</code>, after <code>UseRouting</code> and before <code>UseEndpoints</code>:</p>
+<pre><code class="language-fsharp">app.UseAuthentication()
+    .UseRouting()
+    .UseAuthorization()
+    .UseEndpoints(...)
+|&gt; ignore
+</code></pre>
+<p>You can then mark a remote function as authorized, ie. callable only by authenticated users, by wrapping it in a call to the method <code>Authorize</code> on <a href="#iremotecontext">IRemoteContext</a>.</p>
+<pre><code class="language-fsharp">type UserDataService =
+    {
+        getSecretData : unit -&gt; Async&lt;string&gt;
+    }
+
+let userDataService (ctx: IRemoteContext) =
+    {
+        getSecretData = ctx.Authorize &lt;| fun () -&gt; async {
+            // User is guaranteed to be authenticated here.
+            return &quot;Secret user data!&quot;
+        }
+    }
+</code></pre>
+<p>You can use more fine-tuned authorization policies using <code>AuthorizeWith</code>. This method takes a list of ASP.NET Core <code>AuthorizeAttribute</code>s that specifies the authorization policy for this function. The following example can only be called by a user who was signed in as admin:</p>
+<pre><code class="language-fsharp">type UserDataService =
+    {
+        signIn : string * string -&gt; Async&lt;string&gt;
+        getSecretData : unit -&gt; Async&lt;string&gt;
+    }
+
+let userDataService (ctx: IRemoteContext) =
+    {
+        signIn = fun (username, password) -&gt; async {
+            if password = &quot;password&quot; then
+                // If the user is &quot;administrator&quot;, add the &quot;admin&quot; role
+                let claims =
+                    match username with
+                    | &quot;administrator&quot; -&gt; [Claim(ClaimTypes.Role, &quot;admin&quot;)]
+                    | _ -&gt; []
+                return! ctx.HttpContext.AsyncSignIn(username, claims = claims)
+        }
+
+        // Only an admin can call this function
+        getSecretData = ctx.AuthorizeWith [AuthorizeAttribute(Roles = &quot;admin&quot;)] &lt;| fun () -&gt; async {
+            return &quot;Super secret data for admin eyes only!&quot;
+        }
+    }
+</code></pre>
+<h3 id="from-the-client-side">From the client side</h3>
+<p>You can call an authorized function from the client side with the standard <code>Cmd.ofAsync</code>. If the user is not authorized, then the call will return an error with the exception <code>RemoteUnauthorizedException</code>.</p>
+<pre><code class="language-fsharp">type Model =
+  { secretData : string option
+    latestError : exn option }
+
+type Message =
+    // Trigger a `getSecretData` request
+    | GetSecretData
+    // Received response of a `getSecretData` request
+    | GotSecretData of data: string
+    // A request threw an error or was unauthorized
+    | Error of exn
+
+let update myService message model =
+    match message with
+    | GetSecretData -&gt;
+        model,
+        Cmd.ofAsync myService.getSecretData () GotSecretData Error
+    | GotSecretData data -&gt;
+        { model with secretData = Some data }, []
+    | Error RemoteUnauthorizedException -&gt;
+        // Tried to getSecretData, but the user was not signed in
+        { model with secretData = None }, []
+    | Error exn -&gt;
+        // Another error happened (eg. the server was unavailable)
+        { model with latestError = Some exn }, []
+</code></pre>
+<p>This way is particularly convenient if you have several remote functions that need to handle authorization errors the same way (eg by showing a login popup), as they can all use the same <code>Error</code> message.</p>
+<p>Alternatively, you can use the function <code>Cmd.ofAuthorized</code>. This function is similar to <code>Cmd.ofAsync</code>, except that it handles both success and unauthorized call with the same message by passing a value of type <code>option&lt;'resp&gt;</code>. This value is <code>None</code> if the user is not authorized, or <code>Some</code> with the returned value if the user is authorized.</p>
+<p>This way is more convenient for a remote function that needs to handle authorization errors in a specific way.</p>
+<pre><code class="language-fsharp">type Model =
+  { secretData : string option
+    latestError : exn option }
+
+type Message =
+    // Trigger a `getSecretData` request
+    | GetSecretData
+    // Received response of a `getSecretData` request
+    | GotSecretData of option&lt;string&gt;
+    // A request threw an error
+    | Error of exn
+
+let update myService message model =
+    match message with
+    | GetSecretData -&gt;
+        model,
+        Cmd.ofRemote myService.getSecretData () GotSecretData Error
+    | GotSecretData (Some data) -&gt;
+        { model with secretData = Some data }, []
+    | GotSecretData None -&gt;
+        // Tried to getSecretData, but the user was not signed in
+        { model with secretData = None }, []
+    | Error exn -&gt;
+        // Another error happened (eg. the server was unavailable)
+        { model with latestError = exn }, []
+</code></pre>
+<p>The variant <code>Cmd.performRemote</code> doesn't take an <code>Error</code> message and ignores non-authorization-related errors.</p>
+</div></section>
+        </div>
+          <div class="column is-one-quarter-tablet is-one-fifth-desktop sidebar-column">
+            <section class="section">
+              <div class="menu">
+                <div class="menu-label">Documentation</div>
+                <ul class="menu-list"><li>
+                    <a href="/docs">Getting Started</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Hosting">Hosting models</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/HTML">Writing HTML</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Templating">HTML templates</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Elmish">Using Elmish</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Routing">Routing</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a class="is-active" href="/docs/Remoting">Remoting</a>
+                    <ul><li>
+                        <a href="#defining-the-service">Defining the service</a>
+                      </li><li>
+                        <a href="#calling-on-the-client-side">Calling on the client side</a>
+                      </li><li>
+                        <a href="#defining-on-the-server-side">Defining on the server side</a>
+                      </li><li>
+                        <a href="#authentication-and-authorization">Authentication and authorization</a>
+                      </li></ul>
+                  </li><li>
+                    <a href="/docs/Blazor">Using Blazor features</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/JSON">Dealing with JSON</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Upgrade">Upgrade guide</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/reference">API Reference</a>
+                    <ul class="is-hidden"></ul>
+                  </li></ul>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </section>
+      
+    
+  <footer class="section footer first-footer has-text-centered">
+    <div class="container">
+      <div class="columns">
+        <div class="column">
+          <a target="_blank" href="https://github.com/fsbolero/template">
+            <img class="box no-padding" data-src="/img/screenshot-template.png" />
+            <h1 class="title">Bolero project template</h1>
+          </a>
+        </div>
+        <div class="column">
+          <a target="_blank" href="https://fsbolero.github.io/TodoMVC">
+            <img class="box no-padding" data-src="/img/screenshot-todomvc.png" />
+            <h1 class="title">TodoMVC</h1>
+          </a>
+        </div>
+        <div class="column">
+          <a target="_blank" href="https://tryfsharp.fsbolero.io">
+            <img class="box no-padding" data-src="/img/screenshot-tryfsharp.png" />
+            <h1 class="title">Try F# in your browser</h1>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <footer class="section footer second-footer">
+    <div class="container">
+      <div class="columns">
+        <div class="column">
+          <h1 class="title"><a href="/">Home</a></h1>
+          <h1 class="title">Made with Bolero</h1>
+          <div class="menu">
+            <ul class="menu-list">
+              <li><a target="_blank" href="https://tryfsharp.fsbolero.io">Try F#</a></li>
+              <li><a target="_blank" href="https://github.com/fsbolero/TodoMVC">TodoMVC</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="column">
+          <h1 class="title">Documentation</h1>
+          <div class="menu">
+            <ul class="menu-list"><li><a href="/docs">Getting Started</a></li><li><a href="/docs/Hosting">Hosting models</a></li><li><a href="/docs/HTML">Writing HTML</a></li><li><a href="/docs/HTML-list-functions">Writing HTML (Legacy)</a></li><li><a href="/docs/Templating">HTML templates</a></li><li><a href="/docs/Elmish">Using Elmish</a></li><li><a href="/docs/Routing">Routing</a></li><li><a href="/docs/Remoting">Remoting</a></li><li><a href="/docs/Blazor">Using Blazor features</a></li><li><a href="/docs/JSON">Dealing with JSON</a></li><li><a href="/docs/Upgrade">Upgrade guide</a></li><li><a href="/docs/reference">API Reference</a></li></ul>
+          </div>
+        </div>
+        <div class="column">
+          <h1 class="title">We leverage</h1>
+          <div class="menu">
+            <ul class="menu-list">
+              <li><a target="_blank" href="https://fsharp.org">F#</a></li>
+              <li><a target="_blank" href="https://elmish.github.io/elmish/">Elmish</a></li>
+              <li><a target="_blank" href="https://dot.net">.NET Core</a></li>
+              <li><a target="_blank" href="https://blazor.net">Blazor</a></li>
+              <li><a target="_blank" href="https://webassembly.org/">WebAssembly</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="column">
+          <h1 class="title">Find us</h1>
+          <ul>
+            <li>
+              <a class="github-button" href="https://github.com/fsbolero/bolero" data-size="large" aria-label="Star fsbolero/bolero on GitHub">Bolero on GitHub</a>
+            </li>
+            <li>
+              <a href="https://twitter.com/fsbolero?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large" data-dnt="true" data-show-count="false">Follow &commat;fsbolero</a>
+            </li>
+            <li>
+              <a target="_blank" href="https://nuget.org/packages/Bolero"><img alt="NuGet" src="https://img.shields.io/nuget/v/Bolero.svg?label=Bolero%20on%20NuGet&amp;logo=nuget&amp;style=for-the-badge" /></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/8.6.0/lazyload.min.js"></script>
+  <script type="text/javascript">new LazyLoad();</script>
+  <script src="/js/Client.min.js"></script>
+  <script async="" defer="" src="https://buttons.github.io/buttons.js"></script>
+  <script async="" defer="" src="https://platform.twitter.com/widgets.js"></script>
+  
+  
+  <script lang="javascript" src="/docs/content/fsdocs-search.js"></script>
+  <script lang="javascript" src="/docs/content/fsdocs-tips.js"></script>
+</body>
+</html>

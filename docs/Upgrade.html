@@ -1,0 +1,699 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Upgrade guide | Bolero: F# in WebAssembly</title>
+  <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16" />
+  <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
+  <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[],"$DATA":{"$V":{}}}' />
+
+  <link rel="stylesheet" href="/css/all.min.css" />
+  <link rel="stylesheet" href="/docs/content/fsdocs-default.css" />
+  <link rel="stylesheet" href="/docs/content/fsdocs-custom.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js" type="text/javascript" charset="UTF-8"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/languages/fsharp.min.js" type="text/javascript" charset="UTF-8"></script><link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/vs.min.css"></link>
+
+</head>
+<body>
+  <header class="navbar ">
+    <div class="container">
+      <div class="navbar-brand">
+        <a class="navbar-item is-hoverable" onclick="Website.Client.ToggleDrawer()"><i class="fa fa-bars"></i></a>
+        <span class="navbar-item"><a href="/">Bolero</a></span>
+      </div>
+      <div class="navbar-menu">
+        <nav class="navbar-start"><a href="/" class="navbar-item is-hoverable has-text-weight-bold">Home</a><div class="navbar-item is-hoverable has-text-weight-bold has-dropdown">
+            <a href="/docs" class="navbar-link is-arrowless">Documentation</a>
+            <div class="navbar-dropdown has-text-weight-normal"><a class="navbar-item" href="/docs">Getting Started</a><a class="navbar-item" href="/docs/Hosting">Hosting models</a><a class="navbar-item" href="/docs/HTML">Writing HTML</a><a class="navbar-item" href="/docs/HTML-list-functions">Writing HTML (Legacy)</a><a class="navbar-item" href="/docs/Templating">HTML templates</a><a class="navbar-item" href="/docs/Elmish">Using Elmish</a><a class="navbar-item" href="/docs/Routing">Routing</a><a class="navbar-item" href="/docs/Remoting">Remoting</a><a class="navbar-item" href="/docs/Blazor">Using Blazor features</a><a class="navbar-item" href="/docs/JSON">Dealing with JSON</a><a class="navbar-item" href="/docs/Upgrade">Upgrade guide</a><a class="navbar-item" href="/docs/reference">API Reference</a></div>
+          </div><a href="/blog" class="navbar-item is-hoverable has-text-weight-bold">Blog</a><a href="https://tryfsharp.fsbolero.io" class="navbar-item is-hoverable has-text-weight-bold">Try F#</a></nav>
+        <nav class="navbar-end">
+          <a target="_blank" title="GitHub" href="https://github.com/fsbolero/bolero" class="navbar-item is-hoverable"><i class="fa fa-github"></i></a>
+          <a target="_blank" title="Twitter" href="https://twitter.com/fsbolero" class="navbar-item is-hoverable"><i class="fa fa-twitter"></i></a>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <div class="drawer-backdrop" onclick="Website.Client.ToggleDrawer()">
+    <div id="left-drawer" class="lhs-drawer">
+      <nav class="menu">
+        <ul class="menu-list"><li>
+            <a href="/">Home</a>
+            
+          </li><li>
+            <a href="/docs">Documentation</a>
+            <ul><li>
+            <a href="/docs">Getting Started</a>
+            
+          </li><li>
+            <a href="/docs/Hosting">Hosting models</a>
+            
+          </li><li>
+            <a href="/docs/HTML">Writing HTML</a>
+            
+          </li><li>
+            <a href="/docs/HTML-list-functions">Writing HTML (Legacy)</a>
+            
+          </li><li>
+            <a href="/docs/Templating">HTML templates</a>
+            
+          </li><li>
+            <a href="/docs/Elmish">Using Elmish</a>
+            
+          </li><li>
+            <a href="/docs/Routing">Routing</a>
+            
+          </li><li>
+            <a href="/docs/Remoting">Remoting</a>
+            
+          </li><li>
+            <a href="/docs/Blazor">Using Blazor features</a>
+            
+          </li><li>
+            <a href="/docs/JSON">Dealing with JSON</a>
+            
+          </li><li>
+            <a href="/docs/Upgrade">Upgrade guide</a>
+            
+          </li><li>
+            <a href="/docs/reference">API Reference</a>
+            
+          </li></ul>
+          </li><li>
+            <a href="/blog">Blog</a>
+            
+          </li><li>
+            <a href="https://tryfsharp.fsbolero.io">Try F#</a>
+            
+          </li></ul>
+      </nav>
+    </div>
+  </div>
+  
+      <section class="with-sidebar-background">
+      <div class="container">
+        <div class="columns is-gapless">
+          <div class="column content markdown-column">
+          <div class="edit-page-icon">
+            <a href="https://github.com/fsbolero/website/tree/master/src/Website/docs/Upgrade.md" target="_blank" title="Contribute to this page on GitHub">
+              <i class="fa fa-edit"></i>
+            </a>
+          </div>
+          <section class="hero">
+              <div class="hero-body">
+                <h1 class="title">Upgrade guide</h1>
+                <p class="subtitle">
+How to update a project for newer releases</p>
+
+              </div>
+            </section>
+          <section class="section"><div ws-preserve=""><h2 id="from-v0.21-to-v0.22">From v0.21 to v0.22</h2>
+<p><a href="https://fsbolero.io/blog/20230410-bolero-0-22-released">See the 0.22 announcement.</a></p>
+<ul>
+<li><p>Bolero v0.22 introduces endpoint routing for remote services.
+While the existing middleware is still supported, it is obsolete, and it is advised to switch to endpoint routing.</p>
+<p>Here are the migration steps.
+In the server project's <code>Startup.fs</code>:</p>
+<ul>
+<li><p>In <code>ConfigureServices</code>, replace <code>AddRemoting</code>:</p>
+<pre><code class="language-fsharp">services.AddRemoting&lt;MyApiService&gt;()
+</code></pre>
+<p>with <code>AddBoleroRemoting</code>:</p>
+<pre><code class="language-fsharp">services.AddBoleroRemoting&lt;MyApiService&gt;()
+</code></pre>
+</li>
+<li><p>In <code>Configure</code>, remove <code>app.UseRemoting</code> and add <code>endpoints.MapBoleroRemoting</code>:</p>
+<pre><code class="language-fsharp">app
+    .UseAuthentication()
+    //.UseRemoting() // Remove this
+    .UseStaticFiles()
+    .UseRouting()
+    .UseBlazorFrameworkFiles()
+    .UseEndpoints(fun endpoints -&gt;
+        endpoints.UseHotReload()
+        endpoints.MapBoleroRemoting() |&gt; ignore // Add this
+        endpoints.MapBlazorHub() |&gt; ignore
+        endpoints.MapFallbackToBolero(Index.page) |&gt; ignore)
+</code></pre>
+</li>
+<li><p>If you use authorization with <code>IRemoteContext.Authorize</code> or <code>AuthorizeWith</code>, then also add <code>app.UseAuthorization</code>.
+It must be located after <code>app.UseRouting</code> and before <code>app.UseEndpoints</code>:</p>
+<pre><code class="language-fsharp">app
+    .UseAuthentication()
+    .UseStaticFiles()
+    .UseRouting()
+    .UseAuthorization() // Add this
+    .UseBlazorFrameworkFiles()
+    .UseEndpoints(fun endpoints -&gt;
+        // ...
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>Elmish has been updated to version 4.
+This release significantly revamps subscriptions.
+See <a href="https://elmish.github.io/elmish/docs/subscription.html#migrating-from-v3">the Elmish documentation</a> for a guide to convert Elmish subscriptions from v3 to v4.</p>
+</li>
+</ul>
+<h2 id="from-v0.18-to-v0.20">From v0.18 to v0.20</h2>
+<p><a href="https://fsbolero.io/blog/20220419-bolero-0-20-released">See the 0.20 announcement.</a></p>
+<p>Bolero v0.20 upgrades the dependency to .NET 6. Here are the associated upgrade steps:</p>
+<ul>
+<li><p>Install <a href="https://dotnet.microsoft.com/download">the .NET SDK 6.0.101 or newer</a>.</p>
+</li>
+<li><p>If you are using Visual Studio, it is recommended to upgrade to version 2022 (17.x).</p>
+</li>
+<li><p>This version completely changes the syntax for HTML.
+Instead of functions taking a list of attributes and a list of children, HTML elements and Blazor components are defined using computation expressions.
+See <a href="HTML">the documentation on HTML</a> for all details on the new syntax.</p>
+</li>
+</ul>
+<h2 id="from-v0.15-to-v0.16">From v0.15 to v0.16</h2>
+<p><a href="https://fsbolero.io/blog/20201127-bolero-0-16-released">See the 0.16 announcement.</a></p>
+<p>Bolero v0.16 upgrades the dependency to .NET 5. Here are the associated upgrade steps:</p>
+<ul>
+<li><p>Install <a href="https://dotnet.microsoft.com/download">the .NET SDK 5.0.100 or newer</a>.</p>
+</li>
+<li><p>If you are using Visual Studio, it is recommended to upgrade to version 16.8.</p>
+</li>
+<li><p>In your <em>client-side</em> project files:</p>
+<ul>
+<li><p>Replace the line:</p>
+<pre><code class="language-xml">&lt;Project Sdk=&quot;Microsoft.NET.Sdk.Web&quot;&gt;
+</code></pre>
+<p>with:</p>
+<pre><code class="language-xml">&lt;Project Sdk=&quot;Microsoft.NET.Sdk.BlazorWebAssembly&quot;&gt;
+</code></pre>
+</li>
+<li><p>Remove the dependency on the NuGet package <code>Microsoft.AspNetCore.Components.WebAssembly.Build</code>.</p>
+</li>
+</ul>
+</li>
+<li><p>In <em>all</em> your project files:</p>
+<ul>
+<li><p>Replace the <code>TargetFramework</code> with <code>net5.0</code>.</p>
+</li>
+<li><p>Update the dependency version on all <code>Microsoft.AspNetCore.*</code> packages to <code>5.0.*</code> (for NuGet) or <code>~&gt; 5.0.0</code> (for Paket).</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="from-v0.14-to-v0.15">From v0.14 to v0.15</h2>
+<p><a href="https://fsbolero.io/blog/20200915-bolero-0-15-released">See the 0.15 announcement.</a></p>
+<p>Bolero v0.15 doesn't change the SDK requirements. Here are the upgrade steps:</p>
+<ul>
+<li><p>Elmish has been updated to v3.0. As a consequence, some functions are now obsolete.
+For example, <code>Cmd.ofAsync</code> should now be replaced with <code>Cmd.OfAsync.either</code>.
+It is a simple renaming, you can simply follow the compiler warnings.</p>
+</li>
+<li><p>The HTML element reference API has changed:</p>
+<ul>
+<li>The type <code>ElementRefBinder</code> was renamed to <code>HtmlRef</code>;</li>
+<li>its <code>Ref</code> property was renamed to <code>Value</code>;</li>
+<li>The function <code>attr.bindRef</code> was renamed to <code>attr.ref</code>;</li>
+<li>The function <code>attr.ref</code> taking a function as argument has been removed.</li>
+</ul>
+</li>
+</ul>
+<h2 id="from-v0.13-to-v0.14">From v0.13 to v0.14</h2>
+<p><a href="https://fsbolero.io/blog/20200807-bolero-0-14-released">See the 0.14 announcement.</a></p>
+<p>Bolero 0.14 doesn't change the SDK requirements. Here are the upgrade steps:</p>
+<ul>
+<li>The module <code>Bolero.Json</code> has been removed.
+Instead, Bolero's remoting now uses the standard <code>System.Text.Json</code>, together with the library <a href="https://github.com/tarmil/fsharp.systemtextjson"><code>FSharp.SystemTextJson</code></a> to provide support for F# types such as records, unions, options, lists, etc.
+If you had JSON format customization based on Bolero.Json attributes, you must replace them with System.Text.Json-based customization.
+Otherwise, there is nothing to do.</li>
+</ul>
+<h2 id="from-v0.12-to-v0.13">From v0.12 to v0.13</h2>
+<p><a href="https://fsbolero.io/blog/20200523-bolero-0-13-released">See the 0.13 announcement.</a></p>
+<p>Bolero 0.13 upgrades the dependency on .NET Core SDK 3.1.300 or newer and on Blazor to 3.2.0. Here are the associated upgrade steps:</p>
+<ul>
+<li><p>Install <a href="https://dotnet.microsoft.com/download/dotnet-core">the .NET Core 3.1.300 SDK or newer</a>.</p>
+</li>
+<li><p>If you are using Visual Studio, it is recommended to upgrade to version 16.6.</p>
+</li>
+<li><p>If you use remoting, in your client-side startup, replace the following:</p>
+<pre><code class="language-fsharp">builder.Services.AddRemoting() |&gt; ignore
+</code></pre>
+<p>with:</p>
+<pre><code class="language-fsharp">builder.Services.AddRemoting(builder.HostEnvironment) |&gt; ignore
+</code></pre>
+<p>Note also that <code>AddRemoting</code> now adds a named <code>HttpClient</code> intended solely for use by remoting.
+If you were using the injected <code>HttpClient</code> for your own purposes, then you will need to inject one separately using the standard method:</p>
+<pre><code class="language-fsharp">builder.Services.AddSingleton(new HttpClient(BaseAddress = Uri(builder.HostEnvironment.BaseAddress))) |&gt; ignore
+</code></pre>
+</li>
+<li><p>There is a new <code>BoleroHostConfig</code> which simplifies the configuration of the server-side hosting.
+While the <code>_Host.cshtml</code> and <code>HostModel.fs</code> that were included in previous versions of the project template should continue to work correctly, it is recommended to switch to using <code>BoleroHostConfig</code>.</p>
+<ul>
+<li><p>Remove <code>HostModel.fs</code>.</p>
+</li>
+<li><p>In <code>Pages/_Host.cshtml</code>, apply the following change:</p>
+<pre><code class="language-diff">@page &quot;/&quot;
+@namespace HelloWorld
+-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+-@model HostModel
++@using Bolero.Server.RazorHost
++@inject IBoleroHostConfig BoleroHostConfig
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Hello world!&lt;/title&gt;
+  &lt;meta charset=&quot;UTF-8&quot; /&gt;
+  &lt;base href=&quot;/&quot; /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+-  &lt;div id=&quot;main&quot;&gt;@(await Html.RenderComponentAsync&lt;HelloWorld.Client.MyApp&gt;(Model.IsServer ? RenderMode.ServerPrerendered : RenderMode.Static))&lt;/div&gt;
++  &lt;div id=&quot;main&quot;&gt;@(await Html.RenderComponentAsync&lt;HelloWorld.Client.MyApp&gt;(BoleroHostConfig))&lt;/div&gt;
+-  &lt;script src=&quot;_framework/blazor.@(Model.IsServer ? &quot;server&quot; : &quot;webassembly&quot;).js&quot;&gt;&lt;/script&gt;
++  @Html.RenderBoleroScript(BoleroHostConfig)
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+</li>
+<li><p>In <code>Startup.fs</code>, open the namespace <code>Bolero.Server.RazorHost</code> and inject <code>BoleroHostConfig</code> in <code>ConfigureServices</code>:</p>
+<pre><code class="language-fsharp">services.AddBoleroHost() |&gt; ignore
+</code></pre>
+<p>This method takes optional arguments that configure the hosting of the application (server vs client, prerendered or not, etc).</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="from-v0.11-to-v0.12">From v0.11 to v0.12</h2>
+<p><a href="https://fsbolero.io/blog/20200323-bolero-0-12-released">See the 0.12 announcement.</a></p>
+<p>Bolero 0.12 upgrades the dependency on .NET Core SDK 3.1.102 or newer and on Blazor to 3.2-preview2. Here are the associated upgrade steps:</p>
+<ul>
+<li><p>Install <a href="https://dotnet.microsoft.com/download/dotnet-core">the .NET Core 3.1.102 SDK or newer</a>.</p>
+</li>
+<li><p>If you are using Visual Studio, check on the above page for the corresponding version (16.4 or 16.5).</p>
+</li>
+<li><p>Follow closely the upgrade guides for <a href="https://devblogs.microsoft.com/aspnet/blazor-webassembly-3-2-0-preview-1-release-now-available/">Blazor 3.2-preview1</a> and <a href="https://devblogs.microsoft.com/aspnet/blazor-webassembly-3-2-0-preview-2-release-now-available/">Blazor 3.2-preview2.</a> Note in particular the NuGet package renames in the latter. Regarding <code>WebAssemblyHost</code>, see the client-side changes below.</p>
+</li>
+<li><p>In your client <code>.fsproj</code> file, inside the <code>&lt;PropertyGroup&gt;</code> tag, add the following:</p>
+<pre><code class="language-xml">&lt;RazorLangVersion&gt;3.0&lt;/RazorLangVersion&gt;
+</code></pre>
+</li>
+<li><p>The client-side startup has been completely revamped in Blazor 3.2; <a href="https://devblogs.microsoft.com/aspnet/blazor-webassembly-3-2-0-preview-1-release-now-available/">see the Blazor 3.2-preview1 announcement for more details.</a>. A startup file like the following:</p>
+<pre><code class="language-fsharp">namespace HelloWorld.Client
+
+open Microsoft.AspNetCore.Blazor.Hosting
+open Microsoft.Extensions.DependencyInjection
+open Microsoft.AspNetCore.Components.Builder
+
+type Startup() =
+
+    member __.ConfigureServices(services: IServiceCollection) =
+        // [1] Services configuration:
+        services.AddRemoting() |&gt; ignore
+
+    member __.Configure(app: IComponentsApplicationBuilder) =
+        // [2] Component configuration:
+        app.AddComponent&lt;MyApp&gt;(&quot;#main&quot;)
+
+module Program =
+
+    [&lt;EntryPoint&gt;]
+    let Main args =
+        BlazorWebAssemblyHost.CreateDefaultBuilder()
+             .UseBlazorStartup&lt;Startup&gt;()
+             .Build()
+             .Run()
+        0
+</code></pre>
+<p>becomes:</p>
+<pre><code class="language-fsharp">namespace HelloWorld.Client
+
+open Microsoft.AspNetCore.Components.WebAssembly.Hosting
+
+module Program =
+
+    [&lt;EntryPoint&gt;]
+    let Main args =
+        let builder = WebAssemblyHostBuilder.CreateDefault(args)
+
+        // [1] Services configuration:
+        builder.Services.AddRemoting() |&gt; ignore
+
+        // [2] Component configuration:
+        builder.RootComponents.Add&lt;MyApp&gt;(&quot;#main&quot;)
+
+        builder.Build().RunAsync() |&gt; ignore
+        0
+</code></pre>
+</li>
+<li><p>In the server-side startup, replace the following:</p>
+<pre><code class="language-fsharp">app.UseClientSideBlazorFiles&lt;Client.Main.MyApp&gt;()
+</code></pre>
+<p>with:</p>
+<pre><code class="language-fsharp">app.UseBlazorFrameworkFiles()
+</code></pre>
+<p>and the following:</p>
+<pre><code class="language-fsharp">.UseEndpoints(fun endpoints -&gt;
+    endpoints.MapDefaultControllerRoute() |&gt; ignore
+    endpoints.MapFallbackToClientSideBlazor&lt;Client.Startup&gt;(&quot;index.html&quot;) |&gt; ignore)
+</code></pre>
+<p>with:</p>
+<pre><code class="language-fsharp">.UseEndpoints(fun endpoints -&gt;
+    endpoints.MapControllers() |&gt; ignore
+    endpoints.MapFallbackToFile(&quot;index.html&quot;) |&gt; ignore)
+</code></pre>
+<p>Additionally, in the <code>main</code> function, under <code>WebHost.CreateDefaultBuilder(args)</code>, add:</p>
+<pre><code class="language-fsharp">    .UseStaticWebAssets()
+</code></pre>
+<p>See <a href="https://devblogs.microsoft.com/aspnet/blazor-webassembly-3-2-0-preview-2-release-now-available/">the Blazor 3.2-preview2 announcement</a> for more details.</p>
+</li>
+</ul>
+<h2 id="from-v0.10-to-v0.11">From v0.10 to v0.11</h2>
+<p>Bolero 0.11 upgrades the dependency on .NET Core to 3.1 and on Blazor to 3.1-preview4. Here are the associated upgrade steps:</p>
+<ul>
+<li><p>Install <a href="https://dotnet.microsoft.com/download/dotnet-core">the .NET Core 3.1 SDK or newer</a>.</p>
+</li>
+<li><p>If you are using Visual Studio, upgrade to version 16.4.</p>
+</li>
+<li><p>Change the <code>&lt;TargetFramework&gt;</code> of your client <code>.fsproj</code> file from <code>netstandard2.0</code> to <code>netstandard2.1</code>.</p>
+</li>
+<li><p>Change the <code>&lt;TargetFramework&gt;</code> of your server <code>.fsproj</code> file from <code>netcoreapp3.0</code> to <code>netcoreapp3.1</code>.</p>
+</li>
+<li><p>The API for binders have been changed.<br />
+The <code>bind</code> module now contains submodules <code>bind.input</code> and <code>bind.change</code> which in turn contain functions for the type of value being bound: <code>string</code>, <code>int</code>, <code>int64</code>, <code>float</code>, <code>float32</code>, <code>decimal</code>, <code>dateTime</code> and <code>dateTimeOffset</code>.<br />
+Additionally, a module <code>bind.withCulture</code> contains the same submodules with functions taking an additional <code>CultureInfo</code> as argument to specify the culture to use to parse the value.</p>
+<p>For example, the following:</p>
+<pre><code class="language-fsharp">concat [
+    input [bind.input model.name (fun n -&gt; dispatch (SetName n))]
+    input [bind.inputInt model.age (fun a -&gt; dispatch (SetAge a))]
+]
+</code></pre>
+<p>becomes:</p>
+<pre><code class="language-fsharp">concat [
+    input [bind.input.string model.name (fun n -&gt; dispatch (SetName n))]
+    input [bind.input.int model.age (fun a -&gt; dispatch (SetAge a))]
+]
+</code></pre>
+</li>
+</ul>
+<h2 id="from-v0.9-to-v0.10">From v0.9 to v0.10</h2>
+<p>Bolero 0.10 doesn't change the dependencies from 0.9. It has one breaking change:</p>
+<ul>
+<li>The function <code>ecomp</code> now takes an additional list of attributes as first argument.</li>
+</ul>
+<h2 id="from-v0.8-to-v0.9">From v0.8 to v0.9</h2>
+<p>Bolero 0.9 upgrades the dependency on .NET Core to 3.0 RTM and on Blazor to 3.0-preview9. It doesn't include any breaking changes. Here are the associated upgrade steps:</p>
+<ul>
+<li><p>Install <a href="https://dotnet.microsoft.com/download/dotnet-core">the .NET Core 3.0 SDK</a>.</p>
+</li>
+<li><p>If you are using Visual Studio, upgrade to version 16.3.</p>
+</li>
+</ul>
+<h2 id="from-v0.7-to-v0.8">From v0.7 to v0.8</h2>
+<p>Bolero 0.8 upgrades the dependency on Blazor and .NET Core to 3.0-preview8. Here are the associated upgrade steps:</p>
+<ul>
+<li><p>Install <a href="https://dotnet.microsoft.com/download/dotnet-core">the .NET Core 3.0-preview8 SDK</a>.</p>
+</li>
+<li><p>The server-side module <code>Remote</code> has been removed, with its functions <code>withHttpContext</code>, <code>authorize</code> and <code>authorizeWith</code>.</p>
+<p>Instead, a new type <code>IRemoteContext</code> is provided via dependency injection:</p>
+<pre><code class="language-fsharp">type IRemoteContext =
+    inherit IHttpContextAccessor // member HttpContext : HttpContext with get, set
+    member Authorize : ('req -&gt; Async&lt;'resp&gt;) -&gt; ('req -&gt; Async&lt;'resp&gt;)
+    member AuthorizeWith : seq&lt;IAuthorizeData&gt; -&gt; ('req -&gt; Async&lt;'resp&gt;) -&gt; ('req -&gt; Async&lt;'resp&gt;)
+</code></pre>
+<p>To obtain this new value:</p>
+<ul>
+<li><p>If you use a <code>RemoteHandler</code> class with dependency injection, simply take <code>ctx: IRemoteContext</code> as additional argument in its constructor.</p>
+</li>
+<li><p>If you use a plain record value, make it instead a function that takes <code>ctx: IRemoteContext</code> as argument and returns the record.
+New overloads on <code>IServiceCollection.AddRemoting</code> can take such a function as argument.</p>
+</li>
+</ul>
+<p>Then, to use it:</p>
+<ul>
+<li><p>Replace <code>Remote.withContext &lt;| fun http arg -&gt; // ...</code> with a simple <code>fun arg -&gt; ...</code>.</p>
+</li>
+<li><p>Replace <code>Remote.authorize &lt;| fun http arg -&gt; // ...</code> with <code>ctx.Authorize &lt;| fun arg -&gt; ...</code>.</p>
+</li>
+<li><p>Replace <code>Remote.authorizeWith attrs &lt;| fun http arg -&gt; // ...</code> with <code>ctx.AuthorizeWith attrs &lt;| fun arg -&gt; ...</code>.</p>
+</li>
+</ul>
+<p>In all three cases, use <code>ctx.HttpContext</code> instead of <code>http</code> in the function.</p>
+</li>
+</ul>
+<h2 id="from-v0.6-to-v0.7">From v0.6 to v0.7</h2>
+<p>Bolero 0.7 updates the dependency on Blazor and .NET Core to 3.0-preview7. Here are the associated upgrade steps:</p>
+<ul>
+<li><p>Install <a href="https://dotnet.microsoft.com/download/dotnet-core">the .NET Core 3.0-preview7 SDK</a>.</p>
+</li>
+<li><p><code>Cmd.ofRemote</code>, <code>Cmd.performRemote</code> and the related type <code>RemoteResponse&lt;'T&gt;</code> are obsolete. Here is how to update:</p>
+<ul>
+<li><p>If the remote call is to a non-authorized function, then simply use <code>Cmd.ofAsync</code> / <code>Cmd.performAsync</code>.</p>
+</li>
+<li><p>If the remote call is to an authorized function, then replace <code>RemoteResponse&lt;'T&gt;</code> with <code>option&lt;'T&gt;</code>, <code>Cmd.ofRemote</code> with <code>Cmd.ofAuthorized</code> and <code>Cmd.performRemote</code> with <code>Cmd.performAuthorized</code>.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="from-v0.5-to-v0.6">From v0.5 to v0.6</h2>
+<p>Bolero 0.6 updates the dependency on Blazor and .NET Core to 3.0-preview6. Here are the associated upgrade steps:</p>
+<ul>
+<li><p>Install <a href="https://dotnet.microsoft.com/download/dotnet-core">the .NET Core 3.0-preview6 SDK</a>.</p>
+</li>
+<li><p>The server-side <code>Startup.fs</code> code has changed. In <code>Configure</code>, the method <code>UseBlazor</code> has been removed; replace it with the following:</p>
+<pre><code class="language-fsharp">    .UseClientSideBlazorFiles&lt;Client.Startup&gt;()
+    .UseRouting()
+    .UseEndpoints(fun endpoints -&gt;
+        endpoints.MapDefaultControllerRoute() |&gt; ignore
+        endpoints.MapFallbackToClientSideBlazor&lt;Client.Startup&gt;(&quot;index.html&quot;) |&gt; ignore)
+</code></pre>
+<p>This requires the addition of the following line in <code>ConfigureServices</code>:</p>
+<pre><code class="language-fsharp">    services.AddMvcCore() |&gt; ignore
+</code></pre>
+</li>
+</ul>
+<p>HTML hot reloading also received changes.</p>
+<ul>
+<li><p>A new NuGet package <code>Bolero.HotReload.Server</code> needs to be referenced by the <code>Server</code> project.</p>
+</li>
+<li><p><code>IAppBuilder.UseHotReload</code> is deprecated; instead, add <code>endpoints.UseHotReload()</code> at the top of the <code>UseEndPoints</code> callback:</p>
+<pre><code class="language-fsharp">    .UseClientSideBlazorFiles&lt;Client.Startup&gt;()
+    .UseRouting()
+    .UseEndpoints(fun endpoints -&gt;
+        endpoints.UseHotReload()
+        endpoints.MapDefaultControllerRoute() |&gt; ignore
+        endpoints.MapFallbackToClientSideBlazor&lt;Client.Startup&gt;(&quot;index.html&quot;) |&gt; ignore)
+</code></pre>
+</li>
+</ul>
+<h2 id="from-v0.4-to-v0.5">From v0.4 to v0.5</h2>
+<p><img src="../img/blazor-icon.png" alt="Blazor 3.0" /></p>
+<p>Bolero 0.5 doesn't bring any breaking API changes.
+However, it upgrades the dependency on Blazor from 0.7 to 3.0-preview5; and by doing so, it also upgrades the dependency on .NET Core from 2.1 to 3.0-preview5.
+This brings a number of necessary changes to projects. Here are the necessary steps:</p>
+<ul>
+<li><p>Install <a href="https://dotnet.microsoft.com/download/dotnet-core">the .NET Core 3.0-preview5 SDK</a>.</p>
+</li>
+<li><p>If your solution contains a <code>global.json</code> file with an explicit SDK version, either remove the file or update its SDK version to <code>3.0.100-preview5</code>.</p>
+</li>
+<li><p>In <code>paket.dependencies</code>:</p>
+<ul>
+<li>In the <code>framework</code> declaration, replace <code>netcoreapp2.1</code> with <code>netcoreapp3.0</code>.</li>
+<li>Remove the following <code>nuget</code> lines:
+<ul>
+<li><code>Microsoft.AspNetCore.App</code> (In ASP.NET Core 3.0, it is automatically included by the SDK)</li>
+<li><code>Microsoft.AspNetCore.Razor.Design</code></li>
+<li><code>Microsoft.AspNetCore.SignalR</code></li>
+</ul>
+</li>
+<li>Replace <code>clitool Microsoft.AspNetCore.Blazor.Cli</code> with <code>nuget Microsoft.AspNetCore.Blazor.DevServer</code>.</li>
+<li>For all the <code>Microsoft.AspNetCore.Blazor*</code> and <code>Bolero*</code> dependencies, remove version constraints if there are any (such as <code>~&gt; 0.7.0</code>), and add <code>prerelease</code> as a version constraint.</li>
+</ul>
+</li>
+<li><p>In <code>src/*.Client/paket.references</code>:</p>
+<ul>
+<li>Replace <code>Microsoft.AspNetCore.Blazor.Cli</code> with <code>Microsoft.AspNetCore.Blazor.DevServer</code>.</li>
+</ul>
+</li>
+<li><p>In <code>src/*.Server/paket.references</code>:</p>
+<ul>
+<li>Remove <code>Microsoft.AspNetCore.App</code>.</li>
+</ul>
+</li>
+<li><p>In both <code>*.fsproj</code> files, replace the <code>TargetFramework</code> from <code>netcoreapp2.1</code> to <code>netcoreapp3.0</code>. Also, remove the following lines from <code>*.Client.fsproj</code>:</p>
+<pre><code class="language-xml">&lt;RunCommand&gt;dotnet&lt;/RunCommand&gt;
+&lt;RunArguments&gt;blazor serve&lt;/RunArguments&gt;
+</code></pre>
+</li>
+</ul>
+<p>You can now run <code>.paket/paket update</code> to update the packages.
+There are also a few code changes to apply:</p>
+<ul>
+<li><p>In <code>src/*.Client/Startup.fs</code>:</p>
+<ul>
+<li>Replace <code>Microsoft.AspNetCore.Blazor.Builder</code> with <code>Microsoft.AspNetCore.Components.Builder</code>.</li>
+<li>Replace <code>IBlazorApplicationBuilder</code> with <code>IComponentsApplicationBuilder</code>.</li>
+</ul>
+</li>
+<li><p>In <code>src/*.Server/Startup.fs</code>:</p>
+<ul>
+<li>Replace <code>IHostingEnvironment</code> with <code>IWebHostEnvironment</code>.</li>
+</ul>
+</li>
+</ul>
+<p>Your solution should now build and run successfully.
+If your code uses Blazor APIs directly, please check the Blazor <a href="https://devblogs.microsoft.com/aspnet/blazor-0-8-0-experimental-release-now-available/">0.8</a>, <a href="https://devblogs.microsoft.com/aspnet/blazor-0-9-0-experimental-release-now-available/">0.9</a> and <a href="https://devblogs.microsoft.com/aspnet/blazor-now-in-official-preview/">3.0</a> upgrade guides for more code changes you might need to make.</p>
+<p>If you are having any issues with this upgrade, don't hesitate to <a href="https://github.com/fsbolero/bolero/issues">post an issue on GitHub!</a></p>
+</div></section>
+        </div>
+          <div class="column is-one-quarter-tablet is-one-fifth-desktop sidebar-column">
+            <section class="section">
+              <div class="menu">
+                <div class="menu-label">Documentation</div>
+                <ul class="menu-list"><li>
+                    <a href="/docs">Getting Started</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Hosting">Hosting models</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/HTML">Writing HTML</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Templating">HTML templates</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Elmish">Using Elmish</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Routing">Routing</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Remoting">Remoting</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/Blazor">Using Blazor features</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/docs/JSON">Dealing with JSON</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a class="is-active" href="/docs/Upgrade">Upgrade guide</a>
+                    <ul><li>
+                        <a href="#from-v021-to-v022">From v0.21 to v0.22</a>
+                      </li><li>
+                        <a href="#from-v018-to-v020">From v0.18 to v0.20</a>
+                      </li><li>
+                        <a href="#from-v015-to-v016">From v0.15 to v0.16</a>
+                      </li><li>
+                        <a href="#from-v014-to-v015">From v0.14 to v0.15</a>
+                      </li><li>
+                        <a href="#from-v013-to-v014">From v0.13 to v0.14</a>
+                      </li><li>
+                        <a href="#from-v012-to-v013">From v0.12 to v0.13</a>
+                      </li><li>
+                        <a href="#from-v011-to-v012">From v0.11 to v0.12</a>
+                      </li><li>
+                        <a href="#from-v010-to-v011">From v0.10 to v0.11</a>
+                      </li><li>
+                        <a href="#from-v09-to-v010">From v0.9 to v0.10</a>
+                      </li><li>
+                        <a href="#from-v08-to-v09">From v0.8 to v0.9</a>
+                      </li><li>
+                        <a href="#from-v07-to-v08">From v0.7 to v0.8</a>
+                      </li><li>
+                        <a href="#from-v06-to-v07">From v0.6 to v0.7</a>
+                      </li><li>
+                        <a href="#from-v05-to-v06">From v0.5 to v0.6</a>
+                      </li><li>
+                        <a href="#from-v04-to-v05">From v0.4 to v0.5</a>
+                      </li></ul>
+                  </li><li>
+                    <a href="/docs/reference">API Reference</a>
+                    <ul class="is-hidden"></ul>
+                  </li></ul>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </section>
+      
+    
+  <footer class="section footer first-footer has-text-centered">
+    <div class="container">
+      <div class="columns">
+        <div class="column">
+          <a target="_blank" href="https://github.com/fsbolero/template">
+            <img class="box no-padding" data-src="/img/screenshot-template.png" />
+            <h1 class="title">Bolero project template</h1>
+          </a>
+        </div>
+        <div class="column">
+          <a target="_blank" href="https://fsbolero.github.io/TodoMVC">
+            <img class="box no-padding" data-src="/img/screenshot-todomvc.png" />
+            <h1 class="title">TodoMVC</h1>
+          </a>
+        </div>
+        <div class="column">
+          <a target="_blank" href="https://tryfsharp.fsbolero.io">
+            <img class="box no-padding" data-src="/img/screenshot-tryfsharp.png" />
+            <h1 class="title">Try F# in your browser</h1>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <footer class="section footer second-footer">
+    <div class="container">
+      <div class="columns">
+        <div class="column">
+          <h1 class="title"><a href="/">Home</a></h1>
+          <h1 class="title">Made with Bolero</h1>
+          <div class="menu">
+            <ul class="menu-list">
+              <li><a target="_blank" href="https://tryfsharp.fsbolero.io">Try F#</a></li>
+              <li><a target="_blank" href="https://github.com/fsbolero/TodoMVC">TodoMVC</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="column">
+          <h1 class="title">Documentation</h1>
+          <div class="menu">
+            <ul class="menu-list"><li><a href="/docs">Getting Started</a></li><li><a href="/docs/Hosting">Hosting models</a></li><li><a href="/docs/HTML">Writing HTML</a></li><li><a href="/docs/HTML-list-functions">Writing HTML (Legacy)</a></li><li><a href="/docs/Templating">HTML templates</a></li><li><a href="/docs/Elmish">Using Elmish</a></li><li><a href="/docs/Routing">Routing</a></li><li><a href="/docs/Remoting">Remoting</a></li><li><a href="/docs/Blazor">Using Blazor features</a></li><li><a href="/docs/JSON">Dealing with JSON</a></li><li><a href="/docs/Upgrade">Upgrade guide</a></li><li><a href="/docs/reference">API Reference</a></li></ul>
+          </div>
+        </div>
+        <div class="column">
+          <h1 class="title">We leverage</h1>
+          <div class="menu">
+            <ul class="menu-list">
+              <li><a target="_blank" href="https://fsharp.org">F#</a></li>
+              <li><a target="_blank" href="https://elmish.github.io/elmish/">Elmish</a></li>
+              <li><a target="_blank" href="https://dot.net">.NET Core</a></li>
+              <li><a target="_blank" href="https://blazor.net">Blazor</a></li>
+              <li><a target="_blank" href="https://webassembly.org/">WebAssembly</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="column">
+          <h1 class="title">Find us</h1>
+          <ul>
+            <li>
+              <a class="github-button" href="https://github.com/fsbolero/bolero" data-size="large" aria-label="Star fsbolero/bolero on GitHub">Bolero on GitHub</a>
+            </li>
+            <li>
+              <a href="https://twitter.com/fsbolero?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large" data-dnt="true" data-show-count="false">Follow &commat;fsbolero</a>
+            </li>
+            <li>
+              <a target="_blank" href="https://nuget.org/packages/Bolero"><img alt="NuGet" src="https://img.shields.io/nuget/v/Bolero.svg?label=Bolero%20on%20NuGet&amp;logo=nuget&amp;style=for-the-badge" /></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/8.6.0/lazyload.min.js"></script>
+  <script type="text/javascript">new LazyLoad();</script>
+  <script src="/js/Client.min.js"></script>
+  <script async="" defer="" src="https://buttons.github.io/buttons.js"></script>
+  <script async="" defer="" src="https://platform.twitter.com/widgets.js"></script>
+  
+  
+  <script lang="javascript" src="/docs/content/fsdocs-search.js"></script>
+  <script lang="javascript" src="/docs/content/fsdocs-tips.js"></script>
+</body>
+</html>
