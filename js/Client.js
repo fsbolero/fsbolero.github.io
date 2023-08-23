@@ -22,7 +22,7 @@
     }
   }
 
-  Global.IntelliFactory = {
+  Global.WebSharper = {
     Runtime: {
       Ctor: function (ctor, typeFunction) {
         ctor.prototype = typeFunction.prototype;
@@ -179,7 +179,7 @@
               invokes.push(del);
           }
         }
-        return IntelliFactory.Runtime.CreateDelegate(invokes);
+        return WebSharper.Runtime.CreateDelegate(invokes);
       },
 
       DelegateEqual: function (d1, d2) {
@@ -249,7 +249,7 @@
             return f.apply(null, allArgs);
           if (n == 2)
             return function (a) { return f.apply(null, allArgs.concat([a === void (0) ? null : a])); }
-          return IntelliFactory.Runtime.Curried(f, n - 1, allArgs);
+          return WebSharper.Runtime.Curried(f, n - 1, allArgs);
         }
       },
 
@@ -278,6 +278,16 @@
         if (!optional) {
           throw new Error("Type not expected for creating Choice value.");
         }
+      },
+
+      MarkResizable: function (arr) {
+        Object.defineProperty(arr, "resizable", { enumerable: false, writable: false, configurable: false, value: true });
+        return arr;
+      },
+
+      MarkReadOnly: function (arr) {
+        Object.defineProperty(arr, "readonly", { enumerable: false, writable: false, configurable: false, value: true });
+        return arr;
       },
 
       ScriptBasePath: "./",
@@ -309,7 +319,7 @@
     }
   }
 
-  Global.IntelliFactory.Runtime.OnLoad(function () {
+  Global.WebSharper.Runtime.OnLoad(function () {
     if (Global.WebSharper && WebSharper.Activator && WebSharper.Activator.Activate)
       WebSharper.Activator.Activate()
   });
@@ -342,7 +352,7 @@
 (function(Global)
 {
  "use strict";
- var Website,Client,WebSharper,Obj,UI,Var,Operators,View,Arrays,EventTarget,Node,Highlight,SC$1,Snap,Concurrency,WindowOrWorkerGlobalScope,Var$1,ConcreteVar,Scheduler,Abbrev,Fresh,SC$2,CT,CancellationTokenSource,SC$3,IntelliFactory,Runtime,hljs,console,Date;
+ var Website,Client,WebSharper,Obj,UI,Var,Operators,View,Arrays,EventTarget,Node,Highlight,SC$1,Snap,Concurrency,WindowOrWorkerGlobalScope,Var$1,ConcreteVar,Scheduler,Abbrev,Fresh,SC$2,CT,CancellationTokenSource,SC$3,Runtime,hljs,console,Date;
  Website=Global.Website=Global.Website||{};
  Client=Website.Client=Website.Client||{};
  WebSharper=Global.WebSharper=Global.WebSharper||{};
@@ -368,8 +378,7 @@
  CT=Concurrency.CT=Concurrency.CT||{};
  CancellationTokenSource=WebSharper.CancellationTokenSource=WebSharper.CancellationTokenSource||{};
  SC$3=Global.StartupCode$WebSharper_UI$Abbrev=Global.StartupCode$WebSharper_UI$Abbrev||{};
- IntelliFactory=Global.IntelliFactory;
- Runtime=IntelliFactory&&IntelliFactory.Runtime;
+ Runtime=WebSharper&&WebSharper.Runtime;
  hljs=Global.hljs;
  console=Global.console;
  Date=Global.Date;
@@ -672,7 +681,7 @@
 }(self));
 
 
-if (typeof IntelliFactory !=='undefined') {
-  IntelliFactory.Runtime.ScriptBasePath = '/Content/';
-  IntelliFactory.Runtime.Start();
+if (typeof WebSharper !=='undefined') {
+  WebSharper.Runtime.ScriptBasePath = '/Content/';
+  WebSharper.Runtime.Start();
 }
