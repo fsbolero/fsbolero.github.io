@@ -458,7 +458,7 @@
  {
   function a(node,a$1,a$2,a$3)
   {
-   hljs.highlightBlock(node);
+   hljs.highlightElement(node);
   }
   self.document.querySelectorAll("code[class^=language-]").forEach(Runtime.CreateFuncWithArgs(function($1)
   {
