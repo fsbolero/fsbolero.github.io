@@ -338,7 +338,7 @@ This is useful for interacting with JavaScript libraries that insert themselves 
 <li>The element to bind must be inside a Component class.</li>
 <li>Create an <code>HtmlRef</code> as a field of this class.</li>
 <li>To bind it to an element, list it in the computation expression after attributes and before child nodes.</li>
-<li>To use it, use its <code>.Value</code> property.</li>
+<li>To use it, use its <code>.Value</code> property. It has type <code>ElementReference option</code>: its value is <code>Some</code> if the ref is bound in step 3, and <code>None</code> otherwise.</li>
 </ol>
 <p>For example, given this small JavaScript function that can focus a DOM element it receives as argument:</p>
 <pre><code class="language-javascript">const MyJsLib = {
@@ -364,7 +364,9 @@ This is useful for interacting with JavaScript libraries that insert themselves 
             }
             button {
                 on.task.click (fun _ -&gt;
-                    this.JSRuntime.InvokeVoidAsync(&quot;MyJsLib.focus&quot;, inputRef.Value).AsTask() // (4)
+                    match inputRef.Value with // (4)
+                    | Some ref -&gt; this.JSRuntime.InvokeVoidAsync(&quot;MyJsLib.focus&quot;, ref).AsTask()
+                    | None -&gt; Task.CompletedTask
                 )
 
                 &quot;Focus this input box&quot;
@@ -395,7 +397,10 @@ For example, given the following component:</p>
         div {
             comp&lt;MyComponent&gt; { myComponentRef }
             button {
-                on.click (fun _ -&gt; myComponentRef.Value.Refresh())
+                on.click (fun _ -&gt;
+                    match myComponentRef.Value with
+                    | Some myComponent -&gt; myComponent.Refresh()
+                    | None -&gt; ())
 
                 &quot;Refresh my component!&quot;
             }
