@@ -299,6 +299,28 @@ let hello model dispatch =
     &lt;input bind-onchange=&quot;${Name}&quot;&gt;
 &lt;/p&gt;
 </code></pre>
+<h3 id="element-reference-holes">Element reference holes</h3>
+<p>Holes defined as the value of a <code>ref</code> attribute define a reference to the HTML element.
+This is useful for referencing the element in JavaScript interop; see <a href="Blazor#html-element-references">the corresponding documentation</a>.</p>
+<pre><code class="language-html">&lt;button onclick=&quot;FocusBtn&quot;&gt;Focus the input box&lt;/button&gt;
+&lt;input ref=&quot;${InputRef}&quot; type=&quot;text&quot; /&gt;
+</code></pre>
+<pre><code class="language-fsharp">type HelloTemplate = Template&lt;&quot;hello.html&quot;&gt;
+
+type Hello() =
+    inherit Component()
+
+    let inputRef = HtmlRef()
+
+    override this.Render() =
+        HelloTemplate()
+            .InputRef(inputRef)
+            .FocusBtn(fun _ -&gt;
+                match inputRef.Value with
+                | Some inputRef -&gt; inputRef.FocusAsync() |&gt; ignore
+                | None -&gt; failwith &quot;Input is not bound&quot;)
+            .Elt()
+</code></pre>
 <h2 id="nested-templates">Nested templates</h2>
 <p>It is sometimes convenient to define a set of templates together in the same file. For example, a set of related widgets. Or the template for a list together with the template for an item in this list.</p>
 <p>This can be done using the <code>&lt;template&gt;</code> HTML tag. Such a template is identified by the <code>id</code> attribute on the tag, and its contents is the HTML contents of the <code>&lt;template&gt;</code> tag.</p>

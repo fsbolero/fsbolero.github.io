@@ -401,6 +401,46 @@ For example, given the following component:</p>
             }
         }
 </code></pre>
+<h2 id="css-isolation">CSS isolation</h2>
+<p>Blazor provides a mechanism called <a href="https://learn.microsoft.com/en-us/aspnet/core/blazor/components/css-isolation">CSS isolation</a> that ties a CSS style sheet with a given component type.</p>
+<h3 id="using-components-with-css-isolation">Using components with CSS isolation</h3>
+<p>To use the isolated styles from component libraries you reference, make sure that your HTML content includes a reference to <code>&quot;ASSEMBLYNAME.styles.css&quot;</code>, where <code>ASSEMBLYNAME</code> is the name of your project.</p>
+<p>This reference is automatically included in all variants of the <code>bolero-app</code> project templates.</p>
+<h3 id="adding-css-isolation-to-your-component">Adding CSS isolation to your component</h3>
+<p>Here are the steps to create an isolated style sheet for your own component:</p>
+<ol>
+<li><p>Create a file with extension <code>.bolero.css</code>. For example, <code>MyStyleSheet.bolero.css</code>:</p>
+<pre><code class="language-css">a.active {
+    background: lightblue;
+}
+</code></pre>
+</li>
+<li><p>Compile the project once. This will generate a source file containing a module <code>CssScopes</code>.</p>
+</li>
+<li><p>Add the generated scope to your component:</p>
+<pre><code class="language-css">type MyComponent() =
+    inherit Component()
+
+    override _.CssScope = CssScopes.MyStyleSheet
+
+    override _.Render() =
+        a {
+            attr.href &quot;https://fsbolero.io&quot;
+            attr.``class`` &quot;active&quot;
+            &quot;Go to Bolero!&quot;
+        }
+    ```
+
+</code></pre>
+</li>
+</ol>
+<p>And that's it, the link in <code>MyComponent</code> will appear with a light blue background!</p>
+<p>The property <code>CssScope</code> is available on all Bolero component base types, including <code>Component</code>, <code>ElmishComponent&lt;'model, 'msg&gt;</code> and <code>ProgramComponent&lt;'model, 'msg&gt;</code>.</p>
+<p>The name of the stylesheet in the module <code>CssScopes</code> is based on the file name; it can be customized in <code>Client.fsproj</code>:</p>
+<pre><code class="language-xml">&lt;ItemGroup&gt;
+  &lt;BoleroScopedCss Update=&quot;MyStylesheet.bolero.css&quot; ScopeName=&quot;MyScope&quot; /&gt;
+&lt;/ItemGroup&gt;
+</code></pre>
 </div></section>
         </div>
           <div class="column is-one-quarter-tablet is-one-fifth-desktop sidebar-column">
@@ -440,6 +480,8 @@ For example, given the following component:</p>
                         <a href="#javascript-interoperability">JavaScript interoperability</a>
                       </li><li>
                         <a href="#blazor-component-references">Blazor component references</a>
+                      </li><li>
+                        <a href="#css-isolation">CSS isolation</a>
                       </li></ul>
                   </li><li>
                     <a href="/docs/JSON">Dealing with JSON</a>
