@@ -189,13 +189,6 @@ let update message model =
 <pre><code class="language-fsharp">a { router.HRef Home; &quot;Go to Home&quot; }
 </code></pre>
 </li>
-<li><p>Both these methods take an optional <code>hash</code> parameter to add a hash component to the URL, in order to make the browser scroll to the element with the given id after displaying the corresponding page.</p>
-<pre><code class="language-fsharp">a {
-    router.HRef(Home, &quot;heading-1&quot;)
-    &quot;Go to Home and scroll to #heading-1&quot;
-}
-</code></pre>
-</li>
 </ul>
 <h3 id="format">Format</h3>
 <p><code>Router.infer</code> supports the following types:</p>
@@ -239,28 +232,7 @@ ListTagged(&quot;tarmil&quot;, [&quot;bolero&quot;; &quot;webassembly&quot;])
     | [&lt;EndPoint &quot;/user/{user}/comments&quot;&gt;]
       Comments of user: string
 </code></pre>
-<p>Query parameters can also be specified:</p>
-<pre><code class="language-fsharp">type Page =
-    | [&lt;EndPoint &quot;/article?id={articleId}&quot;&gt;]
-      BlogArticle of articleId: int
-</code></pre>
-<p>They can of course be mixed together with path parameters:</p>
-<pre><code class="language-fsharp">type Page =
-    | [&lt;EndPoint &quot;/list/{user}?page={pageNumber}&amp;count={pageSize}&quot;]
-      BlogList of user: string * pageNumber: int * pageSize: int
-</code></pre>
-<p>The syntax <code>?{param}</code> is short for <code>?param={param}</code>:</p>
-<pre><code class="language-fsharp">type Page =
-    | [&lt;EndPoint &quot;/list/{user}?{page}&amp;{count}&quot;]
-      BlogList of user: string * page: int * count: int
-</code></pre>
-<p>Query parameters can have type string, bool, integer or float. In these cases, they are mandatory. Alternatively, they can be option or voption of these types, making them optional.</p>
-<pre><code class="language-fsharp">type Page =
-    | [&lt;EndPoint &quot;/list/{user}?{page}&amp;{count}&quot;]
-      BlogList of user: string * page: int option * count: int option
-</code></pre>
-<p>Together, the path and query must contain a <code>{parameter}</code> for each of its case's values.
-Alternatively, the endpoint can consist of a single non-parameter path fragment; in this case, the values are appended in order as separate fragments.</p>
+<p>The path must contain a <code>{parameter}</code> for each of its case's values. Alternatively, the path can consist of a single non-parameter fragment; in this case, the values are appended in order as separate fragments.</p>
 <pre><code class="language-fsharp">type Page =
     | [&lt;EndPoint &quot;/list&quot;&gt;]                  // Equivalent to /list/{user}/{page}
       BlogList of user: string * page: int  // -&gt; /list/tarmil/1
