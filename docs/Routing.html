@@ -154,6 +154,12 @@ let update message model =
 </code></pre>
 </li>
 </ol>
+<p>You can specify the endpoint to show when the user visits a URL that can't be parsed with <code>Router.withNotFound</code>.
+Note that this endpoint is used when initially loading a page with an unrecognized URL; however it is not used when the user clicks a link in the Bolero page to an unrecognized URL, as that would prevent using external links.</p>
+<pre><code class="language-fsharp">let router =
+    Router.infer PageChanged (fun m -&gt; m.page)
+    |&gt; Router.withNotFound Home
+</code></pre>
 <blockquote>
 <p>Note: the message <code>PageChanged</code> is dispatched automatically when the URL has been modified (eg by clicking a link).
 It is not recommended to dispatch it directly yourself, as it will result in the same message being dispatched twice: first by you, and then by the router.</p>
@@ -187,6 +193,13 @@ let update message model =
 </li>
 <li><p><code>router.HRef</code> takes an endpoint and returns an <code>href</code> attribute pointing to the corresponding URL.</p>
 <pre><code class="language-fsharp">a { router.HRef Home; &quot;Go to Home&quot; }
+</code></pre>
+</li>
+<li><p>Both these methods take an optional <code>hash</code> parameter to add a hash component to the URL, in order to make the browser scroll to the element with the given id after displaying the corresponding page.</p>
+<pre><code class="language-fsharp">a {
+    router.HRef(Home, &quot;heading-1&quot;)
+    &quot;Go to Home and scroll to #heading-1&quot;
+}
 </code></pre>
 </li>
 </ul>
@@ -232,7 +245,28 @@ ListTagged(&quot;tarmil&quot;, [&quot;bolero&quot;; &quot;webassembly&quot;])
     | [&lt;EndPoint &quot;/user/{user}/comments&quot;&gt;]
       Comments of user: string
 </code></pre>
-<p>The path must contain a <code>{parameter}</code> for each of its case's values. Alternatively, the path can consist of a single non-parameter fragment; in this case, the values are appended in order as separate fragments.</p>
+<p>Query parameters can also be specified:</p>
+<pre><code class="language-fsharp">type Page =
+    | [&lt;EndPoint &quot;/article?id={articleId}&quot;&gt;]
+      BlogArticle of articleId: int
+</code></pre>
+<p>They can of course be mixed together with path parameters:</p>
+<pre><code class="language-fsharp">type Page =
+    | [&lt;EndPoint &quot;/list/{user}?page={pageNumber}&amp;count={pageSize}&quot;]
+      BlogList of user: string * pageNumber: int * pageSize: int
+</code></pre>
+<p>The syntax <code>?{param}</code> is short for <code>?param={param}</code>:</p>
+<pre><code class="language-fsharp">type Page =
+    | [&lt;EndPoint &quot;/list/{user}?{page}&amp;{count}&quot;]
+      BlogList of user: string * page: int * count: int
+</code></pre>
+<p>Query parameters can have type string, bool, integer or float. In these cases, they are mandatory. Alternatively, they can be option or voption of these types, making them optional.</p>
+<pre><code class="language-fsharp">type Page =
+    | [&lt;EndPoint &quot;/list/{user}?{page}&amp;{count}&quot;]
+      BlogList of user: string * page: int option * count: int option
+</code></pre>
+<p>Together, the path and query must contain a <code>{parameter}</code> for each of its case's values.
+Alternatively, the endpoint can consist of a single non-parameter path fragment; in this case, the values are appended in order as separate fragments.</p>
 <pre><code class="language-fsharp">type Page =
     | [&lt;EndPoint &quot;/list&quot;&gt;]                  // Equivalent to /list/{user}/{page}
       BlogList of user: string * page: int  // -&gt; /list/tarmil/1
@@ -313,6 +347,7 @@ and ArticleId =
             | BlogList(user, page) -&gt; sprintf &quot;/list/%s/%i&quot; user page
     }
 </code></pre>
+<p>To provide the default route for such a router that doesn't have an endpoint type, instead of <code>Router.withNotFound</code>, you can use <code>Router.withNotFoundMsg</code> and pass the Elmish message to send when the user visits an unrecognized URL.</p>
 <h2 id="page-models">Page Models</h2>
 <p>It is common to have a part of the application's model that is specific to a page. For example, a login page has the username and password that the user is typing. A &quot;list of items&quot; page has the items, which may have been downloaded from a <a href="Remoting">remote function</a>. And so on.</p>
 <p>Let's take for example an application like the following:</p>

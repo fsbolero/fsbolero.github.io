@@ -106,7 +106,26 @@ How to update a project for newer releases</p>
 
               </div>
             </section>
-          <section class="section"><div ws-preserve=""><h2 id="from-v0.21-to-v0.22">From v0.21 to v0.22</h2>
+          <section class="section"><div ws-preserve=""><h2 id="from-v0.22-to-v0.23">From v0.22 to v0.23</h2>
+<p><a href="https://fsbolero.io/blog/TODO-bolero-0-23-released">See the 0.23 announcement.</a></p>
+<ul>
+<li><p>The signatures of the following server-side methods and their various overloads have changed:</p>
+<ul>
+<li><code>IServiceCollection.AddBoleroHost</code></li>
+<li><code>IServiceCollection.AddBoleroRouting</code></li>
+<li><code>IEndpointRouteBuilder.MapFallbackToBolero</code></li>
+</ul>
+<p>The following changes are applied to them:</p>
+<ul>
+<li>Optional arguments are changed from F#-style to C#-style.</li>
+<li>Function arguments are changed from F#-style functions to C#-style <code>Func</code> or <code>Action</code>.</li>
+</ul>
+<p>These changes are source-compatible for most use cases.</p>
+</li>
+<li><p>Functions <code>on.stopPropagation</code> and <code>on.preventDefault</code> now take the event name without the <code>&quot;on&quot;</code> prefix.</p>
+</li>
+</ul>
+<h2 id="from-v0.21-to-v0.22">From v0.21 to v0.22</h2>
 <p><a href="https://fsbolero.io/blog/20230410-bolero-0-22-released">See the 0.22 announcement.</a></p>
 <ul>
 <li><p>Bolero v0.22 introduces endpoint routing for remote services.
@@ -574,6 +593,8 @@ If your code uses Blazor APIs directly, please check the Blazor <a href="https:/
                   </li><li>
                     <a class="is-active" href="/docs/Upgrade">Upgrade guide</a>
                     <ul><li>
+                        <a href="#from-v022-to-v023">From v0.22 to v0.23</a>
+                      </li><li>
                         <a href="#from-v021-to-v022">From v0.21 to v0.22</a>
                       </li><li>
                         <a href="#from-v018-to-v020">From v0.18 to v0.20</a>
