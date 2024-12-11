@@ -8,9 +8,9 @@
   <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
   <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[],"$DATA":{"$V":{}}}' />
 
-  <link rel="stylesheet" href="/css/all.css" />
   <link rel="stylesheet" href="/docs/content/fsdocs-default.css" />
   <link rel="stylesheet" href="/docs/content/fsdocs-custom.css" />
+  <link rel="stylesheet" href="/css/all.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js" type="text/javascript" charset="UTF-8"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/languages/fsharp.min.js" type="text/javascript" charset="UTF-8"></script><link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/vs.min.css"></link>
 
 </head>
@@ -146,7 +146,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '300', 300)" onmouseover="showTip(event, '300', 300)">
+              <code onmouseout="hideTip(event, '304', 304)" onmouseover="showTip(event, '304', 304)">
                 <p>
                   <a id="callback">
                     <a href="#callback">
@@ -155,7 +155,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="300">
+              <div class="fsdocs-tip" id="304">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>callback&#32;<span>name&#32;value</span></span></code>
@@ -178,7 +178,7 @@
                         value
                       </b>
                       :
-                      <code><span>'T&#32;->&#32;<a href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></span></code>
+                      <code><span>'T&#32;->&#32;<a href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></span></code>
                        - 
                       The function to use as callback.
                     </span>
@@ -200,64 +200,65 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Bolero.Html.attr.task.callback``1```')">
-                <img src="/docs/content/img/copy-md.png" class="normal"/>
-                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Html.attr.task.callback``1\'/>')">
-                <img src="/docs/content/img/copy-xml.png" class="normal"/>
-                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Html.fs#L942-942" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="/docs/content/img/github.png" class="normal"/>
-                <img src="/docs/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Bolero.Html.attr.task.callback``1```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Html.attr.task.callback``1\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Html.fs#L942-942" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Create an attribute whose value is an asynchronous callback.
- Use this function for Blazor component attributes of type <a href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.components.eventcallback-1">EventCallback</a>.
+ Use this function for Blazor component attributes of type <a href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.eventcallback-1">EventCallback</a>.
  
+                  </p>
+                </div>
+              </summary>
+              <p class="fsdocs-remarks">
+                For HTML event handlers, prefer functions from the module <a href="https://learn.microsoft.com/dotnet/api/on.task">task</a>.
               </p>
-            </div>
-            <p class="fsdocs-remarks">
-              For HTML event handlers, prefer functions from the module <a href="https://docs.microsoft.com/dotnet/api/on.task">task</a>.
-            </p>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  name
-                </span>
-                :
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The name of the attribute (including "on" prefix for HTML event handlers).
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  value
-                </span>
-                :
-                <code><span>'T&#32;->&#32;<a href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></span></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The function to use as callback.
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="/docs/reference/bolero-attr.html">Attr</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    name
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The name of the attribute (including "on" prefix for HTML event handlers).
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    value
+                  </span>
+                  :
+                  <code><span>'T&#32;->&#32;<a href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The function to use as callback.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><a href="/docs/reference/bolero-attr.html">Attr</a></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
       </tbody>

@@ -8,9 +8,9 @@
   <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
   <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[],"$DATA":{"$V":{}}}' />
 
-  <link rel="stylesheet" href="/css/all.css" />
   <link rel="stylesheet" href="/docs/content/fsdocs-default.css" />
   <link rel="stylesheet" href="/docs/content/fsdocs-custom.css" />
+  <link rel="stylesheet" href="/css/all.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js" type="text/javascript" charset="UTF-8"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/languages/fsharp.min.js" type="text/javascript" charset="UTF-8"></script><link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/vs.min.css"></link>
 
 </head>
@@ -175,7 +175,7 @@ let update message model =
 </code></pre>
 <p>Alternatively, to trigger a page change programmatically from the update function, simply return a model with the desired target page:</p>
 <pre><code class="language-fsharp">type Message =
-    | PageChnaged of Page
+    | PageChanged of Page
     | LoginSucceeded of UserData
 
 let update message model =
@@ -431,13 +431,13 @@ let router = Router.inferWithModel PageChanged (fun m -&gt; m.page) defaultModel
                   </li><li>
                     <a class="is-active" href="/docs/Routing">Routing</a>
                     <ul><li>
-                        <a href="#prerequisites">Prerequisites</a>
+                        <a href="#prerequisites">Prerequisites</a>
                       </li><li>
-                        <a href="#inferred-router">Inferred router</a>
+                        <a href="#inferred-router">Inferred router</a>
                       </li><li>
-                        <a href="#custom-router">Custom router</a>
+                        <a href="#custom-router">Custom router</a>
                       </li><li>
-                        <a href="#page-models">Page Models</a>
+                        <a href="#page-models">Page Models</a>
                       </li></ul>
                   </li><li>
                     <a href="/docs/Remoting">Remoting</a>

@@ -8,9 +8,9 @@
   <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
   <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[],"$DATA":{"$V":{}}}' />
 
-  <link rel="stylesheet" href="/css/all.css" />
   <link rel="stylesheet" href="/docs/content/fsdocs-default.css" />
   <link rel="stylesheet" href="/docs/content/fsdocs-custom.css" />
+  <link rel="stylesheet" href="/css/all.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js" type="text/javascript" charset="UTF-8"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/languages/fsharp.min.js" type="text/javascript" charset="UTF-8"></script><link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/vs.min.css"></link>
 
 </head>
@@ -148,7 +148,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '326', 326)" onmouseover="showTip(event, '326', 326)">
+              <code onmouseout="hideTip(event, '330', 330)" onmouseover="showTip(event, '330', 330)">
                 <p>
                   <a id="dateTime">
                     <a href="#dateTime">
@@ -157,7 +157,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="326">
+              <div class="fsdocs-tip" id="330">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>dateTime&#32;<span>culture&#32;value&#32;callback</span></span></code>
@@ -170,7 +170,7 @@
                         culture
                       </b>
                       :
-                      <code><a href="https://docs.microsoft.com/dotnet/api/system.globalization.cultureinfo">CultureInfo</a></code>
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.globalization.cultureinfo">CultureInfo</a></code>
                        - 
                       The culture to use to parse the value.
                     </span>
@@ -180,7 +180,7 @@
                         value
                       </b>
                       :
-                      <code><a href="https://docs.microsoft.com/dotnet/api/system.datetime">DateTime</a></code>
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></code>
                        - 
                       The current input state.
                     </span>
@@ -190,7 +190,7 @@
                         callback
                       </b>
                       :
-                      <code><span><a href="https://docs.microsoft.com/dotnet/api/system.datetime">DateTime</a>&#32;->&#32;unit</span></code>
+                      <code><span><a href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a>&#32;->&#32;unit</span></code>
                        - 
                       The function called when the input state changes.
                     </span>
@@ -210,78 +210,79 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Bolero.Html.bind.withCulture.input.dateTime`')">
-                <img src="/docs/content/img/copy-md.png" class="normal"/>
-                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Html.bind.withCulture.input.dateTime\'/>')">
-                <img src="/docs/content/img/copy-xml.png" class="normal"/>
-                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Html.fs#L2899-2899" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="/docs/content/img/github.png" class="normal"/>
-                <img src="/docs/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Bolero.Html.bind.withCulture.input.dateTime`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Html.bind.withCulture.input.dateTime\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Html.fs#L2899-2899" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Bind a DateTime to the value of an input. The value is updated on the <code>oninput</code> event.
  
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  culture
-                </span>
-                :
-                <code><a href="https://docs.microsoft.com/dotnet/api/system.globalization.cultureinfo">CultureInfo</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The culture to use to parse the value.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  value
-                </span>
-                :
-                <code><a href="https://docs.microsoft.com/dotnet/api/system.datetime">DateTime</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The current input state.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  callback
-                </span>
-                :
-                <code><span><a href="https://docs.microsoft.com/dotnet/api/system.datetime">DateTime</a>&#32;->&#32;unit</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The function called when the input state changes.
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="/docs/reference/bolero-attr.html">Attr</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    culture
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.globalization.cultureinfo">CultureInfo</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The culture to use to parse the value.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    value
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The current input state.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    callback
+                  </span>
+                  :
+                  <code><span><a href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a>&#32;->&#32;unit</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The function called when the input state changes.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><a href="/docs/reference/bolero-attr.html">Attr</a></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '327', 327)" onmouseover="showTip(event, '327', 327)">
+              <code onmouseout="hideTip(event, '331', 331)" onmouseover="showTip(event, '331', 331)">
                 <p>
                   <a id="dateTimeOffset">
                     <a href="#dateTimeOffset">
@@ -290,7 +291,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="327">
+              <div class="fsdocs-tip" id="331">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>dateTimeOffset&#32;<span>culture&#32;value&#32;callback</span></span></code>
@@ -303,7 +304,7 @@
                         culture
                       </b>
                       :
-                      <code><a href="https://docs.microsoft.com/dotnet/api/system.globalization.cultureinfo">CultureInfo</a></code>
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.globalization.cultureinfo">CultureInfo</a></code>
                        - 
                       The culture to use to parse the value.
                     </span>
@@ -313,7 +314,7 @@
                         value
                       </b>
                       :
-                      <code><a href="https://docs.microsoft.com/dotnet/api/system.datetimeoffset">DateTimeOffset</a></code>
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.datetimeoffset">DateTimeOffset</a></code>
                        - 
                       The current input state.
                     </span>
@@ -323,7 +324,7 @@
                         callback
                       </b>
                       :
-                      <code><span><a href="https://docs.microsoft.com/dotnet/api/system.datetimeoffset">DateTimeOffset</a>&#32;->&#32;unit</span></code>
+                      <code><span><a href="https://learn.microsoft.com/dotnet/api/system.datetimeoffset">DateTimeOffset</a>&#32;->&#32;unit</span></code>
                        - 
                       The function called when the input state changes.
                     </span>
@@ -343,78 +344,79 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Bolero.Html.bind.withCulture.input.dateTimeOffset`')">
-                <img src="/docs/content/img/copy-md.png" class="normal"/>
-                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Html.bind.withCulture.input.dateTimeOffset\'/>')">
-                <img src="/docs/content/img/copy-xml.png" class="normal"/>
-                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Html.fs#L2907-2907" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="/docs/content/img/github.png" class="normal"/>
-                <img src="/docs/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Bolero.Html.bind.withCulture.input.dateTimeOffset`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Html.bind.withCulture.input.dateTimeOffset\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Html.fs#L2907-2907" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Bind a DateTimeOffset to the value of an input. The value is updated on the <code>oninput</code> event.
  
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  culture
-                </span>
-                :
-                <code><a href="https://docs.microsoft.com/dotnet/api/system.globalization.cultureinfo">CultureInfo</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The culture to use to parse the value.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  value
-                </span>
-                :
-                <code><a href="https://docs.microsoft.com/dotnet/api/system.datetimeoffset">DateTimeOffset</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The current input state.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  callback
-                </span>
-                :
-                <code><span><a href="https://docs.microsoft.com/dotnet/api/system.datetimeoffset">DateTimeOffset</a>&#32;->&#32;unit</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The function called when the input state changes.
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="/docs/reference/bolero-attr.html">Attr</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    culture
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.globalization.cultureinfo">CultureInfo</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The culture to use to parse the value.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    value
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.datetimeoffset">DateTimeOffset</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The current input state.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    callback
+                  </span>
+                  :
+                  <code><span><a href="https://learn.microsoft.com/dotnet/api/system.datetimeoffset">DateTimeOffset</a>&#32;->&#32;unit</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The function called when the input state changes.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><a href="/docs/reference/bolero-attr.html">Attr</a></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '328', 328)" onmouseover="showTip(event, '328', 328)">
+              <code onmouseout="hideTip(event, '332', 332)" onmouseover="showTip(event, '332', 332)">
                 <p>
                   <a id="decimal">
                     <a href="#decimal">
@@ -423,7 +425,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="328">
+              <div class="fsdocs-tip" id="332">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>decimal&#32;<span>culture&#32;value&#32;callback</span></span></code>
@@ -436,7 +438,7 @@
                         culture
                       </b>
                       :
-                      <code><a href="https://docs.microsoft.com/dotnet/api/system.globalization.cultureinfo">CultureInfo</a></code>
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.globalization.cultureinfo">CultureInfo</a></code>
                        - 
                       The culture to use to parse the value.
                     </span>
@@ -476,78 +478,79 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Bolero.Html.bind.withCulture.input.decimal`')">
-                <img src="/docs/content/img/copy-md.png" class="normal"/>
-                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Html.bind.withCulture.input.decimal\'/>')">
-                <img src="/docs/content/img/copy-xml.png" class="normal"/>
-                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Html.fs#L2891-2891" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="/docs/content/img/github.png" class="normal"/>
-                <img src="/docs/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Bolero.Html.bind.withCulture.input.decimal`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Html.bind.withCulture.input.decimal\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Html.fs#L2891-2891" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Bind a decimal to the value of an input. The value is updated on the <code>oninput</code> event.
  
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  culture
-                </span>
-                :
-                <code><a href="https://docs.microsoft.com/dotnet/api/system.globalization.cultureinfo">CultureInfo</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The culture to use to parse the value.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  value
-                </span>
-                :
-                <code>decimal</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The current input state.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  callback
-                </span>
-                :
-                <code><span>decimal&#32;->&#32;unit</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The function called when the input state changes.
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="/docs/reference/bolero-attr.html">Attr</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    culture
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.globalization.cultureinfo">CultureInfo</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The culture to use to parse the value.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    value
+                  </span>
+                  :
+                  <code>decimal</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The current input state.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    callback
+                  </span>
+                  :
+                  <code><span>decimal&#32;->&#32;unit</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The function called when the input state changes.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><a href="/docs/reference/bolero-attr.html">Attr</a></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '329', 329)" onmouseover="showTip(event, '329', 329)">
+              <code onmouseout="hideTip(event, '333', 333)" onmouseover="showTip(event, '333', 333)">
                 <p>
                   <a id="float">
                     <a href="#float">
@@ -556,7 +559,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="329">
+              <div class="fsdocs-tip" id="333">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>float&#32;<span>culture&#32;value&#32;callback</span></span></code>
@@ -569,7 +572,7 @@
                         culture
                       </b>
                       :
-                      <code><a href="https://docs.microsoft.com/dotnet/api/system.globalization.cultureinfo">CultureInfo</a></code>
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.globalization.cultureinfo">CultureInfo</a></code>
                        - 
                       The culture to use to parse the value.
                     </span>
@@ -609,78 +612,79 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Bolero.Html.bind.withCulture.input.float`')">
-                <img src="/docs/content/img/copy-md.png" class="normal"/>
-                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Html.bind.withCulture.input.float\'/>')">
-                <img src="/docs/content/img/copy-xml.png" class="normal"/>
-                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Html.fs#L2875-2875" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="/docs/content/img/github.png" class="normal"/>
-                <img src="/docs/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Bolero.Html.bind.withCulture.input.float`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Html.bind.withCulture.input.float\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Html.fs#L2875-2875" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Bind a float to the value of an input. The value is updated on the <code>oninput</code> event.
  
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  culture
-                </span>
-                :
-                <code><a href="https://docs.microsoft.com/dotnet/api/system.globalization.cultureinfo">CultureInfo</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The culture to use to parse the value.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  value
-                </span>
-                :
-                <code>float</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The current input state.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  callback
-                </span>
-                :
-                <code><span>float&#32;->&#32;unit</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The function called when the input state changes.
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="/docs/reference/bolero-attr.html">Attr</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    culture
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.globalization.cultureinfo">CultureInfo</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The culture to use to parse the value.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    value
+                  </span>
+                  :
+                  <code>float</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The current input state.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    callback
+                  </span>
+                  :
+                  <code><span>float&#32;->&#32;unit</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The function called when the input state changes.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><a href="/docs/reference/bolero-attr.html">Attr</a></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '330', 330)" onmouseover="showTip(event, '330', 330)">
+              <code onmouseout="hideTip(event, '334', 334)" onmouseover="showTip(event, '334', 334)">
                 <p>
                   <a id="float32">
                     <a href="#float32">
@@ -689,7 +693,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="330">
+              <div class="fsdocs-tip" id="334">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>float32&#32;<span>culture&#32;value&#32;callback</span></span></code>
@@ -702,7 +706,7 @@
                         culture
                       </b>
                       :
-                      <code><a href="https://docs.microsoft.com/dotnet/api/system.globalization.cultureinfo">CultureInfo</a></code>
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.globalization.cultureinfo">CultureInfo</a></code>
                        - 
                       The culture to use to parse the value.
                     </span>
@@ -742,78 +746,79 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Bolero.Html.bind.withCulture.input.float32`')">
-                <img src="/docs/content/img/copy-md.png" class="normal"/>
-                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Html.bind.withCulture.input.float32\'/>')">
-                <img src="/docs/content/img/copy-xml.png" class="normal"/>
-                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Html.fs#L2883-2883" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="/docs/content/img/github.png" class="normal"/>
-                <img src="/docs/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Bolero.Html.bind.withCulture.input.float32`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Html.bind.withCulture.input.float32\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Html.fs#L2883-2883" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Bind a float32 to the value of an input. The value is updated on the <code>oninput</code> event.
  
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  culture
-                </span>
-                :
-                <code><a href="https://docs.microsoft.com/dotnet/api/system.globalization.cultureinfo">CultureInfo</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The culture to use to parse the value.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  value
-                </span>
-                :
-                <code>float32</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The current input state.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  callback
-                </span>
-                :
-                <code><span>float32&#32;->&#32;unit</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The function called when the input state changes.
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="/docs/reference/bolero-attr.html">Attr</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    culture
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.globalization.cultureinfo">CultureInfo</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The culture to use to parse the value.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    value
+                  </span>
+                  :
+                  <code>float32</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The current input state.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    callback
+                  </span>
+                  :
+                  <code><span>float32&#32;->&#32;unit</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The function called when the input state changes.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><a href="/docs/reference/bolero-attr.html">Attr</a></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '331', 331)" onmouseover="showTip(event, '331', 331)">
+              <code onmouseout="hideTip(event, '335', 335)" onmouseover="showTip(event, '335', 335)">
                 <p>
                   <a id="int">
                     <a href="#int">
@@ -822,7 +827,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="331">
+              <div class="fsdocs-tip" id="335">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>int&#32;<span>culture&#32;value&#32;callback</span></span></code>
@@ -835,7 +840,7 @@
                         culture
                       </b>
                       :
-                      <code><a href="https://docs.microsoft.com/dotnet/api/system.globalization.cultureinfo">CultureInfo</a></code>
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.globalization.cultureinfo">CultureInfo</a></code>
                        - 
                       The culture to use to parse the value.
                     </span>
@@ -875,78 +880,79 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Bolero.Html.bind.withCulture.input.int`')">
-                <img src="/docs/content/img/copy-md.png" class="normal"/>
-                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Html.bind.withCulture.input.int\'/>')">
-                <img src="/docs/content/img/copy-xml.png" class="normal"/>
-                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Html.fs#L2859-2859" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="/docs/content/img/github.png" class="normal"/>
-                <img src="/docs/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Bolero.Html.bind.withCulture.input.int`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Html.bind.withCulture.input.int\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Html.fs#L2859-2859" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Bind an integer to the value of an input. The value is updated on the <code>oninput</code> event.
  
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  culture
-                </span>
-                :
-                <code><a href="https://docs.microsoft.com/dotnet/api/system.globalization.cultureinfo">CultureInfo</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The culture to use to parse the value.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  value
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The current input state.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  callback
-                </span>
-                :
-                <code><span>int&#32;->&#32;unit</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The function called when the input state changes.
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="/docs/reference/bolero-attr.html">Attr</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    culture
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.globalization.cultureinfo">CultureInfo</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The culture to use to parse the value.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    value
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The current input state.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    callback
+                  </span>
+                  :
+                  <code><span>int&#32;->&#32;unit</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The function called when the input state changes.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><a href="/docs/reference/bolero-attr.html">Attr</a></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '332', 332)" onmouseover="showTip(event, '332', 332)">
+              <code onmouseout="hideTip(event, '336', 336)" onmouseover="showTip(event, '336', 336)">
                 <p>
                   <a id="int64">
                     <a href="#int64">
@@ -955,7 +961,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="332">
+              <div class="fsdocs-tip" id="336">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>int64&#32;<span>culture&#32;value&#32;callback</span></span></code>
@@ -968,7 +974,7 @@
                         culture
                       </b>
                       :
-                      <code><a href="https://docs.microsoft.com/dotnet/api/system.globalization.cultureinfo">CultureInfo</a></code>
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.globalization.cultureinfo">CultureInfo</a></code>
                        - 
                       The culture to use to parse the value.
                     </span>
@@ -1008,78 +1014,79 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Bolero.Html.bind.withCulture.input.int64`')">
-                <img src="/docs/content/img/copy-md.png" class="normal"/>
-                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Html.bind.withCulture.input.int64\'/>')">
-                <img src="/docs/content/img/copy-xml.png" class="normal"/>
-                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Html.fs#L2867-2867" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="/docs/content/img/github.png" class="normal"/>
-                <img src="/docs/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Bolero.Html.bind.withCulture.input.int64`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Html.bind.withCulture.input.int64\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Html.fs#L2867-2867" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Bind an int64 to the value of an input. The value is updated on the <code>oninput</code> event.
  
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  culture
-                </span>
-                :
-                <code><a href="https://docs.microsoft.com/dotnet/api/system.globalization.cultureinfo">CultureInfo</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The culture to use to parse the value.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  value
-                </span>
-                :
-                <code>int64</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The current input state.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  callback
-                </span>
-                :
-                <code><span>int64&#32;->&#32;unit</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The function called when the input state changes.
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="/docs/reference/bolero-attr.html">Attr</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    culture
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.globalization.cultureinfo">CultureInfo</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The culture to use to parse the value.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    value
+                  </span>
+                  :
+                  <code>int64</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The current input state.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    callback
+                  </span>
+                  :
+                  <code><span>int64&#32;->&#32;unit</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The function called when the input state changes.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><a href="/docs/reference/bolero-attr.html">Attr</a></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '333', 333)" onmouseover="showTip(event, '333', 333)">
+              <code onmouseout="hideTip(event, '337', 337)" onmouseover="showTip(event, '337', 337)">
                 <p>
                   <a id="string">
                     <a href="#string">
@@ -1088,7 +1095,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="333">
+              <div class="fsdocs-tip" id="337">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>string&#32;<span>culture&#32;value&#32;callback</span></span></code>
@@ -1101,7 +1108,7 @@
                         culture
                       </b>
                       :
-                      <code><a href="https://docs.microsoft.com/dotnet/api/system.globalization.cultureinfo">CultureInfo</a></code>
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.globalization.cultureinfo">CultureInfo</a></code>
                        - 
                       The culture to use to parse the value.
                     </span>
@@ -1141,72 +1148,73 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Bolero.Html.bind.withCulture.input.string`')">
-                <img src="/docs/content/img/copy-md.png" class="normal"/>
-                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Html.bind.withCulture.input.string\'/>')">
-                <img src="/docs/content/img/copy-xml.png" class="normal"/>
-                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Html.fs#L2851-2851" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="/docs/content/img/github.png" class="normal"/>
-                <img src="/docs/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Bolero.Html.bind.withCulture.input.string`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Html.bind.withCulture.input.string\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Html.fs#L2851-2851" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Bind a string to the value of an input. The value is updated on the <code>oninput</code> event.
  
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  culture
-                </span>
-                :
-                <code><a href="https://docs.microsoft.com/dotnet/api/system.globalization.cultureinfo">CultureInfo</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The culture to use to parse the value.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  value
-                </span>
-                :
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The current input state.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  callback
-                </span>
-                :
-                <code><span>string&#32;->&#32;unit</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The function called when the input state changes.
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="/docs/reference/bolero-attr.html">Attr</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    culture
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.globalization.cultureinfo">CultureInfo</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The culture to use to parse the value.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    value
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The current input state.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    callback
+                  </span>
+                  :
+                  <code><span>string&#32;->&#32;unit</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The function called when the input state changes.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><a href="/docs/reference/bolero-attr.html">Attr</a></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
       </tbody>

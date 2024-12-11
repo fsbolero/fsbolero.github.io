@@ -8,9 +8,9 @@
   <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
   <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[],"$DATA":{"$V":{}}}' />
 
-  <link rel="stylesheet" href="/css/all.css" />
   <link rel="stylesheet" href="/docs/content/fsdocs-default.css" />
   <link rel="stylesheet" href="/docs/content/fsdocs-custom.css" />
+  <link rel="stylesheet" href="/css/all.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js" type="text/javascript" charset="UTF-8"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/languages/fsharp.min.js" type="text/javascript" charset="UTF-8"></script><link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/vs.min.css"></link>
 
 </head>
@@ -146,7 +146,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '618', 618)" onmouseover="showTip(event, '618', 618)">
+              <code onmouseout="hideTip(event, '622', 622)" onmouseover="showTip(event, '622', 622)">
                 <p>
                   <a id="attempt">
                     <a href="#attempt">
@@ -155,7 +155,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="618">
+              <div class="fsdocs-tip" id="622">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>attempt&#32;<span>f&#32;arg&#32;ofError</span></span></code>
@@ -206,82 +206,83 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Bolero.Remoting.Client.Cmd.OfAuthorized.attempt``3```')">
-                <img src="/docs/content/img/copy-md.png" class="normal"/>
-                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Remoting.Client.Cmd.OfAuthorized.attempt``3\'/>')">
-                <img src="/docs/content/img/copy-xml.png" class="normal"/>
-                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Cmd.fs#L84-84" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="/docs/content/img/github.png" class="normal"/>
-                <img src="/docs/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Bolero.Remoting.Client.Cmd.OfAuthorized.attempt``3```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Remoting.Client.Cmd.OfAuthorized.attempt``3\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Cmd.fs#L84-84" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Command that will call a remote Bolero function with authorization and map the error (of exception).
  
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  f
-                </span>
-                :
-                <code><span>'req&#32;->&#32;<span><a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-control-fsharpasync-1">Async</a>&lt;'resp&gt;</span></span></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The remote function.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  arg
-                </span>
-                :
-                <code>'req</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The argument to the remote function.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ofError
-                </span>
-                :
-                <code><span>exn&#32;->&#32;'msg</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Construct a message from an error response.
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span>Cmd&lt;'msg&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs">
-                <p>
-                  An Elmish command that will call the remote function and dispatch messages based on the result.
-                </p>
-              </dd>
-            </dl>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    f
+                  </span>
+                  :
+                  <code><span>'req&#32;->&#32;<span><a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-control-fsharpasync-1">Async</a>&lt;'resp&gt;</span></span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The remote function.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    arg
+                  </span>
+                  :
+                  <code>'req</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The argument to the remote function.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ofError
+                  </span>
+                  :
+                  <code><span>exn&#32;->&#32;'msg</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Construct a message from an error response.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>Cmd&lt;'msg&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    An Elmish command that will call the remote function and dispatch messages based on the result.
+                  </p>
+                </dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '619', 619)" onmouseover="showTip(event, '619', 619)">
+              <code onmouseout="hideTip(event, '623', 623)" onmouseover="showTip(event, '623', 623)">
                 <p>
                   <a id="either">
                     <a href="#either">
@@ -290,7 +291,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="619">
+              <div class="fsdocs-tip" id="623">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>either&#32;<span>f&#32;arg&#32;ofSuccess&#32;ofError</span></span></code>
@@ -351,95 +352,96 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Bolero.Remoting.Client.Cmd.OfAuthorized.either``3```')">
-                <img src="/docs/content/img/copy-md.png" class="normal"/>
-                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Remoting.Client.Cmd.OfAuthorized.either``3\'/>')">
-                <img src="/docs/content/img/copy-xml.png" class="normal"/>
-                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Cmd.fs#L63-63" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="/docs/content/img/github.png" class="normal"/>
-                <img src="/docs/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Bolero.Remoting.Client.Cmd.OfAuthorized.either``3```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Remoting.Client.Cmd.OfAuthorized.either``3\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Cmd.fs#L63-63" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Command that will call a remote Bolero function with authorization and map the result
  into successful Some if authorized, successful None if not, or error (of exception).
  
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  f
-                </span>
-                :
-                <code><span>'req&#32;->&#32;<span><a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-control-fsharpasync-1">Async</a>&lt;'resp&gt;</span></span></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The remote function.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  arg
-                </span>
-                :
-                <code>'req</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The argument to the remote function.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ofSuccess
-                </span>
-                :
-                <code><span><span>'resp&#32;option</span>&#32;->&#32;'msg</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Construct a message from a successful response.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ofError
-                </span>
-                :
-                <code><span>exn&#32;->&#32;'msg</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Construct a message from an error response.
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span>Cmd&lt;'msg&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs">
-                <p>
-                  An Elmish command that will call the remote function and dispatch messages based on the result.
-                </p>
-              </dd>
-            </dl>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    f
+                  </span>
+                  :
+                  <code><span>'req&#32;->&#32;<span><a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-control-fsharpasync-1">Async</a>&lt;'resp&gt;</span></span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The remote function.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    arg
+                  </span>
+                  :
+                  <code>'req</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The argument to the remote function.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ofSuccess
+                  </span>
+                  :
+                  <code><span><span>'resp&#32;option</span>&#32;->&#32;'msg</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Construct a message from a successful response.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ofError
+                  </span>
+                  :
+                  <code><span>exn&#32;->&#32;'msg</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Construct a message from an error response.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>Cmd&lt;'msg&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    An Elmish command that will call the remote function and dispatch messages based on the result.
+                  </p>
+                </dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '620', 620)" onmouseover="showTip(event, '620', 620)">
+              <code onmouseout="hideTip(event, '624', 624)" onmouseover="showTip(event, '624', 624)">
                 <p>
                   <a id="perform">
                     <a href="#perform">
@@ -448,7 +450,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="620">
+              <div class="fsdocs-tip" id="624">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>perform&#32;<span>f&#32;arg&#32;ofSuccess</span></span></code>
@@ -499,77 +501,78 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Bolero.Remoting.Client.Cmd.OfAuthorized.perform``3```')">
-                <img src="/docs/content/img/copy-md.png" class="normal"/>
-                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Remoting.Client.Cmd.OfAuthorized.perform``3\'/>')">
-                <img src="/docs/content/img/copy-xml.png" class="normal"/>
-                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Cmd.fs#L74-74" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="/docs/content/img/github.png" class="normal"/>
-                <img src="/docs/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Bolero.Remoting.Client.Cmd.OfAuthorized.perform``3```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Remoting.Client.Cmd.OfAuthorized.perform``3\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Cmd.fs#L74-74" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Command that will call a remote Bolero function with authorization and map the result
  into Some if authorized, None if not, discarding any possible error.
  
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  f
-                </span>
-                :
-                <code><span>'req&#32;->&#32;<span><a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-control-fsharpasync-1">Async</a>&lt;'resp&gt;</span></span></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The remote function.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  arg
-                </span>
-                :
-                <code>'req</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The argument to the remote function.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ofSuccess
-                </span>
-                :
-                <code><span><span>'resp&#32;option</span>&#32;->&#32;'msg</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Construct a message from a successful response.
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span>Cmd&lt;'msg&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs">
-                <p>
-                  An Elmish command that will call the remote function and dispatch messages based on the result.
-                </p>
-              </dd>
-            </dl>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    f
+                  </span>
+                  :
+                  <code><span>'req&#32;->&#32;<span><a href="https://fsharp.github.io/fsharp-core-docs/reference/fsharp-control-fsharpasync-1">Async</a>&lt;'resp&gt;</span></span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The remote function.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    arg
+                  </span>
+                  :
+                  <code>'req</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The argument to the remote function.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ofSuccess
+                  </span>
+                  :
+                  <code><span><span>'resp&#32;option</span>&#32;->&#32;'msg</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Construct a message from a successful response.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>Cmd&lt;'msg&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    An Elmish command that will call the remote function and dispatch messages based on the result.
+                  </p>
+                </dd>
+              </dl>
+            </details>
           </td>
         </tr>
       </tbody>

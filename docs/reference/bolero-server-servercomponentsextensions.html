@@ -8,9 +8,9 @@
   <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
   <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[],"$DATA":{"$V":{}}}' />
 
-  <link rel="stylesheet" href="/css/all.css" />
   <link rel="stylesheet" href="/docs/content/fsdocs-default.css" />
   <link rel="stylesheet" href="/docs/content/fsdocs-custom.css" />
+  <link rel="stylesheet" href="/css/all.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js" type="text/javascript" charset="UTF-8"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/languages/fsharp.min.js" type="text/javascript" charset="UTF-8"></script><link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/vs.min.css"></link>
 
 </head>
@@ -121,9 +121,7 @@
   <div class="fsdocs-xmldoc">
     <div>
       <p class="fsdocs-summary">
-        
- Extension methods to enable support for hosting server-side and WebAssembly Bolero components in ASP.NET Core.
-
+         Extension methods to enable support for hosting server-side and WebAssembly Bolero components in ASP.NET Core.
       </p>
     </div>
   </div>
@@ -154,7 +152,86 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '931', 931)" onmouseover="showTip(event, '931', 931)">
+              <code onmouseout="hideTip(event, '940', 940)" onmouseover="showTip(event, '940', 940)">
+                <p>
+                  <a id="AddBoleroComponents">
+                    <a href="#AddBoleroComponents">
+                      <code><span>ServerComponentsExtensions.AddBoleroComponents<span><span>(<span>this</span>)</span></span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="940">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>ServerComponentsExtensions.AddBoleroComponents<span><span>(<span>this</span>)</span></span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        this
+                      </b>
+                      :
+                      <code><a href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Bolero.Server.ServerComponentsExtensions.AddBoleroComponents`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Server.ServerComponentsExtensions.AddBoleroComponents\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Server/Extensions.fs#L124-124" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Configure the hosting of Bolero components using interactive render modes.
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    this
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><a href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '941', 941)" onmouseover="showTip(event, '941', 941)">
                 <p>
                   <a id="AddBoleroHost">
                     <a href="#AddBoleroHost">
@@ -163,7 +240,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="931">
+              <div class="fsdocs-tip" id="941">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>ServerComponentsExtensions.AddBoleroHost<span><span>(<span>this,&#32;?server,&#32;?prerendered,&#32;?devToggle</span>)</span></span></span></code>
@@ -176,7 +253,7 @@
                         this
                       </b>
                       :
-                      <code><a href="https://docs.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></code>
+                      <code><a href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></code>
                     </span>
                     <br/>
                     <span>
@@ -216,7 +293,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><a href="https://docs.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></code>
+                    <code><a href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></code>
                   </span>
                   <br/>
                 </div>
@@ -224,87 +301,90 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Bolero.Server.ServerComponentsExtensions.AddBoleroHost`')">
-                <img src="/docs/content/img/copy-md.png" class="normal"/>
-                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Server.ServerComponentsExtensions.AddBoleroHost\'/>')">
-                <img src="/docs/content/img/copy-xml.png" class="normal"/>
-                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Server/Extensions.fs#L90-90" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="/docs/content/img/github.png" class="normal"/>
-                <img src="/docs/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                Configure the hosting of server-side and WebAssembly Bolero components.
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  this
-                </span>
-                :
-                <code><a href="https://docs.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?server
-                </span>
-                :
-                <code>bool</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  If true, use server-side Bolero; if false, use WebAssembly. Default is false.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?prerendered
-                </span>
-                :
-                <code>bool</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  If true, prerender the initial view in the served HTML. Default is true.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?devToggle
-                </span>
-                :
-                <code>bool</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Bolero.Server.ServerComponentsExtensions.AddBoleroHost`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Server.ServerComponentsExtensions.AddBoleroHost\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Server/Extensions.fs#L101-101" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Configure the hosting of server-side and WebAssembly Bolero components using Bolero's legacy render mode handling.
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    this
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?server
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    If true, use server-side Bolero; if false, use WebAssembly. Default is false.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?prerendered
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    If true, prerender the initial view in the served HTML. Default is true.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?devToggle
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    
  If true and ASP.NET Core is running in development environment, query parameter <code>?server=bool</code>
  can be passed to use the given mode.
  
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="https://docs.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><a href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '932', 932)" onmouseover="showTip(event, '932', 932)">
+              <code onmouseout="hideTip(event, '942', 942)" onmouseover="showTip(event, '942', 942)">
                 <p>
                   <a id="BoleroPage">
                     <a href="#BoleroPage">
@@ -313,7 +393,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="932">
+              <div class="fsdocs-tip" id="942">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>ServerComponentsExtensions.BoleroPage<span><span>(<span>_this,&#32;page</span>)</span></span></span></code>
@@ -326,7 +406,7 @@
                         _this
                       </b>
                       :
-                      <code><a href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.controller">Controller</a></code>
+                      <code><a href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.controller">Controller</a></code>
                     </span>
                     <br/>
                     <span>
@@ -351,60 +431,61 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Bolero.Server.ServerComponentsExtensions.BoleroPage`')">
-                <img src="/docs/content/img/copy-md.png" class="normal"/>
-                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Server.ServerComponentsExtensions.BoleroPage\'/>')">
-                <img src="/docs/content/img/copy-xml.png" class="normal"/>
-                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Server/Extensions.fs#L73-73" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="/docs/content/img/github.png" class="normal"/>
-                <img src="/docs/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                Create a HTML page from the given Bolero element as MVC content.
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  _this
-                </span>
-                :
-                <code><a href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.controller">Controller</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  page
-                </span>
-                :
-                <code><a href="/docs/reference/bolero-node.html">Node</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The page to return.
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="/docs/reference/bolero-server-boleropageresult.html">BoleroPageResult</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Bolero.Server.ServerComponentsExtensions.BoleroPage`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Server.ServerComponentsExtensions.BoleroPage\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Server/Extensions.fs#L82-82" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    Create a HTML page from the given Bolero element as MVC content.
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    _this
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.controller">Controller</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    page
+                  </span>
+                  :
+                  <code><a href="/docs/reference/bolero-node.html">Node</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The page to return.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><a href="/docs/reference/bolero-server-boleropageresult.html">BoleroPageResult</a></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '933', 933)" onmouseover="showTip(event, '933', 933)">
+              <code onmouseout="hideTip(event, '943', 943)" onmouseover="showTip(event, '943', 943)">
                 <p>
                   <a id="MapFallbackToBolero">
                     <a href="#MapFallbackToBolero">
@@ -413,7 +494,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="933">
+              <div class="fsdocs-tip" id="943">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>ServerComponentsExtensions.MapFallbackToBolero<span><span>(<span>this,&#32;page</span>)</span></span></span></code>
@@ -426,7 +507,7 @@
                         this
                       </b>
                       :
-                      <code><a href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.routing.iendpointroutebuilder">IEndpointRouteBuilder</a></code>
+                      <code><a href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.routing.iendpointroutebuilder">IEndpointRouteBuilder</a></code>
                     </span>
                     <br/>
                     <span>
@@ -434,7 +515,7 @@
                         page
                       </b>
                       :
-                      <code><span><a href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.http.httpcontext">HttpContext</a>&#32;->&#32;<a href="/docs/reference/bolero-node.html">Node</a></span></code>
+                      <code><span><a href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<span><a href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.httpcontext">HttpContext</a>,&#32;<a href="/docs/reference/bolero-node.html">Node</a></span>&gt;</span></code>
                        - 
                       A function that generates the page to serve.
                     </span>
@@ -443,7 +524,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><a href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.iendpointconventionbuilder">IEndpointConventionBuilder</a></code>
+                    <code><a href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.iendpointconventionbuilder">IEndpointConventionBuilder</a></code>
                   </span>
                   <br/>
                 </div>
@@ -451,63 +532,64 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Bolero.Server.ServerComponentsExtensions.MapFallbackToBolero`')">
-                <img src="/docs/content/img/copy-md.png" class="normal"/>
-                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Server.ServerComponentsExtensions.MapFallbackToBolero\'/>')">
-                <img src="/docs/content/img/copy-xml.png" class="normal"/>
-                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Server/Extensions.fs#L122-122" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="/docs/content/img/github.png" class="normal"/>
-                <img src="/docs/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Bolero.Server.ServerComponentsExtensions.MapFallbackToBolero`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Server.ServerComponentsExtensions.MapFallbackToBolero\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Server/Extensions.fs#L146-146" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Adds a route endpoint that will match requests for non-file-names with the lowest possible priority.
  The request will be routed to a Bolero page.
  
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  this
-                </span>
-                :
-                <code><a href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.routing.iendpointroutebuilder">IEndpointRouteBuilder</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  page
-                </span>
-                :
-                <code><span><a href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.http.httpcontext">HttpContext</a>&#32;->&#32;<a href="/docs/reference/bolero-node.html">Node</a></span></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  A function that generates the page to serve.
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.iendpointconventionbuilder">IEndpointConventionBuilder</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    this
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.routing.iendpointroutebuilder">IEndpointRouteBuilder</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    page
+                  </span>
+                  :
+                  <code><span><a href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<span><a href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.httpcontext">HttpContext</a>,&#32;<a href="/docs/reference/bolero-node.html">Node</a></span>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    A function that generates the page to serve.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><a href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.iendpointconventionbuilder">IEndpointConventionBuilder</a></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '934', 934)" onmouseover="showTip(event, '934', 934)">
+              <code onmouseout="hideTip(event, '944', 944)" onmouseover="showTip(event, '944', 944)">
                 <p>
                   <a id="MapFallbackToBolero">
                     <a href="#MapFallbackToBolero">
@@ -516,7 +598,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="934">
+              <div class="fsdocs-tip" id="944">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>ServerComponentsExtensions.MapFallbackToBolero<span><span>(<span>this,&#32;page</span>)</span></span></span></code>
@@ -529,7 +611,7 @@
                         this
                       </b>
                       :
-                      <code><a href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.routing.iendpointroutebuilder">IEndpointRouteBuilder</a></code>
+                      <code><a href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.routing.iendpointroutebuilder">IEndpointRouteBuilder</a></code>
                     </span>
                     <br/>
                     <span>
@@ -546,7 +628,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><a href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.iendpointconventionbuilder">IEndpointConventionBuilder</a></code>
+                    <code><a href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.iendpointconventionbuilder">IEndpointConventionBuilder</a></code>
                   </span>
                   <br/>
                 </div>
@@ -554,63 +636,64 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Bolero.Server.ServerComponentsExtensions.MapFallbackToBolero`')">
-                <img src="/docs/content/img/copy-md.png" class="normal"/>
-                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Server.ServerComponentsExtensions.MapFallbackToBolero\'/>')">
-                <img src="/docs/content/img/copy-xml.png" class="normal"/>
-                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Server/Extensions.fs#L113-113" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="/docs/content/img/github.png" class="normal"/>
-                <img src="/docs/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Bolero.Server.ServerComponentsExtensions.MapFallbackToBolero`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Server.ServerComponentsExtensions.MapFallbackToBolero\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Server/Extensions.fs#L137-137" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Adds a route endpoint that will match requests for non-file-names with the lowest possible priority.
  The request will be routed to a Bolero page.
  
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  this
-                </span>
-                :
-                <code><a href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.routing.iendpointroutebuilder">IEndpointRouteBuilder</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  page
-                </span>
-                :
-                <code><a href="/docs/reference/bolero-node.html">Node</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The page to serve.
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.iendpointconventionbuilder">IEndpointConventionBuilder</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    this
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.routing.iendpointroutebuilder">IEndpointRouteBuilder</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    page
+                  </span>
+                  :
+                  <code><a href="/docs/reference/bolero-node.html">Node</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The page to serve.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><a href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.iendpointconventionbuilder">IEndpointConventionBuilder</a></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '935', 935)" onmouseover="showTip(event, '935', 935)">
+              <code onmouseout="hideTip(event, '945', 945)" onmouseover="showTip(event, '945', 945)">
                 <p>
                   <a id="RenderBoleroScript">
                     <a href="#RenderBoleroScript">
@@ -619,7 +702,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="935">
+              <div class="fsdocs-tip" id="945">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>ServerComponentsExtensions.RenderBoleroScript<span><span>(<span>html,&#32;config</span>)</span></span></span></code>
@@ -632,7 +715,7 @@
                         html
                       </b>
                       :
-                      <code><a href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.rendering.ihtmlhelper">IHtmlHelper</a></code>
+                      <code><a href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.rendering.ihtmlhelper">IHtmlHelper</a></code>
                     </span>
                     <br/>
                     <span>
@@ -649,7 +732,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><a href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.html.ihtmlcontent">IHtmlContent</a></code>
+                    <code><a href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.html.ihtmlcontent">IHtmlContent</a></code>
                   </span>
                   <br/>
                 </div>
@@ -657,60 +740,61 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Bolero.Server.ServerComponentsExtensions.RenderBoleroScript`')">
-                <img src="/docs/content/img/copy-md.png" class="normal"/>
-                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Server.ServerComponentsExtensions.RenderBoleroScript\'/>')">
-                <img src="/docs/content/img/copy-xml.png" class="normal"/>
-                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Server/Extensions.fs#L79-79" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="/docs/content/img/github.png" class="normal"/>
-                <img src="/docs/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                Render the JavaScript tag needed by Bolero in a Razor page.
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  html
-                </span>
-                :
-                <code><a href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.rendering.ihtmlhelper">IHtmlHelper</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  config
-                </span>
-                :
-                <code><a href="/docs/reference/bolero-server-ibolerohostconfig.html">IBoleroHostConfig</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The injected Bolero hosting configuration.
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.html.ihtmlcontent">IHtmlContent</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Bolero.Server.ServerComponentsExtensions.RenderBoleroScript`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Server.ServerComponentsExtensions.RenderBoleroScript\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Server/Extensions.fs#L88-88" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    Render the JavaScript tag needed by Bolero in a Razor page.
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    html
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.rendering.ihtmlhelper">IHtmlHelper</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    config
+                  </span>
+                  :
+                  <code><a href="/docs/reference/bolero-server-ibolerohostconfig.html">IBoleroHostConfig</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The injected Bolero hosting configuration.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><a href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.html.ihtmlcontent">IHtmlContent</a></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '936', 936)" onmouseover="showTip(event, '936', 936)">
+              <code onmouseout="hideTip(event, '946', 946)" onmouseover="showTip(event, '946', 946)">
                 <p>
                   <a id="RenderComponentAsync">
                     <a href="#RenderComponentAsync">
@@ -719,7 +803,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="936">
+              <div class="fsdocs-tip" id="946">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>ServerComponentsExtensions.RenderComponentAsync<span><span>(<span>html,&#32;config,&#32;?parameters</span>)</span></span></span></code>
@@ -732,7 +816,7 @@
                         html
                       </b>
                       :
-                      <code><a href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.rendering.ihtmlhelper">IHtmlHelper</a></code>
+                      <code><a href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.rendering.ihtmlhelper">IHtmlHelper</a></code>
                        - 
                       The injected HTML helper.
                     </span>
@@ -754,14 +838,14 @@
                       :
                       <code>obj</code>
                        - 
-                      An <a href="https://docs.microsoft.com/dotnet/api/system.object">Object</a> containing the parameters to pass to the component.
+                      An <a href="https://learn.microsoft.com/dotnet/api/system.object">Object</a> containing the parameters to pass to the component.
                     </span>
                     <br/>
                   </ul>
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><a href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.html.ihtmlcontent">IHtmlContent</a>&gt;</span></code>
+                    <code><span><a href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.html.ihtmlcontent">IHtmlContent</a>&gt;</span></code>
                   </span>
                   <br/>
                 </div>
@@ -769,76 +853,77 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Bolero.Server.ServerComponentsExtensions.RenderComponentAsync``1```')">
-                <img src="/docs/content/img/copy-md.png" class="normal"/>
-                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Server.ServerComponentsExtensions.RenderComponentAsync``1\'/>')">
-                <img src="/docs/content/img/copy-xml.png" class="normal"/>
-                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Server/Extensions.fs#L55-55" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="/docs/content/img/github.png" class="normal"/>
-                <img src="/docs/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                Render a Bolero component in a Razor page.
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  html
-                </span>
-                :
-                <code><a href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.rendering.ihtmlhelper">IHtmlHelper</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The injected HTML helper.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  config
-                </span>
-                :
-                <code><a href="/docs/reference/bolero-server-ibolerohostconfig.html">IBoleroHostConfig</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The injected Bolero hosting configuration.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?parameters
-                </span>
-                :
-                <code>obj</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  An <a href="https://docs.microsoft.com/dotnet/api/system.object">Object</a> containing the parameters to pass to the component.
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><a href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.html.ihtmlcontent">IHtmlContent</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Bolero.Server.ServerComponentsExtensions.RenderComponentAsync``1```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Server.ServerComponentsExtensions.RenderComponentAsync``1\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Server/Extensions.fs#L58-58" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    Render a Bolero component in a Razor page.
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    html
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.rendering.ihtmlhelper">IHtmlHelper</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The injected HTML helper.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    config
+                  </span>
+                  :
+                  <code><a href="/docs/reference/bolero-server-ibolerohostconfig.html">IBoleroHostConfig</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The injected Bolero hosting configuration.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?parameters
+                  </span>
+                  :
+                  <code>obj</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    An <a href="https://learn.microsoft.com/dotnet/api/system.object">Object</a> containing the parameters to pass to the component.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.html.ihtmlcontent">IHtmlContent</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '937', 937)" onmouseover="showTip(event, '937', 937)">
+              <code onmouseout="hideTip(event, '947', 947)" onmouseover="showTip(event, '947', 947)">
                 <p>
                   <a id="RenderComponentAsync">
                     <a href="#RenderComponentAsync">
@@ -847,7 +932,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="937">
+              <div class="fsdocs-tip" id="947">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>ServerComponentsExtensions.RenderComponentAsync<span><span>(<span>html,&#32;componentType,&#32;config,&#32;?parameters</span>)</span></span></span></code>
@@ -860,7 +945,7 @@
                         html
                       </b>
                       :
-                      <code><a href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.rendering.ihtmlhelper">IHtmlHelper</a></code>
+                      <code><a href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.rendering.ihtmlhelper">IHtmlHelper</a></code>
                        - 
                       The injected HTML helper.
                     </span>
@@ -870,7 +955,7 @@
                         componentType
                       </b>
                       :
-                      <code><a href="https://docs.microsoft.com/dotnet/api/system.type">Type</a></code>
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></code>
                        - 
                       The Bolero component type.
                     </span>
@@ -892,14 +977,14 @@
                       :
                       <code>obj</code>
                        - 
-                      An <a href="https://docs.microsoft.com/dotnet/api/system.object">Object</a> containing the parameters to pass to the component.
+                      An <a href="https://learn.microsoft.com/dotnet/api/system.object">Object</a> containing the parameters to pass to the component.
                     </span>
                     <br/>
                   </ul>
                   <br/>
                   <span>
                     Returns: 
-                    <code><span><a href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.html.ihtmlcontent">IHtmlContent</a>&gt;</span></code>
+                    <code><span><a href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.html.ihtmlcontent">IHtmlContent</a>&gt;</span></code>
                   </span>
                   <br/>
                 </div>
@@ -907,88 +992,89 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Bolero.Server.ServerComponentsExtensions.RenderComponentAsync`')">
-                <img src="/docs/content/img/copy-md.png" class="normal"/>
-                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Server.ServerComponentsExtensions.RenderComponentAsync\'/>')">
-                <img src="/docs/content/img/copy-xml.png" class="normal"/>
-                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Server/Extensions.fs#L46-46" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="/docs/content/img/github.png" class="normal"/>
-                <img src="/docs/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                Render a Bolero component in a Razor page.
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  html
-                </span>
-                :
-                <code><a href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.rendering.ihtmlhelper">IHtmlHelper</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The injected HTML helper.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  componentType
-                </span>
-                :
-                <code><a href="https://docs.microsoft.com/dotnet/api/system.type">Type</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The Bolero component type.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  config
-                </span>
-                :
-                <code><a href="/docs/reference/bolero-server-ibolerohostconfig.html">IBoleroHostConfig</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The injected Bolero hosting configuration.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?parameters
-                </span>
-                :
-                <code>obj</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  An <a href="https://docs.microsoft.com/dotnet/api/system.object">Object</a> containing the parameters to pass to the component.
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><a href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.html.ihtmlcontent">IHtmlContent</a>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Bolero.Server.ServerComponentsExtensions.RenderComponentAsync`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Server.ServerComponentsExtensions.RenderComponentAsync\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Server/Extensions.fs#L49-49" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    Render a Bolero component in a Razor page.
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    html
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.rendering.ihtmlhelper">IHtmlHelper</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The injected HTML helper.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    componentType
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The Bolero component type.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    config
+                  </span>
+                  :
+                  <code><a href="/docs/reference/bolero-server-ibolerohostconfig.html">IBoleroHostConfig</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The injected Bolero hosting configuration.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?parameters
+                  </span>
+                  :
+                  <code>obj</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    An <a href="https://learn.microsoft.com/dotnet/api/system.object">Object</a> containing the parameters to pass to the component.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.html.ihtmlcontent">IHtmlContent</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '938', 938)" onmouseover="showTip(event, '938', 938)">
+              <code onmouseout="hideTip(event, '948', 948)" onmouseover="showTip(event, '948', 948)">
                 <p>
                   <a id="RenderPage">
                     <a href="#RenderPage">
@@ -997,7 +1083,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="938">
+              <div class="fsdocs-tip" id="948">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>ServerComponentsExtensions.RenderPage<span><span>(<span>this,&#32;page</span>)</span></span></span></code>
@@ -1010,7 +1096,7 @@
                         this
                       </b>
                       :
-                      <code><a href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.http.httpcontext">HttpContext</a></code>
+                      <code><a href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.httpcontext">HttpContext</a></code>
                     </span>
                     <br/>
                     <span>
@@ -1027,7 +1113,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><a href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></code>
+                    <code><a href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></code>
                   </span>
                   <br/>
                 </div>
@@ -1035,54 +1121,55 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Bolero.Server.ServerComponentsExtensions.RenderPage`')">
-                <img src="/docs/content/img/copy-md.png" class="normal"/>
-                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Server.ServerComponentsExtensions.RenderPage\'/>')">
-                <img src="/docs/content/img/copy-xml.png" class="normal"/>
-                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Server/Extensions.fs#L61-61" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="/docs/content/img/github.png" class="normal"/>
-                <img src="/docs/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                Render the given page in the HTTP response body.
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  this
-                </span>
-                :
-                <code><a href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.http.httpcontext">HttpContext</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs"></dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  page
-                </span>
-                :
-                <code><a href="/docs/reference/bolero-node.html">Node</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The page to render.
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Bolero.Server.ServerComponentsExtensions.RenderPage`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Server.ServerComponentsExtensions.RenderPage\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Server/Extensions.fs#L64-64" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    Render the given page in the HTTP response body.
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    this
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.httpcontext">HttpContext</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    page
+                  </span>
+                  :
+                  <code><a href="/docs/reference/bolero-node.html">Node</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The page to render.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
       </tbody>

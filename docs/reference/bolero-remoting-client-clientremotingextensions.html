@@ -8,9 +8,9 @@
   <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
   <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[],"$DATA":{"$V":{}}}' />
 
-  <link rel="stylesheet" href="/css/all.css" />
   <link rel="stylesheet" href="/docs/content/fsdocs-default.css" />
   <link rel="stylesheet" href="/docs/content/fsdocs-custom.css" />
+  <link rel="stylesheet" href="/css/all.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js" type="text/javascript" charset="UTF-8"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/languages/fsharp.min.js" type="text/javascript" charset="UTF-8"></script><link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/vs.min.css"></link>
 
 </head>
@@ -152,7 +152,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '899', 899)" onmouseover="showTip(event, '899', 899)">
+              <code onmouseout="hideTip(event, '907', 907)" onmouseover="showTip(event, '907', 907)">
                 <p>
                   <a id="AddBoleroRemoting">
                     <a href="#AddBoleroRemoting">
@@ -161,7 +161,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="899">
+              <div class="fsdocs-tip" id="907">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>ClientRemotingExtensions.AddBoleroRemoting<span><span>(<span>services,&#32;configureHttpClient,&#32;?configureSerialization</span>)</span></span></span></code>
@@ -174,7 +174,7 @@
                         services
                       </b>
                       :
-                      <code><a href="https://docs.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></code>
+                      <code><a href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></code>
                        - 
                       The DI service collection.
                     </span>
@@ -184,7 +184,7 @@
                         configureHttpClient
                       </b>
                       :
-                      <code><span><a href="https://docs.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a>&#32;->&#32;unit</span></code>
+                      <code><span><a href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a>&gt;</span></code>
                        - 
                       Callback that configures the HttpClient.
                     </span>
@@ -194,7 +194,7 @@
                         ?configureSerialization
                       </b>
                       :
-                      <code><span><a href="https://docs.microsoft.com/dotnet/api/system.text.json.jsonserializeroptions">JsonSerializerOptions</a>&#32;->&#32;unit</span></code>
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.text.json.jsonserializeroptions">JsonSerializerOptions</a></code>
                        - 
                       
  Callback that configures the JSON serialization for remote arguments and return values.
@@ -205,7 +205,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><a href="https://docs.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.ihttpclientbuilder">IHttpClientBuilder</a></code>
+                    <code><a href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.ihttpclientbuilder">IHttpClientBuilder</a></code>
                   </span>
                   The HttpClient builder for remote calls.
                   <br/>
@@ -214,82 +214,83 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Bolero.Remoting.Client.ClientRemotingExtensions.AddBoleroRemoting``1```')">
-                <img src="/docs/content/img/copy-md.png" class="normal"/>
-                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Remoting.Client.ClientRemotingExtensions.AddBoleroRemoting``1\'/>')">
-                <img src="/docs/content/img/copy-xml.png" class="normal"/>
-                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Remoting.Client.fs#L215-215" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="/docs/content/img/github.png" class="normal"/>
-                <img src="/docs/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                Enable support for the given remote service in ProgramComponent when running in WebAssembly.
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  services
-                </span>
-                :
-                <code><a href="https://docs.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The DI service collection.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  configureHttpClient
-                </span>
-                :
-                <code><span><a href="https://docs.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a>&#32;->&#32;unit</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Callback that configures the HttpClient.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?configureSerialization
-                </span>
-                :
-                <code><span><a href="https://docs.microsoft.com/dotnet/api/system.text.json.jsonserializeroptions">JsonSerializerOptions</a>&#32;->&#32;unit</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Bolero.Remoting.Client.ClientRemotingExtensions.AddBoleroRemoting``1```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Remoting.Client.ClientRemotingExtensions.AddBoleroRemoting``1\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Remoting.Client.fs#L216-216" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    Enable support for the given remote service in ProgramComponent when running in WebAssembly.
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    services
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The DI service collection.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    configureHttpClient
+                  </span>
+                  :
+                  <code><span><a href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Callback that configures the HttpClient.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?configureSerialization
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.text.json.jsonserializeroptions">JsonSerializerOptions</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    
  Callback that configures the JSON serialization for remote arguments and return values.
  
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="https://docs.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.ihttpclientbuilder">IHttpClientBuilder</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs">
-                <p>
-                  The HttpClient builder for remote calls.
-                </p>
-              </dd>
-            </dl>
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><a href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.ihttpclientbuilder">IHttpClientBuilder</a></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    The HttpClient builder for remote calls.
+                  </p>
+                </dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '900', 900)" onmouseover="showTip(event, '900', 900)">
+              <code onmouseout="hideTip(event, '908', 908)" onmouseover="showTip(event, '908', 908)">
                 <p>
                   <a id="AddBoleroRemoting">
                     <a href="#AddBoleroRemoting">
@@ -298,7 +299,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="900">
+              <div class="fsdocs-tip" id="908">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>ClientRemotingExtensions.AddBoleroRemoting<span><span>(<span>services,&#32;env,&#32;?configureSerialization</span>)</span></span></span></code>
@@ -311,7 +312,7 @@
                         services
                       </b>
                       :
-                      <code><a href="https://docs.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></code>
+                      <code><a href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></code>
                        - 
                       The DI service collection.
                     </span>
@@ -321,7 +322,7 @@
                         env
                       </b>
                       :
-                      <code><a href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.components.webassembly.hosting.iwebassemblyhostenvironment">IWebAssemblyHostEnvironment</a></code>
+                      <code><a href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.webassembly.hosting.iwebassemblyhostenvironment">IWebAssemblyHostEnvironment</a></code>
                        - 
                       The WebAssembly host environment.
                     </span>
@@ -331,7 +332,7 @@
                         ?configureSerialization
                       </b>
                       :
-                      <code><span><a href="https://docs.microsoft.com/dotnet/api/system.text.json.jsonserializeroptions">JsonSerializerOptions</a>&#32;->&#32;unit</span></code>
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.text.json.jsonserializeroptions">JsonSerializerOptions</a></code>
                        - 
                       
  Callback that configures the JSON serialization for remote arguments and return values.
@@ -342,7 +343,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><a href="https://docs.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.ihttpclientbuilder">IHttpClientBuilder</a></code>
+                    <code><a href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.ihttpclientbuilder">IHttpClientBuilder</a></code>
                   </span>
                   The HttpClient builder for remote calls.
                   <br/>
@@ -351,82 +352,83 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Bolero.Remoting.Client.ClientRemotingExtensions.AddBoleroRemoting``1```')">
-                <img src="/docs/content/img/copy-md.png" class="normal"/>
-                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Remoting.Client.ClientRemotingExtensions.AddBoleroRemoting``1\'/>')">
-                <img src="/docs/content/img/copy-xml.png" class="normal"/>
-                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Remoting.Client.fs#L201-201" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="/docs/content/img/github.png" class="normal"/>
-                <img src="/docs/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                Enable support for the given remote service in ProgramComponent when running in WebAssembly.
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  services
-                </span>
-                :
-                <code><a href="https://docs.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The DI service collection.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  env
-                </span>
-                :
-                <code><a href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.components.webassembly.hosting.iwebassemblyhostenvironment">IWebAssemblyHostEnvironment</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The WebAssembly host environment.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?configureSerialization
-                </span>
-                :
-                <code><span><a href="https://docs.microsoft.com/dotnet/api/system.text.json.jsonserializeroptions">JsonSerializerOptions</a>&#32;->&#32;unit</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Bolero.Remoting.Client.ClientRemotingExtensions.AddBoleroRemoting``1```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Remoting.Client.ClientRemotingExtensions.AddBoleroRemoting``1\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Remoting.Client.fs#L202-202" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    Enable support for the given remote service in ProgramComponent when running in WebAssembly.
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    services
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The DI service collection.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    env
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.webassembly.hosting.iwebassemblyhostenvironment">IWebAssemblyHostEnvironment</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The WebAssembly host environment.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?configureSerialization
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.text.json.jsonserializeroptions">JsonSerializerOptions</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    
  Callback that configures the JSON serialization for remote arguments and return values.
  
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="https://docs.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.ihttpclientbuilder">IHttpClientBuilder</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs">
-                <p>
-                  The HttpClient builder for remote calls.
-                </p>
-              </dd>
-            </dl>
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><a href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.ihttpclientbuilder">IHttpClientBuilder</a></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    The HttpClient builder for remote calls.
+                  </p>
+                </dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '901', 901)" onmouseover="showTip(event, '901', 901)">
+              <code onmouseout="hideTip(event, '909', 909)" onmouseover="showTip(event, '909', 909)">
                 <p>
                   <a id="AddBoleroRemoting">
                     <a href="#AddBoleroRemoting">
@@ -435,7 +437,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="901">
+              <div class="fsdocs-tip" id="909">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>ClientRemotingExtensions.AddBoleroRemoting<span><span>(<span>services,&#32;configureHttpClient,&#32;?configureSerialization</span>)</span></span></span></code>
@@ -448,7 +450,7 @@
                         services
                       </b>
                       :
-                      <code><a href="https://docs.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></code>
+                      <code><a href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></code>
                        - 
                       The DI service collection.
                     </span>
@@ -458,7 +460,7 @@
                         configureHttpClient
                       </b>
                       :
-                      <code><span><a href="https://docs.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a>&#32;->&#32;unit</span></code>
+                      <code><span><a href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a>&gt;</span></code>
                        - 
                       Callback that configures the HttpClient.
                     </span>
@@ -468,7 +470,7 @@
                         ?configureSerialization
                       </b>
                       :
-                      <code><span><a href="https://docs.microsoft.com/dotnet/api/system.text.json.jsonserializeroptions">JsonSerializerOptions</a>&#32;->&#32;unit</span></code>
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.text.json.jsonserializeroptions">JsonSerializerOptions</a></code>
                        - 
                       
  Callback that configures the JSON serialization for remote arguments and return values.
@@ -479,7 +481,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><a href="https://docs.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.ihttpclientbuilder">IHttpClientBuilder</a></code>
+                    <code><a href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.ihttpclientbuilder">IHttpClientBuilder</a></code>
                   </span>
                   The HttpClient builder for remote calls.
                   <br/>
@@ -488,82 +490,83 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Bolero.Remoting.Client.ClientRemotingExtensions.AddBoleroRemoting`')">
-                <img src="/docs/content/img/copy-md.png" class="normal"/>
-                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Remoting.Client.ClientRemotingExtensions.AddBoleroRemoting\'/>')">
-                <img src="/docs/content/img/copy-xml.png" class="normal"/>
-                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Remoting.Client.fs#L176-176" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="/docs/content/img/github.png" class="normal"/>
-                <img src="/docs/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                Enable support for remoting in ProgramComponent when running in WebAssembly.
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  services
-                </span>
-                :
-                <code><a href="https://docs.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The DI service collection.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  configureHttpClient
-                </span>
-                :
-                <code><span><a href="https://docs.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a>&#32;->&#32;unit</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Callback that configures the HttpClient.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?configureSerialization
-                </span>
-                :
-                <code><span><a href="https://docs.microsoft.com/dotnet/api/system.text.json.jsonserializeroptions">JsonSerializerOptions</a>&#32;->&#32;unit</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Bolero.Remoting.Client.ClientRemotingExtensions.AddBoleroRemoting`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Remoting.Client.ClientRemotingExtensions.AddBoleroRemoting\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Remoting.Client.fs#L177-177" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    Enable support for remoting in ProgramComponent when running in WebAssembly.
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    services
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The DI service collection.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    configureHttpClient
+                  </span>
+                  :
+                  <code><span><a href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Callback that configures the HttpClient.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?configureSerialization
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.text.json.jsonserializeroptions">JsonSerializerOptions</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    
  Callback that configures the JSON serialization for remote arguments and return values.
  
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="https://docs.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.ihttpclientbuilder">IHttpClientBuilder</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs">
-                <p>
-                  The HttpClient builder for remote calls.
-                </p>
-              </dd>
-            </dl>
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><a href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.ihttpclientbuilder">IHttpClientBuilder</a></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    The HttpClient builder for remote calls.
+                  </p>
+                </dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '902', 902)" onmouseover="showTip(event, '902', 902)">
+              <code onmouseout="hideTip(event, '910', 910)" onmouseover="showTip(event, '910', 910)">
                 <p>
                   <a id="AddBoleroRemoting">
                     <a href="#AddBoleroRemoting">
@@ -572,7 +575,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="902">
+              <div class="fsdocs-tip" id="910">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>ClientRemotingExtensions.AddBoleroRemoting<span><span>(<span>services,&#32;env,&#32;?configureSerialization</span>)</span></span></span></code>
@@ -585,7 +588,7 @@
                         services
                       </b>
                       :
-                      <code><a href="https://docs.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></code>
+                      <code><a href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></code>
                        - 
                       The DI service collection.
                     </span>
@@ -595,7 +598,7 @@
                         env
                       </b>
                       :
-                      <code><a href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.components.webassembly.hosting.iwebassemblyhostenvironment">IWebAssemblyHostEnvironment</a></code>
+                      <code><a href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.webassembly.hosting.iwebassemblyhostenvironment">IWebAssemblyHostEnvironment</a></code>
                        - 
                       The WebAssembly host environment.
                     </span>
@@ -605,7 +608,7 @@
                         ?configureSerialization
                       </b>
                       :
-                      <code><span><a href="https://docs.microsoft.com/dotnet/api/system.text.json.jsonserializeroptions">JsonSerializerOptions</a>&#32;->&#32;unit</span></code>
+                      <code><a href="https://learn.microsoft.com/dotnet/api/system.text.json.jsonserializeroptions">JsonSerializerOptions</a></code>
                        - 
                       
  Callback that configures the JSON serialization for remote arguments and return values.
@@ -616,7 +619,7 @@
                   <br/>
                   <span>
                     Returns: 
-                    <code><a href="https://docs.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.ihttpclientbuilder">IHttpClientBuilder</a></code>
+                    <code><a href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.ihttpclientbuilder">IHttpClientBuilder</a></code>
                   </span>
                   The HttpClient builder for remote calls.
                   <br/>
@@ -625,76 +628,77 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Bolero.Remoting.Client.ClientRemotingExtensions.AddBoleroRemoting`')">
-                <img src="/docs/content/img/copy-md.png" class="normal"/>
-                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Remoting.Client.ClientRemotingExtensions.AddBoleroRemoting\'/>')">
-                <img src="/docs/content/img/copy-xml.png" class="normal"/>
-                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Remoting.Client.fs#L152-152" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="/docs/content/img/github.png" class="normal"/>
-                <img src="/docs/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                Enable support for remoting in ProgramComponent when running in WebAssembly.
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  services
-                </span>
-                :
-                <code><a href="https://docs.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The DI service collection.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  env
-                </span>
-                :
-                <code><a href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.components.webassembly.hosting.iwebassemblyhostenvironment">IWebAssemblyHostEnvironment</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The WebAssembly host environment.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ?configureSerialization
-                </span>
-                :
-                <code><span><a href="https://docs.microsoft.com/dotnet/api/system.text.json.jsonserializeroptions">JsonSerializerOptions</a>&#32;->&#32;unit</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Bolero.Remoting.Client.ClientRemotingExtensions.AddBoleroRemoting`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Remoting.Client.ClientRemotingExtensions.AddBoleroRemoting\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Remoting.Client.fs#L153-153" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    Enable support for remoting in ProgramComponent when running in WebAssembly.
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    services
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The DI service collection.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    env
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.webassembly.hosting.iwebassemblyhostenvironment">IWebAssemblyHostEnvironment</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The WebAssembly host environment.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ?configureSerialization
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/system.text.json.jsonserializeroptions">JsonSerializerOptions</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    
  Callback that configures the JSON serialization for remote arguments and return values.
  
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="https://docs.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.ihttpclientbuilder">IHttpClientBuilder</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs">
-                <p>
-                  The HttpClient builder for remote calls.
-                </p>
-              </dd>
-            </dl>
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><a href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.ihttpclientbuilder">IHttpClientBuilder</a></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    The HttpClient builder for remote calls.
+                  </p>
+                </dd>
+              </dl>
+            </details>
           </td>
         </tr>
       </tbody>

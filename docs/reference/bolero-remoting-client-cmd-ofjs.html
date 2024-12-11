@@ -8,9 +8,9 @@
   <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
   <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[],"$DATA":{"$V":{}}}' />
 
-  <link rel="stylesheet" href="/css/all.css" />
   <link rel="stylesheet" href="/docs/content/fsdocs-default.css" />
   <link rel="stylesheet" href="/docs/content/fsdocs-custom.css" />
+  <link rel="stylesheet" href="/css/all.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js" type="text/javascript" charset="UTF-8"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/languages/fsharp.min.js" type="text/javascript" charset="UTF-8"></script><link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/vs.min.css"></link>
 
 </head>
@@ -146,7 +146,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '621', 621)" onmouseover="showTip(event, '621', 621)">
+              <code onmouseout="hideTip(event, '625', 625)" onmouseover="showTip(event, '625', 625)">
                 <p>
                   <a id="attempt">
                     <a href="#attempt">
@@ -155,7 +155,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="621">
+              <div class="fsdocs-tip" id="625">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>attempt&#32;<span>js&#32;jsFunctionName&#32;args&#32;ofError</span></span></code>
@@ -168,7 +168,7 @@
                         js
                       </b>
                       :
-                      <code><a href="https://docs.microsoft.com/dotnet/api/microsoft.jsinterop.ijsruntime">IJSRuntime</a></code>
+                      <code><a href="https://learn.microsoft.com/dotnet/api/microsoft.jsinterop.ijsruntime">IJSRuntime</a></code>
                        - 
                       The JavaScript runtime, retrieved via dependency injection on a component.
                     </span>
@@ -216,94 +216,95 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Bolero.Remoting.Client.Cmd.OfJS.attempt``1```')">
-                <img src="/docs/content/img/copy-md.png" class="normal"/>
-                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Remoting.Client.Cmd.OfJS.attempt``1\'/>')">
-                <img src="/docs/content/img/copy-xml.png" class="normal"/>
-                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Cmd.fs#L126-126" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="/docs/content/img/github.png" class="normal"/>
-                <img src="/docs/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Bolero.Remoting.Client.Cmd.OfJS.attempt``1```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Remoting.Client.Cmd.OfJS.attempt``1\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Cmd.fs#L126-126" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Command that will perform a JavaScript interop call and map the error (of exception).
  
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  js
-                </span>
-                :
-                <code><a href="https://docs.microsoft.com/dotnet/api/microsoft.jsinterop.ijsruntime">IJSRuntime</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The JavaScript runtime, retrieved via dependency injection on a component.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  jsFunctionName
-                </span>
-                :
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The name of the JavaScript function to call.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  args
-                </span>
-                :
-                <code><span>obj[]</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The arguments passed to the JavaScript function.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ofError
-                </span>
-                :
-                <code><span>exn&#32;->&#32;'msg</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Construct a message from an error.
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span>Cmd&lt;'msg&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs">
-                <p>
-                  An Elmish command that will call the JavaScript function and dispatch messages based on the result.
-                </p>
-              </dd>
-            </dl>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    js
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/microsoft.jsinterop.ijsruntime">IJSRuntime</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The JavaScript runtime, retrieved via dependency injection on a component.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    jsFunctionName
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The name of the JavaScript function to call.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    args
+                  </span>
+                  :
+                  <code><span>obj[]</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The arguments passed to the JavaScript function.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ofError
+                  </span>
+                  :
+                  <code><span>exn&#32;->&#32;'msg</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Construct a message from an error.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>Cmd&lt;'msg&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    An Elmish command that will call the JavaScript function and dispatch messages based on the result.
+                  </p>
+                </dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '622', 622)" onmouseover="showTip(event, '622', 622)">
+              <code onmouseout="hideTip(event, '626', 626)" onmouseover="showTip(event, '626', 626)">
                 <p>
                   <a id="either">
                     <a href="#either">
@@ -312,7 +313,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="622">
+              <div class="fsdocs-tip" id="626">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>either&#32;<span>js&#32;jsFunctionName&#32;args&#32;ofSuccess&#32;ofError</span></span></code>
@@ -325,7 +326,7 @@
                         js
                       </b>
                       :
-                      <code><a href="https://docs.microsoft.com/dotnet/api/microsoft.jsinterop.ijsruntime">IJSRuntime</a></code>
+                      <code><a href="https://learn.microsoft.com/dotnet/api/microsoft.jsinterop.ijsruntime">IJSRuntime</a></code>
                        - 
                       The JavaScript runtime, retrieved via dependency injection on a component.
                     </span>
@@ -383,107 +384,108 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Bolero.Remoting.Client.Cmd.OfJS.either``2```')">
-                <img src="/docs/content/img/copy-md.png" class="normal"/>
-                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Remoting.Client.Cmd.OfJS.either``2\'/>')">
-                <img src="/docs/content/img/copy-xml.png" class="normal"/>
-                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Cmd.fs#L103-103" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="/docs/content/img/github.png" class="normal"/>
-                <img src="/docs/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Bolero.Remoting.Client.Cmd.OfJS.either``2```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Remoting.Client.Cmd.OfJS.either``2\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Cmd.fs#L103-103" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Command that will perform a JavaScript interop call and map the result to a message.
  or error (of exception)
  
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  js
-                </span>
-                :
-                <code><a href="https://docs.microsoft.com/dotnet/api/microsoft.jsinterop.ijsruntime">IJSRuntime</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The JavaScript runtime, retrieved via dependency injection on a component.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  jsFunctionName
-                </span>
-                :
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The name of the JavaScript function to call.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  args
-                </span>
-                :
-                <code><span>obj[]</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The arguments passed to the JavaScript function.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ofSuccess
-                </span>
-                :
-                <code><span>'res&#32;->&#32;'msg</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Construct a message from a successful return value.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ofError
-                </span>
-                :
-                <code><span>exn&#32;->&#32;'msg</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Construct a message from an error.
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span>Cmd&lt;'msg&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs">
-                <p>
-                  An Elmish command that will call the JavaScript function and dispatch messages based on the result.
-                </p>
-              </dd>
-            </dl>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    js
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/microsoft.jsinterop.ijsruntime">IJSRuntime</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The JavaScript runtime, retrieved via dependency injection on a component.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    jsFunctionName
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The name of the JavaScript function to call.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    args
+                  </span>
+                  :
+                  <code><span>obj[]</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The arguments passed to the JavaScript function.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ofSuccess
+                  </span>
+                  :
+                  <code><span>'res&#32;->&#32;'msg</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Construct a message from a successful return value.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ofError
+                  </span>
+                  :
+                  <code><span>exn&#32;->&#32;'msg</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Construct a message from an error.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>Cmd&lt;'msg&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    An Elmish command that will call the JavaScript function and dispatch messages based on the result.
+                  </p>
+                </dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '623', 623)" onmouseover="showTip(event, '623', 623)">
+              <code onmouseout="hideTip(event, '627', 627)" onmouseover="showTip(event, '627', 627)">
                 <p>
                   <a id="perform">
                     <a href="#perform">
@@ -492,7 +494,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="623">
+              <div class="fsdocs-tip" id="627">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>perform&#32;<span>js&#32;jsFunctionName&#32;args&#32;ofSuccess</span></span></code>
@@ -505,7 +507,7 @@
                         js
                       </b>
                       :
-                      <code><a href="https://docs.microsoft.com/dotnet/api/microsoft.jsinterop.ijsruntime">IJSRuntime</a></code>
+                      <code><a href="https://learn.microsoft.com/dotnet/api/microsoft.jsinterop.ijsruntime">IJSRuntime</a></code>
                        - 
                       The JavaScript runtime, retrieved via dependency injection on a component.
                     </span>
@@ -553,89 +555,90 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Bolero.Remoting.Client.Cmd.OfJS.perform``2```')">
-                <img src="/docs/content/img/copy-md.png" class="normal"/>
-                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Remoting.Client.Cmd.OfJS.perform``2\'/>')">
-                <img src="/docs/content/img/copy-xml.png" class="normal"/>
-                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Cmd.fs#L115-115" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="/docs/content/img/github.png" class="normal"/>
-                <img src="/docs/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Bolero.Remoting.Client.Cmd.OfJS.perform``2```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Remoting.Client.Cmd.OfJS.perform``2\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Cmd.fs#L115-115" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Command that will perform a JavaScript interop call and map the result to a message
  discarding any possible error.
  
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  js
-                </span>
-                :
-                <code><a href="https://docs.microsoft.com/dotnet/api/microsoft.jsinterop.ijsruntime">IJSRuntime</a></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The JavaScript runtime, retrieved via dependency injection on a component.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  jsFunctionName
-                </span>
-                :
-                <code>string</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The name of the JavaScript function to call.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  args
-                </span>
-                :
-                <code><span>obj[]</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The arguments passed to the JavaScript function.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  ofSuccess
-                </span>
-                :
-                <code><span>'res&#32;->&#32;'msg</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Construct a message from a successful return value.
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span>Cmd&lt;'msg&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs">
-                <p>
-                  An Elmish command that will call the JavaScript function and dispatch messages based on the result.
-                </p>
-              </dd>
-            </dl>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    js
+                  </span>
+                  :
+                  <code><a href="https://learn.microsoft.com/dotnet/api/microsoft.jsinterop.ijsruntime">IJSRuntime</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The JavaScript runtime, retrieved via dependency injection on a component.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    jsFunctionName
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The name of the JavaScript function to call.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    args
+                  </span>
+                  :
+                  <code><span>obj[]</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The arguments passed to the JavaScript function.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    ofSuccess
+                  </span>
+                  :
+                  <code><span>'res&#32;->&#32;'msg</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Construct a message from a successful return value.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span>Cmd&lt;'msg&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    An Elmish command that will call the JavaScript function and dispatch messages based on the result.
+                  </p>
+                </dd>
+              </dl>
+            </details>
           </td>
         </tr>
       </tbody>

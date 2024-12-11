@@ -37,10 +37,28 @@ body {
   color: #222;
 }
 
-pre, code {
+pre, code, code.hljs {
   font-family: $family-monospace;
+  background-color: #f5f5f5;
 }
 
 code {
   background-color: transparent;
+}
+
+/* OVERRIDES FOR fsdocs-default.css */
+
+body {
+  display: block;
+  background-color: transparent;
+}
+
+header {
+  border-bottom: 0;
+  padding: 0;
+  height: auto;
+}
+
+.fsdocs-tip {
+  position: fixed !important;
 }

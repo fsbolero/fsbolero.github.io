@@ -8,9 +8,9 @@
   <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
   <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[],"$DATA":{"$V":{}}}' />
 
-  <link rel="stylesheet" href="/css/all.css" />
   <link rel="stylesheet" href="/docs/content/fsdocs-default.css" />
   <link rel="stylesheet" href="/docs/content/fsdocs-custom.css" />
+  <link rel="stylesheet" href="/css/all.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js" type="text/javascript" charset="UTF-8"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/languages/fsharp.min.js" type="text/javascript" charset="UTF-8"></script><link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/vs.min.css"></link>
 
 </head>
@@ -140,7 +140,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '14', 14)" onmouseover="showTip(event, '14', 14)">
+              <code onmouseout="hideTip(event, '16', 16)" onmouseover="showTip(event, '16', 16)">
                 <p>
                   <a id="definePageModel">
                     <a href="#definePageModel">
@@ -149,7 +149,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="14">
+              <div class="fsdocs-tip" id="16">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>definePageModel&#32;<span>pageModel&#32;value</span></span></code>
@@ -186,60 +186,61 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Bolero.Router.definePageModel``1```')">
-                <img src="/docs/content/img/copy-md.png" class="normal"/>
-                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Router.definePageModel``1\'/>')">
-                <img src="/docs/content/img/copy-xml.png" class="normal"/>
-                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Router.fs#L748-748" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="/docs/content/img/github.png" class="normal"/>
-                <img src="/docs/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Bolero.Router.definePageModel``1```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Router.definePageModel``1\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Router.fs#L956-956" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Define the PageModel for a given endpoint.
  Must be called inside the <code>defaultPageModel</code> function passed to M:inferWithModel`3.
  
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  pageModel
-                </span>
-                :
-                <code><span><a href="/docs/reference/bolero-pagemodel-1.html">PageModel</a>&lt;'T&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    pageModel
+                  </span>
+                  :
+                  <code><span><a href="/docs/reference/bolero-pagemodel-1.html">PageModel</a>&lt;'T&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    
  The PageModel, retrieved from the endpoint passed to the function by M:inferWithModel`3.
  
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  value
-                </span>
-                :
-                <code>'T</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The value of the page model to put inside <span class="fsdocs-param-name">pageModel</span>.
-                </p>
-              </dd>
-            </dl>
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    value
+                  </span>
+                  :
+                  <code>'T</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The value of the page model to put inside <span class="fsdocs-param-name">pageModel</span>.
+                  </p>
+                </dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '15', 15)" onmouseover="showTip(event, '15', 15)">
+              <code onmouseout="hideTip(event, '17', 17)" onmouseover="showTip(event, '17', 17)">
                 <p>
                   <a id="infer">
                     <a href="#infer">
@@ -248,7 +249,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="15">
+              <div class="fsdocs-tip" id="17">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>infer&#32;<span>makeMessage&#32;getEndPoint</span></span></code>
@@ -289,72 +290,73 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Bolero.Router.infer``3```')">
-                <img src="/docs/content/img/copy-md.png" class="normal"/>
-                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Router.infer``3\'/>')">
-                <img src="/docs/content/img/copy-xml.png" class="normal"/>
-                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Router.fs#L731-731" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="/docs/content/img/github.png" class="normal"/>
-                <img src="/docs/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Bolero.Router.infer``3```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Router.infer``3\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Router.fs#L924-924" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Infer a router constructed around an endpoint type <typeparamref name="ep" />.
  This type must be an F# union type, and its cases should use <a href="/docs/reference/bolero-endpointattribute.html">EndPointAttribute</a>
  to declare how they match to a URI.
  
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  makeMessage
-                </span>
-                :
-                <code><span>'ep&#32;->&#32;'msg</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Function that creates the message for switching to the page pointed by an endpoint.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  getEndPoint
-                </span>
-                :
-                <code><span>'model&#32;->&#32;'ep</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Function that extracts the current endpoint from the Elmish model.
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><a href="/docs/reference/bolero-router-3.html">Router</a>&lt;<span>'ep,&#32;'model,&#32;'msg</span>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs">
-                <p>
-                  A router for the given endpoint type.
-                </p>
-              </dd>
-            </dl>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    makeMessage
+                  </span>
+                  :
+                  <code><span>'ep&#32;->&#32;'msg</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Function that creates the message for switching to the page pointed by an endpoint.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    getEndPoint
+                  </span>
+                  :
+                  <code><span>'model&#32;->&#32;'ep</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Function that extracts the current endpoint from the Elmish model.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/docs/reference/bolero-router-3.html">Router</a>&lt;<span>'ep,&#32;'model,&#32;'msg</span>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    A router for the given endpoint type.
+                  </p>
+                </dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '16', 16)" onmouseover="showTip(event, '16', 16)">
+              <code onmouseout="hideTip(event, '18', 18)" onmouseover="showTip(event, '18', 18)">
                 <p>
                   <a id="inferWithModel">
                     <a href="#inferWithModel">
@@ -363,7 +365,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="16">
+              <div class="fsdocs-tip" id="18">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>inferWithModel&#32;<span>makeMessage&#32;getEndPoint&#32;defaultPageModel</span></span></code>
@@ -417,87 +419,88 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Bolero.Router.inferWithModel``3```')">
-                <img src="/docs/content/img/copy-md.png" class="normal"/>
-                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Router.inferWithModel``3\'/>')">
-                <img src="/docs/content/img/copy-xml.png" class="normal"/>
-                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Router.fs#L702-702" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="/docs/content/img/github.png" class="normal"/>
-                <img src="/docs/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Bolero.Router.inferWithModel``3```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Router.inferWithModel``3\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Router.fs#L883-883" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
  Infer a router constructed around an endpoint type <typeparamref name="ep" />.
  This type must be an F# union type, and its cases should use <a href="/docs/reference/bolero-endpointattribute.html">EndPointAttribute</a>
  to declare how they match to a URI.
  
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  makeMessage
-                </span>
-                :
-                <code><span>'ep&#32;->&#32;'msg</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Function that creates the message for switching to the page pointed by an endpoint.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  getEndPoint
-                </span>
-                :
-                <code><span>'model&#32;->&#32;'ep</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  Function that extracts the current endpoint from the Elmish model.
-                </p>
-              </dd>
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  defaultPageModel
-                </span>
-                :
-                <code><span>'ep&#32;->&#32;unit</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    makeMessage
+                  </span>
+                  :
+                  <code><span>'ep&#32;->&#32;'msg</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Function that creates the message for switching to the page pointed by an endpoint.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    getEndPoint
+                  </span>
+                  :
+                  <code><span>'model&#32;->&#32;'ep</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Function that extracts the current endpoint from the Elmish model.
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    defaultPageModel
+                  </span>
+                  :
+                  <code><span>'ep&#32;->&#32;unit</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    
  Function that indicates the default <a href="/docs/reference/bolero-pagemodel-1.html">PageModel</a> for a given endpoint.
  Inside this function, call M:definePageModel to indicate the page model to use when switching to a new page.
  
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><a href="/docs/reference/bolero-router-3.html">Router</a>&lt;<span>'ep,&#32;'model,&#32;'msg</span>&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs">
-                <p>
-                  A router for the given endpoint type.
-                </p>
-              </dd>
-            </dl>
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/docs/reference/bolero-router-3.html">Router</a>&lt;<span>'ep,&#32;'model,&#32;'msg</span>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs">
+                  <p>
+                    A router for the given endpoint type.
+                  </p>
+                </dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '17', 17)" onmouseover="showTip(event, '17', 17)">
+              <code onmouseout="hideTip(event, '19', 19)" onmouseover="showTip(event, '19', 19)">
                 <p>
                   <a id="noModel">
                     <a href="#noModel">
@@ -506,7 +509,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="17">
+              <div class="fsdocs-tip" id="19">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>noModel&#32;<span></span></span></code>
@@ -522,34 +525,225 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Bolero.Router.noModel``1```')">
-                <img src="/docs/content/img/copy-md.png" class="normal"/>
-                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Router.noModel``1\'/>')">
-                <img src="/docs/content/img/copy-xml.png" class="normal"/>
-                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Router.fs#L738-738" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="/docs/content/img/github.png" class="normal"/>
-                <img src="/docs/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                
- An empty PageModel. Used when constructing an endpoint to pass to methods such as <a href="https://docs.microsoft.com/dotnet/api/router-3.link">Router</a>.
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Bolero.Router.noModel``1```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Router.noModel``1\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Router.fs#L946-946" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ An empty PageModel. Used when constructing an endpoint to pass to methods such as <a href="https://learn.microsoft.com/dotnet/api/router-3.link">Router</a>.
  
-              </p>
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/docs/reference/bolero-pagemodel-1.html">PageModel</a>&lt;'T&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '20', 20)" onmouseover="showTip(event, '20', 20)">
+                <p>
+                  <a id="withNotFound">
+                    <a href="#withNotFound">
+                      <code><span>withNotFound&#32;<span>notFound&#32;router</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="20">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>withNotFound&#32;<span>notFound&#32;router</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        notFound
+                      </b>
+                      :
+                      <code>'ep</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        router
+                      </b>
+                      :
+                      <code><span><a href="/docs/reference/bolero-router-3.html">Router</a>&lt;<span>'ep,&#32;'model,&#32;'msg</span>&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="/docs/reference/bolero-router-3.html">Router</a>&lt;<span>'ep,&#32;'model,&#32;'msg</span>&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
             </div>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><a href="/docs/reference/bolero-pagemodel-1.html">PageModel</a>&lt;'T&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Bolero.Router.withNotFound``3```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Router.withNotFound``3\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Router.fs#L931-931" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Indicate the endpoint to switch to if the user initially navigates to an unknown uri.
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    notFound
+                  </span>
+                  :
+                  <code>'ep</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    router
+                  </span>
+                  :
+                  <code><span><a href="/docs/reference/bolero-router-3.html">Router</a>&lt;<span>'ep,&#32;'model,&#32;'msg</span>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/docs/reference/bolero-router-3.html">Router</a>&lt;<span>'ep,&#32;'model,&#32;'msg</span>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '21', 21)" onmouseover="showTip(event, '21', 21)">
+                <p>
+                  <a id="withNotFoundMsg">
+                    <a href="#withNotFoundMsg">
+                      <code><span>withNotFoundMsg&#32;<span>notFound&#32;router</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="21">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>withNotFoundMsg&#32;<span>notFound&#32;router</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        notFound
+                      </b>
+                      :
+                      <code>'msg</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        router
+                      </b>
+                      :
+                      <code><span><a href="/docs/reference/bolero-irouter-2.html">IRouter</a>&lt;<span>'model,&#32;'msg</span>&gt;</span></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><span><a href="/docs/reference/bolero-irouter-2.html">IRouter</a>&lt;<span>'model,&#32;'msg</span>&gt;</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Bolero.Router.withNotFoundMsg``2```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Router.withNotFoundMsg``2\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero/Router.fs#L937-937" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Indicate the message to send if the user initially navigates to an unknown uri.
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    notFound
+                  </span>
+                  :
+                  <code>'msg</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    router
+                  </span>
+                  :
+                  <code><span><a href="/docs/reference/bolero-irouter-2.html">IRouter</a>&lt;<span>'model,&#32;'msg</span>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/docs/reference/bolero-irouter-2.html">IRouter</a>&lt;<span>'model,&#32;'msg</span>&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
       </tbody>

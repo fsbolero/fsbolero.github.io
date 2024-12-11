@@ -8,9 +8,9 @@
   <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
   <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[],"$DATA":{"$V":{}}}' />
 
-  <link rel="stylesheet" href="/css/all.css" />
   <link rel="stylesheet" href="/docs/content/fsdocs-default.css" />
   <link rel="stylesheet" href="/docs/content/fsdocs-custom.css" />
+  <link rel="stylesheet" href="/css/all.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js" type="text/javascript" charset="UTF-8"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/languages/fsharp.min.js" type="text/javascript" charset="UTF-8"></script><link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/vs.min.css"></link>
 
 </head>
@@ -146,7 +146,7 @@
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '612', 612)" onmouseover="showTip(event, '612', 612)">
+              <code onmouseout="hideTip(event, '616', 616)" onmouseover="showTip(event, '616', 616)">
                 <p>
                   <a id="comp">
                     <a href="#comp">
@@ -155,7 +155,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="612">
+              <div class="fsdocs-tip" id="616">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>comp&#32;<span></span></span></code>
@@ -176,45 +176,45 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Bolero.Html.virtualize.comp``1```')">
-                <img src="/docs/content/img/copy-md.png" class="normal"/>
-                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Html.virtualize.comp``1\'/>')">
-                <img src="/docs/content/img/copy-xml.png" class="normal"/>
-                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Html.fs#L3040-3040" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="/docs/content/img/github.png" class="normal"/>
-                <img src="/docs/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                Computation expression builder to create a Virtualize component.
-              </p>
-            </div>
-            <p class="fsdocs-remarks">
-              
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Bolero.Html.virtualize.comp``1```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Html.virtualize.comp``1\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Html.fs#L3040-3040" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    Computation expression builder to create a Virtualize component.
+                  </p>
+                </div>
+              </summary>
+              <p class="fsdocs-remarks">
+                
  The contents of the computation expression should be:
    1. component parameters, if any;
    2. <code>let!</code> to bind the current item to M:items or M:itemsProvider;
    3. the body of an item.
  
-            </p>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><a href="/docs/reference/bolero-builders-virtualizebuilder-1.html">VirtualizeBuilder</a>&lt;'item&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-            <h5 class="fsdocs-example-header">
-              Example
-            </h5>
-            <p class="fsdocs-example" id="example">
-              <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">virtualize</span><span class="pn">.</span><span class="id">comp</span> <span class="pn">{</span>
+              </p>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/docs/reference/bolero-builders-virtualizebuilder-1.html">VirtualizeBuilder</a>&lt;'item&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="example">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">virtualize</span><span class="pn">.</span><span class="id">comp</span> <span class="pn">{</span>
      <span class="id">virtualize</span><span class="pn">.</span><span class="id">itemSize</span> <span class="n">30</span>
      <span class="k">let!</span> <span class="id">item</span> <span class="o">=</span> <span class="id">virtualize</span><span class="pn">.</span><span class="id">items</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">seq</span> <span class="pn">{</span> <span class="n">1</span> <span class="o">..</span> <span class="n">1000</span> <span class="pn">}</span><span class="pn">)</span>
      <span class="id">div</span> <span class="pn">{</span>
@@ -222,16 +222,17 @@
      <span class="pn">}</span>
  <span class="pn">}</span>
 </code></pre>
-<div class="fsdocs-tip" id="fs1">Multiple items<br />val seq: sequence: seq&lt;&#39;T&gt; -&gt; seq&lt;&#39;T&gt;<br /><br />--------------------<br />type seq&lt;&#39;T&gt; = System.Collections.Generic.IEnumerable&lt;&#39;T&gt;</div>
+<div class="fsdocs-tip" id="fs1">Multiple items<br />val seq: sequence: &#39;T seq -&gt; &#39;T seq<br /><br />--------------------<br />type &#39;T seq = System.Collections.Generic.IEnumerable&lt;&#39;T&gt;</div>
 
 
-            </p>
+              </p>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '613', 613)" onmouseover="showTip(event, '613', 613)">
+              <code onmouseout="hideTip(event, '617', 617)" onmouseover="showTip(event, '617', 617)">
                 <p>
                   <a id="itemSize">
                     <a href="#itemSize">
@@ -240,7 +241,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="613">
+              <div class="fsdocs-tip" id="617">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>itemSize&#32;<span>v</span></span></code>
@@ -273,52 +274,53 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Bolero.Html.virtualize.itemSize`')">
-                <img src="/docs/content/img/copy-md.png" class="normal"/>
-                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Html.virtualize.itemSize\'/>')">
-                <img src="/docs/content/img/copy-xml.png" class="normal"/>
-                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Html.fs#L3049-3049" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="/docs/content/img/github.png" class="normal"/>
-                <img src="/docs/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                A component parameter indicating the height of an item in CSS points.
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  v
-                </span>
-                :
-                <code>single</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The height of an item.
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="/docs/reference/bolero-attr.html">Attr</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Bolero.Html.virtualize.itemSize`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Html.virtualize.itemSize\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Html.fs#L3049-3049" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    A component parameter indicating the height of an item in CSS points.
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    v
+                  </span>
+                  :
+                  <code>single</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The height of an item.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><a href="/docs/reference/bolero-attr.html">Attr</a></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '614', 614)" onmouseover="showTip(event, '614', 614)">
+              <code onmouseout="hideTip(event, '618', 618)" onmouseover="showTip(event, '618', 618)">
                 <p>
                   <a id="items">
                     <a href="#items">
@@ -327,7 +329,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="614">
+              <div class="fsdocs-tip" id="618">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>items&#32;<span>items</span></span></code>
@@ -340,7 +342,7 @@
                         items
                       </b>
                       :
-                      <code><span><a href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ireadonlycollection-1">IReadOnlyCollection</a>&lt;'item&gt;</span></code>
+                      <code><span><a href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlycollection-1">IReadOnlyCollection</a>&lt;'item&gt;</span></code>
                        - 
                       The collection of items.
                     </span>
@@ -362,65 +364,66 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Bolero.Html.virtualize.items``1```')">
-                <img src="/docs/content/img/copy-md.png" class="normal"/>
-                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Html.virtualize.items``1\'/>')">
-                <img src="/docs/content/img/copy-xml.png" class="normal"/>
-                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Html.fs#L2993-2993" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="/docs/content/img/github.png" class="normal"/>
-                <img src="/docs/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                Pass a direct collection of items to a Virtualize component.
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  items
-                </span>
-                :
-                <code><span><a href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ireadonlycollection-1">IReadOnlyCollection</a>&lt;'item&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The collection of items.
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><a href="/docs/reference/bolero-builders-virtualizeitemsdeclaration-1.html">VirtualizeItemsDeclaration</a>&lt;'item&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-            <h5 class="fsdocs-example-header">
-              Example
-            </h5>
-            <p class="fsdocs-example" id="example">
-              <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">virtualize</span><span class="pn">.</span><span class="id">comp</span> <span class="pn">{</span>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Bolero.Html.virtualize.items``1```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Html.virtualize.items``1\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Html.fs#L2993-2993" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    Pass a direct collection of items to a Virtualize component.
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    items
+                  </span>
+                  :
+                  <code><span><a href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlycollection-1">IReadOnlyCollection</a>&lt;'item&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The collection of items.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/docs/reference/bolero-builders-virtualizeitemsdeclaration-1.html">VirtualizeItemsDeclaration</a>&lt;'item&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="example">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">virtualize</span><span class="pn">.</span><span class="id">comp</span> <span class="pn">{</span>
      <span class="k">let!</span> <span class="id">item</span> <span class="o">=</span> <span class="id">virtualize</span><span class="pn">.</span><span class="id">items</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">seq</span> <span class="pn">{</span> <span class="n">1</span> <span class="o">..</span> <span class="n">1000</span> <span class="pn">}</span><span class="pn">)</span>
      <span class="id">div</span> <span class="pn">{</span> <span class="s">$&quot;Item number {</span><span class="id">item</span><span class="s">}&quot;</span> <span class="pn">}</span>
  <span class="pn">}</span>
 </code></pre>
-<div class="fsdocs-tip" id="fs1">Multiple items<br />val seq: sequence: seq&lt;&#39;T&gt; -&gt; seq&lt;&#39;T&gt;<br /><br />--------------------<br />type seq&lt;&#39;T&gt; = System.Collections.Generic.IEnumerable&lt;&#39;T&gt;</div>
+<div class="fsdocs-tip" id="fs1">Multiple items<br />val seq: sequence: &#39;T seq -&gt; &#39;T seq<br /><br />--------------------<br />type &#39;T seq = System.Collections.Generic.IEnumerable&lt;&#39;T&gt;</div>
 
 
-            </p>
+              </p>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '615', 615)" onmouseover="showTip(event, '615', 615)">
+              <code onmouseout="hideTip(event, '619', 619)" onmouseover="showTip(event, '619', 619)">
                 <p>
                   <a id="itemsProvider">
                     <a href="#itemsProvider">
@@ -429,7 +432,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="615">
+              <div class="fsdocs-tip" id="619">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>itemsProvider&#32;<span>itemsProvider</span></span></code>
@@ -442,7 +445,7 @@
                         itemsProvider
                       </b>
                       :
-                      <code><span><a href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.components.web.virtualization.itemsproviderrequest">ItemsProviderRequest</a>&#32;->&#32;<span><a href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1">ValueTask</a>&lt;<span><a href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.components.web.virtualization.itemsproviderresult-1">ItemsProviderResult</a>&lt;'item&gt;</span>&gt;</span></span></code>
+                      <code><span><a href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.web.virtualization.itemsproviderrequest">ItemsProviderRequest</a>&#32;->&#32;<span><a href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1">ValueTask</a>&lt;<span><a href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.web.virtualization.itemsproviderresult-1">ItemsProviderResult</a>&lt;'item&gt;</span>&gt;</span></span></code>
                        - 
                       The function that generates items on the fly.
                     </span>
@@ -464,51 +467,51 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Bolero.Html.virtualize.itemsProvider``1```')">
-                <img src="/docs/content/img/copy-md.png" class="normal"/>
-                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Html.virtualize.itemsProvider``1\'/>')">
-                <img src="/docs/content/img/copy-xml.png" class="normal"/>
-                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Html.fs#L3016-3016" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="/docs/content/img/github.png" class="normal"/>
-                <img src="/docs/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                Generate the items of a Virtualize component on the fly.
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  itemsProvider
-                </span>
-                :
-                <code><span><a href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.components.web.virtualization.itemsproviderrequest">ItemsProviderRequest</a>&#32;->&#32;<span><a href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1">ValueTask</a>&lt;<span><a href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.components.web.virtualization.itemsproviderresult-1">ItemsProviderResult</a>&lt;'item&gt;</span>&gt;</span></span></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The function that generates items on the fly.
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><span><a href="/docs/reference/bolero-builders-virtualizeitemsdeclaration-1.html">VirtualizeItemsDeclaration</a>&lt;'item&gt;</span></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
-            <h5 class="fsdocs-example-header">
-              Example
-            </h5>
-            <p class="fsdocs-example" id="example">
-              <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">virtualize</span><span class="pn">.</span><span class="id">comp</span> <span class="pn">{</span>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('```cref:M:Bolero.Html.virtualize.itemsProvider``1```')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Html.virtualize.itemsProvider``1\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Html.fs#L3016-3016" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    Generate the items of a Virtualize component on the fly.
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    itemsProvider
+                  </span>
+                  :
+                  <code><span><a href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.web.virtualization.itemsproviderrequest">ItemsProviderRequest</a>&#32;->&#32;<span><a href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.valuetask-1">ValueTask</a>&lt;<span><a href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.web.virtualization.itemsproviderresult-1">ItemsProviderResult</a>&lt;'item&gt;</span>&gt;</span></span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The function that generates items on the fly.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><span><a href="/docs/reference/bolero-builders-virtualizeitemsdeclaration-1.html">VirtualizeItemsDeclaration</a>&lt;'item&gt;</span></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+              <h5 class="fsdocs-example-header">
+                Example
+              </h5>
+              <p class="fsdocs-example" id="example">
+                <pre class="fssnip highlighted"><code lang="fsharp"> <span class="id">virtualize</span><span class="pn">.</span><span class="id">comp</span> <span class="pn">{</span>
      <span class="k">let!</span> <span class="id">item</span> <span class="o">=</span> <span class="id">virtualize</span><span class="pn">.</span><span class="id">itemsProvider</span> <span class="o">&lt;|</span> <span class="k">fun</span> <span class="id">request</span> <span class="k">-&gt;</span>
          <span class="id">ValueTask</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">task</span> <span class="pn">{</span>
              <span class="k">let</span> <span class="id">items</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="id">seq</span> <span class="pn">{</span> <span class="id">request</span><span class="pn">.</span><span class="id">StartIndex</span> <span class="o">..</span> <span class="id">request</span><span class="pn">.</span><span class="id">StartIndex</span> <span class="o">+</span> <span class="id">request</span><span class="pn">.</span><span class="id">Count</span> <span class="o">-</span> <span class="n">1</span> <span class="pn">}</span>
@@ -518,16 +521,17 @@
  <span class="pn">}</span>
 </code></pre>
 <div class="fsdocs-tip" id="fs1">val task: TaskBuilder</div>
-<div class="fsdocs-tip" id="fs2">Multiple items<br />val seq: sequence: seq&lt;&#39;T&gt; -&gt; seq&lt;&#39;T&gt;<br /><br />--------------------<br />type seq&lt;&#39;T&gt; = System.Collections.Generic.IEnumerable&lt;&#39;T&gt;</div>
+<div class="fsdocs-tip" id="fs2">Multiple items<br />val seq: sequence: &#39;T seq -&gt; &#39;T seq<br /><br />--------------------<br />type &#39;T seq = System.Collections.Generic.IEnumerable&lt;&#39;T&gt;</div>
 
 
-            </p>
+              </p>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '616', 616)" onmouseover="showTip(event, '616', 616)">
+              <code onmouseout="hideTip(event, '620', 620)" onmouseover="showTip(event, '620', 620)">
                 <p>
                   <a id="overscanCount">
                     <a href="#overscanCount">
@@ -536,7 +540,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="616">
+              <div class="fsdocs-tip" id="620">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>overscanCount&#32;<span>v</span></span></code>
@@ -569,52 +573,53 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Bolero.Html.virtualize.overscanCount`')">
-                <img src="/docs/content/img/copy-md.png" class="normal"/>
-                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Html.virtualize.overscanCount\'/>')">
-                <img src="/docs/content/img/copy-xml.png" class="normal"/>
-                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Html.fs#L3054-3054" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="/docs/content/img/github.png" class="normal"/>
-                <img src="/docs/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                A component parameter indicating the number of extra items to load for smooth scrolling.
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  v
-                </span>
-                :
-                <code>int</code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The number of extra items to load.
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="/docs/reference/bolero-attr.html">Attr</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Bolero.Html.virtualize.overscanCount`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Html.virtualize.overscanCount\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Html.fs#L3054-3054" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    A component parameter indicating the number of extra items to load for smooth scrolling.
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    v
+                  </span>
+                  :
+                  <code>int</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The number of extra items to load.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><a href="/docs/reference/bolero-attr.html">Attr</a></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
         <tr>
           <td class="fsdocs-member-usage">
             <div>
-              <code onmouseout="hideTip(event, '617', 617)" onmouseover="showTip(event, '617', 617)">
+              <code onmouseout="hideTip(event, '621', 621)" onmouseover="showTip(event, '621', 621)">
                 <p>
                   <a id="placeholder">
                     <a href="#placeholder">
@@ -623,7 +628,7 @@
                   </a>
                 </p>
               </code>
-              <div class="fsdocs-tip" id="617">
+              <div class="fsdocs-tip" id="621">
                 <div class="member-tooltip">
                   Full Usage: 
                   <code><span>placeholder&#32;<span>v</span></span></code>
@@ -636,7 +641,7 @@
                         v
                       </b>
                       :
-                      <code><span><a href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.components.web.virtualization.placeholdercontext">PlaceholderContext</a>&#32;->&#32;<a href="/docs/reference/bolero-node.html">Node</a></span></code>
+                      <code><span><a href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.web.virtualization.placeholdercontext">PlaceholderContext</a>&#32;->&#32;<a href="/docs/reference/bolero-node.html">Node</a></span></code>
                        - 
                       The placeholder content.
                     </span>
@@ -656,46 +661,47 @@
             </div>
           </td>
           <td class="fsdocs-member-xmldoc">
-            <div class="fsdocs-summary">
-              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Bolero.Html.virtualize.placeholder`')">
-                <img src="/docs/content/img/copy-md.png" class="normal"/>
-                <img src="/docs/content/img/copy-md-hover.png" class="hover"/>
-              </div>
-              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Html.virtualize.placeholder\'/>')">
-                <img src="/docs/content/img/copy-xml.png" class="normal"/>
-                <img src="/docs/content/img/copy-xml-hover.png" class="hover"/>
-              </div>
-              <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Html.fs#L3044-3044" class="fsdocs-source-link" title="Source on GitHub">
-                <img src="/docs/content/img/github.png" class="normal"/>
-                <img src="/docs/content/img/github-hover.png" class="hover"/>
-              </a>
-              <p class="fsdocs-summary">
-                A component parameter indicating the placeholder content shown while an item is loading.
-              </p>
-            </div>
-            <dl class="fsdocs-params">
-              <dt class="fsdocs-param">
-                <span class="fsdocs-param-name">
-                  v
-                </span>
-                :
-                <code><span><a href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.components.web.virtualization.placeholdercontext">PlaceholderContext</a>&#32;->&#32;<a href="/docs/reference/bolero-node.html">Node</a></span></code>
-              </dt>
-              <dd class="fsdocs-param-docs">
-                <p>
-                  The placeholder content.
-                </p>
-              </dd>
-            </dl>
-            <dl class="fsdocs-returns">
-              <dt>
-                <span class="fsdocs-return-name">
-                  Returns: 
-                </span>
-                <code><a href="/docs/reference/bolero-attr.html">Attr</a></code>
-              </dt>
-              <dd class="fsdocs-return-docs"></dd>
-            </dl>
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:Bolero.Html.virtualize.placeholder`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:Bolero.Html.virtualize.placeholder\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/fsbolero/bolero/blob/master/src/Bolero.Html/Html.fs#L3044-3044" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    A component parameter indicating the placeholder content shown while an item is loading.
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    v
+                  </span>
+                  :
+                  <code><span><a href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.web.virtualization.placeholdercontext">PlaceholderContext</a>&#32;->&#32;<a href="/docs/reference/bolero-node.html">Node</a></span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    The placeholder content.
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><a href="/docs/reference/bolero-attr.html">Attr</a></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
           </td>
         </tr>
       </tbody>
