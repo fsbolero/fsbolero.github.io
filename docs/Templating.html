@@ -101,8 +101,7 @@
           <section class="hero">
               <div class="hero-body">
                 <h1 class="title">HTML templates</h1>
-                <p class="subtitle">
-Use plain HTML files as templates with a type provider</p>
+                <p class="subtitle">Use plain HTML files as templates with a type provider</p>
 
               </div>
             </section>
@@ -222,9 +221,6 @@ let hello model dispatch =
 <li><code>&lt;input type=&quot;checkbox&quot;&gt;</code> has a boolean value, and can be filled by a <code>bool</code>.</li>
 <li><code>&lt;input&gt;</code> with other types or no type, <code>&lt;textarea&gt;</code> and <code>&lt;select&gt;</code> have an arbitrary value, and can be filled by a <code>string</code>.</li>
 </ul>
-<blockquote>
-<p>Note: Radio buttons (<code>&lt;input type=&quot;radio&quot;&gt;</code>) are not yet supported by Blazor, and therefore by Bolero; see <a href="https://github.com/aspnet/Blazor/issues/1322">the issue on Blazor's tracker</a>.</p>
-</blockquote>
 <pre><code class="language-html">&lt;input type=&quot;checkbox&quot; bind=&quot;${IsChecked}&quot;&gt;
 </code></pre>
 <pre><code class="language-fsharp">type Model = { isChecked: bool }
@@ -255,6 +251,30 @@ type Hello = Template&lt;&quot;hello.html&quot;&gt;
 let hello model dispatch =
     Hello()
         .Name(model.name, fun n -&gt; dispatch (SetName n))
+        .Elt()
+</code></pre>
+<p>Radio buttons can also use <code>bind</code>:</p>
+<pre><code class="language-html">&lt;!-- use the same name for the 3 radio buttons to group them. --&gt;
+&lt;input type=&quot;radio&quot; name=&quot;select-color&quot; bind=&quot;${Red}&quot;&gt;
+&lt;input type=&quot;radio&quot; name=&quot;select-color&quot; bind=&quot;${Green}&quot;&gt;
+&lt;input type=&quot;radio&quot; name=&quot;select-color&quot; bind=&quot;${Blue}&quot;&gt;
+</code></pre>
+<pre><code class="language-fsharp">type Color = Red | Green | Blue
+type Model = { color: Color }
+
+type Message =
+    | SetColor of Color
+
+type RadioButtons = Template&lt;&quot;radioButtons.html&quot;&gt;
+
+let radioButtons model dispatch =
+    // HTML requires each button to have a different string value,
+    // but you don't have to use this string in the event handler
+    // if you have a better typed value at hand.
+    RadioButtons()
+        .Red(&quot;Red&quot;, fun _ -&gt; dispatch (SetColor Red))
+        .Green(&quot;Green&quot;, fun _ -&gt; dispatch (SetColor Green))
+        .Blue(&quot;Blue&quot;, fun _ -&gt; dispatch (SetColor Blue))
         .Elt()
 </code></pre>
 <h4 id="event-handlers-for-data-binding">Event handlers for data binding</h4>
@@ -434,13 +454,13 @@ listFriends [&quot;Alice&quot;; &quot;Bob&quot;; &quot;Chloe&quot;]
                   </li><li>
                     <a class="is-active" href="/docs/Templating">HTML templates</a>
                     <ul><li>
-                        <a href="#invoking-the-type-provider">Invoking the type provider</a>
+                        <a href="#invoking-the-type-provider">Invoking the type provider</a>
                       </li><li>
-                        <a href="#holes">Holes</a>
+                        <a href="#holes">Holes</a>
                       </li><li>
-                        <a href="#nested-templates">Nested templates</a>
+                        <a href="#nested-templates">Nested templates</a>
                       </li><li>
-                        <a href="#hot-reloading">Hot reloading</a>
+                        <a href="#hot-reloading">Hot reloading</a>
                       </li></ul>
                   </li><li>
                     <a href="/docs/Elmish">Using Elmish</a>
