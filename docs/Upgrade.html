@@ -108,7 +108,52 @@
 
               </div>
             </section>
-          <section class="section"><div ws-preserve=""><h2 id="from-v0.22-to-v0.23">From v0.22 to v0.23</h2>
+          <section class="section"><div ws-preserve=""><h2 id="from-v0.24-to-v0.25">From v0.24 to v0.25</h2>
+<ul>
+<li><p>Bolero v0.25 upgrades the minimum dependency to .NET 8, and recommended to .NET 10.<br />
+To upgrade a project to .NET 10, in addition to setting the <code>TargetFramework</code> of all projects to <code>net10.0</code>, the following changes are needed on the <code>Server</code> project:</p>
+<ul>
+<li>In the project file, inside a <code>&lt;PropertyGroup&gt;</code> tag, add the following:
+<pre><code class="language-xml">&lt;RequiresAspNetWebAssets&gt;true&lt;/RequiresAspNetWebAssets&gt;
+</code></pre>
+</li>
+<li>In <code>Startup.fs</code>:
+<ul>
+<li>Make sure that the call to <code>app.UseBlazorFrameworkFiles()</code>, if any, is located before other <code>app.UseXXX()</code> calls.</li>
+<li>Before other <code>app.MapXXX()</code> calls, add the following:
+<pre><code class="language-fsharp">app.MapStaticAssets() |&gt; ignore
+</code></pre>
+</li>
+<li>In order to be able to run locally with <code>dotnet run</code> or from your IDE, add the following immediately after the call to <code>builder.Build()</code>:
+<pre><code class="language-fsharp">#if DEBUG
+StaticWebAssetsLoader.UseStaticWebAssets(app.Environment, app.Configuration)
+#endif
+</code></pre>
+This requires <code>open</code>ing the namespace <code>Microsoft.AspNetCore.Hosting.StaticWebAssets</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Bolero introduces overloads for HTML template event handlers and data bindings, where the callbacks return <code>Task</code> or <code>Async&lt;unit&gt;</code> rather than <code>unit</code>.
+In some cases, this can break the compilation and require adding type annotations to disambiguate which overload is being used.
+For example:</p>
+<pre><code class="language-fsharp">type MyButton = Template&lt;&quot;&quot;&quot;&lt;button onclick=&quot;${Click}&quot;&gt;Click me!&lt;/button&gt;&quot;&quot;&quot;&gt;
+
+// Error FS0041 : A unique overload for method 'Click' could not be determined
+let view model dispatch =
+    MyButton()
+        .Click(fun _ -&gt; dispatch MyMessage)
+        .Elt()
+
+// Fix: add a type annotation to 'dispatch'
+let view model (dispatch: Message -&gt; unit) =
+    MyButton()
+        .Click(fun _ -&gt; dispatch MyMessage)
+        .Elt()
+</code></pre>
+</li>
+</ul>
+<h2 id="from-v0.22-to-v0.23">From v0.22 to v0.23</h2>
 <p><a href="https://fsbolero.io/blog/TODO-bolero-0-23-released">See the 0.23 announcement.</a></p>
 <ul>
 <li><p>The signatures of the following server-side methods and their various overloads have changed:</p>
@@ -595,6 +640,8 @@ If your code uses Blazor APIs directly, please check the Blazor <a href="https:/
                   </li><li>
                     <a class="is-active" href="/docs/Upgrade">Upgrade guide</a>
                     <ul><li>
+                        <a href="#from-v024-to-v025">From v0.24 to v0.25</a>
+                      </li><li>
                         <a href="#from-v022-to-v023">From v0.22 to v0.23</a>
                       </li><li>
                         <a href="#from-v021-to-v022">From v0.21 to v0.22</a>

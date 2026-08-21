@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bolero 0.24 released | Bolero: F# in WebAssembly</title>
+  <title>Bolero 0.25 released | Bolero: F# in WebAssembly</title>
   <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16" />
   <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32" />
   <meta id='websharper-data' name='websharper-data' content='{"$TYPES":[],"$DATA":{"$V":{}}}' />
@@ -98,162 +98,35 @@
           <div class="column content markdown-column">
           <section class="hero">
             <div class="hero-body">
-              <h1 class="title">Bolero 0.24 released</h1>
+              <h1 class="title">Bolero 0.25 released</h1>
               <p class="subtitle">Interactive render modes</p>
 
             </div>
           </section>
-          <section class="section"><div ws-preserve=""><p>We are happy to announce the release of <a href="https://fsbolero.io">Bolero</a> version 0.24.
+          <section class="section"><div ws-preserve=""><p>We are happy to announce the release of <a href="https://fsbolero.io">Bolero</a> version 0.25.
 Bolero is a library that enables writing full-stack appications in F#, whose interactivity runs in WebAssembly or on the server side using Blazor.</p>
-<p>The main highlights of this release are:</p>
-<ul>
-<li>Support for Interactive render modes</li>
-<li>Support for Streaming rendering.</li>
-</ul>
 <p>Install the latest project template with:</p>
-<pre><code class="language-sh">dotnet new -i Bolero.Templates::0.24.38
+<pre><code class="language-sh">dotnet new -i Bolero.Templates::0.25.17
 </code></pre>
-<h2 id="interactive-render-modes">Interactive render modes</h2>
-<p>Bolero now supports the <a href="https://learn.microsoft.com/en-us/aspnet/core/blazor/components/render-modes">Interactive render modes</a> which were introduced in Blazor 8.
-This is a new way of deciding whether dynamic content should be rendered on the server side or in WebAssembly, incompatible with the existing <code>IBoleroHostConfig</code>-based method.</p>
-<p>The Bolero project template now uses InteractiveWebAssembly mode by default. You can toggle it with the <code>--render</code> argument:</p>
-<pre><code class="language-sh">dotnet new bolero-app --render=InteractiveAuto
-dotnet new bolero-app --render=InteractiveServer
-dotnet new bolero-app --render=InteractiveWebAssembly
-dotnet new bolero-app --render=LegacyServer      # &quot;classic&quot; server-side mode
-dotnet new bolero-app --render=LegacyWebAssembly # &quot;classic&quot; WebAssembly mode
-</code></pre>
-<p>To switch an existing project to the new mode:</p>
+<h2 id="net-10-support">.NET 10 support</h2>
+<p>Bolero 0.25 adds support for .NET 10. The library itself is updated to work on .NET 10, and the project template now creates a .NET 10 project by default.</p>
+<p>Bolero 0.25 also drops support for .NET 6 and 7, which are out of support by Microsoft.</p>
+<h2 id="html-template-improvements">HTML template improvements</h2>
 <ul>
-<li><p>Make sure you are using Bolero HTML for your static content.</p>
-</li>
-<li><p>Wrap your <code>index</code> page definition in a component:</p>
-<pre><code class="language-fsharp">[&lt;Route &quot;/{*path}&quot;&gt;]
-type Page() =
-    inherit Bolero.Component()
-    override _.Render() = index
+<li><p>For event handlers and data bindings, there are now overloads for callbacks returning <code>Task</code> or <code>Async&lt;unit&gt;</code> rather than <code>unit</code>.</p>
+<pre><code class="language-html">&lt;button onclick=&quot;${Click}&quot;&gt;Click me!&lt;/button&gt;
 </code></pre>
-</li>
-<li><p>In the server-side dependency injection: replace <code>AddBoleroHost()</code> with <code>AddBoleroComponents()</code>.</p>
-</li>
-<li><p>In the server-side endpoints configuration, replace this:</p>
-<pre><code class="language-fsharp">endpoints.MapDefaultToBolero(index) |&gt; ignore
-</code></pre>
-<p>with:</p>
-<pre><code class="language-fsharp">endpoints.MapRazorComponents&lt;Page&gt;()
-    // If you use Server or Auto render mode:
-    .AddInteractiveServerRenderMode()
-    // If you use WebAssembly or Auto render mode:
-    .AddInteractiveWebAssemblyRenderMode()
-    // List here your client assemblies:
-    .AddAdditionalAssemblies(typeof&lt;MyApp&gt;.Assembly)
-|&gt; ignore
-</code></pre>
-</li>
-<li><p>On your root dynamic component(s), use one of the following to decide its render mode:</p>
-<ul>
-<li><p><code>BoleroRenderMode</code> on the component itself:</p>
-<pre><code class="language-fsharp">// Note: prerender is true if not specified.
-[&lt;BoleroRenderMode(BoleroRenderMode.Auto, prerender = false)&gt;]
-type MyApp() =
-    // ...
-</code></pre>
-<p>OR</p>
-</li>
-<li><p><code>attr.renderMode</code> when creating an instance of the component:</p>
-<pre><code class="language-fsharp">open Microsoft.AspNetCore.Components.Web
+<pre><code class="language-fsharp">type MyButton = Template&lt;&quot;index.html&quot;&gt;
 
-let index = doctypeHtml {
-    head { (* ... *) }
-    body {
-        // Default (ie with prerender=true):
-        comp&lt;MyApp&gt; { attr.renderMode RenderMode.InteractiveAuto }
-
-        // Custom (here with prerender=false):
-        comp&lt;MyApp&gt; { attr.renderMode (InteractiveAutoRenderMode(prerender = false)) }
-
-        boleroScript
-    }
-}
+let view (js: IJSRuntime) model dispatch =
+    Template()
+        .Click(fun e -&gt; js.InvokeAsync(&quot;console.log&quot;, e).AsTask() :&gt; Task)
+        .Elt()
 </code></pre>
 </li>
-<li><p>If neither of these are used, then the render mode will be Static Server (ie no interactive content).</p>
+<li><p>The code generation for HTML templates is now optimized to generate a linear sequence of instructions rather than building lists of attributes and elements. This improves performance and memory allocations, and brings it in line with computation expressions (and razor pages in classic C# Blazor).</p>
 </li>
 </ul>
-</li>
-</ul>
-<h2 id="streaming-rendering">Streaming rendering</h2>
-<p>Bolero now supports <a href="https://learn.microsoft.com/en-us/aspnet/core/blazor/components/rendering?view=aspnetcore-9.0#streaming-rendering">streaming rendering</a> in two different ways:</p>
-<ul>
-<li><p>Streaming rendering in the Elmish program, using <code>Program.mkStreamRendering</code> or <code>Program.mkSimpleStreamRendering</code>:</p>
-<pre><code class="language-fsharp">type Model = { text: string }
-
-[&lt;StreamRendering true&gt;]
-type MyApp() =
-    inherit ProgramComponent&lt;Model, Message&gt;()
-
-    override this.Program =
-        let initModel = { text = &quot;Loading...&quot; }
-
-        let load initialModel = task {
-            let! loadedText = myRemoteApi.getText ()
-            return { initialModel with text = $&quot;Loaded {loadedText}!&quot; }, Cmd.none
-        }
-
-        Program.mkStreamRendering initModel load update view
-</code></pre>
-</li>
-<li><p>Streaming rendering on a (non-Elmish) component by inheriting from <code>StreamRenderingComponent&lt;'model&gt;</code>:</p>
-<pre><code class="language-fsharp">type Model = { text: string }
-
-type MyStreamedComponent() =
-    inherit StreamRenderingComponent&lt;Model&gt;()
-
-    override _.InitialModel = { text = &quot;Loading...&quot; }
-
-    override _.LoadModel(initialModel) = task {
-        let! loadedText = myRemoteApi.getText ()
-        return { initialModel with text = $&quot;Loaded {loadedText}!&quot; }, Cmd.none
-    }
-</code></pre>
-</li>
-</ul>
-<h2 id="net-9-and-f-9-improvements">.NET 9 and F# 9 improvements</h2>
-<p>This is not part of Bolero 0.24, but since <a href="https://devblogs.microsoft.com/dotnet/announcing-dotnet-9/">.NET 9 and F# 9 were recently released</a>, we would like to highlight some improvements that are relevant to Bolero:</p>
-<ul>
-<li><p>Tooling performance has been greatly improved around large and nested computation expressions. This should make the experience of editing HTML-heavy source files much more pleasant.</p>
-</li>
-<li><p>It is now possible to create empty computation expressions. For example, to create an empty <code>div</code> element, instead of:</p>
-<pre><code class="language-fsharp">div { attr.empty() }
-</code></pre>
-<p>You can now simply write:</p>
-<pre><code class="language-fsharp">div {}
-</code></pre>
-</li>
-<li><p>(On Blazor 9 only) Dependency injection can now be done using constructor arguments, rather than properties with the <code>Inject</code> attribute.</p>
-<pre><code class="language-fsharp">// Blazor 8:
-type MyOldComponent() =
-    inherit Component()
-
-    [&lt;Inject&gt;]
-    member val JS = Unchecked.defaultof&lt;IJSRuntime&gt; with get, set
-
-    override this.Render() =
-        this.JS.InvokeAsync(&quot;console.log&quot;, &quot;Hello world!&quot;) |&gt; ignore
-        div { attr.empty() }
-
-// Blazor 9:
-type MyNewComponent(js: IJSRuntime) =
-    inherit Component()
-
-    override this.Render() =
-        js.InvokeAsync(&quot;console.log&quot;, &quot;Hello world!&quot;) |&gt; ignore
-        div {}
-</code></pre>
-</li>
-</ul>
-<h2 id="net-6-and.net-7-notice">.NET 6 and .NET 7 notice</h2>
-<p>Bolero 0.24 will be the last version of Bolero supporting .NET 6 and .NET 7 (which are already out of support by Microsoft). Starting with Bolero 0.25, .NET 8 will be the minimum supported version.</p>
 <p>Happy coding!</p>
 </div></section>
         </div>
@@ -262,7 +135,10 @@ type MyNewComponent(js: IJSRuntime) =
               <div class="menu">
                 <div class="menu-label">Articles</div>
                 <ul class="menu-list"><li>
-                    <a class="is-active" href="/blog/20241209-bolero-0-24-released">Bolero 0.24 released</a>
+                    <a class="is-active" href="/blog/20260814-bolero-0-25-released">Bolero 0.25 released</a>
+                    <ul class="is-hidden"></ul>
+                  </li><li>
+                    <a href="/blog/20241209-bolero-0-24-released">Bolero 0.24 released</a>
                     <ul class="is-hidden"></ul>
                   </li><li>
                     <a href="/blog/20231106-bolero-0-23-released">Bolero 0.23 released</a>
